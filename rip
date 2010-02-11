@@ -1,0 +1,569 @@
+#!/bin/bash -c 'this file is not executable. source it.'
+
+import trash || return -1
+    # Import my trash package for
+        # del
+
+export AP_PADDING="DEFAULT_PAD=8192:MIN_PAD=0:MAX_PAD=8192"
+export PIC_OPTIONS="removeTempPix:AddBothPix=true"
+    # Set up a bunch of defaults for AtomicParsley(1) so that finishing up
+    #  the tagging process is later is less painful.
+
+function ripDebug ()
+{
+    export DEBUG_DISABLE_HANDBRAKE_INVOCATION=DEBUG_DISABLE_HANDBRAKE_INVOCATION
+    export DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION=DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION
+    export DO_NOT_TWEET_RIPS=DO_NOT_TWEET_RIPS
+    export DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION
+    
+    echo "$DEBUG_DISABLE_HANDBRAKE_INVOCATION; $DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION; $DO_NOT_TWEET_RIPS; $DEBUG_DISABLE_TAR_INVOCATION" 1>&2
+}
+
+function ripEm ()
+{
+    local movie
+    for movie in "$@"
+    do
+        ripIt "$movie" || return "$?"
+    done
+}
+
+function attachDMGOrJustEcho ()
+{
+    if [ -f "$1" ]
+    then
+        hdiutil attach -puppetstrings -readonly -mount required -noverify -noautofsck -noidme -noautoopen "$1" | awk 'BEGIN { FS="\t" } {print $3 }'
+    else
+        echo "$1"
+    fi
+}
+
+function generateMovieMetadata ()
+{
+    source "$1/info.txt" || source ~/Movies/"DVD Metadata"/"${1%.*}".txt
+        # Load metadata from either within the DVD bundle, or from a known location.
+}
+
+function ripIt ()
+{
+    local movie_file="$1"
+    local movie_to_rip="$(attachDMGOrJustEcho "$movie_file")"
+    local DVDNAME="$(basename "$movie_to_rip" .dvdmedia)"
+    local AUDIO_PLACEHOLDER=""
+        # ripTitles() will fill AUDIO_PLACEHOLDER in automatically based on info sourced below.
+
+    local SHOW= SEASON= ALBUMARTIST= DVDDATE= 
+    local -a TITLES=( ) TITLE=( ) PRODUCTION_NUMBER=( ) EPISODE=( ) DISK=( ) MAXDISK=( ) DESCRIPTION=( ) DATE=( ) STIK=( ) SHOW=( ) SEASON=( ) ALBUM=( ) ARTIST=( ) WRITER=( ) GENRE=( ) NETWORK=( ) COPYRIGHT=( ) RATING=( ) RATING_NOTE=( ) CONTENT_ADVISORY=( ) AUDIO=( ) ANGLE=( ) cast=( ) codirectors=( ) directors=( ) producers=( ) screenwriters=( ) studio=( ) executiveproducers=( ) supervisingproducers=( )
+        # Make sure to mask all our variables.
+
+    generateMovieMetadata "$movie_file" || \
+        {
+            echo "ripIt() requires a pre-prepared information file." 1>&2
+            return -1
+        }
+    # TODO: Add sanity checks for chapters file, artwork, DVD source, &c.
+
+    ripTitles "$movie_to_rip" "$AUDIO_PLACEHOLDER" "${TITLES[@]}" || return "$?"
+        # AUDIO[] (local) is used in ripTitles (inherited global).
+        # ANGLE[] (local) is used in ripTitles (inherited global).
+        # The rest (local) are used within audotag (inherited global).
+
+    test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && [ -d "$movie_file" ] && \
+        {
+            tar cvf ~/Movies/HandBrake/"${DVDNAME}.tar" "$movie_to_rip" || return -2
+            del "$movie_to_rip" || return -3
+        }
+
+    return 0 # if we got here, the return value is either success or DEBUG_DISABLE_TAR_INVOCATION is set, in which case we want success
+}
+
+function ripBleach ()
+# ripBleach /path/to/VIDEO_TS/or/parent
+{
+#sanity
+    if [ x"${1:-}" == x"" ]
+    then
+        echo "ripBleach /path/to/Bleach Volume X.dvdmedia" 1>&2
+        return -1
+    fi
+#insanity
+
+    local RET=0
+    DVD="$1"  ; shift;
+    AUDIO="1:English Dub,2:Original Japanese" # Encode tracks 1 and 2 (English and Japanese)
+
+    local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
+    addRipOptions --markers="$DVD/../Bleach.chapters"
+
+    ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
+        # It is expected that 21-24 will fail on _most_ (but not all) volumes.
+        # When 21-24 "fails", a short (<10s) logo-only chapter will be encoded.
+        # (The skipped chapters are advertisements for more bleach...)
+
+    unset SPECIAL_RIP_OPTIONS
+    addRipOptions "${RESERVED_SPECIAL_RIP_OPTIONS[@]}"
+    
+    return "$RET"
+}
+
+function ripTitles () 
+# ripTitles /path/to/VIDEO_TS/or/parent 1:English,2:Commentary title1 title2 title5
+{ 
+    local DVD="$1"  ; shift;
+    if test -n "$1"
+    then
+        local AUDIO="$1"
+    fi
+    shift
+
+    local title=
+    for title in "$@"
+    do # Angles "${ANGLE:-${ANGLE[$title]:-}}"
+        if [ x"${ANGLE[$title]}" != x"" ]
+        then
+            echo ripAngles "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}"
+        else
+            rip "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}" || return "$?" 
+                    # `break' here should result in the return value of rip being used as the return value here… but it doesn't
+            # Use the AUDIO array if available, from ripIt(1).
+            # Use the ONLYCHAPTERS array if available, from ripIt(1).
+        fi
+    done
+}
+
+function ripAngles ()
+{
+    local RET=0
+    local ANGLE_TITLE ANGLE_TRACK ANGLE
+    local ANGLE_LIST="${1:-}"; shift
+    local angle_track
+    
+    if [ x"$ANGLE_LIST" == x"" ]
+    then
+        rip "$@"
+        return "$?"
+        # Short Circuit
+    fi
+    
+    local TMPIFS="$IFS"; IFS=","
+    for angle_track in $ANGLE_LIST
+    do
+        local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
+        addRipOptions --angle "${angle_track%:*}"
+
+        IFS="$TMPIFS"
+        
+        rip "$@" "${angle_track#*:}:" || { RET="$?"; break; }
+        # Don't specify any chapters, but specify a name for the chapters.
+        
+        TMPIFS="$IFS"; IFS=","
+        
+        unset SPECIAL_RIP_OPTIONS
+        addRipOptions "${RESERVED_SPECIAL_RIP_OPTIONS[@]}"
+    done
+    IFS="$TMPIFS"
+    unset angle_track TMPIFS
+    
+    return "${RET:-0}"
+}
+
+function ripChapters ()
+# ripChapters /path/to/VIDEO_TS/or/parent 1:English,2:Commentary chapters1:2-4 chapters2:6-9
+{
+    local DVD="$1"  ; shift;
+    if test -n "$1"
+    then
+        local AUDIO="$1"
+    fi
+    shift
+    local TITLE_PLACEHOLDER="" # blank; rip() will use longest title
+    local DO_NOT_TWEET_RIPS=DO_NOT_TWEET_RIPS
+
+    for chapter in "$@"
+    do
+        rip "$DVD" "$AUDIO" "$TITLE_PLACEHOLDER" "$chapter" || break # break here should result in the return value of rip being used as the return value here
+    done
+}
+
+function rip ()
+# rip /path/to/VIDEO_TS/.. 1:English,2:Commentary title7 chapters1:2-4
+{
+##TODO: Subtitles. Goal: Star Wars prequels show subtitles during appropriate scenes. Use --subtitle-forced and/or --native-language.
+
+
+#Process arguments
+    local DVD="${1:-/dev/null}"
+        # The path to the VIDEO_TS folder or its parent
+    local AUDIO_LIST="${2:-}"
+        # Which audio tracks to encode. If unspecified, may be inherited.
+    local TITLE="${3:-}"
+        # Which title to rip. If unspecified, then the longest title is used.
+    local CHAPLIST="${4:-}"
+        # NOT HANDBRAKE's FORMAT. TODO:FIXME:document
+    
+    function ripUsage ()
+    # nested function FTW
+    {
+        echo "rip /path/to/DVD 1:English,2:Commentary 7 ep3:2-4" 1>&2
+    }
+
+    if ! [ -d "$DVD/VIDEO_TS" ]
+    then
+        echo "Please specify the path to the DVD (parent of VIDEO_TS) as the first argument." 1>&2
+        ripUsage
+        return -1
+    fi
+    
+    if test -z "${AUDIO_LIST:-}" && test -z "${AUDIO:-}"
+    then
+        echo "Please specify the audio track list as the second argument." 1>&2
+        ripUsage
+        return -2
+    fi
+    
+    #TODO:FIXME: More sanity checks
+
+#Derive settings from arguments, where needed
+    local DVDNAME="$(basename "$DVD" .dvdmedia)"
+    local CHAPTITL="${CHAPLIST%:*}"
+        # What "title" to call this chapter-set
+    local CHAPTERS="${CHAPLIST#*:}"
+        # What chapters to rip
+        # TODO: FIXME: Tested, but unverified
+    if [ "${FEATURE:--1}" -eq "${TITLE:-0}" ]
+    then
+        local DVDNAMEWITHTITLEBUTNOTCHAPTER="$DVDNAME"
+        local TRACK=
+        #TODO:FIXME:HACK for --longest wrongly specified as --title X
+    else
+        local DVDNAMEWITHTITLEBUTNOTCHAPTER="${DVDNAME}${TITLE:+-}${TITLE}"
+        local TRACK="${TITLE:-}"
+    fi
+    local DVDNAMEWITHTITLE="${DVDNAMEWITHTITLEBUTNOTCHAPTER}${CHAPTITL:+-}${CHAPTITL}"
+        # What's the name-track-chapterset of this disc?
+    local TRACK="${CHAPTITL:-$TRACK}"
+        # TODO:FIXME: Might cause a problem when CHAPTITL isn't numeric
+    local AUDIO="${AUDIO:-1,2,3,4,5,6,7,8}"
+        # Which audio tracks to encode, see HandBrakeCLI(1), defaulting to all.
+        # This will always fail, unless the DVD has all 8 audio tracks, since HandBrake crashes when asked to encode a non-existent track.
+        # Inherit a pre-specified $AUDIO, if available
+    local audio_track
+    local TMPIFS="$IFS"; IFS=","
+    for audio_track in $AUDIO_LIST
+    do
+        local AUDIO_TITLES="${AUDIO_TITLES:-}${AUDIO_TITLES:+,}${audio_track#*:}"
+            # What "title" to call this audio track
+        local AUDIO_TRACKS="${AUDIO_TRACKS:-}${AUDIO_TRACKS:+,}${audio_track%:*}"
+            # What audio tracks to encode
+            # TODO: FIXME: Untested
+        local AUDIO="$AUDIO_TRACKS"
+    done
+    IFS="$TMPIFS"
+    unset audio_track TMPIFS
+    local FILE="${HOME}/Movies/HandBrake/${DVDNAMEWITHTITLE}.m4v"
+        # Where to save the output. Store it in ~/Movies/HandBrake with the name of $DVD.
+        # Use HandBrake's naming convention, extending it for chapters.
+
+#Derive constants
+    local MARKERS="${DVD}/chapters${TITLE:+-}${TITLE:-}.txt"
+        # /path/to/DVD/chapters/list/in/CSV
+    local AUDIO_ENC="$(IFS=,; for i in $AUDIO; do echo -n ca_aac,; done)"
+        # This is, sadly, necessary to work around a bug in HandBrake which will duplicate the last track specified in $AUDIO to until all eight tracks are filled. Bug filed and rejected. :-/
+
+#Do it
+    local RET=0
+    test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
+        test -e "$FILE" && del "$FILE"; \
+        set -x; \
+    exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-1}" \
+        --preset "Universal" \
+        --input "$DVD" \
+        "${TITLE:+--title}" "${TITLE:---longest}" \
+        "${CHAPTERS:+--chapters}" "${CHAPTERS:-}" \
+        --previews 30 \
+        --output "$FILE" \
+        --markers"${MARKERS:+=}${MARKERS:-}" \
+        --ipod-atom \
+        --detelecine \
+        --vfr \
+        --audio "$AUDIO" \
+        --aencoder "$AUDIO_ENC" \
+        "${AUDIO_TITLES:+--aname}" "${AUDIO_TITLES:-}" \
+        "${SPECIAL_RIP_OPTIONS[@]}" \
+    2>> ~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log ) || RET="$?"
+        # Universal preset to activate sensible defaults.
+        # Use the longest title, if none specified.
+        # Only encode selected chapters, if specified.
+        # Generate 30 previews, b/c I hope it will improve autocropping.
+            # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
+        # Import chapter titles from CSV file, if available.
+        # iPod atom, so that 5.5G iPods will accept the media.
+        # Detelecine, always. Unclear why HandBrake doesn't just do this.
+            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default, but it lies.
+        # Variable Frame Rate is the default, but didn't used to be.
+            # This option disappeared _completely_ during 0.9.3
+        # Enable selected audio tracks from the DVD.
+        # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding.
+            # AAC is the default, so this line might be entirely unneeded.
+            # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
+        # Name the selected audio tracks, e.g. "Director's Commentary".
+        # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
+
+    if [ "${RET:-0}" -ne 0 ]
+    then
+        return "$RET"
+    fi
+
+    if [ -e "$FILE" ]
+    then
+        #Tweet about it
+        if [ -z "${DO_NOT_TWEET_RIPS:-}" ] && [ "${FEATURE:--1}" -eq "${TITLE:-0}" ]
+        then
+            updateStatus.sh "encoded ${NAME[$TITLE]:-}." &
+        fi
+    
+    growlnotify \
+            --name "rip()" \
+            --title "Encode Complete" \
+            --message "${NAME[$TITLE]:-$DVDNAME} encoded to $(basename "${FILE}")." \
+            --appIcon /Applications/HandBrake.app \
+            --sticky \
+            --identifier net.gaelicWizard.rip
+    
+    local   NAME="${NAME[$TITLE]:-}" \
+            PRODUCTION_NUMBER="${PRODUCTION_NUMBER[$TITLE]:-}" \
+            EPISODE="${EPISODE[$TITLE]:-}" \
+            TRACK="${TRACK[$TITLE]:-${TRACK:-}}" \
+            MAXTRACK="${MAXTRACK[$TITLE]:-${MAXTRACK:-}}" \
+            DISK="${DISK[$TITLE]:-${DISK:-}}" \
+            MAXDISK="${MAXDISK[$TITLE]:-${MAXDISK:-}}" \
+            DESCRIPTION="${DESCRIPTION[$TITLE]:-}" \
+            DATE="${DATE[$TITLE]:-${DATE:-${DVDDATE:-}}}" \
+            STIK="${STIK[$TITLE]:-${STIK:-}}" \
+            SHOW="${SHOW[$TITLE]:-${SHOW:-}}" \
+            SEASON="${SEASON[$TITLE]:-${SEASON:-}}" \
+            ALBUM="${ALBUM[$TITLE]:-${ALBUM:-${DVDNAME:-}}}" \
+            ARTIST="${ARTIST[$TITLE]:-${ARTIST:-}}" \
+            ALBUMARTIST="${ALBUMARTIST[$TITLE]:-${ALBUMARTIST:-}}" \
+            GENRE="${GENRE[$TITLE]:-${GENRE:-}}" \
+            NETWORK="${NETWORK[$TITLE]:-${NETWORK:-}}" \
+            COPYRIGHT="${COPYRIGHT[$TITLE]:-${COPYRIGHT:-}}" \
+            RATING="${RATING[$TITLE]:-${RATING:-}}" \
+            RATING_NOTE="${RATING_NOTE[$TITLE]:-${RATING_NOTE:-}}" \
+            CONTENT_ADVISORY="${CONTENT_ADVISORY[$TITLE]:-${CONTENT_ADVISORY:-}}" \
+            cast="${cast[$TITLE]}" \
+            codirectors="${codirectors[$TITLE]}" \
+            directors="${directors[$TITLE]}" \
+            executiveproducers="${executiveproducers[$TITLE]}" \
+            supervisingproducers="${supervisingproducers[$TITLE]}" \
+            producers="${producers[$TITLE]}" \
+            screenwriters="${screenwriters[$TITLE]}" \
+            ITUNESMOVIXML="$(generateiTunMOVI)"
+        
+        if test "${TITLE:--1}" -eq "${FEATURE:-0}"
+        then
+            TRACK=
+            # Don't embed the track number if this is "the" [only] movie on the disc.
+        fi
+        
+        #Tag some basic housekeeping
+        autotag || return "$?"
+    else
+        echo "$FUNCNAME: ${FILE} does not appear to have been created." 1>&2
+        return -2
+    fi
+    
+    addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
+}
+
+function tag ()
+# Just a tiny wrapper around AtomicParsley(1)
+{
+    FILE="$1" ; shift;
+    
+    test -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" && \
+    (set -x; exec AtomicParsley "$FILE" -W "$@" )
+}
+
+function addRipOptions ()
+{
+    for option in "$@"
+    do
+        SPECIAL_RIP_OPTIONS["${#SPECIAL_RIP_OPTIONS[@]}"]="$option"
+    done
+    
+    if [ -n "${SPECIAL_RIP_OPTIONS[*]}" ]
+    then
+        echo "WARNING: The following options will apply to all rips until SPECIAL_RIP_OPTIONS is unset:" 1>&2
+        echo "${SPECIAL_RIP_OPTIONS[@]}"
+    fi
+}
+
+function newAutoTag ()
+# This function takes one argument, which is taken to be the path to a DVDMedia bundle. This bundle is expected to contain an plist with metadata matching some of the tags below, which will then be passed to tag() to operate on files in the current directory with names derivative of the DVDMedia bundle name (not including extension or path).
+#TODO:FIXME: File names should _not_ be derivative of the _file system_ name of the DVDMedia bundle.
+{
+    exit 1
+    
+    local dvdmedia tag tagList tempTag m4v DVDNAME atomicMetadata
+
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
+    then
+        dvdmedia="$(pwd)/$1"
+        # Don't trust $PWD to be set, even though it should _always_ be.
+    else
+        dvdmedia="$1"
+    fi
+    
+    DVDNAME="$(basename "$dvdmedia" .dvdmedia)"
+    atomicMetadata="${dvdmedia}/atomicMetadata"
+    
+    if [ x"$(defaults read "$atomicMetadata" artwork 2>/dev/null)" == x"" ] && [ -e "$dvdmedia/JACKET_P.jpg" ]
+    then
+        tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
+    fi
+    
+    for tag in artist title album genre tracknum disk comment year lyrics composer copyright grouping artwork bpm albumArtist compilation advisory stik description TVNetwork TVShowName TVEpisode TVSeasonNum TVEpisodeNum podcastFlag category keyword podcastURL podcastGUID purchaseDate gapless sortOrder contentRating
+    do
+        tempTag="$(defaults read "$atomicMetadata" "$tag" 2>/dev/null)"
+        
+        if [ x"$tempTag" != x"" ]
+        then
+            tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
+        fi
+    done
+    
+    for m4v in "$DVDNAME"-*.m4v
+    do
+        tag "$m4v" "${tagList[@]}"
+    done
+}
+
+function autotag ()
+# This function operates _entirely_ on globals, taking advantage of bash(1)'s scoping to treat the calling function's locals as globals.
+# _Additional_ arguments will be passed unmolested to AtomicParsley(1).
+{
+    #TODO:FIXME: Sanity Checks
+
+    if [ x"${ARTWORK:-}" == x"" ] && [ "${FEATURE:--1}" -eq "${TITLE:-0}" ]
+    then
+        local ARTWORK="${DVD:-/dev/null}/${ALBUM:-${DVDNAME:-${DVDNAMEWITHTITLE:-JACKET_P}}}.jpg"
+    fi
+        
+    if [ x"$folder" == x"" ]
+    then
+        local folder=~/Movies/HandBrake
+    fi
+    
+    if ! test -f "$ARTWORK"
+    then
+        if test -f "${DVD:-/dev/null}/$ARTWORK"
+        then
+            ARTWORK="${DVD}/$ARTWORK"
+        else
+            if test -f "${folder}/$ARTWORK"
+            then
+                ARTWORK="${folder}/$ARTWORK"
+            else
+                if test -f "${folder}/DVD Media/$ARTWORK"
+                then
+                    ARTWORK="${folder}/DVD Media/$ARTWORK"
+                else
+                    ARTWORK=""
+                fi
+            fi
+        fi
+    fi
+    # /path/to/DVD/cover/jpeg
+
+    tag "${FILE:-/dev/null}" \
+            "${NAME:+--title}" "${NAME:-}" \
+            "${PRODUCTION_NUMBER:+--TVEpisode}" "${PRODUCTION_NUMBER:-}" \
+            "${EPISODE:+--TVEpisodeNum}" "$EPISODE" \
+            "${TRACK:+--track}" "$TRACK/$MAXTRACK" \
+            "${DISK:+--disk}" "${DISK}/${MAXDISK}" \
+            "${DESCRIPTION:+--description}" "${DESCRIPTION}" \
+            "${DATE:+--year}" "${DATE}" \
+            "${STIK:+--stik}" "${STIK}" \
+            "${SHOW:+--TVShowName}" "$SHOW" \
+            "${SEASON:+--TVSeasonNum}" "$SEASON" \
+            "${ALBUM:+--album}" "$ALBUM" \
+            "${ARTIST:+--artist}" "$ARTIST" \
+            "${ALBUMARTIST:+--albumArtist}" "$ALBUMARTIST" \
+            "${GENRE:+--genre}" "$GENRE" \
+            "${NETWORK:+--TVNetwork}" "$NETWORK" \
+            "${COPYNOTICE:+--copyright}" "$COPYNOTICE" \
+            "${RATING:+--contentRating}" "$RATING" \
+            "${CONTENT_ADVISORY:+--advisory}" "$CONTENT_ADVISORY" \
+            "${ARTWORK:+--artwork}" "$ARTWORK" \
+            "${ITUNESMOVIXML:+--rDNSatom}" "$ITUNESMOVIXML" "${ITUNESMOVIXML:+name=iTunMOVI}" "${ITUNESMOVIXML:+domain=com.apple.iTunes}" \
+            "$@" || return "$?"
+
+#            "${RATING_NOTE:+--fail_unimplemented_rDNS}" "$RATING_NOTE" \
+    
+    SetFile -P -a E "${FILE}"
+}
+
+function generateiTunMOVI ()
+# This function uses global variables (via its helper below).
+{
+    local plist="${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$"
+    local theType
+    local -a theTypeList=( )
+    local eachEntry
+    
+    for theType in cast codirectors directors producers screenwriters \
+            executiveproducers supervisingproducers 
+        # Only the first five elements above are actually used by iTunes _at all_, which is not to say very much.
+    do
+        generateiTunMOVI_list "$theType"
+        for eachEntry in "${theTypeList[@]}"
+        do
+            defaults write "$plist" "$theType" -array-add '{ name = "'"${eachEntry}"'"; }' || return -1
+                # Add a dictionary containing one key/value pair to the array for $theType.
+        done
+    done
+    
+    if [ "${studio}" ]
+    then
+        defaults write "$plist" studio "$studio"
+    fi
+    
+    if test -e "${plist}.plist"
+    # If we generated a plist, post-process it a bit.
+    then
+        plutil -convert xml1 -- "${plist}.plist" || return -2
+
+        cat "${plist}.plist"
+        command rm -f "${plist}.plist"
+    fi
+    
+}
+
+function generateiTunMOVI_list ()
+# This function depends on the existence of a global variable named whatever $1 is;
+# and returns via a global variable theTypeList
+{
+    local theType="$1"
+    local i=1 # start at 1, not 0, for awk
+    local eachEntry
+    theTypeList=( ) # Blank the global array
+    
+    while eachEntry="$(echo "${!theType}" | awk -F ';' '{print $'"$i"'}')"
+        # Variable indirection FTW!
+    do
+        if [ "${eachEntry}" == "" ]
+        then
+            break
+        fi
+    
+        if [ "${eachEntry:0:1}" == " " ]
+        then
+            eachEntry="${eachEntry:1:${#eachEntry}}"
+        fi
+        
+        theTypeList=( "${theTypeList[@]}" "${eachEntry}" )
+        i=$(( $i + 1 ))
+    done
+}
