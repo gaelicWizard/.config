@@ -1,0 +1,31 @@
+#!/bin/sh -c 'echo This file is meant to be sourced.'
+
+# These functions are meant to keep the path relatively clean.
+
+function bashd_add_to_path_front ()
+{
+    local new_path_entry
+    new_path_entry="$1"
+    
+    if [ -n "$new_path_entry" -a -d "$new_path_entry" ]
+    then
+        case $PATH in
+            $new_path_entry|$new_path_entry:*|*:$new_path_entry|*:$new_path_entry:*) ;;
+            *) export PATH="$new_path_entry:${PATH}" ;;
+        esac
+    fi
+}
+
+function bashd_add_to_path_back ()
+{
+    local new_path_entry
+    new_path_entry="$1"
+    
+    if [ -n "$new_path_entry" -a -d "$new_path_entry" ]
+    then
+        case $PATH in
+            $new_path_entry|$new_path_entry:*|*:$new_path_entry|*:$new_path_entry:*) ;;
+            *) export PATH="${PATH}:$new_path_entry" ;;
+        esac
+    fi
+}

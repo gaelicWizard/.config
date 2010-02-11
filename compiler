@@ -1,0 +1,35 @@
+#!/bin/sh -c 'echo This file is meant to be sourced.'
+
+require path || return -1
+    # Import my path package...
+
+bashd_add_to_path_back "/Developer/Tools"
+bashd_add_to_path_back "/Developer/usr/bin"
+bashd_add_to_path_back "/Developer/usr/sbin"
+    # Add Xcode tools
+    # Duplicate, since I've added all three to /etc/paths.d/Xcode
+
+## GCC...
+# Many many settings and flags for gcc based compiles... 
+[ "`uname -s`" == "Darwin" ] && export MACOSX_DEPLOYMENT_TARGET="10.$((`uname -r | awk -F . '{print $1}'`-4))" 
+		# Use the full feature set of the linker in the version of Darwin I'm running!
+#export CPPFLAGS="-Wno-long-double -I$QTDIR/include" 
+		# Include my locally installed headers!
+#export LIBS="-L$QTDIR/lib" 
+		# Link against my locally installed libraries!
+#export LDFLAGS="${LIBS}" # Ditto...
+export OPTFLAGS="-g -Os" # -faltivec" # Optimise for size && altivec (G4/G5)
+export CFLAGS="-pipe ${OPTFLAGS}" # Flags for gcc
+export CXXFLAGS="-pipe ${OPTFLAGS}" # Flags for g++
+##
+export LIBTOOLIZE=glibtoolize
+##
+
+# GNU Compiler Collection aliases
+ alias gcc='gcc ${CPPFLAGS:-} ${CFLAGS:-}   -Wall ${LDFLAGS:-}' 
+ 	# use all the $*FLAGS stuff, plus a few that I want *only* if
+	# i'm running gcc manually...
+ alias g++='g++ ${CPPFLAGS:-} ${CXXFLAGS:-} -Wall ${LDFLAGS:-}' 
+	# Ditto...
+ alias ugcc='gcc -arch i386 -arch ppc -arch x86_64 -arch ppc64'
+ alias ug++='g++ -arch i386 -arch ppc -arch x86_64 -arch ppc64'

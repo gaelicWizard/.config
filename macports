@@ -1,0 +1,11 @@
+#!/bin/sh
+
+##
+# This package enables the use of macports, optionally.
+##
+# Once the port command is issued, then the macports will be available.
+##
+
+require path || return -1
+
+alias port="bashd_add_to_path_back /opt/local/bin;bashd_add_to_path_back /opt/local/sbin; alias port='sudo port'; sudo port"
