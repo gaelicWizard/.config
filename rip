@@ -415,7 +415,7 @@ function initDVDMedia ()
     local DVDNAME="$(basename "$dvdmedia" .dvdmedia)" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack" \
-          tag
+          tag atomicMetadata
 
     defaults write "$atomicMetadataDisc" UDFVolumeName "$DVDNAME"
     defaults write "$atomicMetadataDisc" trackList '' 
@@ -424,14 +424,16 @@ function initDVDMedia ()
     defaults write "$atomicMetadataDisc" diskid '' 
     defaults write "$atomicMetadataDisc" UPC '' 
     defaults write "$atomicMetadataDisc" ISBN '' 
-    plutil -convert xml1 "${atomicMetadataDisc}.plist"
     
     for tag in "${theWholeListOfAllTheTaggableTags[@]}"
     do
         defaults write "${atomicMetadataTrack}-" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
     
-#    cp -Rvn ~/Movies/"DVD Metadata"/atomicMetadataTemplates/*.plist "${dvdmedia}/"
+    for atomicMetadataPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist"
+    do
+        plutil -convert xml1 "${atomicMetadataPlist}"
+    done
 }
 
 function newAutoTag ()
