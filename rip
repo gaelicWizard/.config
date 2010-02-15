@@ -41,6 +41,7 @@ function ripEm ()
 }
 
 function attachDMGOrJustEcho ()
+# This function is intended to allow for a DMG to be used in place of a DVDMedia bundle. Most of the other functions in this file do not work in this situation, so it is unlikely that this function will be used much at all for the near future.
 {
     if [ -f "$1" ]
     then
@@ -48,12 +49,6 @@ function attachDMGOrJustEcho ()
     else
         echo "$1"
     fi
-}
-
-function generateMovieMetadata ()
-{
-    source "$1/info.txt" || source ~/Movies/"DVD Metadata"/"${1%.*}".txt
-        # Load metadata from either within the DVD bundle, or from a known location.
 }
 
 function ripIt ()
@@ -84,7 +79,7 @@ function ripIt ()
         {
             tar cvf "${DVDNAME}.tar" -C "$(dirname "$movie_to_rip")" "$(basename "$movie_to_rip")" || return -2
             del "$movie_to_rip" || return -3
-        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skilling tar(1) invocation.
+        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
 
 function ripBleach ()
@@ -432,17 +427,17 @@ function initDVDMedia ()
 
     defaults write "$atomicMetadataDisc" UDFVolumeName "$DVDNAME"
     
-    for tag in "${theListOfAllTheTrackTags[@]}"
+    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}"
     do
         defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
     
-    for tag in "${theListOfAllTheDiscTags[@]}"
+    for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}"
     do
         defaults write "${atomicMetadataDisc}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
     
-    for tag in "${theListOfAllTheAlbumTags[@]}"
+    for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
     do
         defaults write "${atomicMetadataAlbum}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
@@ -483,7 +478,7 @@ function newAutoTag ()
     local aTrack
     for aTrack in $trackList
     do
-        autoTagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v"
+        autoTagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v" || return
     done
     
     
@@ -533,6 +528,81 @@ function autoTagTrack ()
              "${iTunMOVIXML:+--rDNSatom}" "${iTunMOVIXML:-}" "${iTunMOVIXML:+name=iTunMOVI}" "${iTunMOVIXML:+domain=com.apple.iTunes}"
 
 }
+
+function mkiTunMOVI ()
+{
+    local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
+    local theType studio eachEntry theParsedArray=( )
+    local atomicMetadataAlbum="$1" \
+          atomicMetadataDisc="$2" \
+          atomicMetadataTrack="$3"
+
+    for theType in "${theListOfAllTheTrackiTunMOVITags[@]}"
+    do
+        parseSemicolonDelimitedArray "$(defaults read "$atomicMetadataTrack" "$theType" 2>/dev/null || defaults read "$atomicMetadataDisc" "$theType" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$theType" 2>/dev/null)" || return -2
+
+        for eachEntry in "${theParsedArray[@]}"
+        do
+            defaults write "$plist" "$theType" -array-add '{ name = "'"${eachEntry}"'"; }' || return -1
+        done
+    done
+
+    if studio="$(defaults read "$atomicMetadataTrack" studio 2>/dev/null || defaults read "$atomicMetadataDisc" studio 2>/dev/null || defaults read "$atomicMetadataAlbum" studio 2>/dev/null)"
+    then
+        defaults write "$plist" studio "$studio"
+        # This should overwrite any array written just above.
+    fi
+
+    if test -e "${plist}.plist"
+    # If we generated a plist, post-process it a bit.
+    then
+        plutil -convert xml1 -- "${plist}.plist" || return -2
+
+        cat "${plist}.plist"
+        command rm -f "${plist}.plist"
+    fi
+}
+
+function parseSemicolonDelimitedArray ()
+{
+    local theUnparsedArray="$1"
+    theParsedArray=( ) # Blank the global array.
+    local eachEntry i=1
+    
+    while eachEntry="$(echo "${theUnparsedArray}" | awk -F ';' '{print $'"$i"'}')"
+    do
+        if [ "${eachEntry}" == "" ]
+        then
+            break
+        fi
+    
+        if [ "${eachEntry:0:1}" == " " ]
+        then
+            eachEntry="${eachEntry:1:${#eachEntry}}"
+        fi
+        
+        theParsedArray=( "${theParsedArray[@]}" "${eachEntry}" )
+        i=$(( $i + 1 ))
+    done
+}
+
+
+
+
+
+
+
+
+## The below functions are deprecated.
+
+function generateMovieMetadata ()
+{
+    source "$1/info.txt" || source ~/Movies/"DVD Metadata"/"${1%.*}".txt
+        # Load metadata from either within the DVD bundle, or from a known location.
+}
+
+
+
 
 function autotag ()
 # This function operates _entirely_ on globals, taking advantage of bash(1)'s scoping to treat the calling function's locals as globals.
@@ -597,40 +667,6 @@ function autotag ()
 #            "${RATING_NOTE:+--fail_unimplemented_rDNS}" "$RATING_NOTE" \
     
     SetFile -P -a E "${FILE}"
-}
-
-function mkiTunMOVI ()
-{
-    local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
-    local theType eachEntry theParsedArray=( )
-    local atomicMetadataAlbum="$1" \
-          atomicMetadataDisc="$2" \
-          atomicMetadataTrack="$3"
-
-    for theType in "${theListOfAllTheTrackiTunMOVITags[@]}"
-    do
-        parseSemicolonDelimitedArray "$(defaults read "$atomicMetadataTrack" "$theType" 2>/dev/null || defaults read "$atomicMetadataDisc" "$theType" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$theType" 2>/dev/null)" || return -2
-
-        for eachEntry in "${theParsedArray[@]}"
-        do
-            defaults write "$plist" "$theType" -array-add '{ name = "'"${eachEntry}"'"; }' || return -1
-        done
-    done
-
-    if studio="$(defaults read "$atomicMetadataTrack" studio 2>/dev/null || defaults read "$atomicMetadataDisc" studio 2>/dev/null || defaults read "$atomicMetadataAlbum" studio 2>/dev/null)"
-    then
-        defaults write "$plist" studio "$studio"
-        # This should overwrite any array written just above.
-    fi
-
-    if test -e "${plist}.plist"
-    # If we generated a plist, post-process it a bit.
-    then
-        plutil -convert xml1 -- "${plist}.plist" || return -2
-
-        cat "${plist}.plist"
-        command rm -f "${plist}.plist"
-    fi
 }
 
 function generateiTunMOVI ()
