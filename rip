@@ -8,7 +8,15 @@ export AP_PADDING="DEFAULT_PAD=8192:MIN_PAD=0:MAX_PAD=8192"
 export PIC_OPTIONS="removeTempPix:AddBothPix=true"
     # Set up a bunch of defaults for AtomicParsley(1) so that finishing up
     #  the tagging process is later is less painful.
-local -ar theWholeListOfAllTheTaggableTags=( artist title album genre tracknum disk comment year lyrics composer copyright grouping artwork bpm albumArtist compilation advisory stik description TVNetwork TVShowName TVEpisode TVSeasonNum TVEpisodeNum podcastFlag category keyword podcastURL podcastGUID purchaseDate gapless sortOrder contentRating )
+declare -ar theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment ) \
+            theListOfAllTheTrackiTunMOVITags=( studio cast codirectors directors producers screenwriters executiveproducers supervisingproducers ) \
+            theListOfAdditionalTrackMetadata=( ratingAdvisory ) \
+            theListOfAllTheDiscTags=( disk ) \
+            theListOfAdditionalDiscMetadata=( maxtrack trackList 
+                UDFVolumeName diskid ) \
+            theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork ) \
+            theListOfAdditionalAlbumMetadata=( UPC ISBN distributor maxdisk )
+
 
 function ripDebug ()
 {
@@ -413,24 +421,29 @@ function initDVDMedia ()
     fi
 
     local DVDNAME="$(basename "$dvdmedia" .dvdmedia)" \
+          atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack" \
-          tag atomicMetadata
+          tag atomicPlist
 
     defaults write "$atomicMetadataDisc" UDFVolumeName "$DVDNAME"
-    defaults write "$atomicMetadataDisc" trackList '' 
-        # will become a space-separated list of integers
-    defaults write "$atomicMetadataDisc" homeVideoDistributor '' 
-    defaults write "$atomicMetadataDisc" diskid '' 
-    defaults write "$atomicMetadataDisc" UPC '' 
-    defaults write "$atomicMetadataDisc" ISBN '' 
     
-    for tag in "${theWholeListOfAllTheTaggableTags[@]}"
+    for tag in "${theListOfAllTheTrackTags[@]}"
     do
         defaults write "${atomicMetadataTrack}-" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
     
-    for atomicMetadataPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist"
+    for tag in "${theListOfAllTheDiscTags[@]}"
+    do
+        defaults write "${atomicMetadataDisc}-" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+    done
+    
+    for tag in "${theListOfAllTheAlbumTags[@]}"
+    do
+        defaults write "${atomicMetadataAlbum}-" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+    done
+    
+    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist"
     do
         plutil -convert xml1 "${atomicMetadataPlist}"
     done
@@ -452,7 +465,7 @@ function newAutoTag ()
     local atomicMetadataDisc="$dvdmedia/atomicMetadataDisc"
     local trackList="$(defaults read "$atomicMetadataDisc" trackList 2>/dev/null)" \
           DVDNAME="$(defaults read "$atomicMetadataDisc" UDFVolumeName 2>/dev/null)"
-    echo "$atomicMetadataDisc; $trackList; $DVDNAME"
+    echo "$atomicMetadataDisc; $trackList; $DVDNAME" 1>&2
 
     local aTrack
     for aTrack in $trackList
