@@ -456,6 +456,7 @@ function initDVDMedia ()
         plutil -convert xml1 "${atomicPlist}"
         perl -pi -e 's;</key>
 	<;</key><;g' "${atomicPlist}"
+            #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
     done
     
     SetFile -a T "${atomicMetadataTrack}.plist"
@@ -492,8 +493,7 @@ function autoTagTrack ()
 # This function takes three arguments: (1) the path to a DVDMedia bundle, (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
 {
     local dvdmedia whichTrack m4v \
-          DVDNAME atomicMetadataAlbum atomicMetadataDisc atomicMetadataTrack \
-          tag tagList tempTag 
+          tag tagList tempTag iTunMOVIXML
 
     if [ x"${1:0:1}" != x"/" ]
     # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
@@ -507,27 +507,31 @@ function autoTagTrack ()
     whichTrack="$2"
     m4v="$3"
 
-    DVDNAME="$(basename "$dvdmedia" .dvdmedia)"
-    atomicMetadataAlbum="${dvdmedia}/atomicMetadataAlbum"
-    atomicMetadataDisc="${dvdmedia}/atomicMetadataDisc"
-    atomicMetadataTrack="${dvdmedia}/atomicMetadataTrack-$whichTrack"
+    local atomicMetadataAlbum="${dvdmedia}/atomicMetadataAlbum" \
+          atomicMetadataDisc="${dvdmedia}/atomicMetadataDisc" \
+          atomicMetadataTrack="${dvdmedia}/atomicMetadataTrack-$whichTrack"
 
-    if [ x"$(defaults read "$atomicMetadataTrack" artwork 2>/dev/null || defaults read "$atomicMetadataDisc" artwork 2>/dev/null || defaults read "$atomicMetadataAlbum" artwork 2>/dev/null)" == x"" ] && [ -e "$dvdmedia/JACKET_P.jpg" ]
+    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaults read "$atomicMetadataTrack" artwork 2>/dev/null || defaults read "$atomicMetadataDisc" artwork 2>/dev/null || defaults read "$atomicMetadataAlbum" artwork 2>/dev/null)" == x"" ] && [ x"$(defaults read "$atomicMetadataTrack" feature 2>/dev/null)" == x"1" ]
+    # Cheap hack to ensure that only the feature gets autotag'd with artwork.
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
     fi
 
-    for tag in "${theWholeListOfAllTheTaggableTags[@]}" 
+    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
     do
-        tempTag="$(defaults read "$atomicMetadataTrack" "$tag" 2>/dev/null || defaults read "$atomicMetadataShow" "$tag" 2>/dev/null)"
+        tempTag="$(defaults read "$atomicMetadataTrack" "$tag" 2>/dev/null || defaults read "$atomicMetadataDisc" "$tag" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$tag" 2>/dev/null )"
         
         if [ x"$tempTag" != x"" ]
         then
             tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
         fi
     done
+    
+    iTunMOVIXML="$(mkiTunMOVI "$atomicMetadataAlbum" "$atomicMetadataDisc" "$atomicMetadataTrack")"
 
-    echo tag "$m4v" "${tagList[@]}"
+    echo tag "$m4v" "${tagList[@]}" \
+             "${iTunMOVIXML:+--rDNSatom}" "${iTunMOVIXML:-}" "${iTunMOVIXML:+name=iTunMOVI}" "${iTunMOVIXML:+domain=com.apple.iTunes}"
+
 }
 
 function autotag ()
@@ -593,6 +597,40 @@ function autotag ()
 #            "${RATING_NOTE:+--fail_unimplemented_rDNS}" "$RATING_NOTE" \
     
     SetFile -P -a E "${FILE}"
+}
+
+function mkiTunMOVI ()
+{
+    local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
+    local theType eachEntry theParsedArray=( )
+    local atomicMetadataAlbum="$1" \
+          atomicMetadataDisc="$2" \
+          atomicMetadataTrack="$3"
+
+    for theType in "${theListOfAllTheTrackiTunMOVITags[@]}"
+    do
+        parseSemicolonDelimitedArray "$(defaults read "$atomicMetadataTrack" "$theType" 2>/dev/null || defaults read "$atomicMetadataDisc" "$theType" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$theType" 2>/dev/null)" || return -2
+
+        for eachEntry in "${theParsedArray[@]}"
+        do
+            defaults write "$plist" "$theType" -array-add '{ name = "'"${eachEntry}"'"; }' || return -1
+        done
+    done
+
+    if studio="$(defaults read "$atomicMetadataTrack" studio 2>/dev/null || defaults read "$atomicMetadataDisc" studio 2>/dev/null || defaults read "$atomicMetadataAlbum" studio 2>/dev/null)"
+    then
+        defaults write "$plist" studio "$studio"
+        # This should overwrite any array written just above.
+    fi
+
+    if test -e "${plist}.plist"
+    # If we generated a plist, post-process it a bit.
+    then
+        plutil -convert xml1 -- "${plist}.plist" || return -2
+
+        cat "${plist}.plist"
+        command rm -f "${plist}.plist"
+    fi
 }
 
 function generateiTunMOVI ()
