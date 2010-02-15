@@ -8,6 +8,7 @@ export AP_PADDING="DEFAULT_PAD=8192:MIN_PAD=0:MAX_PAD=8192"
 export PIC_OPTIONS="removeTempPix:AddBothPix=true"
     # Set up a bunch of defaults for AtomicParsley(1) so that finishing up
     #  the tagging process is later is less painful.
+local -ar theWholeListOfAllTheTaggableTags=( artist title album genre tracknum disk comment year lyrics composer copyright grouping artwork bpm albumArtist compilation advisory stik description TVNetwork TVShowName TVEpisode TVSeasonNum TVEpisodeNum podcastFlag category keyword podcastURL podcastGUID purchaseDate gapless sortOrder contentRating )
 
 function ripDebug ()
 {
@@ -24,7 +25,7 @@ function ripEm ()
     local movie
     for movie in "$@"
     do
-        ripIt "$movie" || return "$?"
+        ripIt "$movie" || return
     done
 }
 
@@ -70,11 +71,9 @@ function ripIt ()
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && [ -d "$movie_file" ] && \
         {
-            tar cvf ~/Movies/HandBrake/"${DVDNAME}.tar" "$movie_to_rip" || return -2
+            tar cvf "${DVDNAME}.tar" -C "$(dirname "$movie_to_rip")" "$(basename "$movie_to_rip")" || return -2
             del "$movie_to_rip" || return -3
-        }
-
-    return 0 # if we got here, the return value is either success or DEBUG_DISABLE_TAR_INVOCATION is set, in which case we want success
+        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skilling tar(1) invocation.
 }
 
 function ripBleach ()
@@ -260,7 +259,8 @@ function rip ()
     done
     IFS="$TMPIFS"
     unset audio_track TMPIFS
-    local FILE="${HOME}/Movies/HandBrake/${DVDNAMEWITHTITLE}.m4v"
+    local FILE="${DVDNAMEWITHTITLE}.m4v"
+#    local FILE="${HOME}/Movies/HandBrake/${DVDNAMEWITHTITLE}.m4v"
         # Where to save the output. Store it in ~/Movies/HandBrake with the name of $DVD.
         # Use HandBrake's naming convention, extending it for chapters.
 
@@ -399,13 +399,74 @@ function addRipOptions ()
     fi
 }
 
-function newAutoTag ()
-# This function takes one argument, which is taken to be the path to a DVDMedia bundle. This bundle is expected to contain an plist with metadata matching some of the tags below, which will then be passed to tag() to operate on files in the current directory with names derivative of the DVDMedia bundle name (not including extension or path).
-#TODO:FIXME: File names should _not_ be derivative of the _file system_ name of the DVDMedia bundle.
+function initDVDMedia ()
+# This function takes one argument, the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 {
-    exit 1
+    local dvdmedia
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
+    then
+        dvdmedia="$(pwd)/$1"
+        # Don't trust $PWD to be set, even though it should _always_ be.
+    else
+        dvdmedia="$1"
+    fi
+
+    local DVDNAME="$(basename "$dvdmedia" .dvdmedia)" \
+          atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
+          atomicMetadataTrack="$dvdmedia/atomicMetadataTrack" \
+          tag
+
+    defaults write "$atomicMetadataDisc" UDFVolumeName "$DVDNAME"
+    defaults write "$atomicMetadataDisc" trackList '' 
+        # will become a space-separated list of integers
+    defaults write "$atomicMetadataDisc" homeVideoDistributor '' 
+    defaults write "$atomicMetadataDisc" diskid '' 
+    defaults write "$atomicMetadataDisc" UPC '' 
+    defaults write "$atomicMetadataDisc" ISBN '' 
+    plutil -convert xml1 "${atomicMetadataDisc}.plist"
     
-    local dvdmedia tag tagList tempTag m4v DVDNAME atomicMetadata
+    for tag in "${theWholeListOfAllTheTaggableTags[@]}"
+    do
+        defaults write "${atomicMetadataTrack}-" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+    done
+    
+#    cp -Rvn ~/Movies/"DVD Metadata"/atomicMetadataTemplates/*.plist "${dvdmedia}/"
+}
+
+function newAutoTag ()
+# This function takes one argument: (1) the path to a DVDMedia bundle. A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
+{
+    local dvdmedia
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
+    then
+        dvdmedia="$(pwd)/$1"
+        # Don't trust $PWD to be set, even though it should _always_ be.
+    else
+        dvdmedia="$1"
+    fi
+
+    local atomicMetadataDisc="$dvdmedia/atomicMetadataDisc"
+    local trackList="$(defaults read "$atomicMetadataDisc" trackList 2>/dev/null)" \
+          DVDNAME="$(defaults read "$atomicMetadataDisc" UDFVolumeName 2>/dev/null)"
+    echo "$atomicMetadataDisc; $trackList; $DVDNAME"
+
+    local aTrack
+    for aTrack in $trackList
+    do
+        autoTagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v"
+    done
+    
+    
+}
+
+function autoTagTrack ()
+# This function takes three arguments: (1) the path to a DVDMedia bundle, (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
+{
+    local dvdmedia whichTrack m4v \
+          DVDNAME atomicMetadataShow atomicMetadataTrack \
+          tag tagList tempTag 
 
     if [ x"${1:0:1}" != x"/" ]
     # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
@@ -415,29 +476,30 @@ function newAutoTag ()
     else
         dvdmedia="$1"
     fi
-    
+
+    whichTrack="$2"
+    m4v="$3"
+
     DVDNAME="$(basename "$dvdmedia" .dvdmedia)"
-    atomicMetadata="${dvdmedia}/atomicMetadata"
-    
-    if [ x"$(defaults read "$atomicMetadata" artwork 2>/dev/null)" == x"" ] && [ -e "$dvdmedia/JACKET_P.jpg" ]
+    atomicMetadataShow="${dvdmedia}/atomicMetadataShow"
+    atomicMetadataTrack="${dvdmedia}/atomicMetadataTrack-$whichTrack"
+
+    if [ x"$(defaults read "$atomicMetadataTrack" artwork 2>/dev/null || defaults read "$atomicMetadataShow" artwork 2>/dev/null)" == x"" ] && [ -e "$dvdmedia/JACKET_P.jpg" ]
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
     fi
-    
-    for tag in artist title album genre tracknum disk comment year lyrics composer copyright grouping artwork bpm albumArtist compilation advisory stik description TVNetwork TVShowName TVEpisode TVSeasonNum TVEpisodeNum podcastFlag category keyword podcastURL podcastGUID purchaseDate gapless sortOrder contentRating
+
+    for tag in "${theWholeListOfAllTheTaggableTags[@]}" 
     do
-        tempTag="$(defaults read "$atomicMetadata" "$tag" 2>/dev/null)"
+        tempTag="$(defaults read "$atomicMetadataTrack" "$tag" 2>/dev/null || defaults read "$atomicMetadataShow" "$tag" 2>/dev/null)"
         
         if [ x"$tempTag" != x"" ]
         then
             tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
         fi
     done
-    
-    for m4v in "$DVDNAME"-*.m4v
-    do
-        tag "$m4v" "${tagList[@]}"
-    done
+
+    echo tag "$m4v" "${tagList[@]}"
 }
 
 function autotag ()
