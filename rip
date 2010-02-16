@@ -40,15 +40,30 @@ function ripEm ()
     done
 }
 
-function attachDMGOrJustEcho ()
-# This function is intended to allow for a DMG to be used in place of a DVDMedia bundle. Most of the other functions in this file do not work in this situation, so it is unlikely that this function will be used much at all for the near future.
+function newRipIt ()
 {
-    if [ -f "$1" ]
+    local dvdmedia="$1"
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
     then
-        hdiutil attach -puppetstrings -readonly -mount required -noverify -noautofsck -noidme -noautoopen "$1" | awk 'BEGIN { FS="\t" } {print $3 }'
+        dvdmedia_path="$(pwd)/$1"
+        # Don't trust $PWD to be set, even though it should _always_ be.
     else
-        echo "$1"
+        dvdmedia_path="$1"
     fi
+    local atomicMetadataDisc="$dvdmedia_path/atomicMetadataDisc"
+
+    ripTitles "${dvdmedia}" $(defaults read "$atomicMetadataDisc" trackList) || return
+        #TODO:FIXME: WARNING THIS IS THE WRONG PROTOTYPE FOR ripTitles(). 
+        #            THIS PROTOTYPE DOES _NOT_ PASS ANY AUDIO_PLACEHOLDER!
+
+    autotag "$dvdmedia" || return
+
+    test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
+        {
+            tar cvf "$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
+            del "$dvdmedia" || return
+        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
 
 function ripIt ()
@@ -599,6 +614,17 @@ function generateMovieMetadata ()
 {
     source "$1/info.txt" || source ~/Movies/"DVD Metadata"/"${1%.*}".txt
         # Load metadata from either within the DVD bundle, or from a known location.
+}
+
+function attachDMGOrJustEcho ()
+# This function is intended to allow for a DMG to be used in place of a DVDMedia bundle. Most of the other functions in this file do not work in this situation, so it is unlikely that this function will be used much at all for the near future.
+{
+    if [ -f "$1" ]
+    then
+        hdiutil attach -puppetstrings -readonly -mount required -noverify -noautofsck -noidme -noautoopen "$1" | awk 'BEGIN { FS="\t" } {print $3 }'
+    else
+        echo "$1"
+    fi
 }
 
 
