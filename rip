@@ -405,7 +405,7 @@ function initDVDMedia ()
         # When double-clicked in Finder, it will be duplicated and the duplicate opened instead of the original.
 }
 
-function autoTag ()
+function autotag ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 {
     local dvdmedia
