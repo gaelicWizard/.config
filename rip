@@ -17,7 +17,7 @@ theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
 theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
-theListOfAdditionalAlbumMetadata=( UPC ISBN distributor maxdisk )
+theListOfAdditionalAlbumMetadata=( UPC ISBN ASIN label maxdisk )
 # end tagging globals
 ##
 
@@ -372,8 +372,6 @@ function initDVDMedia ()
           tag atomicPlist
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
 
-    defaults write "$atomicMetadataDisc" UDFVolumeName "$(basename "$dvdmedia" .dvdmedia)"
-    
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}"
     do
         defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
@@ -383,6 +381,8 @@ function initDVDMedia ()
     do
         defaults write "${atomicMetadataDisc}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
+    
+    defaults write "$atomicMetadataDisc" UDFVolumeName "$(basename "$dvdmedia" .dvdmedia)"
     
     for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
     do
