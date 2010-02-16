@@ -13,7 +13,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 # tagging globals
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors directors producers screenwriters executiveproducers supervisingproducers )
-theListOfAdditionalTrackMetadata=( ratingAdvisory )
+theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
 theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
@@ -58,42 +58,12 @@ function newRipIt ()
         #            THIS PROTOTYPE DOES _NOT_ PASS ANY AUDIO_PLACEHOLDER!
 
     autotag "$dvdmedia" || return
+        # newAutoTag() not the old autotag.
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         {
             tar cvf "$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
             del "$dvdmedia" || return
-        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
-}
-
-function ripIt ()
-{
-    local movie_file="$1"
-    local movie_to_rip="$(attachDMGOrJustEcho "$movie_file")"
-    local DVDNAME="$(basename "$movie_to_rip" .dvdmedia)"
-    local AUDIO_PLACEHOLDER=""
-        # ripTitles() will fill AUDIO_PLACEHOLDER in automatically based on info sourced below.
-
-    local SHOW= SEASON= ALBUMARTIST= DVDDATE= 
-    local -a TITLES=( ) TITLE=( ) PRODUCTION_NUMBER=( ) EPISODE=( ) DISK=( ) MAXDISK=( ) DESCRIPTION=( ) DATE=( ) STIK=( ) SHOW=( ) SEASON=( ) ALBUM=( ) ARTIST=( ) WRITER=( ) GENRE=( ) NETWORK=( ) COPYRIGHT=( ) RATING=( ) RATING_NOTE=( ) CONTENT_ADVISORY=( ) AUDIO=( ) ANGLE=( ) cast=( ) codirectors=( ) directors=( ) producers=( ) screenwriters=( ) studio=( ) executiveproducers=( ) supervisingproducers=( )
-        # Make sure to mask all our variables.
-
-    generateMovieMetadata "$movie_file" || \
-        {
-            echo "ripIt() requires a pre-prepared information file." 1>&2
-            return -1
-        }
-    # TODO: Add sanity checks for chapters file, artwork, DVD source, &c.
-
-    ripTitles "$movie_to_rip" "$AUDIO_PLACEHOLDER" "${TITLES[@]}" || return "$?"
-        # AUDIO[] (local) is used in ripTitles (inherited global).
-        # ANGLE[] (local) is used in ripTitles (inherited global).
-        # The rest (local) are used within audotag (inherited global).
-
-    test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && [ -d "$movie_file" ] && \
-        {
-            tar cvf "${DVDNAME}.tar" -C "$(dirname "$movie_to_rip")" "$(basename "$movie_to_rip")" || return -2
-            del "$movie_to_rip" || return -3
         } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
 
@@ -126,28 +96,24 @@ function ripBleach ()
     return "$RET"
 }
 
-function ripTitles () 
-# ripTitles /path/to/VIDEO_TS/or/parent 1:English,2:Commentary title1 title2 title5
-{ 
-    local DVD="$1"  ; shift;
-    if test -n "$1"
+function newRipTitles ()
+{
+    local dvdmedia="$1" title
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
     then
-        local AUDIO="$1"
+        dvdmedia_path="$(pwd)/$1"
+        # Don't trust $PWD to be accurate.
+    else
+        dvdmedia_path="$1"
     fi
-    shift
+    local atomicMetadataTrack="$dvdmedia_path/atomicMetadataTrack"
+    shift # discard $1, now that we've had our way with it.
 
-    local title=
     for title in "$@"
-    do # Angles "${ANGLE:-${ANGLE[$title]:-}}"
-        if [ x"${ANGLE[$title]}" != x"" ]
-        then
-            echo ripAngles "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}"
-        else
-            rip "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}" || return "$?" 
+    do
+        rip "$dvdmedia" "$(defaults read "${atomicMetadataTrack}-$title" audioList)" "$title" || return "$?" 
                     # `break' here should result in the return value of rip being used as the return value here… but it doesn't
-            # Use the AUDIO array if available, from ripIt(1).
-            # Use the ONLYCHAPTERS array if available, from ripIt(1).
-        fi
     done
 }
 
@@ -197,7 +163,6 @@ function ripChapters ()
     fi
     shift
     local TITLE_PLACEHOLDER="" # blank; rip() will use longest title
-    local DO_NOT_TWEET_RIPS=DO_NOT_TWEET_RIPS
 
     for chapter in "$@"
     do
@@ -388,6 +353,7 @@ function rip ()
         fi
         
         #Tag some basic housekeeping
+        tag "${FILE}" --album "$DVDNAME" "${TRACK:+--track}" "$TRACK"
         autotag || return "$?"
     else
         echo "$FUNCNAME: ${FILE} does not appear to have been created." 1>&2
@@ -433,14 +399,13 @@ function initDVDMedia ()
         dvdmedia="$1"
     fi
 
-    local DVDNAME="$(basename "$dvdmedia" .dvdmedia)" \
-          atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
+    local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack-" \
           tag atomicPlist
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
 
-    defaults write "$atomicMetadataDisc" UDFVolumeName "$DVDNAME"
+    defaults write "$atomicMetadataDisc" UDFVolumeName "$(basename "$dvdmedia" .dvdmedia)"
     
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}"
     do
@@ -539,7 +504,7 @@ function autoTagTrack ()
     
     iTunMOVIXML="$(mkiTunMOVI "$atomicMetadataAlbum" "$atomicMetadataDisc" "$atomicMetadataTrack")"
 
-    echo tag "$m4v" "${tagList[@]}" \
+    tag "$m4v" "${tagList[@]}" \
              "${iTunMOVIXML:+--rDNSatom}" "${iTunMOVIXML:-}" "${iTunMOVIXML:+name=iTunMOVI}" "${iTunMOVIXML:+domain=com.apple.iTunes}"
 
 }
@@ -609,6 +574,67 @@ function parseSemicolonDelimitedArray ()
 
 
 ## The below functions are deprecated.
+
+function ripIt ()
+{
+    local movie_file="$1"
+    local movie_to_rip="$(attachDMGOrJustEcho "$movie_file")"
+    local DVDNAME="$(basename "$movie_to_rip" .dvdmedia)"
+    local AUDIO_PLACEHOLDER=""
+        # ripTitles() will fill AUDIO_PLACEHOLDER in automatically based on info sourced below.
+
+    local SHOW= SEASON= ALBUMARTIST= DVDDATE= 
+    local -a TITLES=( ) TITLE=( ) PRODUCTION_NUMBER=( ) EPISODE=( ) DISK=( ) MAXDISK=( ) DESCRIPTION=( ) DATE=( ) STIK=( ) SHOW=( ) SEASON=( ) ALBUM=( ) ARTIST=( ) WRITER=( ) GENRE=( ) NETWORK=( ) COPYRIGHT=( ) RATING=( ) RATING_NOTE=( ) CONTENT_ADVISORY=( ) AUDIO=( ) ANGLE=( ) cast=( ) codirectors=( ) directors=( ) producers=( ) screenwriters=( ) studio=( ) executiveproducers=( ) supervisingproducers=( )
+        # Make sure to mask all our variables.
+
+    generateMovieMetadata "$movie_file" || \
+        {
+            echo "ripIt() requires a pre-prepared information file." 1>&2
+            return -1
+        }
+    # TODO: Add sanity checks for chapters file, artwork, DVD source, &c.
+
+    ripTitles "$movie_to_rip" "$AUDIO_PLACEHOLDER" "${TITLES[@]}" || return "$?"
+        # AUDIO[] (local) is used in ripTitles (inherited global).
+        # ANGLE[] (local) is used in ripTitles (inherited global).
+        # The rest (local) are used within audotag (inherited global).
+
+    test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && [ -d "$movie_file" ] && \
+        {
+            tar cvf "${DVDNAME}.tar" -C "$(dirname "$movie_to_rip")" "$(basename "$movie_to_rip")" || return -2
+            del "$movie_to_rip" || return -3
+        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
+}
+
+
+
+function ripTitles () 
+# ripTitles /path/to/VIDEO_TS/or/parent 1:English,2:Commentary title1 title2 title5
+{ 
+    local DVD="$1"  ; shift;
+    if test -n "$1"
+    then
+        local AUDIO="$1"
+    fi
+    shift
+
+    local title=
+    for title in "$@"
+    do # Angles "${ANGLE:-${ANGLE[$title]:-}}"
+        if [ x"${ANGLE[$title]}" != x"" ]
+        then
+            echo ripAngles "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}"
+        else
+            rip "$DVD" "${AUDIO:-${AUDIO[$title]:-}}" "$title" "${ONLYCHAPTERS[$title]:+:}${ONLYCHAPTERS[$title]:-}" || return "$?" 
+                    # `break' here should result in the return value of rip being used as the return value here… but it doesn't
+            # Use the AUDIO array if available, from ripIt(1).
+            # Use the ONLYCHAPTERS array if available, from ripIt(1).
+        fi
+    done
+}
+
+
+
 
 function generateMovieMetadata ()
 {
