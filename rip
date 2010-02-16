@@ -40,7 +40,7 @@ function ripEm ()
     done
 }
 
-function newRipIt ()
+function ripIt ()
 {
     local dvdmedia="$1"
     if [ x"${1:0:1}" != x"/" ]
@@ -54,8 +54,6 @@ function newRipIt ()
     local atomicMetadataDisc="$dvdmedia_path/atomicMetadataDisc"
 
     ripTitles "${dvdmedia}" $(defaults read "$atomicMetadataDisc" trackList) || return
-        #TODO:FIXME: WARNING THIS IS THE WRONG PROTOTYPE FOR ripTitles(). 
-        #            THIS PROTOTYPE DOES _NOT_ PASS ANY AUDIO_PLACEHOLDER!
 
     autotag "$dvdmedia" || return
         # newAutoTag() not the old autotag.
@@ -96,7 +94,7 @@ function ripBleach ()
     return "$RET"
 }
 
-function newRipTitles ()
+function ripTitles ()
 {
     local dvdmedia="$1" title
     if [ x"${1:0:1}" != x"/" ]
@@ -219,7 +217,7 @@ function rip ()
     then
         local DVDNAMEWITHTITLEBUTNOTCHAPTER="$DVDNAME"
         local TRACK=
-        #TODO:FIXME:HACK for --longest wrongly specified as --title X
+        #TODO:FIXME:HACK for --longest specified as --title X
     else
         local DVDNAMEWITHTITLEBUTNOTCHAPTER="${DVDNAME}${TITLE:+-}${TITLE}"
         local TRACK="${TITLE:-}"
@@ -231,7 +229,7 @@ function rip ()
     local AUDIO="${AUDIO:-1,2,3,4,5,6,7,8}"
         # Which audio tracks to encode, see HandBrakeCLI(1), defaulting to all.
         # This will always fail, unless the DVD has all 8 audio tracks, since HandBrake crashes when asked to encode a non-existent track.
-        # Inherit a pre-specified $AUDIO, if available
+        # Inherit a pre-specified $AUDIO, if available.
     local audio_track
     local TMPIFS="$IFS"; IFS=","
     for audio_track in $AUDIO_LIST
@@ -316,36 +314,6 @@ function rip ()
             --sticky \
             --identifier net.gaelicWizard.rip
     
-    local   NAME="${NAME[$TITLE]:-}" \
-            PRODUCTION_NUMBER="${PRODUCTION_NUMBER[$TITLE]:-}" \
-            EPISODE="${EPISODE[$TITLE]:-}" \
-            TRACK="${TRACK[$TITLE]:-${TRACK:-}}" \
-            MAXTRACK="${MAXTRACK[$TITLE]:-${MAXTRACK:-}}" \
-            DISK="${DISK[$TITLE]:-${DISK:-}}" \
-            MAXDISK="${MAXDISK[$TITLE]:-${MAXDISK:-}}" \
-            DESCRIPTION="${DESCRIPTION[$TITLE]:-}" \
-            DATE="${DATE[$TITLE]:-${DATE:-${DVDDATE:-}}}" \
-            STIK="${STIK[$TITLE]:-${STIK:-}}" \
-            SHOW="${SHOW[$TITLE]:-${SHOW:-}}" \
-            SEASON="${SEASON[$TITLE]:-${SEASON:-}}" \
-            ALBUM="${ALBUM[$TITLE]:-${ALBUM:-${DVDNAME:-}}}" \
-            ARTIST="${ARTIST[$TITLE]:-${ARTIST:-}}" \
-            ALBUMARTIST="${ALBUMARTIST[$TITLE]:-${ALBUMARTIST:-}}" \
-            GENRE="${GENRE[$TITLE]:-${GENRE:-}}" \
-            NETWORK="${NETWORK[$TITLE]:-${NETWORK:-}}" \
-            COPYRIGHT="${COPYRIGHT[$TITLE]:-${COPYRIGHT:-}}" \
-            RATING="${RATING[$TITLE]:-${RATING:-}}" \
-            RATING_NOTE="${RATING_NOTE[$TITLE]:-${RATING_NOTE:-}}" \
-            CONTENT_ADVISORY="${CONTENT_ADVISORY[$TITLE]:-${CONTENT_ADVISORY:-}}" \
-            cast="${cast[$TITLE]}" \
-            codirectors="${codirectors[$TITLE]}" \
-            directors="${directors[$TITLE]}" \
-            executiveproducers="${executiveproducers[$TITLE]}" \
-            supervisingproducers="${supervisingproducers[$TITLE]}" \
-            producers="${producers[$TITLE]}" \
-            screenwriters="${screenwriters[$TITLE]}" \
-            ITUNESMOVIXML="$(generateiTunMOVI)"
-        
         if test "${TITLE:--1}" -eq "${FEATURE:-0}"
         then
             TRACK=
@@ -354,7 +322,6 @@ function rip ()
         
         #Tag some basic housekeeping
         tag "${FILE}" --album "$DVDNAME" "${TRACK:+--track}" "$TRACK"
-        autotag || return "$?"
     else
         echo "$FUNCNAME: ${FILE} does not appear to have been created." 1>&2
         return -2
@@ -438,7 +405,7 @@ function initDVDMedia ()
         # When double-clicked in Finder, it will be duplicated and the duplicate opened instead of the original.
 }
 
-function newAutoTag ()
+function autoTag ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 {
     local dvdmedia
@@ -575,7 +542,7 @@ function parseSemicolonDelimitedArray ()
 
 ## The below functions are deprecated.
 
-function ripIt ()
+function ripItOld ()
 {
     local movie_file="$1"
     local movie_to_rip="$(attachDMGOrJustEcho "$movie_file")"
@@ -608,7 +575,7 @@ function ripIt ()
 
 
 
-function ripTitles () 
+function ripTitlesOld () 
 # ripTitles /path/to/VIDEO_TS/or/parent 1:English,2:Commentary title1 title2 title5
 { 
     local DVD="$1"  ; shift;
@@ -656,7 +623,7 @@ function attachDMGOrJustEcho ()
 
 
 
-function autotag ()
+function autotagOld ()
 # This function operates _entirely_ on globals, taking advantage of bash(1)'s scoping to treat the calling function's locals as globals.
 # _Additional_ arguments will be passed unmolested to AtomicParsley(1).
 {
