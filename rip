@@ -32,6 +32,7 @@ function ripDebug ()
 }
 
 function ripEm ()
+# Loops ripIt for each "$@"
 {
     local movie
     for movie in "$@"
@@ -41,6 +42,10 @@ function ripEm ()
 }
 
 function ripIt ()
+# Invokes ripTitles() on "$1" specifying which titles to rip, then autotag on same, then tar(1)s and moves same to trash.
+# Uses ripTitles()
+# Uses autotag()
+# Uses del #trash
 {
     local dvdmedia="$1"
     if [ x"${1:0:1}" != x"/" ]
@@ -95,6 +100,8 @@ function ripBleach ()
 }
 
 function ripTitles ()
+# Invokes rip() on "$1" for each "$@".
+# Uses rip()
 {
     local dvdmedia="$1" title
     if [ x"${1:0:1}" != x"/" ]
@@ -340,6 +347,7 @@ function tag ()
 }
 
 function addRipOptions ()
+# Adds "$@" to global array SPECIAL_RIP_OPTIONS.
 {
     for option in "$@"
     do
@@ -354,7 +362,7 @@ function addRipOptions ()
 }
 
 function initDVDMedia ()
-# This function takes one argument, the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
+# This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 {
     local dvdmedia
     if [ x"${1:0:1}" != x"/" ]
@@ -406,7 +414,8 @@ function initDVDMedia ()
 }
 
 function autotag ()
-# This function takes one argument: (1) the path to a DVDMedia bundle. A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
+# This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
+# Uses autoTagTrack()
 {
     local dvdmedia
     if [ x"${1:0:1}" != x"/" ]
@@ -432,7 +441,9 @@ function autotag ()
 }
 
 function autoTagTrack ()
-# This function takes three arguments: (1) the path to a DVDMedia bundle, (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
+# This function takes three arguments: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d), (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
+# Uses mkiTunMOVI()
+# Uses tag()
 {
     local dvdmedia whichTrack m4v \
           tag tagList tempTag iTunMOVIXML
@@ -477,6 +488,8 @@ function autoTagTrack ()
 }
 
 function mkiTunMOVI ()
+# Reads relevant information from the plists $1, $2, and $3 and returns a string plist suitable for embedding into an MP4 file with iTunes metadata.
+# Uses parseSemicolonDelimitedArray()
 {
     local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
     local theType studio eachEntry theParsedArray=( )
@@ -511,6 +524,7 @@ function mkiTunMOVI ()
 }
 
 function parseSemicolonDelimitedArray ()
+# Parses $1 for a semicolon delimited array, and populates the global theParsedArray with the result.
 {
     local theUnparsedArray="$1"
     theParsedArray=( ) # Blank the global array.
