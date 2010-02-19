@@ -13,7 +13,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 # tagging globals
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors directors producers screenwriters executiveproducers supervisingproducers )
-theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList subtitleList feature )
+theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList subtitleList feature usesShow )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
 theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
@@ -95,14 +95,25 @@ function defaultsReadAtomicMetadatas ()
 {
     local dvdmedia="$1"; shift
     local track="$1"; shift
+    
+    # The order of calls is important here. 
+    # Track should override Show, which should override Disc, which should override Album. 
+    # Without overrides, they should fall-through in that order.
+
+    defaultsReadAtomicMetadata "$dvdmedia" Track "$track" "$@" && return # return on success
+        # since $3 is only read by defaultsReadAtomicMetadata() when $2 is Track, we have to special-case it.
+
+    if [ x"$(defaultsReadAtomicMetadata "$dvdmedia" Track "$track" usesShow)" == x"1" ]
+    # Show is special-cased because bonus material in an album might not share the same show metadata as the actual features.
+    then
+        defaultsReadAtomicMetadata "$dvdmedia" Show "$@" && return # return on success
+    fi
 
     local metadataType
-    for metadataType in Album Disc Show
+    for metadataType in Disc Album
     do
         defaultsReadAtomicMetadata "$dvdmedia" "$metadataType" "$@" && return # return on success
     done
-    
-    defaultsReadAtomicMetadata "$dvdmedia" "Track" "$track" "$@" # since $3 is only read by defaultsReadAtomicMetadata() when $2 is Track, we have to special-case it.
 }
 
 function defaultsReadAtomicMetadata ()
