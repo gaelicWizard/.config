@@ -42,10 +42,11 @@ function ripEm ()
 }
 
 function ripIt ()
-# Invokes ripTitles() on "$1" specifying which titles to rip, then autotag on same, then tar(1)s and moves same to trash.
+# Invokes ripTitles() on $1 specifying which titles to rip from atomicMetadata(…), then autotag() on same, then tar(1)s and moves same to trash.
 # Uses ripTitles()
 # Uses autotag()
 # Uses del #trash
+# Uses defaultsReadAtomicMetadata()
 {
     local dvdmedia="$1"
 
@@ -90,7 +91,7 @@ function ripBleach ()
 }
 
 function defaultsReadAtomicMetadatas ()
-# Uses defaultsReadAtomicMetadata() to repeatedly read various atomicMetadataPlists until a value is found for 
+# Uses defaultsReadAtomicMetadata() to repeatedly read various atomicMetadataPlists until a value is found for $3
 {
     local dvdmedia="$1"; shift
     local track="$1"; shift
@@ -98,10 +99,10 @@ function defaultsReadAtomicMetadatas ()
     local metadataType
     for metadataType in Album Disc Show
     do
-        defaultsReadAtomicMetadata "$dvdmedia" "$metadataType" && return # return on success
+        defaultsReadAtomicMetadata "$dvdmedia" "$metadataType" "$@" && return # return on success
     done
     
-    defaultsReadAtomicMetadata "$dvdmedia" "Track" "$track" # since $3 is only read by defaultsReadAtomicMetadata() when $2 is Track, we have to special-case it.
+    defaultsReadAtomicMetadata "$dvdmedia" "Track" "$track" "$@" # since $3 is only read by defaultsReadAtomicMetadata() when $2 is Track, we have to special-case it.
 }
 
 function defaultsReadAtomicMetadata ()
@@ -109,7 +110,7 @@ function defaultsReadAtomicMetadata ()
 {
     local dvdmedia="$1"
     if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
+    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
     then
         dvdmedia="$(pwd)/$1"
         # Don't trust $PWD to be set, since it is not read-only.
@@ -129,18 +130,19 @@ function defaultsReadAtomicMetadata ()
 function ripTitles ()
 # Invokes rip() on "$1" for each "$@".
 # Uses rip()
+# Uses defaultsReadAtomicMetadatas()
 {
     local dvdmedia="$1"; shift
     local title
 
     for title in "$@"
     do
-        rip "$dvdmedia" "$(defaultsReadAtomicMetadata "$dvdmedia" Track "$title" audioList)" "$title" || return
+        rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
                     # `break' here should result in the return value of rip being used as the return value here… but it doesn't seem to…
     done
 }
 
-function ripAngles ()
+function ripAnglesOld ()
 {
     local RET=0
     local ANGLE_TITLE ANGLE_TRACK ANGLE
@@ -376,11 +378,14 @@ function addRipOptions ()
     then
         echo "WARNING: The following options will apply to all rips until SPECIAL_RIP_OPTIONS is unset:" 1>&2
         echo "${SPECIAL_RIP_OPTIONS[@]}"
+    else
+        echo "SPECIAL_RIP_OPTIONS is clear." 1>&2
     fi
 }
 
 function initDVDMedia ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
+# There is code duplication with defaultsReadAtomicMetadata()
 {
     local dvdmedia="$1"
     if [ x"${1:0:1}" != x"/" ]
@@ -432,8 +437,9 @@ function initDVDMedia ()
 }
 
 function autotag ()
-# This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
+# This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). defaultsReadAtomicMetadata() reads a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 # Uses autoTagTrack()
+# Uses defaultsReadAtomicMetadata()
 {
     local dvdmedia="$1"
     local trackList="$(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)" \
@@ -450,6 +456,7 @@ function autotag ()
 
 function autoTagTrack ()
 # This function takes three arguments: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d), (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
+# Uses defaultsReadAtomicMetadatas()
 # Uses mkiTunMOVI()
 # Uses tag()
 {
@@ -460,7 +467,7 @@ function autoTagTrack ()
     whichTrack="$2"
     m4v="$3"
 
-    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadata Track "$whichTrack" feature)" == x"1" ]
+    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
@@ -484,8 +491,9 @@ function autoTagTrack ()
 }
 
 function mkiTunMOVI ()
-# Reads relevant information from the plists $1, $2, and $3 and returns a string plist suitable for embedding into an MP4 file with iTunes metadata.
+# Reads relevant information from the plists embedded in $1 and returns a plist (as a string) with iTunes metadata suitable for embedding into an MP4 container.
 # Uses parseSemicolonDelimitedArray()
+# Uses defaultsReadAtomicMetadatas()
 {
     local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
     local theType studio eachEntry theParsedArray=( )
