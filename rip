@@ -48,20 +48,10 @@ function ripIt ()
 # Uses del #trash
 {
     local dvdmedia="$1"
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia_path="$(pwd)/$1"
-        # Don't trust $PWD to be set, even though it should _always_ be.
-    else
-        dvdmedia_path="$1"
-    fi
-    local atomicMetadataDisc="$dvdmedia_path/atomicMetadataDisc"
 
-    ripTitles "${dvdmedia}" $(defaults read "$atomicMetadataDisc" trackList) || return
+    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
 
     autotag "$dvdmedia" || return
-        # newAutoTag() not the old autotag.
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         {
@@ -83,7 +73,7 @@ function ripBleach ()
 
     local RET=0
     DVD="$1"  ; shift;
-    AUDIO="1:English Dub,2:Original Japanese" # Encode tracks 1 and 2 (English and Japanese)
+    AUDIO="1:English Dub,2:Original Japanese" # Encode audio tracks 1 and 2 (English and Japanese)
 
     local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
     addRipOptions --markers="$DVD/../Bleach.chapters"
@@ -99,26 +89,54 @@ function ripBleach ()
     return "$RET"
 }
 
+function defaultsReadAtomicMetadatas ()
+# Uses defaultsReadAtomicMetadata() to repeatedly read various atomicMetadataPlists until a value is found for 
+{
+    local dvdmedia="$1"; shift
+    local track="$1"; shift
+
+    local metadataType
+    for metadataType in Album Disc Show
+    do
+        defaultsReadAtomicMetadata "$dvdmedia" "$metadataType" && return # return on success
+    done
+    
+    defaultsReadAtomicMetadata "$dvdmedia" "Track" "$track" # since $3 is only read by defaultsReadAtomicMetadata() when $2 is Track, we have to special-case it.
+}
+
+function defaultsReadAtomicMetadata ()
+# Generates a full path (using $1) (minus .plist extension) to the given type of metadata ($2 and maybe $3), and uses defaults(1) to read $@ from it.
+{
+    local dvdmedia="$1"
+    if [ x"${1:0:1}" != x"/" ]
+    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
+    then
+        dvdmedia="$(pwd)/$1"
+        # Don't trust $PWD to be set, since it is not read-only.
+    fi
+    shift # drop $dvdmedia from "$@"
+    local whichAtomicMetadata="$1"; shift
+    if [ x"$whichAtomicMetadata" == x"Track" ]
+    then
+        local whichAtomicMetadataTrack="${1:-}"; shift
+    fi
+
+    local atomicMetadataPlist="$dvdmedia/atomicMetadata${whichAtomicMetadata}${whichAtomicMetadataTrack:+-}${whichAtomicMetadataTrack:-}"
+
+    defaults read "$atomicMetadataPlist" "$@"
+}
+
 function ripTitles ()
 # Invokes rip() on "$1" for each "$@".
 # Uses rip()
 {
-    local dvdmedia="$1" title
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia_path is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia_path="$(pwd)/$1"
-        # Don't trust $PWD to be accurate.
-    else
-        dvdmedia_path="$1"
-    fi
-    local atomicMetadataTrack="$dvdmedia_path/atomicMetadataTrack"
-    shift # discard $1, now that we've had our way with it.
+    local dvdmedia="$1"; shift
+    local title
 
     for title in "$@"
     do
-        rip "$dvdmedia" "$(defaults read "${atomicMetadataTrack}-$title" audioList)" "$title" || return "$?" 
-                    # `break' here should result in the return value of rip being used as the return value here… but it doesn't
+        rip "$dvdmedia" "$(defaultsReadAtomicMetadata "$dvdmedia" Track "$title" audioList)" "$title" || return
+                    # `break' here should result in the return value of rip being used as the return value here… but it doesn't seem to…
     done
 }
 
@@ -364,12 +382,12 @@ function addRipOptions ()
 function initDVDMedia ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 {
-    local dvdmedia
+    local dvdmedia="$1"
     if [ x"${1:0:1}" != x"/" ]
     # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
     then
         dvdmedia="$(pwd)/$1"
-        # Don't trust $PWD to be set, even though it should _always_ be.
+        # Don't trust $PWD to be set, since it is not read-only.
     else
         dvdmedia="$1"
     fi
@@ -417,18 +435,8 @@ function autotag ()
 # This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). A plist inside the bundle is read for a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 # Uses autoTagTrack()
 {
-    local dvdmedia
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia="$(pwd)/$1"
-        # Don't trust $PWD to be set, even though it should _always_ be.
-    else
-        dvdmedia="$1"
-    fi
-
-    local atomicMetadataDisc="$dvdmedia/atomicMetadataDisc"
-    local trackList="$(defaults read "$atomicMetadataDisc" trackList 2>/dev/null)" \
+    local dvdmedia="$1"
+    local trackList="$(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)" \
           DVDNAME="$(basename "$dvdmedia" .dvdmedia)"
 
     local aTrack
@@ -445,26 +453,14 @@ function autoTagTrack ()
 # Uses mkiTunMOVI()
 # Uses tag()
 {
-    local dvdmedia whichTrack m4v \
+    local dvdmedia="$1" \
+          whichTrack m4v \
           tag tagList tempTag iTunMOVIXML
-
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia="$(pwd)/$1"
-        # Don't trust $PWD to be set, even though it should _always_ be.
-    else
-        dvdmedia="$1"
-    fi
 
     whichTrack="$2"
     m4v="$3"
 
-    local atomicMetadataAlbum="${dvdmedia}/atomicMetadataAlbum" \
-          atomicMetadataDisc="${dvdmedia}/atomicMetadataDisc" \
-          atomicMetadataTrack="${dvdmedia}/atomicMetadataTrack-$whichTrack"
-
-    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaults read "$atomicMetadataTrack" artwork 2>/dev/null || defaults read "$atomicMetadataDisc" artwork 2>/dev/null || defaults read "$atomicMetadataAlbum" artwork 2>/dev/null)" == x"" ] && [ x"$(defaults read "$atomicMetadataTrack" feature 2>/dev/null)" == x"1" ]
+    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadata Track "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
@@ -472,7 +468,7 @@ function autoTagTrack ()
 
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
     do
-        tempTag="$(defaults read "$atomicMetadataTrack" "$tag" 2>/dev/null || defaults read "$atomicMetadataDisc" "$tag" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$tag" 2>/dev/null )"
+        tempTag="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")"
         
         if [ x"$tempTag" != x"" ]
         then
@@ -480,7 +476,7 @@ function autoTagTrack ()
         fi
     done
     
-    iTunMOVIXML="$(mkiTunMOVI "$atomicMetadataAlbum" "$atomicMetadataDisc" "$atomicMetadataTrack")"
+    iTunMOVIXML="$(mkiTunMOVI "$dvdmedia" "$whichTrack")"
 
     tag "$m4v" "${tagList[@]}" \
              "${iTunMOVIXML:+--rDNSatom}" "${iTunMOVIXML:-}" "${iTunMOVIXML:+name=iTunMOVI}" "${iTunMOVIXML:+domain=com.apple.iTunes}"
@@ -493,13 +489,11 @@ function mkiTunMOVI ()
 {
     local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
     local theType studio eachEntry theParsedArray=( )
-    local atomicMetadataAlbum="$1" \
-          atomicMetadataDisc="$2" \
-          atomicMetadataTrack="$3"
+    local dvdmedia="$1" track="$2"
 
     for theType in "${theListOfAllTheTrackiTunMOVITags[@]}"
     do
-        parseSemicolonDelimitedArray "$(defaults read "$atomicMetadataTrack" "$theType" 2>/dev/null || defaults read "$atomicMetadataDisc" "$theType" 2>/dev/null || defaults read "$atomicMetadataAlbum" "$theType" 2>/dev/null)" || return -2
+        parseSemicolonDelimitedArray "$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" "$theType")" || return -2
 
         for eachEntry in "${theParsedArray[@]}"
         do
@@ -507,7 +501,7 @@ function mkiTunMOVI ()
         done
     done
 
-    if studio="$(defaults read "$atomicMetadataTrack" studio 2>/dev/null || defaults read "$atomicMetadataDisc" studio 2>/dev/null || defaults read "$atomicMetadataAlbum" studio 2>/dev/null)"
+    if studio="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" studio)"
     then
         defaults write "$plist" studio "$studio"
         # This should overwrite any array written just above.
