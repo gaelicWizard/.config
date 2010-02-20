@@ -206,6 +206,99 @@ function ripChapters ()
     done
 }
 
+function newRip ()
+# rip() /path/to/VIDEO_TS/.. 7
+{
+    local dvdmedia="$1" # /path/to/VIDEO_TS's parent
+    local whichTrack="$2" # integer
+    local whichChapters="${3:-}" # 1:1-4 or highlights:2-5,7,13
+    
+    ripSanity "$dvdmedia" "$whichTrack" || ripFail "ripSanity"
+
+    local audioList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" audioList)" || ripFail "audioList"
+    local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList"
+
+    local DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName"
+        # Use $DVDNAME as the base name for the output file (see $FILE below).
+
+    local chapterList="${whichChapters#*:}" # everything after the first colon
+    local chapterName="${whichChapters%%:*}" # everything before the first colon
+        # There should only be one colon. 
+        #TODO:FIXME: Chapter name should be extracted from $dvdmedia/chapters-$whichTrack.txt
+
+    local audioNames="$(ripParseAudioNames "$audioList")"
+    local audioTracks="$(ripParseAudioTracks "$audioList")"
+    
+    local subtitleNames="$(ripParseAudioNames "$subtitleList")"
+    local subtitleTracks="$(ripParseAudioTracks "$subtitleList")"
+
+    FILE="${DVDNAME}-${whichTrack}${chapterName:+-}${chapterName:-}.m4v"
+        # e.g. DVD_VIDEO-1-Triumph.m4v
+#Do it
+    local RET=0
+    test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
+        test -e "$FILE" && del "$FILE"; \
+        set -x; \
+    exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-1}" \
+        --preset "Universal" \
+        --input "$dvdmedia" \
+        --title "$whichTrack" \
+        "${chapterList:+--chapters}" "${chapterList:-}" \
+        --previews 30 \
+        --output "$FILE" \
+        --markers"${dvdmedia}/chapters-${whichTrack}.txt" \
+        --ipod-atom \
+        --detelecine \
+        --vfr \
+        --audio "$audioTracks" \
+        --aencoder "$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)" \
+        "${audioNames:+--aname}" "${audioNames:-}" \
+        "${SPECIAL_RIP_OPTIONS[@]}" \
+    2>> ~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log ) || return
+        # Universal preset to activate sensible defaults.
+        # Use the longest title, if none specified.
+        # Only encode selected chapters, if specified.
+        # Generate 30 previews, b/c I hope it will improve autocropping.
+            # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
+        # Import chapter titles from CSV file, if available.
+        # iPod atom, so that 5.5G iPods will accept the media.
+        # Detelecine, always. Unclear why HandBrake doesn't just do this.
+            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default, but it lies.
+        # Variable Frame Rate is the default, but didn't used to be.
+            # This option disappeared _completely_ during 0.9.3
+        # Enable selected audio tracks from the DVD.
+        # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding.
+            # AAC is the default, so this line might be entirely unneeded.
+            # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
+        # Name the selected audio tracks, e.g. "Director's Commentary".
+        # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
+
+    if [ -e "$FILE" ]
+    then
+        growlnotify \
+            --name "rip()" \
+            --title "Rip Complete" \
+            --message "Encoded ${FILE}." \
+            --appIcon /Applications/HandBrake.app \
+            --sticky \
+            --identifier net.gaelicWizard.rip
+    
+        if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" != x"11" ]
+        #TODO:FIXME: need a way to check that a given track is the _only_ feature on a disc, which is not always true.
+        then
+            local TRACK="$whichTrack"
+        fi
+        
+        #Tag some basic housekeeping
+        tag "${FILE}" --album "$DVDNAME" "${TRACK:+--track}" "$TRACK"
+    else
+        echo "$FUNCNAME: ${FILE} does not appear to have been created." 1>&2
+        return -2
+    fi
+    
+    addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
+}
+
 function rip ()
 # rip /path/to/VIDEO_TS/.. 1:English,2:Commentary title7 chapters1:2-4
 {
