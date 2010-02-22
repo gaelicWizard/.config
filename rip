@@ -504,7 +504,7 @@ function initDVDMedia ()
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack-" \
-          tag atomicPlist
+          tag 
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
 
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}"
@@ -527,7 +527,7 @@ function initDVDMedia ()
 
 
 
-
+    local atomicPlist
     for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist"
     do
         plutil -convert xml1 "${atomicPlist}"
