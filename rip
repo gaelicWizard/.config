@@ -12,7 +12,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 ##
 # tagging globals
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
-theListOfAllTheTrackiTunMOVITags=( studio cast codirectors directors producers screenwriters executiveproducers supervisingproducers )
+theListOfAllTheTrackiTunMOVITags=( studio cast codirectors directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers )
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList subtitleList feature usesShow )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
@@ -50,7 +50,7 @@ function ripIt ()
 {
     local dvdmedia="$1"
 
-    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
+    time ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
 
     autotag "$dvdmedia" || return
 
@@ -79,7 +79,7 @@ function ripBleach ()
     local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
     addRipOptions --markers="$DVD/../Bleach.chapters"
 
-    ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
+    time ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
         # It is expected that 21-24 will fail on _most_ (but not all) volumes.
         # When 21-24 "fails", a short (<10s) logo-only chapter will be encoded.
         # (The skipped chapters are advertisements for more bleach...)
@@ -538,6 +538,10 @@ function initDVDMedia ()
     
     SetFile -a T "${atomicMetadataTrack}.plist"
         # When double-clicked in Finder, it will be duplicated and the duplicate opened instead of the original.
+
+    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2> "$dvdmedia/titleScan.txt"
+        # Ask HandBrake to scan all available titles on the disk.
+        # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
 }
 
 function autotag ()
