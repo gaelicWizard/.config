@@ -545,7 +545,7 @@ function initDVDMedia ()
 }
 
 function autotag ()
-# This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). defaultsReadAtomicMetadata() reads a list of tracks (which would have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
+# This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). defaultsReadAtomicMetadata() reads a list of tracks (which should have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 # Uses autoTagTrack()
 # Uses defaultsReadAtomicMetadata()
 {
@@ -557,27 +557,26 @@ function autotag ()
     local aTrack
     for aTrack in $trackList
     do
-        autoTagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v" || return
+        autotagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v" || return
     done
     
     
 }
 
-function autoTagTrack ()
+function autotagTrack ()
 # This function takes three arguments: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d), (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
 # Uses defaultsReadAtomicMetadatas()
 # Uses mkiTunMOVI()
 # Uses tag()
 {
     local dvdmedia="$1" \
-          whichTrack m4v \
+          whichTrack="$2" \
+          m4v="$3" \
           tag tagList tempTag iTunMOVIXML
-
-    whichTrack="$2"
-    m4v="$3"
 
     if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
+    # Should switch to a customArtwork/needsArtwork flag.
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
     fi
