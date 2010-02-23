@@ -551,8 +551,8 @@ function autotag ()
 {
     local dvdmedia="$1"
     local trackList="$(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)" \
-          DVDNAME="$(basename "$dvdmedia" .dvdmedia)"
-          #DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName"
+          DVDNAME="$(basename "$dvdmedia" .dvdmedia)" # ripOld().
+          #DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" # newRip().
 
     local aTrack
     for aTrack in $trackList
