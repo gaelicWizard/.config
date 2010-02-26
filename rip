@@ -546,9 +546,12 @@ function initDVDMedia ()
     for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist"
     do
         plutil -convert xml1 "${atomicPlist}"
+            # Convert to textual XML instead of "binary plist"
         perl -pi -e 's;</key>
 	<;</key><;g' "${atomicPlist}"
             #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
+        SetFile -a E "${atomicPlist}"
+            # Hide the file extension
     done
     
     SetFile -a T "${atomicMetadataTrack}.plist"
