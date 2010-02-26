@@ -118,14 +118,10 @@ function defaultsReadAtomicMetadatas ()
 
 function defaultsReadAtomicMetadata ()
 # Generates a full path (using $1) (minus .plist extension) to the given type of metadata ($2 and maybe $3), and uses defaults(1) to read $@ from it.
+# There is code duplication with initDVDMedia().
 {
-    local dvdmedia="$1"
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia="$(pwd)/$1"
-        # Don't trust $PWD to be set, since it is not read-only.
-    fi
+    local dvdmedia="$(realpath "$1")" || return -1
+        # This requires a working realpath.
     shift # drop $dvdmedia from "$@"
     local whichAtomicMetadata="$1"; shift
     if [ x"$whichAtomicMetadata" == x"Track" ]
@@ -485,6 +481,23 @@ function addRipOptions ()
     else
         echo "SPECIAL_RIP_OPTIONS is clear." 1>&2
     fi
+}
+
+function initBleachBundle ()
+# This function takes one argument: (1) the path to a DVDMedia bundle whose name begins with "Bleach", which is presumed to be a volume in the Bleach anime series. An atomicMetadataShow.plist is copied in, an a chapters list is symlink'd in.
+# Uses initDVDMedia()
+{
+    if [ x"${1:0:5}" != x"Bleach" ]
+    then
+        echo "Usage: $FUNCNAME 'Bleach Volume 25.dvdmedia'" 1>&2
+        return -1
+    fi
+
+    initDVDMedia "$1"
+
+    ln -s "../Bleach.chapters" "$1"/chapters-1.txt
+
+    cp ~/Library/"Application Support"/"DVD Metadata"/Bleach.plist "${1}/atomicMetadataShow.plist"
 }
 
 function initDVDMedia ()
