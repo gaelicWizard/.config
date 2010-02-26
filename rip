@@ -489,7 +489,7 @@ function initBleachBundle ()
 # This function takes one argument: (1) the path to a DVDMedia bundle whose name begins with "Bleach", which is presumed to be a volume in the Bleach anime series. An atomicMetadataShow.plist is copied in, an a chapters list is symlink'd in.
 # Uses initDVDMedia()
 {
-    if [ x"${1:0:5}" != x"Bleach" ]
+    if [ x"${1:0:6}" != x"Bleach" ]
     then
         echo "Usage: $FUNCNAME 'Bleach Volume 25.dvdmedia'" 1>&2
         return -1
