@@ -499,7 +499,7 @@ function initBleachBundle ()
 
     ln -s "../Bleach.chapters" "$1"/chapters-1.txt
 
-    cp ~/Library/"Application Support"/"DVD Metadata"/Bleach.plist "${1}/atomicMetadataShow.plist"
+    cp ~/Library/"Application Support"/net.gaelicWizard.rip.localized/Bleach.plist "${1}/atomicMetadataShow.plist"
 }
 
 function initDVDMedia ()
