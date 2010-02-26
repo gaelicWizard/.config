@@ -84,6 +84,8 @@ function ripBleach ()
         # When 21-24 "fails", a short (<10s) logo-only chapter will be encoded.
         # (The skipped chapters are advertisements for more bleach...)
 
+    autotag "$1"
+
     unset SPECIAL_RIP_OPTIONS
     addRipOptions "${RESERVED_SPECIAL_RIP_OPTIONS[@]}"
     
@@ -572,8 +574,6 @@ function autotag ()
     do
         autotagTrack "$dvdmedia" "$aTrack" "$DVDNAME-$aTrack.m4v" || return
     done
-    
-    
 }
 
 function autotagTrack ()
