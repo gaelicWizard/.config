@@ -50,7 +50,7 @@ function ripIt ()
 {
     local dvdmedia="$1"
 
-    time ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
+    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
 
     autotag "$dvdmedia" || return
 
@@ -79,7 +79,7 @@ function ripBleach ()
     local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
     addRipOptions --markers="$DVD/../Bleach.chapters"
 
-    time ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
+    ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
         # It is expected that 21-24 will fail on _most_ (but not all) volumes.
         # When 21-24 "fails", a short (<10s) logo-only chapter will be encoded.
         # (The skipped chapters are advertisements for more bleach...)
@@ -146,7 +146,7 @@ function ripTitles ()
 
     for title in "$@"
     do
-        rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
+        time rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
                     # `break' here should result in the return value of rip being used as the return value here… but it doesn't seem to…
     done
 }
@@ -200,7 +200,7 @@ function ripChapters ()
 
     for chapter in "$@"
     do
-        rip "$DVD" "$AUDIO" "$TITLE_PLACEHOLDER" "$chapter" || break # break here should result in the return value of rip being used as the return value here
+        time rip "$DVD" "$AUDIO" "$TITLE_PLACEHOLDER" "$chapter" || break # break here should result in the return value of rip being used as the return value here
     done
 }
 
@@ -384,6 +384,7 @@ function rip ()
         # This is, sadly, necessary to work around a bug in HandBrake which will duplicate the last track specified in $AUDIO to until all eight tracks are filled. Bug filed and rejected. :-/
 
 #Do it
+    local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
@@ -403,7 +404,7 @@ function rip ()
         --aencoder "$AUDIO_ENC" \
         "${AUDIO_TITLES:+--aname}" "${AUDIO_TITLES:-}" \
         "${SPECIAL_RIP_OPTIONS[@]}" \
-    2>> ~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log ) || RET="$?"
+    2>> "$RIPLOG" ) || RET="$?"
         # Universal preset to activate sensible defaults.
         # Use the longest title, if none specified.
         # Only encode selected chapters, if specified.
@@ -421,6 +422,9 @@ function rip ()
             # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
+    du -sh "$RIPLOG"
+        # Check the size of the log file.
+        # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
 
     if [ "${RET:-0}" -ne 0 ]
     then
