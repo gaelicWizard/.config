@@ -133,7 +133,8 @@ function defaultsReadAtomicMetadata ()
 
     local atomicMetadataPlist="$dvdmedia/atomicMetadata${whichAtomicMetadata}${whichAtomicMetadataTrack:+-}${whichAtomicMetadataTrack:-}"
 
-    defaults read "$atomicMetadataPlist" "$@"
+    defaults read "$atomicMetadataPlist" "$@" 2>/dev/null
+        # Ignore "does not exist" messages.
 }
 
 function ripTitles ()
