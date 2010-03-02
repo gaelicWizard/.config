@@ -468,7 +468,7 @@ function tag ()
 # Just a tiny wrapper around AtomicParsley(1)
 {
     FILE="$1" ; shift;
-    
+
     test -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" && \
     (set -x; exec AtomicParsley "$FILE" -W "$@" )
 }
@@ -609,6 +609,12 @@ function autotagTrack ()
         if [ x"$tempTag" != x"" ]
         then
             tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
+
+            if [ x"$tag" == x"description" ]
+            # Hack to ensure that both the "sort" desc tag and the long one are populated.
+            then
+                tagList=( "${tagList[@]}" --"longDescription" "$tempTag" )
+            fi
         fi
     done
     
