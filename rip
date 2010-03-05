@@ -325,6 +325,7 @@ function newRip ()
     FILE="${DVDNAME}-${whichTrack}${chapterName:+-}${chapterName:-}.m4v"
         # e.g. DVD_VIDEO-1-Triumph.m4v
 #Do it
+    local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
@@ -344,7 +345,7 @@ function newRip ()
         --aencoder "$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)" \
         "${audioNames:+--aname}" "${audioNames:-}" \
         "${SPECIAL_RIP_OPTIONS[@]}" \
-    2>> ~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log ) || ripFail "HandBrakeCLI" || return
+    2>> "$RIPLOG" ) || ripFail "HandBrakeCLI" || return
         # Universal preset to activate sensible defaults.
         # Use the longest title, if none specified.
         # Only encode selected chapters, if specified.
@@ -362,6 +363,10 @@ function newRip ()
             # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
+    echo # Blank line, since HandBrakeCLI doesn't newline to _stdout_ when exiting.
+    du -sh "$RIPLOG"
+        # Check the size of the log file.
+        # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
 
     if [ -e "$FILE" ]
     then
@@ -511,6 +516,7 @@ function rip ()
             # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
+    echo # Blank line.
     du -sh "$RIPLOG"
         # Check the size of the log file.
         # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
