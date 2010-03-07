@@ -31,15 +31,13 @@ function ripDebug ()
     echo "$DEBUG_DISABLE_HANDBRAKE_INVOCATION; $DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION; $DO_NOT_TWEET_RIPS; $DEBUG_DISABLE_TAR_INVOCATION" 1>&2
 }
 
-function ripEm ()
+function ripAlbum ()
 # Loops ripIt for each "$@"
 {
-    local DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION
-        # Since we're ripping several DVDs at the same time, its entirely reasonable to assume that they are merely different discs from the same album, and therefore ought not to be tar(1)'d separately.
-
     local movie
     for movie in "$@"
     do
+        DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION \
         ripIt "$movie" || return
     done
 }
