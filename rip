@@ -656,7 +656,7 @@ function initDVDMedia ()
     SetFile -a T "${atomicMetadataTrack}.plist"
         # When double-clicked in Finder, it will be duplicated and the duplicate opened instead of the original.
 
-    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2> "$dvdmedia/titleScan.txt"
+    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
 }
