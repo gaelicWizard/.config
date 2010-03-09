@@ -13,7 +13,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 # tagging globals
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers )
-theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList subtitleList feature usesShow )
+theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
 theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
@@ -245,19 +245,21 @@ function ripSanity ()
         return -2
     fi
     
-    if [ x"$whichChapters" != x"" ] && [ x"${whichChapters#*:}" == x"${whichChapters%%:*}" ]
+    if [ x"$3" != x"" ] && [ x"${3#*:}" == x"${3%%:*}" ]
     then
         echo "rip(): The third argument, if specified, must match the form 'string:integer-range'." 1>&2
         ripUsage
         return -3
     fi
+    return
+    #TODO:FIXME: Sanity check for file name.
 }
 
 function ripFail () 
 {
     RET="${?:-0}" # Preserve the return value.
 
-    if [ x"$1" == x"audioList" ] || [ x"$1" == x"subtitleList" ] || [ x"$1" == x"angleList" ] || [ x"$1" == x"UDFVolumeName" ]
+    if [ x"$1" == x"audioList" ] || [ x"$1" == x"subtitleList" ] || [ x"$1" == x"angleList" ] || [ x"$1" == x"chapterList" ] || [ x"$1" == x"UDFVolumeName" ]
     then
         echo "rip(): Unable to read '$1' from atomicMetadata." 1>&2
         echo "       See initDVDMedia()." 1>&2
@@ -336,19 +338,21 @@ function rip ()
 {
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer
-    local whichChapters="${3:-}" # 1:1-4 or highlights:2-5,7,13
+    local chapterList="${3:-}" # 1:1-4 or highlights:2-5,7,13
+    #local FILE="$3"
     
-    ripSanity "$dvdmedia" "$whichTrack" "$whichChapters" || return
+    ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
 
     local audioList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" audioList)" || ripFail "audioList" || return
+#    local chapterList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" chapterList)" || ripFail "chapterList" || return
     local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
     local angleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" angleList)" || ripFail "angleList" || return
 
     local DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" || return
         # Use $DVDNAME as the base name for the output file (see $FILE below).
 
-    local chapterList="${whichChapters#*:}" # everything after the first colon
-    local chapterName="${whichChapters%%:*}" # everything before the first colon
+    local chapterTracks="${chapterList#*:}" # everything after the first colon
+    local chapterName="${chapterList%%:*}" # everything before the first colon
         # There should only be one colon. 
         # $chapterName is not the name of the _one_ chapter to be encoded, but the name of the _set_ of chapters to be encoded.
 
@@ -382,7 +386,7 @@ function rip ()
         --preset "Universal" \
         --input "$dvdmedia" \
         --title "$whichTrack" \
-        "${chapterList:+--chapters}" "${chapterList:-}" \
+        "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
         "${angleTracks:+--angle}" "${angleTracks:-}" \
         "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
         --native-language eng \
