@@ -27,8 +27,9 @@ function ripDebug ()
     export DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION=DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION
     export DO_NOT_TWEET_RIPS=DO_NOT_TWEET_RIPS
     export DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION
+    export HANDBRAKE_DEBUG_LEVEL=1
     
-    echo "$DEBUG_DISABLE_HANDBRAKE_INVOCATION; $DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION; $DO_NOT_TWEET_RIPS; $DEBUG_DISABLE_TAR_INVOCATION" 1>&2
+    echo "$DEBUG_DISABLE_HANDBRAKE_INVOCATION; $DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION; $DO_NOT_TWEET_RIPS; $DEBUG_DISABLE_TAR_INVOCATION; $HANDBRAKE_DEBUG_LEVEL" 1>&2
 }
 
 function ripAlbum ()
@@ -148,7 +149,8 @@ function ripTitles ()
 
     for title in "$@"
     do
-        time rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
+#        time rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
+        time newRip "$dvdmedia" "$title" || return
                     # `break' here should result in the return value of rip being used as the return value here… but it doesn't seem to…
     done
 }
@@ -224,7 +226,7 @@ function ripSanity ()
         return -2
     fi
     
-    if [ x"${whichChapters#*:}" == x"${whichChapters%%:*}" ]
+    if [ x"$whichChapters" != x"" ] && [ x"${whichChapters#*:}" == x"${whichChapters%%:*}" ]
     then
         echo "rip(): The third argument, if specified, must match the form 'string:integer-range'." 1>&2
         ripUsage
@@ -236,7 +238,7 @@ function ripFail ()
 {
     RET="${?:-0}" # Preserve the return value.
 
-    if [ x"$1" == x"audioList" ] || [ x"$1" == x"subtitleList" ] || [ x"$1" == x"UDFVolumeName" ]
+    if [ x"$1" == x"audioList" ] || [ x"$1" == x"subtitleList" ] || [ x"$1" == x"angleList" ] || [ x"$1" == x"UDFVolumeName" ]
     then
         echo "rip(): Unable to read '$1' from atomicMetadata." 1>&2
         echo "       See initDVDMedia()." 1>&2
@@ -248,6 +250,14 @@ function ripFail ()
         echo "rip(): HandBrake has failed to complete successfully." 1>&2
     fi
     fi
+    fi
+    
+    if [ x"$1" == x"angleList" ] || [ x"$2" == x"angle" ]
+    # Simple hack to prevent fatal exit when angleList is unspecified.
+    #TODO:FIXME: Implement angleList
+    #TODO:FIXME: Figure out how to be non-fatal.
+    then
+        RET=0
     fi
 
     ripUsage
@@ -308,6 +318,7 @@ function newRip ()
 
     local audioList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" audioList)" || ripFail "audioList" || return
     local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
+    local angleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" angleList)" || ripFail "angleList" || return
 
     local DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" || return
         # Use $DVDNAME as the base name for the output file (see $FILE below).
@@ -319,9 +330,20 @@ function newRip ()
 
     local audioNames="$(ripParseAudioNames "$audioList")" || ripFail "ripParseAudioNames" "audio" || return
     local audioTracks="$(ripParseAudioTracks "$audioList")" || ripFail "ripParseAudioTracks" "audio" || return
+    local audioEncoders="$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)"
 
     local subtitleNames="$(ripParseAudioNames "$subtitleList")" || ripFail "ripParseAudioNames" "subtitle" || return
+        # Unused.
+        #TODO:FIXME: Implement.
     local subtitleTracks="$(ripParseAudioTracks "$subtitleList")" || ripFail "ripParseAudioTracks" "subtitle" || return
+
+    local angleNames="$(ripParseAudioNames "$angleList")" || ripFail "ripParseAudioNames" "angle" || return
+        # Unused.
+        #TODO:FIXME: Implement.
+    local angleTracks="$(ripParseAudioTracks "$angleList")" || ripFail "ripParseAudioTracks" "angle" || return
+        # If only one angle is specified, then all is well. However, HandBrake cannot encode multiple angles simultaneously, so this option is presently worthless.
+        #TODO:FIXME: Implement.
+        # Most likely, the entire rip() will need to be looped in order to accomplish this.
 
     FILE="${DVDNAME}-${whichTrack}${chapterName:+-}${chapterName:-}.m4v"
         # e.g. DVD_VIDEO-1-Triumph.m4v
@@ -331,25 +353,33 @@ function newRip ()
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
         set -x; \
-    exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-1}" \
+    exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
         --preset "Universal" \
         --input "$dvdmedia" \
         --title "$whichTrack" \
         "${chapterList:+--chapters}" "${chapterList:-}" \
+        "${angleTracks:+--angle}" "${angleTracks:-}" \
+        "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
+        --native-language eng \
+        --native-dub \
         --previews 30 \
         --output "$FILE" \
-        --markers"${dvdmedia}/chapters-${whichTrack}.txt" \
+        --markers="${dvdmedia}/chapters-${whichTrack}.txt" \
         --ipod-atom \
         --detelecine \
         --vfr \
         --audio "$audioTracks" \
-        --aencoder "$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)" \
+        --aencoder "$audioEncoders" \
         "${audioNames:+--aname}" "${audioNames:-}" \
         "${SPECIAL_RIP_OPTIONS[@]}" \
     2>> "$RIPLOG" ) || ripFail "HandBrakeCLI" || return
         # Universal preset to activate sensible defaults.
         # Use the longest title, if none specified.
         # Only encode selected chapters, if specified.
+        # Encode the selected angles, if specified.
+        # Pass-thru the selected subtitles, if specified. (Do _not_ burn-in.)
+        # Select english as the native language. Unused, since subtitle and audio tracks are specified manually.
+        # Switch audio track, instead of enabling subtitles, in response to native language selection. Unused, since audio track is specified manually.
         # Generate 30 previews, b/c I hope it will improve autocropping.
             # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
         # Import chapter titles from CSV file, if available.
@@ -377,16 +407,9 @@ function newRip ()
             --message "Encoded ${FILE}." \
             --appIcon /Applications/HandBrake.app \
             --sticky \
-            --identifier net.gaelicWizard.rip
+            --identifier "net.gaelicWizard.rip.$DVDNAME"
     
-        if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" != x"11" ]
-        #TODO:FIXME: need a way to check that a given track is the _only_ feature on a disc, which is not always true.
-        then
-            local TRACK="$whichTrack"
-        fi
-        
-        #Tag some basic housekeeping
-        tag "${FILE}" --album "$DVDNAME" "${TRACK:+--track}" "$TRACK"
+        tag "${FILE}" --album "$DVDNAME" --track "$whichTrack"
     fi
     
     addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
@@ -666,11 +689,12 @@ function autotag ()
 # This function takes one argument: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d). defaultsReadAtomicMetadata() reads a list of tracks (which should have been already encoded). autoTagTrack() is then invoked for each track using file names generated from the DVDMedia bundle file name.
 # Uses autoTagTrack()
 # Uses defaultsReadAtomicMetadata()
+#TODO:FIXME: Should not auto-generate the file name. 
 {
     local dvdmedia="$1"
     local trackList="$(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)" \
-          DVDNAME="$(basename "$dvdmedia" .dvdmedia)" # ripOld().
-          #DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" # newRip().
+          #DVDNAME="$(basename "$dvdmedia" .dvdmedia)" # ripOld().
+          DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" # newRip().
 
     local aTrack
     for aTrack in $trackList
