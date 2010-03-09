@@ -44,15 +44,31 @@ function ripAlbum ()
 }
 
 function ripIt ()
-# Invokes ripTitles() on $1 specifying which titles to rip from atomicMetadata(…), then autotag() on same, then tar(1)s and moves same to trash.
-# Uses ripTitles()
+# Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), then autotag() on same, then tar(1)s and moves same to trash.
+# Uses rip()
 # Uses autotag()
 # Uses del #trash
 # Uses defaultsReadAtomicMetadata()
 {
-    local dvdmedia="$1"
+    local dvdmedia="$1" \
+          title=0
 
-    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
+    local ALBUM="$(defaultsReadAtomicMetadata "$dvdmedia" Album album)" \
+          DISK="$(defaultsReadAtomicMetadata "$dvdmedia" Disc disk)" \
+          VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
+          filepath FILE
+
+    filepath="${ALBUM}/${ALBUM}: Disc ${DISK}"
+    #mkdir -p "./${filepath}"
+
+#    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
+    for title in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
+    do
+        FILE="./${filepath}/${VOLUME}-${title}.m4v"
+
+        time rip "${dvdmedia}" "$title" #"$FILE"
+        #autotagTrack "${dvdmedia}" "$title" "$FILE"
+    done
 
     autotag "$dvdmedia" || return
 
@@ -149,8 +165,8 @@ function ripTitles ()
 
     for title in "$@"
     do
-#        time rip "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
-        time newRip "$dvdmedia" "$title" || return
+#        time ripOld "$dvdmedia" "$(defaultsReadAtomicMetadatas "$dvdmedia" "$title" audioList)" "$title" || return
+        time rip "$dvdmedia" "$title" || return
                     # `break' here should result in the return value of rip being used as the return value here… but it doesn't seem to…
     done
 }
@@ -194,6 +210,9 @@ function ripAnglesOld ()
 function ripChapters ()
 # ripChapters /path/to/VIDEO_TS/or/parent 1:English,2:Commentary chapters1:2-4 chapters2:6-9
 {
+    echo "ripChapters() is broken." 1>&2
+    return -1
+
     local DVD="$1"  ; shift;
     if test -n "$1"
     then
@@ -307,8 +326,13 @@ function ripUsage ()
     echo "Usage: rip /path/to/DVD_VIDEO.dvdmedia 2 [ep1:1-4]" 1>&2
 }
 
-function newRip ()
-# rip() /path/to/VIDEO_TS/.. 7
+function rip ()
+# rip() /path/to/VIDEO_TS/.. 7 [Ep2:6-9]
+# Uses defaultsReadAtomicMetadatas()
+# Uses ripFail()
+# Uses ripParseAudioNames()
+# Uses ripParseAudioTracks()
+# Uses addRipOptions()
 {
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer
@@ -347,6 +371,7 @@ function newRip ()
 
     FILE="${DVDNAME}-${whichTrack}${chapterName:+-}${chapterName:-}.m4v"
         # e.g. DVD_VIDEO-1-Triumph.m4v
+        #TODO:FIXME: Accept this as an argument. Do not auto-generate.
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
@@ -415,7 +440,7 @@ function newRip ()
     addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
 }
 
-function rip ()
+function ripOld ()
 # rip /path/to/VIDEO_TS/.. 1:English,2:Commentary title7 chapters1:2-4
 {
 ##TODO: Subtitles. Goal: Star Wars prequels show subtitles during appropriate scenes. Use --subtitle-forced and/or --native-language.
