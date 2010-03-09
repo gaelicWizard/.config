@@ -21,7 +21,7 @@ alias sshfs_orpheus='sshfs eon: ~/.temp/sshfs_mount_point -oreconnect,ping_diska
 export FTP_PASSIVE=1
 
 ## Generally useful functions :-)
-function cil () { rcsdiff -aur "$1"; ci -l "$1"; }
+function cil () { rcsdiff -u "$1"; ci -l "$1"; }
 function ls ()
 { command ls -AGFOh "$@" ; } 
     # 'command ls' to prevent loop; -A for .file, -G for color, -F for dir/ link@, 
