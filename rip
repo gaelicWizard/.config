@@ -43,6 +43,12 @@ function ripAlbum ()
     done
 }
 
+function sanitiseFilePath ()
+# This function should take a string which may not be a valid filesystem path and should produce a valid filesystem path.
+{
+    return -1
+}
+
 function ripIt ()
 # Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), then autotag() on same, then tar(1)s and moves same to trash.
 # Uses rip()
