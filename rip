@@ -160,6 +160,9 @@ function ripTitles ()
 # Uses rip()
 # Uses defaultsReadAtomicMetadatas()
 {
+    echo "ripChapters() is broken." 1>&2
+    return -1
+
     local dvdmedia="$1"; shift
     local title
 
