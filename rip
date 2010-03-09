@@ -59,18 +59,18 @@ function ripIt ()
           filepath FILE
 
     filepath="${ALBUM}/${ALBUM}: Disc ${DISK}"
-    #mkdir -p "./${filepath}"
+    mkdir -p "./${filepath}"
 
 #    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
     for title in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
         FILE="./${filepath}/${VOLUME}-${title}.m4v"
 
-        time rip "${dvdmedia}" "$title" #"$FILE"
-        #autotagTrack "${dvdmedia}" "$title" "$FILE"
+        time rip "${dvdmedia}" "$title" "$FILE"
+        autotagTrack "${dvdmedia}" "$title" "$FILE"
     done
 
-    autotag "$dvdmedia" || return
+    #autotag "$dvdmedia" || return
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         {
@@ -244,14 +244,7 @@ function ripSanity ()
         ripUsage
         return -2
     fi
-    
-    if [ x"$3" != x"" ] && [ x"${3#*:}" == x"${3%%:*}" ]
-    then
-        echo "rip(): The third argument, if specified, must match the form 'string:integer-range'." 1>&2
-        ripUsage
-        return -3
-    fi
-    return
+
     #TODO:FIXME: Sanity check for file name.
 }
 
@@ -329,7 +322,7 @@ function ripUsage ()
 }
 
 function rip ()
-# rip() /path/to/VIDEO_TS/.. 7 [Ep2:6-9]
+# rip() /path/to/VIDEO_TS/.. 7 /path/to/file.m4v
 # Uses defaultsReadAtomicMetadatas()
 # Uses ripFail()
 # Uses ripParseAudioNames()
@@ -338,33 +331,32 @@ function rip ()
 {
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer
-    local chapterList="${3:-}" # 1:1-4 or highlights:2-5,7,13
-    #local FILE="$3"
+    local FILE="$3"
     
     ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
 
-    local audioList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" audioList)" || ripFail "audioList" || return
-#    local chapterList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" chapterList)" || ripFail "chapterList" || return
-    local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
-    local angleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" angleList)" || ripFail "angleList" || return
 
     local DVDNAME="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" UDFVolumeName)" || ripFail "UDFVolumeName" || return
-        # Use $DVDNAME as the base name for the output file (see $FILE below).
+        # Use $DVDNAME as the base name for the log file.
 
+    local chapterList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" chapterList)" || ripFail "chapterList" || return
     local chapterTracks="${chapterList#*:}" # everything after the first colon
     local chapterName="${chapterList%%:*}" # everything before the first colon
         # There should only be one colon. 
         # $chapterName is not the name of the _one_ chapter to be encoded, but the name of the _set_ of chapters to be encoded.
 
+    local audioList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" audioList)" || ripFail "audioList" || return
     local audioNames="$(ripParseAudioNames "$audioList")" || ripFail "ripParseAudioNames" "audio" || return
     local audioTracks="$(ripParseAudioTracks "$audioList")" || ripFail "ripParseAudioTracks" "audio" || return
     local audioEncoders="$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)"
 
+    local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
     local subtitleNames="$(ripParseAudioNames "$subtitleList")" || ripFail "ripParseAudioNames" "subtitle" || return
         # Unused.
         #TODO:FIXME: Implement.
     local subtitleTracks="$(ripParseAudioTracks "$subtitleList")" || ripFail "ripParseAudioTracks" "subtitle" || return
 
+    local angleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" angleList)" || ripFail "angleList" || return
     local angleNames="$(ripParseAudioNames "$angleList")" || ripFail "ripParseAudioNames" "angle" || return
         # Unused.
         #TODO:FIXME: Implement.
@@ -373,9 +365,6 @@ function rip ()
         #TODO:FIXME: Implement.
         # Most likely, the entire rip() will need to be looped in order to accomplish this.
 
-    FILE="${DVDNAME}-${whichTrack}${chapterName:+-}${chapterName:-}.m4v"
-        # e.g. DVD_VIDEO-1-Triumph.m4v
-        #TODO:FIXME: Accept this as an argument. Do not auto-generate.
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
