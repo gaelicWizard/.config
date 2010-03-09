@@ -46,7 +46,7 @@ function ripAlbum ()
 function ripIt ()
 # Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), then autotag() on same, then tar(1)s and moves same to trash.
 # Uses rip()
-# Uses autotag()
+# Uses autotagTrack()
 # Uses del #trash
 # Uses defaultsReadAtomicMetadata()
 {
@@ -61,7 +61,6 @@ function ripIt ()
     filepath="${ALBUM}/${ALBUM}: Disc ${DISK}"
     mkdir -p "./${filepath}"
 
-#    ripTitles "${dvdmedia}" $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList) || return
     for title in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
         FILE="./${filepath}/${VOLUME}-${title}.m4v"
@@ -69,8 +68,6 @@ function ripIt ()
         time rip "${dvdmedia}" "$title" "$FILE"
         autotagTrack "${dvdmedia}" "$title" "$FILE"
     done
-
-    #autotag "$dvdmedia" || return
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         {
@@ -327,15 +324,16 @@ function ripUsage ()
 function rip ()
 # rip() /path/to/VIDEO_TS/.. 7 /path/to/file.m4v
 # Uses defaultsReadAtomicMetadatas()
+# Uses ripSanity()
 # Uses ripFail()
 # Uses ripParseAudioNames()
 # Uses ripParseAudioTracks()
 # Uses addRipOptions()
 {
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
-    local whichTrack="$2" # integer
-    local FILE="$3"
-    
+    local whichTrack="$2" # integer, the track number/title number to encode
+    local FILE="$3" # the file to save the encoded movie to.
+
     ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
 
 
