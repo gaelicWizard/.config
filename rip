@@ -49,7 +49,7 @@ function sanitiseFilePath ()
     return -1
 }
 
-function ripIt ()
+function ripDisc ()
 # Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), then autotag() on same, then tar(1)s and moves same to trash.
 # Uses rip()
 # Uses autotagTrack()
