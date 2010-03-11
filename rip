@@ -51,7 +51,7 @@ function sanitiseFilePath ()
 }
 
 function ripDisc ()
-# Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), then autotag() on same, then tar(1)s and moves same to trash.
+# Invokes rip() on $1 specifying which titles to rip from atomicMetadata…(), autotagTrack() on each track, then tar(1)s and moves dvdmedia to trash.
 # Uses rip()
 # Uses autotagTrack()
 # Uses del #trash
@@ -67,6 +67,7 @@ function ripDisc ()
 
     filepath="${ALBUM}/${ALBUM}: Disc ${DISK}"
     #TODO:FIXME: Don't create two subfolders if there's only one disk in the album.
+    #TODO:FIXME: Use the name of the "feature" for the subfolder, not merely "disc 2"?
     mkdir -p "./${filepath}"
 
     for title in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
@@ -143,7 +144,7 @@ function defaultsReadAtomicMetadatas ()
 
 function defaultsReadAtomicMetadata ()
 # Generates a full path (using $1) (minus .plist extension) to the given type of metadata ($2 and maybe $3), and uses defaults(1) to read $@ from it.
-# There is code duplication with initDVDMedia().
+# There is code duplication with ripInit().
 {
     local dvdmedia="$(realpath "$1")" || return -1
         # This requires a working realpath.
@@ -652,19 +653,29 @@ function initBleachBundle ()
     cp ~/Library/"Application Support"/net.gaelicWizard.rip.localized/Bleach.plist "${1}/atomicMetadataShow.plist"
 }
 
-function initDVDMedia ()
+function ripValidate ()
+# This function takes one argument: (1) the path to a DVDMedia bundle. It reads its contents in order to determine if the initial placeholders from ripInit() have been replaced with meaningful content.
+{
+    return -1 #TODO:FIXME: $whichTrack
+    local dvdmedia="$1" \
+          tag
+
+    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}" "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
+    do
+        if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")" == x"_TAG_${tag}_PLACEHOLDER_" ]
+        then
+            echo "Placeholders found in ${dvdmedia}." 1>&2
+            return 1
+        fi
+    done
+}
+
+function ripInit ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 # There is code duplication with defaultsReadAtomicMetadata()
 {
-    local dvdmedia="$1"
-    if [ x"${1:0:1}" != x"/" ]
-    # Make sure that $dvdmedia is an absolute path, in order to work around weird defaults(1) behaviour.
-    then
-        dvdmedia="$(pwd)/$1"
-        # Don't trust $PWD to be set, since it is not read-only.
-    else
-        dvdmedia="$1"
-    fi
+    local dvdmedia="$(realpath "$1")"
+        # defaults(1) requires an absolute path.
 
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
