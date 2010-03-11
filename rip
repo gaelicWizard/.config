@@ -14,6 +14,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers )
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow )
+theListOfSpecialTrackFlagsForHandBrake=( crop grayscale )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
 theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
