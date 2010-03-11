@@ -40,7 +40,7 @@ function ripAlbum ()
     for movie in "$@"
     do
         DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION \
-        ripIt "$movie" || return
+        ripDisc "$movie" || return
     done
 }
 
