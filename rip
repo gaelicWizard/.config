@@ -335,9 +335,10 @@ function rip ()
 # Uses defaultsReadAtomicMetadatas()
 # Uses ripSanity()
 # Uses ripFail()
-# Uses ripParseAudioNames()
+# Uses ripParseAudioNames() #audio #subtitles #angles
 # Uses ripParseAudioTracks()
 # Uses addRipOptions()
+# Uses SPECIAL_RIP_OPTIONS[]
 {
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer, the track number/title number to encode
@@ -432,18 +433,26 @@ function rip ()
 
     if [ -e "$FILE" ]
     then
-        growlnotify \
-            --name "rip()" \
-            --title "Rip Complete" \
-            --message "Encoded ${FILE}." \
-            --appIcon /Applications/HandBrake.app \
-            --sticky \
-            --identifier "net.gaelicWizard.rip.$DVDNAME"
-    
+        ripGrowl "${FILE}" "$DVDNAME"
+
         tag "${FILE}" --album "$DVDNAME" --track "$whichTrack"
     fi
     
     addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
+}
+
+function ripGrowl ()
+{
+    local FILE="$1" \
+          IDENT="$2"
+
+    growlnotify \
+        --name "rip()" \
+        --title "Rip Complete" \
+        --message "Encoded ${FILE}." \
+        --appIcon /Applications/HandBrake.app \
+        --sticky \
+        --identifier "net.gaelicWizard.rip${IDENT:+.}${IDENT:-}"
 }
 
 function ripOld ()
