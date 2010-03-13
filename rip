@@ -37,11 +37,14 @@ function ripAlbum ()
 # Loops ripIt for each "$@"
 {
     local movie
+
     for movie in "$@"
     do
         DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION \
         ripDisc "$movie" || return
     done
+
+    #ripGrowl "${ALBUM}."
 }
 
 function sanitiseFilePath ()
@@ -77,6 +80,8 @@ function ripDisc ()
         time rip "${dvdmedia}" "$title" "$FILE"
         autotagTrack "${dvdmedia}" "$title" "$FILE"
     done
+
+    ripGrowl "${ALBUM}: Disc ${DISK}." "$VOLUME"
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
@@ -443,13 +448,13 @@ function rip ()
 
 function ripGrowl ()
 {
-    local FILE="$1" \
+    local WHAT="$1" \
           IDENT="$2"
 
     growlnotify \
         --name "rip()" \
         --title "Rip Complete" \
-        --message "Encoded ${FILE}." \
+        --message "Encoded ${WHAT}." \
         --appIcon /Applications/HandBrake.app \
         --sticky \
         --identifier "net.gaelicWizard.rip${IDENT:+.}${IDENT:-}"
