@@ -342,6 +342,7 @@ function rip ()
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer, the track number/title number to encode
     local FILE="$3" # the file to save the encoded movie to.
+    local SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
 
     ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
 
@@ -374,6 +375,8 @@ function rip ()
         # If only one angle is specified, then all is well. However, HandBrake cannot encode multiple angles simultaneously, so this option is presently worthless.
         #TODO:FIXME: Implement.
         # Most likely, the entire rip() will need to be looped in order to accomplish this.
+
+    #addRipOptions "" #TODO:FIXME: Generate a list of args similarly to autotagTrack. Avoid code duplication? 
 
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
@@ -656,18 +659,23 @@ function initBleachBundle ()
 function ripValidate ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It reads its contents in order to determine if the initial placeholders from ripInit() have been replaced with meaningful content.
 {
-    return -1 #TODO:FIXME: $whichTrack
     local dvdmedia="$1" \
-          tag
+          tag whichTrack
 
-    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}" "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
+    for whichTrack in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
-        if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")" == x"_TAG_${tag}_PLACEHOLDER_" ]
-        then
-            echo "Placeholders found in ${dvdmedia}." 1>&2
-            return 1
-        fi
+        #TODO:FIXME: Add explicit check for _TAG_trackList_PLACEHOLDER_.
+        for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}" "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
+        do
+            if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")" == x"_TAG_${tag}_PLACEHOLDER_" ]
+            then
+                echo "Placeholders found in ${dvdmedia}." 1>&2
+                return 1
+            fi
+        done
     done
+
+    echo "Validated: ${dvdmedia}." 1>&2
 }
 
 function ripInit ()
@@ -683,7 +691,7 @@ function ripInit ()
           tag 
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
 
-    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}"
+    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfSpecialTrackFlagsForHandBrake[@]}"
     do
         defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
