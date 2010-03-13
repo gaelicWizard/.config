@@ -13,7 +13,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 # tagging globals
 theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers )
-theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow )
+theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale )
 theListOfAllTheDiscTags=( disk )
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
@@ -34,7 +34,7 @@ function ripDebug ()
 }
 
 function ripAlbum ()
-# Loops ripIt for each "$@"
+# Loops ripDisc for each "$@"
 {
     local movie
 
@@ -384,6 +384,10 @@ function rip ()
 
     #addRipOptions "" #TODO:FIXME: Generate a list of args similarly to autotagTrack. Avoid code duplication? 
 
+    local videoTitleSet="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" videoTitleSet)"
+        # This is intended to allow atomicMetadata to override the track/title number in order to allow ripBleach() et al to treat various sets of sub-chapters as distinct titles. 
+            # For whatever reason, Anime titles (such as Bleach or Armitage III (OVA)) squeeze separate episodes together into a single title/track, thereby requiring special parsing/processing in order to split them.
+
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
@@ -393,7 +397,7 @@ function rip ()
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
         --preset "Universal" \
         --input "$dvdmedia" \
-        --title "$whichTrack" \
+        --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
         "${angleTracks:+--angle}" "${angleTracks:-}" \
         "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
