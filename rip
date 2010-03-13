@@ -179,11 +179,12 @@ function ripSanity ()
         return -1
     fi
 
-    if ( ! ( test 0 -eq "$2" || test 0 -ne "$2" ) 2>/dev/null ) && ! defaultsReadAtomicMetadatas "$1" "$2" videoTitleSet >/dev/null
-    # This test is intended to check whether $2 is an integer, or valid atomicMetadata "track".
+    ripValidate "$1" || return
+
+    if ! defaultsReadAtomicMetadatas "$1" "$2" audioList >/dev/null
+    # Assume that if no audioList can be found for track $2, then that track is not valid (or the atomicMetadata is incomplete).
     then
-        echo "rip(): The second argument must be an integer specifying which title to encode." 1>&2
-        echo "       Or, alternatively, a string indicating where to find out which title to encode from atomicMetadata."
+        echo "rip(): The second argument must specify which title to encode." 1>&2
         ripUsage
         return -2
     fi
@@ -453,13 +454,11 @@ function ripValidate ()
         do
             if [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")" == x"_TAG_${tag}_PLACEHOLDER_" ]
             then
-                echo "Placeholders found in ${dvdmedia}." 1>&2
+                echo "ripValidate(): Tag placeholders found in ${dvdmedia}." 1>&2
                 return 1
             fi
         done
     done
-
-    echo "Validated: ${dvdmedia}." 1>&2
 }
 
 function ripInit ()
