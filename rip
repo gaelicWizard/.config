@@ -11,7 +11,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 
 ##
 # tagging globals
-theListOfAllTheTrackTags=( title artist description genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
+theListOfAllTheTrackTags=( title artist description longDescription genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers )
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale )
@@ -539,12 +539,6 @@ function autotagTrack ()
         if [ x"$tempTag" != x"" ]
         then
             tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
-
-            if [ x"$tag" == x"description" ]
-            # Hack to ensure that both the "sort" desc tag and the long one are populated.
-            then
-                tagList=( "${tagList[@]}" --"longDescription" "$tempTag" )
-            fi
         fi
     done
     
