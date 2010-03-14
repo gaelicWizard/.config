@@ -79,8 +79,8 @@ function ripDisc ()
     do
         FILE="${filepath}/${VOLUME}-${title}.m4v"
 
-        time rip "${dvdmedia}" "$title" "$FILE"
-        autotagTrack "${dvdmedia}" "$title" "$FILE"
+        time rip "${dvdmedia}" "$title" "$FILE" || return # short-circuit if something fails
+        autotagTrack "${dvdmedia}" "$title" "$FILE" || return
     done
 
     ripGrowl "${ALBUM}: Disc ${DISK}." "$VOLUME"
