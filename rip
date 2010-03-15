@@ -63,15 +63,19 @@ function ripDisc ()
 # Uses defaultsReadAtomicMetadata()
 {
     local dvdmedia="$1" \
-          title=0
+          title
 
     local ALBUM="$(defaultsReadAtomicMetadata "$dvdmedia" Album album)" \
           DISK="$(defaultsReadAtomicMetadata "$dvdmedia" Disc disk)" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
+          filepath FILE
 
-    local filepath="./${ALBUM}/${ALBUM}: Disc ${DISK}" \
-          FILE
-    #TODO:FIXME: Don't create two subfolders if there's only one disk in the album.
+    if [ "$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" -eq 1 ]
+    then
+        filepath="./${ALBUM}"
+    else
+        filepath="./${ALBUM}/${ALBUM}: Disc ${DISK}"
+    fi
     #TODO:FIXME: Use the name of the "feature" for the subfolder, not merely "disc 2"?
     mkdir -p "./${filepath}"
 
