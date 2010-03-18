@@ -288,6 +288,7 @@ function rip ()
     local whichTrack="$2" # integer, the track number/title number to encode
     local FILE="$3" # the file to save the encoded movie to.
     local SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
+         # Localise! #Untested
 
     ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
 
@@ -327,6 +328,9 @@ function rip ()
 
     #addRipOptions "" #TODO:FIXME: Generate a list of args similarly to autotagTrack. Avoid code duplication? 
 
+    local handbrakePreset="$(defaults read net.gaelicWizard.rip preset)"
+        # Which HandBrake preset should be used?
+
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
     local RET=0
@@ -334,7 +338,7 @@ function rip ()
         test -e "$FILE" && del "$FILE"; \
         set -x; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
-        --preset "Universal" \
+        --preset "${handbrakePreset:-Universal}" \
         --input "$dvdmedia" \
         --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
@@ -469,6 +473,7 @@ function ripValidate ()
 function ripInit ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 # There is code duplication with defaultsReadAtomicMetadata()
+# Uses defaultsReadAtomicMetadata()
 #TODO: Merge in presortTVShows.sh here.
 {
     local dvdmedia="$(realpath "$1")"
