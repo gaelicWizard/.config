@@ -469,6 +469,7 @@ function ripValidate ()
 function ripInit ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 # There is code duplication with defaultsReadAtomicMetadata()
+#TODO: Merge in presortTVShows.sh here.
 {
     local dvdmedia="$(realpath "$1")"
         # defaults(1) requires an absolute path.
