@@ -474,9 +474,9 @@ function ripInit ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It then writes a few plists into that directory with blank and/or generated values.
 # There is code duplication with defaultsReadAtomicMetadata()
 # Uses defaultsReadAtomicMetadata()
-#TODO: Merge in presortTVShows.sh here.
+#TODO: Merge in presortTVShows.sh here. Implemented, untested.
 {
-    local dvdmedia="$(realpath "$1")"
+    local dvdmedia="$(realpath "$1")" || return -1
         # defaults(1) requires an absolute path.
 
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
@@ -494,9 +494,12 @@ function ripInit ()
           presetTag
           # There may be differing amounts of information available for Album, Show, or Disc, so check each separately. 
 
+    defaults write "$atomicMetadataShow" usesShow -bool false
+        # Just write _anything_ into atomicMetadataShow so that the file exists.
+
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfSpecialTrackFlagsForHandBrake[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetShow" "$tag")"
+        presetTag="$(defaults read "$atomicPresetShow" "$tag" 2>/dev/null)"
 
         if [ x"$presetTag" != x"" ]
         # Populate atomicMetadataShow if we have something to populate, otherwise stick the placeholder in atomicMetadataTrack.
@@ -509,7 +512,7 @@ function ripInit ()
 
     for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetDisc" "$tag")"
+        presetTag="$(defaults read "$atomicPresetDisc" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataDisc}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
@@ -519,7 +522,7 @@ function ripInit ()
 
     for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetAlbum" "$tag")"
+        presetTag="$(defaults read "$atomicPresetAlbum" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
@@ -536,7 +539,7 @@ function ripInit ()
 	<;</key><;g' "${atomicPlist}"
             #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
         SetFile -a E "${atomicPlist}"
-            # Hide the file extension
+            # Hide the file extension in Finder.app
     done
     
     SetFile -a T "${atomicMetadataTrack}.plist"
@@ -545,6 +548,14 @@ function ripInit ()
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
+}
+
+function ripMapVolumeToShow ()
+# The logic from presortTVShows.sh
+{
+    return -1
+    # Idea: store a regular expression or some such that matches a given volume name, instead of trying to match manually.
+    #       perhaps using bash(1)'s own matching features?
 }
 
 function autotagTrack ()
