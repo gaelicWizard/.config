@@ -338,7 +338,7 @@ function rip ()
         test -e "$FILE" && del "$FILE"; \
         set -x; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
-        --preset "${handbrakePreset:-Universal}" \
+        --preset "${handbrakePreset:=Universal}" \
         --input "$dvdmedia" \
         --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
