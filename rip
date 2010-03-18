@@ -476,6 +476,8 @@ function ripInit ()
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack-" \
+          VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
+          DVDNAME="$(basename "$(basename "$dvdmedia" .ripit)" .dvdmedia)" \
           tag 
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
 
@@ -483,14 +485,16 @@ function ripInit ()
     do
         defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
-    
+
     for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}"
     do
         defaults write "${atomicMetadataDisc}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
     done
-    
-    defaults write "$atomicMetadataDisc" UDFVolumeName "$(basename "$dvdmedia" .dvdmedia)"
-    
+
+    defaults write "$atomicMetadataDisc" UDFVolumeName "${VOLUME:-$DVDNAME}" 
+        # If UDFVolumeName was already set, then re-use it. Otherwise, assume the folder name.
+        #TODO:FIXME: Perhaps this entire function should respect/reuse existing values?
+
     for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
     do
         defaults write "${atomicMetadataAlbum}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
