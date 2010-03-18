@@ -482,19 +482,35 @@ function ripInit ()
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
           atomicMetadataTrack="$dvdmedia/atomicMetadataTrack-" \
+          atomicMetadataShow="$dvdmedia/atomicMetadataShow" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
           DVDNAME="$(basename "$(basename "$dvdmedia" .ripit)" .dvdmedia)" \
           tag 
-          #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated a number of times.
+          #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated per track, each with a name such as atomicMetadataTrack-2.
+
+    local atomicPresetAlbum="$(ripMapVolumeToShow Album "${VOLUME:-$DVDNAME}" )" \
+          atomicPresetShow="$(ripMapVolumeToShow Show "${VOLUME:-$DVDNAME}" )" \
+          atomicPresetDisc="$(ripMapVolumeToShow Disc "${VOLUME:-$DVDNAME}" )" \
+          presetTag
+          # There may be differing amounts of information available for Album, Show, or Disc, so check each separately. 
 
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfSpecialTrackFlagsForHandBrake[@]}"
     do
-        defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+        presetTag="$(defaults read "$atomicPresetShow" "$tag")"
+
+        if [ x"$presetTag" != x"" ]
+        # Populate atomicMetadataShow if we have something to populate, otherwise stick the placeholder in atomicMetadataTrack.
+        then
+            defaults write "${atomicMetadataShow}" "$tag" "$presetTag"
+        else
+            defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+        fi
     done
 
     for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}"
     do
-        defaults write "${atomicMetadataDisc}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+        presetTag="$(defaults read "$atomicPresetDisc" "$tag")"
+        defaults write "${atomicMetadataDisc}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
     defaults write "$atomicMetadataDisc" UDFVolumeName "${VOLUME:-$DVDNAME}" 
@@ -503,14 +519,16 @@ function ripInit ()
 
     for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
     do
-        defaults write "${atomicMetadataAlbum}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+        presetTag="$(defaults read "$atomicPresetAlbum" "$tag")"
+        defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
 
 
 
     local atomicPlist
-    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist"
+    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist" "${atomicMetadataShow}.plist"
+    #TODO:FIXME: atomicMetadataShow.plist might not exist, and might therefore produce [harmless] errors.
     do
         plutil -convert xml1 "${atomicPlist}"
             # Convert to textual XML instead of "binary plist"
@@ -522,7 +540,7 @@ function ripInit ()
     done
     
     SetFile -a T "${atomicMetadataTrack}.plist"
-        # When double-clicked in Finder, it will be duplicated and the duplicate opened instead of the original.
+        # When double-clicked in Finder.app, it will be duplicated and the duplicate opened instead of the original.
 
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
