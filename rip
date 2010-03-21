@@ -291,7 +291,7 @@ function rip ()
     local dvdmedia="$1" # /path/to/VIDEO_TS's parent
     local whichTrack="$2" # integer, the track number/title number to encode
     local FILE="$3" # the file to save the encoded movie to.
-    local SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
+    local SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" ) atomicRipOption ripOptionArg
          # Localise! #Untested
 
     ripSanity "$dvdmedia" "$whichTrack" "$chapterList" "$FILE" || return
@@ -330,10 +330,13 @@ function rip ()
         # This is intended to allow atomicMetadata to override the track/title number in order to allow ripBleach() et al to treat various sets of sub-chapters as distinct titles. 
             # For whatever reason, Anime titles (such as Bleach or Armitage III (OVA)) squeeze separate episodes together into a single title/track, thereby requiring special parsing/processing in order to split them.
 
-    #addRipOptions "" #TODO:FIXME: Generate a list of args similarly to autotagTrack. Avoid code duplication? 
+    for atomicRipOption in "${theListOfSpecialTrackFlagsForHandBrake[@]}"
+    do
+        ripOptionArg="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$atomicRipOption")" && addRipOptions --"$atomicRipOption" "$ripOptionArg"
+    done
 
     local handbrakePreset="$(defaults read net.gaelicWizard.rip preset 2>/dev/null)"
-        # Which HandBrake preset should be used?
+        # Allow override of preset
 
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
@@ -373,10 +376,10 @@ function rip ()
         # Import chapter titles from CSV file, if available.
         # iPod atom, so that 5.5G iPods will accept the media.
         # Detelecine, always. Unclear why HandBrake doesn't just do this.
-            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default, but it lies.
+            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default. It lies.
         # Variable Frame Rate is the default, but didn't used to be.
             # This option disappeared _completely_ during 0.9.3
-        # Enable selected audio tracks from the DVD.
+        # Enable selected audio tracks.
         # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding.
             # AAC is the default, so this line might be entirely unneeded.
             # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
@@ -393,8 +396,6 @@ function rip ()
 
         tag "${FILE}" --album "$DVDNAME" --track "$whichTrack"
     fi
-    
-    addRipOptions # If any SPECIAL_RIP_OPTIONS are set, then issue a warning.
 }
 
 function ripGrowl ()
