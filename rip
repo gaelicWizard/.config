@@ -101,37 +101,6 @@ function ripDisc ()
         } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
 
-function ripBleachOld ()
-# ripBleach /path/to/VIDEO_TS/or/parent
-{
-#sanity
-    if [ x"${1:-}" == x"" ]
-    then
-        echo "ripBleach /path/to/Bleach Volume X.dvdmedia" 1>&2
-        return -1
-    fi
-#insanity
-
-    local RET=0
-    DVD="$1"  ; shift;
-    AUDIO="1:English Dub,2:Original Japanese" # Encode audio tracks 1 and 2 (English and Japanese)
-
-    local RESERVED_SPECIAL_RIP_OPTIONS=( "${SPECIAL_RIP_OPTIONS[@]}" )
-    addRipOptions --markers="$DVD/../Bleach.chapters"
-
-    ripChapters "$DVD" "$AUDIO" "1:1-4" "2:6-9" "3:11-14" "4:16-19" "5:21-24" || RET="$?"
-        # It is expected that 21-24 will fail on _most_ (but not all) volumes.
-        # When 21-24 "fails", a short (<10s) logo-only chapter will be encoded.
-        # (The skipped chapters are advertisements for more bleach...)
-
-    autotag "$1"
-
-    unset SPECIAL_RIP_OPTIONS
-    addRipOptions "${RESERVED_SPECIAL_RIP_OPTIONS[@]}"
-    
-    return "$RET"
-}
-
 function defaultsReadAtomicMetadatas ()
 # Uses defaultsReadAtomicMetadata() to repeatedly read various atomicMetadataPlists in dvdmedia $1, track $2, until a value is found for key $3.
 {
@@ -438,23 +407,6 @@ function addRipOptions ()
     fi
 }
 
-function initBleachBundle ()
-# This function takes one argument: (1) the path to a DVDMedia bundle whose name begins with "Bleach", which is presumed to be a volume in the Bleach anime series. An atomicMetadataShow.plist is copied in, an a chapters list is symlink'd in.
-# Uses ripInit()
-{
-    if [ x"${1:0:6}" != x"Bleach" ]
-    then
-        echo "Usage: $FUNCNAME 'Bleach Volume 25.dvdmedia'" 1>&2
-        return -1
-    fi
-
-    ripInit "$1"
-
-    ln -s "../Bleach.chapters" "$1"/chapters-1.txt
-
-    cp ~/Library/"Application Support"/net.gaelicWizard.rip.localized/Bleach.plist "${1}/atomicMetadataShow.plist"
-}
-
 function ripValidate ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It reads its contents in order to determine if the initial placeholders from ripInit() have been replaced with meaningful content.
 {
@@ -576,7 +528,7 @@ function autotagTrack ()
 
     if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
-    # Should switch to a customArtwork/needsArtwork flag.
+    #TODO:FIXME: Should switch to a customArtwork/needsArtwork flag.
     then
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
     fi
