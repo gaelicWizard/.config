@@ -328,7 +328,7 @@ function rip ()
 
     #addRipOptions "" #TODO:FIXME: Generate a list of args similarly to autotagTrack. Avoid code duplication? 
 
-    local handbrakePreset="$(defaults read net.gaelicWizard.rip preset)"
+    local handbrakePreset="$(defaults read net.gaelicWizard.rip preset 2>/dev/null)"
         # Which HandBrake preset should be used?
 
 #Do it
