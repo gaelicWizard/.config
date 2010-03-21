@@ -61,6 +61,7 @@ function ripDisc ()
 # Uses autotagTrack()
 # Uses del #trash
 # Uses defaultsReadAtomicMetadata()
+# Uses defaultsReadAtomicMetadatas()
 {
     local dvdmedia="$1" \
           track
@@ -68,9 +69,11 @@ function ripDisc ()
     local ALBUM="$(defaultsReadAtomicMetadata "$dvdmedia" Album album)" \
           DISK="$(defaultsReadAtomicMetadata "$dvdmedia" Disc disk)" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
-          filepath FILE
+          MAXDISK="$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" \
+          filepath FILE trackName
 
-    if [ "$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" -eq 1 ]
+    if [ "$MAXDISK" -eq 1 ]
+    # No need for per-disc subfolders if there's only one disc.
     then
         filepath="./${ALBUM}"
     else
@@ -80,8 +83,9 @@ function ripDisc ()
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
-        FILE="${filepath}/${VOLUME}-${track}.m4v" # Imitate HandBrake file naming.
-        #FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
+        trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
+        #FILE="${filepath}/${VOLUME}-${track}.m4v" # Imitate HandBrake file naming.
+        FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
 
         time rip "$dvdmedia" "$track" "$FILE" \
         && \
