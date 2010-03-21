@@ -282,14 +282,12 @@ function rip ()
 
     local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
     local subtitleNames="$(ripParseAudioNames "$subtitleList")" || ripFail "ripParseAudioNames" "subtitle" || return
-        # Unused.
-        #TODO:FIXME: Implement.
+        # Unused, due to a lack of support in HandBrake.
     local subtitleTracks="$(ripParseAudioTracks "$subtitleList")" || ripFail "ripParseAudioTracks" "subtitle" || return
 
     local angleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" angleList)" #|| ripFail "angleList" || return # angleList is not required
     local angleNames="$(ripParseAudioNames "$angleList")" || ripFail "ripParseAudioNames" "angle" || return
         # Unused.
-        #TODO:FIXME: Implement.
     local angleTracks="$(ripParseAudioTracks "$angleList")" || ripFail "ripParseAudioTracks" "angle" || return
         # If only one angle is specified, then all is well. However, HandBrake cannot encode multiple angles simultaneously, so this option is presently worthless.
         #TODO:FIXME: Implement.
@@ -334,12 +332,11 @@ function rip ()
         "${SPECIAL_RIP_OPTIONS[@]}" \
     2>> "$RIPLOG" ) || ripFail "HandBrakeCLI" || return
         # Universal preset to activate sensible defaults.
-        # Use the longest title, if none specified.
         # Only encode selected chapters, if specified.
-        # Encode the selected angles, if specified.
-        # Pass-thru the selected subtitles, if specified. (Do _not_ burn-in.)
+        # Encode the selected angle, if specified.
+        # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
         # Select english as the native language. Unused, since subtitle and audio tracks are specified manually.
-        # Switch audio track, instead of enabling subtitles, in response to native language selection. Unused, since audio track is specified manually.
+        # Switch audio track, instead of enabling subtitles, in response to native language selection. Unused, since audio tracks are specified manually.
         # Generate 30 previews, b/c I hope it will improve autocropping.
             # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
         # Import chapter titles from CSV file, if available.
@@ -355,7 +352,7 @@ function rip ()
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
     echo # Blank line, since HandBrakeCLI doesn't newline to _stdout_ when exiting.
-    du -sh "$RIPLOG"
+    du -sh "$RIPLOG" 1>&2
         # Check the size of the log file.
         # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
 
