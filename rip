@@ -92,7 +92,7 @@ function ripDisc ()
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
 
-    ripGrowl "${ALBUM}: Disc ${DISK}." "$VOLUME"
+    ripGrowl "${ALBUM}: Disc ${DISK}" "$VOLUME"
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
