@@ -12,7 +12,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 ##
 # tagging globals
 theListOfAllTheTrackTags=( title artist description longDescription genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
-theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers )
+theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers )
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale )
 theListOfAllTheDiscTags=( disk )
