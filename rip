@@ -72,6 +72,8 @@ function ripDisc ()
           MAXDISK="$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" \
           filepath FILE trackName
 
+    ripValidate "$dvdmedia" || return
+
     if [ "$MAXDISK" -eq 1 ]
     # No need for per-disc subfolders if there's only one disc.
     then
@@ -157,12 +159,10 @@ function ripSanity ()
         return -1
     fi
 
-    ripValidate "$1" || return
-
     if ! defaultsReadAtomicMetadatas "$1" "$2" audioList >/dev/null
     # Assume that if no audioList can be found for track $2, then that track is not valid (or the atomicMetadata is incomplete).
     then
-        echo "rip(): The second argument must specify which title to encode." 1>&2
+        echo "rip(): The list of audio tracks must be specified in atomicMetadata." 1>&2
         ripUsage
         return -2
     fi
