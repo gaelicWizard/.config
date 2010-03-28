@@ -516,8 +516,11 @@ function ripInit ()
     for eachTrack in "${trackList[@]}"
     do
         cp -n "${atomicMetadataTrack}.plist" "${atomicMetadataTrack}${eachTrack}.plist"
-        # Copy the track template for each track.
-        # Don't overwrite any track which already has atomicMetadata.
+            # Copy the track template for each track.
+            # Don't overwrite any track which already has atomicMetadata.
+        SetFile -a t "${atomicMetadataTrack}${eachTrack}.plist"
+            # Only necessary because I don't quite want to de-template the track template. Totally pointless.
+            #TODO:FIXME: remove this silliness.
     done
 
     rm "${atomicMetadataTrack}.plist"
