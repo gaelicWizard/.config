@@ -439,7 +439,7 @@ function ripInit ()
           atomicMetadataShow="$dvdmedia/atomicMetadataShow" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
           DVDNAME="$(basename "$(basename "$dvdmedia" .ripit)" .dvdmedia)" \
-          tag 
+          tag trackList eachTrack
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated per track, each with a name such as atomicMetadataTrack-2.
 
     local atomicPresetAlbum="$(ripMapVolumeToShow Album "${VOLUME:-$DVDNAME}" )" \
@@ -451,7 +451,10 @@ function ripInit ()
     defaults write "$atomicMetadataShow" usesShow -bool false
         # Just write _anything_ into atomicMetadataShow so that the file exists.
 
-    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheTrackiTunMOVITags[@]}" "${theListOfAdditionalTrackMetadata[@]}" "${theListOfSpecialTrackFlagsForHandBrake[@]}"
+    for tag in  "${theListOfAllTheTrackTags[@]}" \
+                "${theListOfAllTheTrackiTunMOVITags[@]}" \
+                "${theListOfAdditionalTrackMetadata[@]}" \
+                "${theListOfSpecialTrackFlagsForHandBrake[@]}"
     do
         presetTag="$(defaults read "$atomicPresetShow" "$tag" 2>/dev/null)"
 
@@ -464,7 +467,8 @@ function ripInit ()
         fi
     done
 
-    for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAdditionalDiscMetadata[@]}"
+    for tag in  "${theListOfAllTheDiscTags[@]}" \
+                "${theListOfAdditionalDiscMetadata[@]}"
     do
         presetTag="$(defaults read "$atomicPresetDisc" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataDisc}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
@@ -474,7 +478,8 @@ function ripInit ()
         # If UDFVolumeName was already set, then re-use it. Otherwise, assume the folder name.
         #TODO:FIXME: Perhaps this entire function should respect/reuse existing values?
 
-    for tag in "${theListOfAllTheAlbumTags[@]}" "${theListOfAdditionalAlbumMetadata[@]}"
+    for tag in  "${theListOfAllTheAlbumTags[@]}" \
+                "${theListOfAdditionalAlbumMetadata[@]}"
     do
         presetTag="$(defaults read "$atomicPresetAlbum" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
@@ -497,11 +502,26 @@ function ripInit ()
     done
     
     SetFile -a T "${atomicMetadataTrack}.plist"
-        # When double-clicked in Finder.app, it will be duplicated and the duplicate opened instead of the original.
+        # When double-clicked in Finder.app, atomicMetadataTrack will be duplicated and the duplicate opened instead of the original.
+        #TODO:FIXME: made irrelevant by atomicMetadataTrack's deletion below
 
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
+
+    trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
+
+    defaults write "$atomicMetadataDisc" trackList  "${trackList[@]}"
+
+    for eachTrack in "${trackList[@]}"
+    do
+        cp -n "${atomicMetadataTrack}.plist" "${atomicMetadataTrack}${eachTrack}.plist"
+        # Copy the track template for each track.
+        # Don't overwrite any track which already has atomicMetadata.
+    done
+
+    rm "${atomicMetadataTrack}.plist"
+        # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
 }
 
 function ripMapVolumeToShow ()
