@@ -439,8 +439,8 @@ function ripInit ()
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated per track, each with a name such as atomicMetadataTrack-2.
 
     local atomicPresetAlbum="$(ripMapVolumeToShow Album "${VOLUME:-$DVDNAME}" )" \
-          atomicPresetShow="$(ripMapVolumeToShow Show "${VOLUME:-$DVDNAME}" )" \
           atomicPresetDisc="$(ripMapVolumeToShow Disc "${VOLUME:-$DVDNAME}" )" \
+          atomicPresetShow="$(ripMapVolumeToShow Show "${VOLUME:-$DVDNAME}" )" \
           presetTag
           # There may be differing amounts of information available for Album, Show, or Disc, so check each separately. 
 
