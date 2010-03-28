@@ -318,8 +318,6 @@ function rip ()
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
         "${angleTracks:+--angle}" "${angleTracks:-}" \
         "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
-        --native-language eng \
-        --native-dub \
         --previews 30 \
         --output "$FILE" \
         --markers="${dvdmedia}/chapters-${whichTrack}.txt" \
@@ -335,8 +333,6 @@ function rip ()
         # Only encode selected chapters, if specified.
         # Encode the selected angle, if specified.
         # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
-        # Select english as the native language. Unused, since subtitle and audio tracks are specified manually.
-        # Switch audio track, instead of enabling subtitles, in response to native language selection. Unused, since audio tracks are specified manually.
         # Generate 30 previews, b/c I hope it will improve autocropping.
             # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
         # Import chapter titles from CSV file, if available.
