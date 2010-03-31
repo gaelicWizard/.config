@@ -463,7 +463,7 @@ function ripInit ()
         if [ x"$presetTag" != x"" ]
         # Populate atomicMetadataShow if we have something to populate, otherwise stick the placeholder in atomicMetadataTrack.
         then
-            defaults write "${atomicMetadataShow}" "$tag" "$presetTag"
+            defaults write "${atomicMetadataShow}" "$tag" "${presetTag:-_TAG_${tag:-=}_PLACEHOLDER_}"
         else
             defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
         fi
