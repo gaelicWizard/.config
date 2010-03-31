@@ -58,6 +58,7 @@ function sanitiseFilePath ()
 function ripDisc ()
 # Invokes rip() on $1 specifying which titles to rip from atomicMetadata, autotagTrack() on each track, then tar(1)s and moves dvdmedia to trash.
 # Uses rip()
+# Uses ripGrowl()
 # Uses autotagTrack()
 # Uses del #trash
 # Uses defaultsReadAtomicMetadata()
@@ -82,6 +83,7 @@ function ripDisc ()
         filepath="./${ALBUM}/${ALBUM}: Disc ${DISK}"
     fi
     mkdir -p "./${filepath}"
+        # Since $ALBUM is unsanitised, prefix it with "./", since we'd rather error than overwrite something elsewhere.
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
@@ -149,7 +151,10 @@ function defaultsReadAtomicMetadata ()
 }
 
 function ripSanity () 
-#TODO:FIXME: Merge with ripValidate.
+#TODO:FIXME: Merge with ripValidate?
+# Check that rip() has sufficient information to operate.
+# Uses defaultsReadAtomicMetadatas()
+# Uses ripUsage()
 {
     if ! test -d "${1}/VIDEO_TS"
     then
@@ -402,6 +407,7 @@ function addRipOptions ()
 
 function ripValidate ()
 # This function takes one argument: (1) the path to a DVDMedia bundle. It reads its contents in order to determine if the initial placeholders from ripInit() have been replaced with meaningful content.
+# Uses defaultsReadAtomicMetadata().
 {
     local dvdmedia="$1" \
           tag whichTrack
