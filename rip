@@ -489,19 +489,6 @@ function ripInit ()
 
 
 
-
-    local atomicPlist
-    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist" "${atomicMetadataShow}.plist"
-    #TODO:FIXME: atomicMetadataShow.plist might not exist, and might therefore produce [harmless] errors.
-    do
-        plutil -convert xml1 "${atomicPlist}"
-            # Convert to textual XML instead of "binary plist"
-        perl -pi -e 's;</key>
-	<;</key><;g' "${atomicPlist}"
-            #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
-        SetFile -a E "${atomicPlist}"
-            # Hide the file extension in Finder.app
-    done
     
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
@@ -521,6 +508,19 @@ function ripInit ()
 
     rm "${atomicMetadataTrack}.plist"
         # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
+
+    local atomicPlist
+    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist" "${atomicMetadataShow}.plist"
+    #TODO:FIXME: atomicMetadataShow.plist might not exist, and might therefore produce [harmless] errors.
+    do
+        plutil -convert xml1 "${atomicPlist}"
+            # Convert to textual XML instead of "binary plist"
+        perl -pi -e 's;</key>
+	<;</key><;g' "${atomicPlist}"
+            #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
+        SetFile -a E "${atomicPlist}"
+            # Hide the file extension in Finder.app
+    done
 }
 
 function ripMapVolumeToShow ()
