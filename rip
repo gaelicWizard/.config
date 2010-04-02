@@ -487,9 +487,6 @@ function ripInit ()
         defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
-
-
-    
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
@@ -498,16 +495,6 @@ function ripInit ()
 
     defaults write "$atomicMetadataDisc" trackList  "${trackList[*]}" 
         # We need one "word" with all the array elements space-delimited, so use "*" instead of "@".
-
-    for eachTrack in "${trackList[@]}"
-    do
-        cp -n "${atomicMetadataTrack}.plist" "${atomicMetadataTrack}${eachTrack}.plist"
-            # Copy the track template for each track.
-            # Don't overwrite any track which already has atomicMetadata.
-    done
-
-    rm "${atomicMetadataTrack}.plist"
-        # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
 
     local atomicPlist
     for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist" "${atomicMetadataShow}.plist"
@@ -521,6 +508,16 @@ function ripInit ()
         SetFile -a E "${atomicPlist}"
             # Hide the file extension in Finder.app
     done
+
+    for eachTrack in "${trackList[@]}"
+    do
+        cp -n "${atomicMetadataTrack}.plist" "${atomicMetadataTrack}${eachTrack}.plist"
+            # Copy the track template for each track.
+            # Don't overwrite any track which already has atomicMetadata.
+    done
+
+    rm "${atomicMetadataTrack}.plist"
+        # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
 }
 
 function ripMapVolumeToShow ()
