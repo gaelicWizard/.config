@@ -359,9 +359,9 @@ function rip ()
 
     if [ -e "$FILE" ]
     then
-        ripGrowl "${FILE}" "$DVDNAME"
-
         tag "${FILE}" --album "$DVDNAME" --track "$whichTrack"
+
+        ripGrowl "${FILE}" "$DVDNAME"
     fi
 }
 
