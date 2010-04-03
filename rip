@@ -100,7 +100,7 @@ function ripDisc ()
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
-            tar cvf "$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
+            tar cvf "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
             del "$dvdmedia" || return
         } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
