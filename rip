@@ -315,7 +315,7 @@ function rip ()
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
-        set -x; LANG=C \
+        set -x; export LANG=C \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
         --preset "${handbrakePreset:=Universal}" \
         --input "$dvdmedia" \
