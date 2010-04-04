@@ -100,7 +100,7 @@ function ripDisc ()
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
-            tar cvf "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
+            tar c${HANDBRAKE_DEBUG_LEVEL:+v}f "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
             del "$dvdmedia" || return
         } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
 }
@@ -492,6 +492,7 @@ function ripInit ()
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
 
     trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
+        # This extracts the list of titles/tracks that HandBrake has decided are worthy of encoding.
 
     defaults write "$atomicMetadataDisc" trackList  "${trackList[*]}" 
         # We need one "word" with all the array elements space-delimited, so use "*" instead of "@".
