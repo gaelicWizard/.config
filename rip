@@ -315,7 +315,7 @@ function rip ()
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
-        set -x; export LANG=C \
+        set -x; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
         --preset "${handbrakePreset:=Universal}" \
         --input "$dvdmedia" \
@@ -487,7 +487,7 @@ function ripInit ()
         defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
-    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | uniq > "$dvdmedia/titleScan.txt"
+    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | LANG=C uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
 
