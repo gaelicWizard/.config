@@ -6,7 +6,8 @@ alias apps="ps x -o command | grep '[ ]-psn_' | sort"
     # List all running Aqua applications
 alias idle="ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print \$NF/1000000000; exit}'" 
     # This returns the number of seconds since I typed anything or moved the mouse
-function DS_clean () { dot_clean -n "$1"; find "$1" -name \.DS_Store -delete; }
+function DS_clean () { dot_clean -n "$1"; find "$1" -name \.DS_Store -delete -print; }
+    # Fails on FileVault homes, since dot_clean 
 function d2x () { plutil -convert xml1 "$@"; }
 
 ## Aqua/GUI related helpers
