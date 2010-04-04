@@ -96,13 +96,14 @@ function ripDisc ()
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
 
-    ripGrowl "${ALBUM}: Disc ${DISK}" "$VOLUME"
-
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
             tar c${HANDBRAKE_DEBUG_LEVEL:+v}f "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
             del "$dvdmedia" || return
         } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
+
+    ripGrowl "${ALBUM}: Disc ${DISK}" "$VOLUME"
+        # Announce completion!
 }
 
 function defaultsReadAtomicMetadatas ()
