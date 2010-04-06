@@ -84,6 +84,9 @@ function ripDisc ()
     fi
     mkdir -p "./${filepath}"
         # Since $ALBUM is unsanitised, prefix it with "./", since we'd rather error than overwrite something elsewhere.
+    ln "$dvdmedia"/"Icon
+" "./${filepath}/" && SetFile -a C "./${filepath}"
+        # Assign an icon to the output folder. Make it pretty!
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
