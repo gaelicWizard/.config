@@ -319,7 +319,7 @@ function rip ()
 
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
-    ln -sf "$RIPLOG" "$(dirname "$RIPLOG".log)" # For easier GeekTool integration
+    ln -sf "$RIPLOG" "$(dirname "$RIPLOG").log" # For easier GeekTool integration
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
