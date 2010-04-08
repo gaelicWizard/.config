@@ -318,6 +318,7 @@ function rip ()
 
 #Do it
     local RIPLOG=~/Library/Logs/net.gaelicWizard.rip/"$DVDNAME".log
+    ln -sf "$RIPLOG" "$(dirname "$RIPLOG".log)" # For easier GeekTool integration
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
@@ -361,6 +362,7 @@ function rip ()
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
     echo # Blank line, since HandBrakeCLI doesn't newline to _stdout_ when exiting.
+    unlink "$(dirname "$RIPLOG".log)" # Clean up after GeekTool integration
     du -sh "$RIPLOG" 1>&2
         # Check the size of the log file.
         # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
