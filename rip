@@ -94,7 +94,7 @@ function ripDisc ()
         #FILE="${filepath}/${VOLUME}-${track}.m4v" # Imitate HandBrake file naming.
         FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
 
-        time rip "$dvdmedia" "$track" "$FILE" \
+        ${HANDBRAKE_DEBUG_LEVEL:+time} rip "$dvdmedia" "$track" "$FILE" \
         && \
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
@@ -363,8 +363,8 @@ function rip ()
         # Name the selected audio tracks, e.g. "Director's Commentary".
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
     echo # Blank line, since HandBrakeCLI doesn't newline to _stdout_ when exiting.
-    unlink "$(dirname "$RIPLOG".log)" # Clean up after GeekTool integration
-    du -sh "$RIPLOG" 1>&2
+    unlink "$(dirname "$RIPLOG").log" # Clean up after GeekTool integration
+    ${HANDBRAKE_DEBUG_LEVEL:+du -sh "$RIPLOG" 1>&2}
         # Check the size of the log file.
         # Once, a successful rip produced a 15 GB log file due to excessive duplicate non-fatal errors.
 
