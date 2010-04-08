@@ -323,7 +323,7 @@ function rip ()
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
         test -e "$FILE" && del "$FILE"; \
-        set -x; \
+        ${HANDBRAKE_DEBUG_LEVEL:+set -x}; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
         --preset "${handbrakePreset:=Universal}" \
         --input "$dvdmedia" \
@@ -395,8 +395,10 @@ function tag ()
 {
     FILE="$1" ; shift;
 
+    echo "Tagging…"
+
     test -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" && \
-    (set -x; exec AtomicParsley "$FILE" -W "$@" )
+    (${HANDBRAKE_DEBUG_LEVEL:+set -x}; exec AtomicParsley "$FILE" -W "$@" )
 }
 
 function addRipOptions ()
