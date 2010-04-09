@@ -314,6 +314,12 @@ function rip ()
 
     local handbrakePreset="$(defaults read net.gaelicWizard.rip preset 2>/dev/null)"
         # Allow override of preset
+        # Universal preset is appropriate for all DVD content, since DVDs max at 480p.
+            # Uses _roughly_ the __max__ settings iPods 5G/iPods 6G (4:3 ratio) & iPhones/iPods touch (widescreen) support
+        # AppleTV preset might be more appropriate for higher-than-480p, since it supports 720p (sortof).
+            # AppleTV preset needs adjusting: max resolution should be expanded from 960 to 1280 when fps is 24 or less.
+            # Need to do more research on AppleTV tech specs and HandBrake's AppleTV preset.
+        # Some other preset would be appropriate for higher-than-AppleTV-supported, but then why would you be encoding here?
     
     # Eventually, something should be called here to pass $dvdmedia [Mac BluerayRipper Pro](http://www.macblurayripperpro.com) to [MakeMKV](http://makemkv.com) to [HandBrake](http://handbrake.fr).
 
@@ -343,8 +349,6 @@ function rip ()
         "${SPECIAL_RIP_OPTIONS[@]}" \
     2>> "$RIPLOG" ) || ripFail "HandBrakeCLI" || return
         # Universal preset to activate sensible defaults.
-            # Uses _roughly_ the __max__ settings iPods 5G/iPods 6G (4:3 ratio) & iPhones/iPods touch (widescreen) support
-            # AppleTV preset needs adjusting: max resolution should be expanded from 960 to 1280 when fps is 24 or less.
         # Only encode selected chapters, if specified.
         # Encode the selected angle, if specified.
         # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
