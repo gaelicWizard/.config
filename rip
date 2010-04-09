@@ -395,8 +395,6 @@ function tag ()
 {
     FILE="$1" ; shift;
 
-    echo "Tagging…"
-
     test -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" && \
     (${HANDBRAKE_DEBUG_LEVEL:+set -x}; exec AtomicParsley "$FILE" -W "$@" )
 }
