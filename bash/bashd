@@ -1,6 +1,6 @@
 #!/bin/bash -c 'exit 1'
 
-if [ ! "${MacOSX:=0}" -gt 0 ]
+if false && [ ! "${MacOSX:=0}" -gt 0 ]
 then
     eval "$(defaults read ~/.MacOSX/environment | fgrep '=' | sed -e 's/ = /=/g' -e 's/^/export /g')"
     # Here, $MacOSX serves to indicate when my universal/Aqua environment has been loaded.
@@ -44,13 +44,7 @@ function import()
             # Check it, Record it, Source it.
     done
 }
-alias bashd=import
-
-function require
-# ought to be used as `require package || return 1`
-{
-    import "$@"
-}
+alias bashd=import require=import
 
 function rehash()
 {
