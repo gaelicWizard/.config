@@ -44,7 +44,9 @@ function import()
             # Check it, Record it, Source it.
     done
 }
-alias bashd=import require=import
+
+function require { import "$@"; }
+function bashd { import "$@"; }
 
 function rehash()
 {
