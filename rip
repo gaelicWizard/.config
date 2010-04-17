@@ -84,8 +84,10 @@ function ripDisc ()
     fi
     mkdir -p "./${filepath}"
         # Since $ALBUM is unsanitised, prefix it with "./", since we'd rather error than overwrite something elsewhere.
-    ln -f "$dvdmedia"/"$(echo -ne Icon'\r')" "./${filepath}/" && SetFile -a CV "./${filepath}"
-        # Assign an icon to the output folder. Trick used to circumvent RCS(1)'s mangling of carriage-returns.
+    local ICON="$(echo -ne Icon'\r')"
+        # Trick used to circumvent RCS(1)'s mangling of carriage-returns.
+    ln -f "${dvdmedia}/$ICON" "./${filepath}/" && SetFile -a C "./${filepath}" && SetFile -a V "./${filepath}/$ICON"
+        # Assign an icon to the output folder. 
         # -f to avoid reporting errors that a file exists.
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
