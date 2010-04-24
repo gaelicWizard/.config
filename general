@@ -78,26 +78,7 @@ alias swaploop="while clear; do swap; sleep 10; done"
 
 alias flushcache="dscacheutil -flushcache"
 
-
-# Usage : seq n m [i] [seperator]
-# echo all integers between n and m using a skip or increment of i
-function seq ()
-{
-    [ "$1" ] || [ "$2" ] || return 1
-    
-    local x=$1;
-    local y=$2;
-    local i=${3:-1};
-    local op="-le"
-    [ "${i}" -lt 0 ] && op="-ge"
-    local seperator="${4:- }"
-    while [ $x "$op" $y ]
-    do
-        echo -n $x"${seperator}";
-        x=$(( $x + $i ));
-    done
-    echo
-}
+function seq () { jot - "$@" ; }
 
 function randomint ()
 {
