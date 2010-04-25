@@ -75,7 +75,7 @@ function ripDisc ()
 
     ripValidate "$dvdmedia" || return
 
-    if [ "$MAXDISK" -eq 1 ]
+    if [ "${MAXDISK:-1}" -eq 1 ]
     # No need for per-disc subfolders if there's only one disc.
     then
         filepath="./${ALBUM}"
