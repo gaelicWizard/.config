@@ -226,13 +226,18 @@ function ripParseAudioNames ()
 
     local AUDIO_LIST="$1" \
           audio_track \
+          track_list \
           IFS="," # Overriding IFS is ugly, bug efficient. Local'd so that it doesn't damage other stuff.
     for audio_track in $AUDIO_LIST
     do
-        echo -n "${audio_track#*:},"
+        track_list="${track_list:-}${track_list:+,}${audio_track#*:},"
             # What audio tracks to encode
             # TODO: FIXME: Untested
+
+        #TODO:FIXME: KNOWN BUG: If the first element of $AUDIO_LIST has no name, then the names will be all be shifted by one.
     done
+
+    echo "$track_list"
 }
 
 function ripParseAudioTracks () 
@@ -245,13 +250,16 @@ function ripParseAudioTracks ()
 
     local AUDIO_LIST="$1" \
           audio_track \
+          track_list \
           IFS="," # Overriding IFS is ugly, bug efficient. Local'd so that it doesn't damage other stuff.
     for audio_track in $AUDIO_LIST
     do
-        echo -n "${audio_track%:*},"
+        track_list="${track_list:-}${track_list:+,}${audio_track%:*}"
             # What audio tracks to encode
             # TODO: FIXME: Untested
     done
+
+    echo "$track_list"
 }
 
 function ripUsage () 
