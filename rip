@@ -4,7 +4,7 @@ import trash || return -1
     # Import my trash package for
         # del
 
-export AP_PADDING="DEFAULT_PAD=8192:MIN_PAD=0:MAX_PAD=8192"
+export AP_PADDING="DEFAULT_PAD=4096:MIN_PAD=0:MAX_PAD=8192"
 export PIC_OPTIONS="removeTempPix:AddBothPix=true"
     # Set up a bunch of defaults for AtomicParsley(1) so that finishing up
     #  the tagging process is later is less painful.
@@ -12,7 +12,7 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 ##
 # tagging globals
 theListOfAllTheTrackTags=( title artist description longDescription genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
-theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers )
+theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers lineproducers )
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale subtitle-default )
 theListOfAllTheDiscTags=( disk )
