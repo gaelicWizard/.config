@@ -71,6 +71,7 @@ function ripDisc ()
           DISK="$(defaultsReadAtomicMetadata "$dvdmedia" Disc disk)" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
           MAXDISK="$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" \
+          SHOW="$(defaultsReadAtomicMetadata "$dvdmedia" Album TVShowName)" \
           filepath FILE trackName
 
     ripValidate "$dvdmedia" || return
@@ -78,12 +79,12 @@ function ripDisc ()
     if [ "${MAXDISK:-1}" -eq 1 ]
     # No need for per-disc subfolders if there's only one disc.
     then
-        filepath="./${ALBUM}"
+        filepath="./${SHOW}"
     else
-        filepath="./${ALBUM}/${ALBUM}: Disc ${DISK}"
+        filepath="./${SHOW}/${ALBUM}: Disc ${DISK}"
     fi
     mkdir -p "./${filepath}"
-        # Since $ALBUM is unsanitised, prefix it with "./", since we'd rather error than overwrite something elsewhere.
+        # Since $ALBUM is unsanitised, prefix it with "./" in a poor attempt to reduce errors, or at least reduce unexpected side-effects.
     local ICON="$(echo -ne Icon'\r')"
         # Trick used to circumvent RCS(1)'s mangling of carriage-returns.
     ln -f "${dvdmedia}/$ICON" "./${filepath}/" && SetFile -a C "./${filepath}" && SetFile -a V "./${filepath}/$ICON"
