@@ -31,7 +31,8 @@ import macports
     # Import my macports package
 import rip
     # Import my rip package
-
+import rcstools
+    # Import my rcstools package
 
 #import bash_completion
     # Import the widely used, huge, can do everything, Bash Completion package
