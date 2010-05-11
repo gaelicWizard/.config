@@ -1,0 +1,3 @@
+#!/bin/bash --fail
+
+function cil () { rcsdiff -u "$1"; ci -l "$1"; }
