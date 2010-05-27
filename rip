@@ -519,6 +519,7 @@ function ripInit ()
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | LANG=C uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
+        # HandBrakeCLI, from at least svn3329, has a --scan option to be used instead of --title 0.
 
     trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
         # This extracts the list of titles/tracks that HandBrake has decided are worthy of encoding.
@@ -546,10 +547,19 @@ function ripInit ()
             # Don't overwrite any track which already has atomicMetadata.
     done
 
-    [ -d "$dvdmedia/AUDIO_TS" ] && rmdir "$dvdmedia/AUDIO_TS"
-        # Clear out empty and utterly unnecessary superfluous directories.
     rm "${atomicMetadataTrack}.plist"
         # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
+
+    # The rest of this function works in conjunction with a launchd job (net.gaelicWizard.rip.copy-extras) to ensure that the contents of a DVD are fully copied. (RipIt re-authors a VIDEO_TS folder, but nothing else.)
+    local EXTRASTAR="${DVDNAME}-extras.tar" \
+          EXTRASTARPATH="$dvdmedia/../../$EXTRASTAR" # TODO:FIXME: come up with a better path for this. Perhaps just use the same path from net.gaelicWizard.rip.copy-extras (~/HandBrake/$DVDMEDIA-extras.tar)?
+    if [ -e "$EXTRASTARPATH" ]
+    then
+        tar -v -f "$EXTRASTARPATH" --strip-components 1 -C "$dvdmedia"
+
+        [ -d "$dvdmedia/AUDIO_TS" ] && rmdir "$dvdmedia/AUDIO_TS"
+            # Clear out empty and utterly unnecessary superfluous directories.
+    fi
 }
 
 function ripMapVolumeToShow ()
