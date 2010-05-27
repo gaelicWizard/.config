@@ -546,7 +546,7 @@ function ripInit ()
             # Don't overwrite any track which already has atomicMetadata.
     done
 
-    rmdir "$dvdmedia/AUDIO_TS"
+    [ -d "$dvdmedia/AUDIO_TS" ] && rmdir "$dvdmedia/AUDIO_TS"
         # Clear out empty and utterly unnecessary superfluous directories.
     rm "${atomicMetadataTrack}.plist"
         # This will likely, though unintentionally, implicate del() from the trash package. However, that makes no difference (but is more verbose).
