@@ -555,7 +555,7 @@ function ripInit ()
           EXTRASTARPATH="$dvdmedia/../../$EXTRASTAR" # TODO:FIXME: come up with a better path for this. Perhaps just use the same path from net.gaelicWizard.rip.copy-extras (~/HandBrake/$DVDMEDIA-extras.tar)?
     if [ -e "$EXTRASTARPATH" ]
     then
-        tar -v -f "$EXTRASTARPATH" --strip-components 1 -C "$dvdmedia" \
+        tar -v -f "$EXTRASTARPATH" --strip-components 1 -C "$dvdmedia" -x \
             && \
         rm "$EXTRASTARPATH"
 
