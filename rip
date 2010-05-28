@@ -519,7 +519,6 @@ function ripInit ()
     HandBrakeCLI -v0 -i "$dvdmedia" -t 0 2>&1 | LANG=C uniq > "$dvdmedia/titleScan.txt"
         # Ask HandBrake to scan all available titles on the disk.
         # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
-        # HandBrakeCLI, from at least svn3329, has a --scan option to be used instead of --title 0.
 
     trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
         # This extracts the list of titles/tracks that HandBrake has decided are worthy of encoding.
