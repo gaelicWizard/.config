@@ -330,6 +330,7 @@ function rip ()
         # AppleTV preset might be more appropriate for higher-than-480p, since it supports 720p (sortof).
             # AppleTV preset needs adjusting: max resolution should be expanded from 960 to 1280 when fps is 24 or less.
             # Need to do more research on AppleTV tech specs and HandBrake's AppleTV preset.
+            # AppleTV does 540p for 30fps, and 720p for 25fps.
         # Some other preset would be appropriate for higher-than-AppleTV-supported, but then why would you be encoding here?
     
     # Eventually, something should be called here to pass $dvdmedia [Mac BluerayRipper Pro](http://www.macblurayripperpro.com) to [MakeMKV](http://makemkv.com) to [HandBrake](http://handbrake.fr).
@@ -364,6 +365,7 @@ function rip ()
         # Only encode selected chapters, if specified.
         # Encode the selected angle, if specified.
         # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
+            # Most subtitles were dropped entirely since HandBrake couldn't embed non-text subtitles until changeset 3325 (between 0.9.4 and 0.9.5).
         # Generate 30 previews, b/c I hope it will improve autocropping.
             # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
         # Import chapter titles from CSV file, if available.
