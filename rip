@@ -238,17 +238,27 @@ function ripParseAudioNames ()
     local AUDIO_LIST="$1" \
           audio_track \
           track_list \
+          firstloop=yes \
           IFS="," # Overriding IFS is ugly, but efficient. Local'd so that it doesn't damage other stuff.
     for audio_track in $AUDIO_LIST
     do
+        if [ "$firstloop" == yes ]
+        # If this is the first iteration of this loop...
+        then
+            if [ "$audio_track" == "" ]
+            # If the name of this audio track is blank...
+            then
+                break
+                    # Stop the entire loop, preventing parsing of any other audio names and preventing echoing any unnecessary commas.
+            fi
+            firstloop=no
+        fi
+
         track_list="${track_list:-}${track_list:+,}${audio_track#*:},"
             # What audio tracks to encode
-            # TODO: FIXME: Untested
-
-        #TODO:FIXME: KNOWN BUG: If the first element of $AUDIO_LIST has no name, then the names will be all be shifted by one.
     done
 
-    echo "$track_list"
+    echo "${track_list:-}"
 }
 
 function ripParseAudioTracks () 
