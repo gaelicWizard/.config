@@ -310,6 +310,10 @@ function rip ()
     local audioNames="$(ripParseAudioNames "$audioList")" || ripFail "ripParseAudioNames" "audio" || return
     local audioTracks="$(ripParseAudioTracks "$audioList")" || ripFail "ripParseAudioTracks" "audio" || return
     local audioEncoders="$(IFS=,; for i in $audioTracks; do echo -n ca_aac,; done)"
+        # Ensure that HandBrakeCLI uses the native encoder, which is vastly superior to FAAC.
+    local audioNameTestHack="$(IFS=,; for i in $audioTracks; do echo -n ,; done)"
+    if [ "$audioNames" == "$audioNameTestHack" ]; then audioNames= ; done
+        # Hack to prevent HandBrakeCLI(1) from naming the audio track ",,,". This is a bug in HandBrake.
 
     local subtitleList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" subtitleList)" || ripFail "subtitleList" || return
     local subtitleNames="$(ripParseAudioNames "$subtitleList")" || ripFail "ripParseAudioNames" "subtitle" || return
