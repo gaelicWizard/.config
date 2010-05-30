@@ -312,8 +312,8 @@ function rip ()
         # Use $DVDNAME as the base name for the log file.
 
     local chapterList="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" chapterList)" || ripFail "chapterList" || return
-    local chapterTracks="${chapterList#*:}" # everything after the first colon
-    local chapterName="${chapterList%%:*}" # everything before the first colon
+    local chapterTracks="${chapterList#*:}" # everything before the first colon
+    local chapterName="${chapterList%%:*}" # everything after the first colon
         # There should only be one colon. 
         # $chapterName is not the name of the _one_ chapter to be encoded, but the name of the _set_ of chapters to be encoded.
 
@@ -362,7 +362,6 @@ function rip ()
     ln -sf "$RIPLOG" "$(dirname "$RIPLOG").log" # For easier GeekTool integration
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
-set -x
         test -e "$FILE" && del "$FILE"; \
         ${HANDBRAKE_DEBUG_LEVEL:+set -x}; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
