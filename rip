@@ -214,6 +214,7 @@ function ripFail ()
     fi
     fi
     fi
+        # hacks to fix syntax highlighting in SubEthaEdit circa 3.5.2.
     
     if [ x"$1" == x"angleList" ] || [ x"$2" == x"angle" ]
     # Simple hack to prevent fatal exit when angleList is unspecified.
@@ -254,7 +255,7 @@ function ripParseAudioNames ()
             firstloop=no
         fi
 
-        track_list="${track_list:-}${track_list:+,}${audio_track#*:},"
+        track_list="${track_list:-}${track_list:+,}${audio_track#*:}"
             # What audio tracks to encode
     done
 
@@ -364,6 +365,7 @@ function rip ()
     ln -sf "$RIPLOG" "$(dirname "$RIPLOG").log" # For easier GeekTool integration
     local RET=0
     test -z "${DEBUG_DISABLE_HANDBRAKE_INVOCATION:-}" && (
+set -x
         test -e "$FILE" && del "$FILE"; \
         ${HANDBRAKE_DEBUG_LEVEL:+set -x}; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
