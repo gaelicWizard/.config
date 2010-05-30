@@ -12,13 +12,23 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 ##
 # tagging globals
 theListOfAllTheTrackTags=( title artist description longDescription genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
+    # theListOfAllTheTrackTags[] is for per-track tags which have their own atoms and are directly settable via AtomicParsley(1). The names directly correspond to AtomicParsley(1)'s long arguments.
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers lineproducers )
+    # theListOfAllTheTrackiTunMOVITags[] is for per-track tags which appear only within the iTunes-style XML data embedded inside the reverse-DNS'd iTunMOVI atom. The names correspond to what iTunes uses, with additional names derived based on those already used.
 theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
+    # theListOfAdditionalTrackMetadata[] is for additional per-track metadata which are not embedded into the completed container. These are generally for controlling the generation of the encoded video and container or the generation of other metadata.
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale subtitle-default )
+    # theListOfSpecialTrackFlagsForHandBrake[] is for per-track specification of special arguments for HandBrakeCLI(1). These are used as-is, not for generating anything.
 theListOfAllTheDiscTags=( disk )
+    # theListOfAllTheDiscTags[] is for per-disc (i.e., all tracks on one disc) tags, analogous to theListOfAllTheTrackTags[].
 theListOfAdditionalDiscMetadata=( maxtrack trackList UDFVolumeName diskid )
-theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year TVNetwork artwork )
+    # theListOfAdditionalDiscMetadata[] is for per-disc metadata, analogous to theListOfAdditionalTrackMetadata[].
+theListOfAllTheAlbumTags=( TVShowName TVSeasonNum albumArtist album year artwork )
+    # theListOfAllTheAlbumTags[] is for per-album (i.e., all the tracks on all the discs in one album) tags, analogous to theListOfAllTheTrackTags[].
 theListOfAdditionalAlbumMetadata=( UPC ISBN ASIN label maxdisk )
+    # theListOfAdditionalAlbumMetadata[] is for per-album metadata, analogous to theListOfAdditionalTrackMetadata[].
+theListOfAllTheShowTags=( TVNetwork )
+    # theListOfAllTheShowTags[] is for per-show (i.e., all the episodes in any track where usesShow is true), analogous to theListOfAllTheTrackTags[].
 # end tagging globals
 ##
 
