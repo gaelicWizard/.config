@@ -238,7 +238,7 @@ function ripParseAudioNames ()
     local AUDIO_LIST="$1" \
           audio_track \
           track_list \
-          IFS="," # Overriding IFS is ugly, bug efficient. Local'd so that it doesn't damage other stuff.
+          IFS="," # Overriding IFS is ugly, but efficient. Local'd so that it doesn't damage other stuff.
     for audio_track in $AUDIO_LIST
     do
         track_list="${track_list:-}${track_list:+,}${audio_track#*:},"
