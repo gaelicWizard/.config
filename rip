@@ -370,39 +370,41 @@ function rip ()
         --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
         "${angleTracks:+--angle}" "${angleTracks:-}" \
-        "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
         --previews 30 \
         --output "$FILE" \
         --markers="${dvdmedia}/chapters-${whichTrack}.txt" \
         --ipod-atom \
-        --detelecine \
-        --decomb \
         --vfr \
         --audio "$audioTracks" \
         --aencoder "$audioEncoders" \
         "${audioNames:+--aname}" "${audioNames:-}" \
+        --strict-anamorphic \
+        --decomb \
+        --detelecine \
+        "${subtitleTracks:+--subtitle}" "${subtitleTracks:-}" \
         "${SPECIAL_RIP_OPTIONS[@]}" \
     2>> "$RIPLOG" ) || ripFail "HandBrakeCLI" || return
         # Universal preset to activate sensible defaults.
         # Only encode selected chapters, if specified.
         # Encode the selected angle, if specified.
-        # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
-            # Most subtitles were dropped entirely since HandBrake couldn't embed non-text subtitles until changeset 3325 (between 0.9.4 and 0.9.5).
         # Generate 30 previews, b/c I hope it will improve autocropping.
             # The number of previews generated is related to the accuracy of the autocropper, but seemingly only two previews are used.
         # Import chapter titles from CSV file, if available.
-        # iPod atom, so that 5.5G iPods will accept the media.
-        # Detelecine, always. Unclear why HandBrake doesn't just do this.
-            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default. It lies.
-        # Decomb. Whenever the input is _visibly_ interlaced, then run the destructive deinterlacer.
-            # Simply put: it can't make it worse, but will reduce my cat's excitement at seeing interlaced hands wave in documentaries.
+        # iPod atom, so that iPods 5.5G will accept the media. 
+            # Note: iPods 5.5G will likely _not_ accept the h.264, even when the container is marked.
         # Variable Frame Rate is the default, but didn't used to be.
             # This option disappeared _completely_ during 0.9.3 (or .2? somewhere it was invalid...)
         # Enable selected audio tracks.
-        # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding.
-            # AAC is the default, so this line might be entirely unneeded.
-            # However, the Universal preset duplicates track 1 to track 2 as pass-thru "AC-3", so it might be needed to _return_ to defaults. TODO: Untested, actually.
+        # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding. 
+            # This is necessary to ensure that the faster and better CoreAudio encoder is used, instead of the slow and low-quality FAAC.
         # Name the selected audio tracks, e.g. "Director's Commentary".
+        # Use Strict anamorphic, which preserves the input more faithfully for _slightly_ slower compression. (Universal preset does not use this due to incorrect assumptions made eons ago by HandBrake developers. The assumption has been corrected, but the preset has not yet been updated.)
+        # Decomb. Whenever the input is _visibly_ interlaced, then run the destructive deinterlacer.
+            # Simply put: it can't make it worse, but will reduce my cat's excitement at seeing interlaced hands wave in documentaries.
+        # Detelecine, always. Unclear why HandBrake doesn't just do this.
+            # HandBrake documentation for the framerate setting implies that HandBrake does, in fact, detelecine by default. It lies.
+        # Pass-thru the selected subtitles, if specified. (Does _not_ burn-in, as of HandBrake 0.9.4+.)
+            # Most subtitles were dropped entirely since HandBrake couldn't embed non-text subtitles until changeset 3325 (between 0.9.4 and 0.9.5).
         # Add any special out-of-band flags to HandBrake, such as "--crop 0:0:0:0" or "--grayscale".
     echo # Blank line, since HandBrakeCLI (at least at 0.9.4) doesn't newline to _stdout_ when exiting.
     unlink "$(dirname "$RIPLOG").log" # Clean up after GeekTool integration
