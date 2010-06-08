@@ -636,7 +636,7 @@ function autotagTrack ()
 
 function autotagOnce ()
 {
-    local defaultsDomain="$(basename "$(realpath "$1")" .plist)" \
+    local defaultsDomain="$(dirname "$1")/$(basename "$(realpath "$1")" .plist)" \
           m4v="$2" \
           tag tagList tempTag
     
