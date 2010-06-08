@@ -634,6 +634,24 @@ function autotagTrack ()
 
 }
 
+function autotagOnce ()
+{
+    local defaultsDomain="$(basename "$(realpath "$1")" .plist)" \
+          m4v="$2" \
+          tag tagList tempTag
+    
+    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
+    do
+        tempTag="$(defaults read  "$defaultsDomain" "$tag")"
+        if [ x"$tempTag" != x"" ]
+        then
+            tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
+        fi
+    done
+
+    tag "$m4v" "${tagList[@]}"
+}
+
 function mkiTunMOVI ()
 # Reads relevant information from the plists embedded in $1 and returns a plist (as a string) with iTunes metadata suitable for embedding into an MP4 container.
 # Uses parseSemicolonDelimitedArray()
