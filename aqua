@@ -8,7 +8,7 @@ alias idle="ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print \$NF/1000000000; ex
     # This returns the number of seconds since I typed anything or moved the mouse
 function DS_clean () { dot_clean -n "$1"; find "$1" -name .DS_Store -delete -print; }
     # Fails on FileVault homes, since dot_clean stops on errors and cannot read ~/.fseventsd
-function d2x () { plutil -convert xml1 "$@"; }
+function xml1 () { plutil -convert xml1 "$@"; }
 
 ## Aqua/GUI related helpers
 function app () { ps xc -o command | egrep -c "^$*$" ; }
