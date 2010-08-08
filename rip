@@ -82,7 +82,7 @@ function ripDisc ()
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
           MAXDISK="$(defaultsReadAtomicMetadata "$dvdmedia" Album maxdisk)" \
           SHOW="$(defaultsReadAtomicMetadata "$dvdmedia" Album TVShowName)" \
-          filepath FILE trackName
+          filepath FILE trackName feature
 
     ripValidate "$dvdmedia" || return
 
@@ -103,9 +103,14 @@ function ripDisc ()
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
-        #trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
-        FILE="${filepath}/${DISK}-${VOLUME}-${track}.m4v" # Variation of HandBrake file naming.
-        #FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
+        feature="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" feature)"
+        if [ "$feature" -eq 1 ]
+        then
+            FILE="${filepath}/extras/${DISK}-${VOLUME}-${track}.m4v" # Variation of HandBrake file naming.
+        else
+            trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
+            FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
+        fi
 
         ${HANDBRAKE_DEBUG_LEVEL:+time} rip "$dvdmedia" "$track" "$FILE" \
         && \
