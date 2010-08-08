@@ -93,7 +93,7 @@ function ripDisc ()
     else
         filepath="./${SHOW}/${ALBUM}: Disc ${DISK}"
     fi
-    mkdir -p "./${filepath}"
+    mkdir -p "./${filepath}" "./${filepath}/extras" 
         # Since $ALBUM is unsanitised, prefix it with "./" in a poor attempt to reduce errors, or at least reduce unexpected side-effects.
     local ICON="$(echo -ne Icon'\r')"
         # Trick used to circumvent RCS(1)'s mangling of carriage-returns.
@@ -103,14 +103,16 @@ function ripDisc ()
 
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
-        trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
-        #FILE="${filepath}/${VOLUME}-${track}.m4v" # Imitate HandBrake file naming.
-        FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
+        #trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
+        FILE="${filepath}/${DISK}-${VOLUME}-${track}.m4v" # Variation of HandBrake file naming.
+        #FILE="${filepath}/${DISK}-${track} ${trackName}.m4v" # Imitate iTunes file naming.
 
         ${HANDBRAKE_DEBUG_LEVEL:+time} rip "$dvdmedia" "$track" "$FILE" \
         && \
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
+    rmdir "./${filepath}/extras" >/dev/null 2>&1 || true # don't print errors, don't return non-zero. 
+    #TODO:FIXME: This (^) is a shitty hacky solution.
 
     test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
         { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
