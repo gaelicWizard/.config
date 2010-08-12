@@ -56,7 +56,7 @@ logfile "$HOME/.screen/screenlog.%n"
     # This tells screen where to save a log of all window contents, via command "log"
 idle 900 detach
     # disconnect idle terminals... this is screen, you won't lose anything!
-blankerprg bash -c "exec cmatrix"
+blankerprg bash -c "exec cmatrix -s"
     # Define a blanker program to be used by the blanker command
     # The indirection (shell invocation) is done because cmatrix may not be found in the path that screen was started with
 #shelltitle "$ |%1`"
