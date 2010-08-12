@@ -1,4 +1,4 @@
-#!/bin/bash -c 'echo This file is meant to be sourced.'
+#!/bin/bash --fail
 
 if [ -n "$BASH_ENV" ] #&& [ -r "$BASH_ENV" ]
 # slight variation on what bash(1) reports as $BASH_ENV's equivelant.
@@ -27,8 +27,8 @@ import general
     # Import my general package
 import history
     # Import my history package
-import macports
-    # Import my macports package
+import opt
+    # Import my opt package
 import rip
     # Import my rip package
 import rcstools
@@ -38,4 +38,4 @@ import rcstools
     # Import the widely used, huge, can do everything, Bash Completion package
 
 return 0
-    # I deliberately return from this script early, since I occasionally fail to properly audit installers which bjork my system (i.e. MacPorts).
+    # I deliberately return from this script early, since I occasionally fail to properly audit installers which bjork my system (i.e. MacPorts, which appends to .bashrc).
