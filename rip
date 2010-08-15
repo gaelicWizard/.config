@@ -15,7 +15,7 @@ theListOfAllTheTrackTags=( title artist description longDescription genre year c
     # theListOfAllTheTrackTags[] is for per-track tags which have their own atoms and are directly settable via AtomicParsley(1). The names directly correspond to AtomicParsley(1)'s long arguments.
 theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers lineproducers )
     # theListOfAllTheTrackiTunMOVITags[] is for per-track tags which appear only within the iTunes-style XML data embedded inside the reverse-DNS'd iTunMOVI atom. The names correspond to what iTunes uses, with additional names derived based on those already used.
-theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet )
+theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet optimiseCompressionFor )
     # theListOfAdditionalTrackMetadata[] is for additional per-track metadata which are not embedded into the completed container. These are generally for controlling the generation of the encoded video and container or the generation of other metadata.
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale subtitle-default )
     # theListOfSpecialTrackFlagsForHandBrake[] is for per-track specification of special arguments for HandBrakeCLI(1). These are used as-is, not for generating anything.
