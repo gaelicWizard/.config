@@ -45,10 +45,10 @@ function slogin ()
             # This is a cheap trick to get the last word on the command line
             #TODO:FIXME: Just get the last word. 
         done
-        screen -t "$TITLE" slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c 'exec screen -xRR'
+        screen -t "$TITLE" slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c '"exec screen -xRR"'
     else
-        command slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c 'exec screen -xRR'
+        command slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c '"exec screen -xRR"'
     fi
-        # Note that the entire ${SHELL… expression is single-quoted, so that the local shell does not evaluate it.
+        # Note that both the entire ${SHELL… expression and the screen(1) expression are single-quoted, so that the local shell does not evaluate them.
         # This should run (1) if screen is available, a new screen window entitled with the hostname; (2) ssh, told to allocate a tty; (3) _exec_ the shell with --login, so as to ensure that screen(1) is run within a proper login shell, and so as to avoid a heirarchy of useless ${SHELL}s; (4) _exec_ screen told to re-attach, violently if necessary, but with minimal violence, again so as to avoid a heirarchy of useless ${SHELL}s.
 }
