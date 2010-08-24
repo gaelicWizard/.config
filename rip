@@ -115,7 +115,7 @@ function ripDisc ()
             FILE="${filepath}/extras/${DISK:-}${DISK:+-}${VOLUME}-${track}.m4v" # Variation of HandBrake file naming.
         fi
 
-        ${HANDBRAKE_DEBUG_LEVEL:+time} \
+#        ${HANDBRAKE_DEBUG_LEVEL:+time} \
         rip "$dvdmedia" "$track" "$FILE" \
         && \
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
