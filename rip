@@ -11,12 +11,19 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 
 ##
 # tagging globals
-theListOfAllTheTrackTags=( title artist description longDescription genre year copyright advisory stik contentRating TVEpisode TVEpisodeNum composer comment )
+theListOfAllTheTrackTags=( title stik contentRating TVEpisode TVEpisodeNum )
+theMapOfAllTheTrackTags=( title "description:plotoutline" "year:releasedates[0]" "artist:director[0]" "genre:genres[0]" "comment:keywords[*]" )
     # theListOfAllTheTrackTags[] is for per-track tags which have their own atoms and are directly settable via AtomicParsley(1). The names directly correspond to AtomicParsley(1)'s long arguments.
-theListOfAllTheTrackiTunMOVITags=( studio cast codirectors coexecutiveproducers coproducers directors producers screenwriters executiveproducers supervisingproducers assistantproducers associateproducers coordinatingproducers consultingproducers lineproducers )
+    # theMapOfAllTheTrackTags[] indicates which key should be read in order to get the appropriate information. Arrays are subscripted.
+        # Note: Title is intentionally duplicated. 
+theListOfAllTheTrackiTunMOVITags=(  )
+theMapOfAllTheTrackiTunMOVITags=( "studio:productioncompanies[0]" )
     # theListOfAllTheTrackiTunMOVITags[] is for per-track tags which appear only within the iTunes-style XML data embedded inside the reverse-DNS'd iTunMOVI atom. The names correspond to what iTunes uses, with additional names derived based on those already used.
-theListOfAdditionalTrackMetadata=( ratingAdvisory audioList angleList chapterList subtitleList feature usesShow videoTitleSet optimiseCompressionFor )
+    # When lowercased and stripped of spaces, the relevant tags should already appear in the plist. 'studio' is special-cased.
+theListOfAdditionalTrackMetadata=( audioList angleList chapterList subtitleList feature usesShow videoTitleSet optimiseCompressionFor )
+theMapOfAdditionalTrackMetadata=( "ratingAdvisory:mpaa" )
     # theListOfAdditionalTrackMetadata[] is for additional per-track metadata which are not embedded into the completed container. These are generally for controlling the generation of the encoded video and container or the generation of other metadata.
+    # Only 'ratingAdvisory' is used as metadata… it should be moved elsewhere...
 theListOfSpecialTrackFlagsForHandBrake=( crop grayscale subtitle-default )
     # theListOfSpecialTrackFlagsForHandBrake[] is for per-track specification of special arguments for HandBrakeCLI(1). These are used as-is, not for generating anything.
 theListOfAllTheDiscTags=( disk )
@@ -46,12 +53,12 @@ function ripDebug ()
 function ripAlbum ()
 # Loops ripDisc for each "$@"
 {
-    local movie
+    local dvdmedia
 
-    for movie in "$@"
+    for dvdmedia in "$@"
     do
         DEBUG_DISABLE_TAR_INVOCATION=DEBUG_DISABLE_TAR_INVOCATION \
-        ripDisc "$movie" || return
+        ripDisc "$dvdmedia" || return
     done
 
     #ripGrowl "${ALBUM}."
@@ -86,7 +93,7 @@ function ripDisc ()
 
     ripValidate "$dvdmedia" || return
 
-    if [ "${MAXDISK:-1}" -eq 1 ]
+    if [ "${MAXDISK:-0}" -eq 1 ]
     # No need for per-disc subfolders if there's only one disc.
     then
         filepath="./${SHOW}"
@@ -117,7 +124,7 @@ function ripDisc ()
 
 #        ${HANDBRAKE_DEBUG_LEVEL:+time} \
         rip "$dvdmedia" "$track" "$FILE" \
-        && \
+            && \
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
 
@@ -432,7 +439,7 @@ function rip ()
 function ripGrowl ()
 {
     local WHAT="$1" \
-          IDENT="$2"
+          BY="$2"
 
     growlnotify \
         --name "rip()" \
@@ -440,7 +447,7 @@ function ripGrowl ()
         --message "Encoded ${WHAT}." \
         --appIcon /Applications/HandBrake.app \
         --sticky \
-        --identifier "net.gaelicWizard.rip${IDENT:+.}${IDENT:-}"
+        --identifier "net.gaelicWizard.rip${BY:+.}${BY:-}"
 }
 
 function tag ()
@@ -501,42 +508,61 @@ function ripInit ()
 
     local atomicMetadataAlbum="$dvdmedia/atomicMetadataAlbum" \
           atomicMetadataDisc="$dvdmedia/atomicMetadataDisc" \
-          atomicMetadataTrack="$dvdmedia/atomicMetadataTrack-" \
+          atomicMetadataTrack="$dvdmedia/atomicMetadataTrack" \
           atomicMetadataShow="$dvdmedia/atomicMetadataShow" \
           VOLUME="$(defaultsReadAtomicMetadata "$dvdmedia" Disc UDFVolumeName)" \
           DVDNAME="$(basename "$(basename "$dvdmedia" .ripit)" .dvdmedia)" \
-          tag trackList eachTrack
+          tag trackList eachTrack atomicMetadataTracks
           #atomicMetadataTrack has a hyphen in it since it is expected to be duplicated per track, each with a name such as atomicMetadataTrack-2.
 
-    local atomicPresetAlbum="$(ripMapVolumeToShow Album "${VOLUME:-$DVDNAME}" )" \
-          atomicPresetDisc="$(ripMapVolumeToShow Disc "${VOLUME:-$DVDNAME}" )" \
-          atomicPresetShow="$(ripMapVolumeToShow Show "${VOLUME:-$DVDNAME}" )" \
-          presetTag
-          # There may be differing amounts of information available for Album, Show, or Disc, so check each separately. 
+#    local atomicPresetAlbum="$(ripMapVolumeToShow Album "${VOLUME:-$DVDNAME}" )" \
+#          atomicPresetDisc="$(ripMapVolumeToShow Disc "${VOLUME:-$DVDNAME}" )" \
+#          atomicPresetShow="$(ripMapVolumeToShow Show "${VOLUME:-$DVDNAME}" )" \
+#          presetTag
+#          # There may be differing amounts of information available for Album, Show, or Disc, so check each separately. 
+
+
+
+    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 --scan 2>&1 | LANG=C uniq > "$dvdmedia/titleScan.txt"
+        # Ask HandBrake to scan all available titles on the disk.
+        # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
+        # --scan was introduced in svn changeset 3207 (between 0.9.4 and 0.9.5).
+
+    trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
+        # This extracts the list of titles/tracks that HandBrake has decided are worthy of encoding.
+
+
 
     defaults write "$atomicMetadataShow" usesShow -bool false
         # Just write _anything_ into atomicMetadataShow so that the file exists.
 
-    for tag in  "${theListOfAllTheTrackTags[@]}" \
-                "${theListOfAllTheTrackiTunMOVITags[@]}" \
-                "${theListOfAdditionalTrackMetadata[@]}" \
-                "${theListOfSpecialTrackFlagsForHandBrake[@]}"
+    for eachTrack in "${trackList[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetShow" "$tag" 2>/dev/null)"
+        for tag in  "${theListOfAllTheTrackTags[@]}" \
+                    "${theListOfAllTheTrackiTunMOVITags[@]}" \
+                    "${theListOfAdditionalTrackMetadata[@]}" \
+                    "${theListOfSpecialTrackFlagsForHandBrake[@]}"
+        do
+            #presetTag="$(defaults read "$atomicPresetShow" "$tag" 2>/dev/null)"
+        
+            #if [ x"$presetTag" != x"" ]
+            ## Populate atomicMetadataShow if we have something to populate, otherwise stick the placeholder in atomicMetadataTrack.
+            #then
+            #    defaults write "${atomicMetadataShow}" "$tag" "${presetTag:-_TAG_${tag:-=}_PLACEHOLDER_}"
+            #else
+            #    defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+            #fi
+        
+            defaults write "${atomicMetadataTrack}-${eachTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
+        done
 
-        if [ x"$presetTag" != x"" ]
-        # Populate atomicMetadataShow if we have something to populate, otherwise stick the placeholder in atomicMetadataTrack.
-        then
-            defaults write "${atomicMetadataShow}" "$tag" "${presetTag:-_TAG_${tag:-=}_PLACEHOLDER_}"
-        else
-            defaults write "${atomicMetadataTrack}" "$tag" "_TAG_${tag}_PLACEHOLDER_"
-        fi
+        atomicMetadataTracks=( "${atomicMetadataTracks[@]}" "${atomicMetadataTrack}-${eachTrack}" )
     done
 
     for tag in  "${theListOfAllTheDiscTags[@]}" \
                 "${theListOfAdditionalDiscMetadata[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetDisc" "$tag" 2>/dev/null)"
+        #presetTag="$(defaults read "$atomicPresetDisc" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataDisc}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
 
@@ -547,43 +573,25 @@ function ripInit ()
     for tag in  "${theListOfAllTheAlbumTags[@]}" \
                 "${theListOfAdditionalAlbumMetadata[@]}"
     do
-        presetTag="$(defaults read "$atomicPresetAlbum" "$tag" 2>/dev/null)"
+        #presetTag="$(defaults read "$atomicPresetAlbum" "$tag" 2>/dev/null)"
         defaults write "${atomicMetadataAlbum}" "$tag" "${presetTag:-_TAG_${tag}_PLACEHOLDER_}"
     done
-
-    HandBrakeCLI -v0 -i "$dvdmedia" -t 0 --scan 2>&1 | LANG=C uniq > "$dvdmedia/titleScan.txt"
-        # Ask HandBrake to scan all available titles on the disk.
-        # This gathers useful information like length, available audio/subtitle tracks, angles, &c.
-        # --scan was introduced in svn changeset 3207 (between 0.9.4 and 0.9.5).
-
-    trackList=( $(awk -F '[ :]' '/^\+ title [0-9]*:/ {print $3}' "$dvdmedia/titleScan.txt") )
-        # This extracts the list of titles/tracks that HandBrake has decided are worthy of encoding.
 
     defaults write "$atomicMetadataDisc" trackList  "${trackList[*]}" 
         # We need one "word" with all the array elements space-delimited, so use "*" instead of "@".
 
     local atomicPlist
-    for atomicPlist in "${atomicMetadataTrack}.plist" "${atomicMetadataDisc}.plist" "${atomicMetadataAlbum}.plist" "${atomicMetadataShow}.plist"
+    for atomicPlist in "${atomicMetadataDisc}" "${atomicMetadataAlbum}" "${atomicMetadataShow}" "${atomicMetadataTracks[@]}"
     #TODO:FIXME: atomicMetadataShow.plist might not exist, and might therefore produce [harmless] errors.
     do
+        atomicPlist="${atomicPlist}.plist"
+        [ -e "${atomicPlist}" ] || continue
+        
         plutil -convert xml1 "${atomicPlist}"
             # Convert to textual XML instead of "binary plist"
-        perl -pi -e 's;</key>
-	<;</key><;g' "${atomicPlist}"
-            #TODO:FIXME: This line of perl is meant to bring the key/value pairs together onto one line, however it doesn't work. I might not be escaping something properly, or perl might be limited to working on one line at a time. I don't know. Oh well. Leave it in. Fix it later. 
         SetFile -a E "${atomicPlist}"
             # Hide the file extension in Finder.app
     done
-
-    for eachTrack in "${trackList[@]}"
-    do
-        cp -n "${atomicMetadataTrack}.plist" "${atomicMetadataTrack}${eachTrack}.plist"
-            # Copy the track template for each track.
-            # Don't overwrite any track which already has atomicMetadata.
-    done
-
-    rm "${atomicMetadataTrack}.plist"
-        # This will likely, though unintentionally, implicate del() from my trash package. However, that makes no difference (but is more verbose).
 
     # The rest of this function works in conjunction with a launchd job (net.gaelicWizard.rip.copy-extras) to ensure that the contents of a DVD are fully copied. (RipIt re-authors a VIDEO_TS folder, but nothing else.)
     local EXTRASTAR="${DVDNAME}-extras.tar"
@@ -609,7 +617,10 @@ function ripMapVolumeToShow ()
 }
 
 function autotagTrack ()
-# This function takes three arguments: (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d), (2) the relevant track number, and (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
+# This function takes three arguments: 
+#   (1) the path to a DVDMedia bundle (which has been initDVDMedia()'d), 
+#   (2) the relevant track number, and 
+#   (3) the file to tag. The bundle is expected to contain a numbered plist with metadata matching some of the tags below, which will then be passed to tag() to operate on the specified file.
 # Uses defaultsReadAtomicMetadatas()
 # Uses mkiTunMOVI()
 # Uses tag()
@@ -617,7 +628,7 @@ function autotagTrack ()
     local dvdmedia="$1" \
           whichTrack="$2" \
           m4v="$3" \
-          tag tagList tempTag iTunMOVIXML
+          tag tagList tempTag iTunMOVIXML imdbTag apTag
 
     if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
@@ -626,7 +637,7 @@ function autotagTrack ()
         tagList=( "${tagList[@]}" --artwork "${dvdmedia}/JACKET_P.jpg" )
     fi
 
-    for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
+    for tag in "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
     do
         tempTag="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$tag")"
         
@@ -636,30 +647,51 @@ function autotagTrack ()
         fi
     done
     
-    iTunMOVIXML="$(mkiTunMOVI "$dvdmedia" "$whichTrack")"
-
-    tag "$m4v" "${tagList[@]}" \
-             "${iTunMOVIXML:+--rDNSatom}" "${iTunMOVIXML:-}" "${iTunMOVIXML:+name=iTunMOVI}" "${iTunMOVIXML:+domain=com.apple.iTunes}"
-
+    autotagOnce "${dvdmedia}/atomicMetadataTrack-${whichTrack}" "$m4v" "${tagList[@]}" 
 }
 
 function autotagOnce ()
+# $1 /path/to/plist
+# $2 /path/to/m4v
+# $3 ${additionalArgumentsToTag[@]}
 {
     local defaultsDomain="$(dirname "$(realpath "$1")")/$(basename "$(realpath "$1")" .plist)" \
           m4v="$2" \
-          tag tagList tempTag
+          additionalArgumentsToTag="$3" \
+          tag tagList tempTag imdbTag apTag
           # Use of realpath(1) is to get the path to the file, not to get a different "more real" path than the given path. (i.e., its not intended to resolve symlinks, but it does. 
+    
+    for tag in "${theMapOfAllTheTrackTags[@]}"
+    do
+        apTag="${tag%%:*}"
+        imdbTag="${tag##*:}"
+        tempTag="$(defaults read  "$defaultsDomain" "$imdbTag")"
+        
+        if [ x"$tempTag" != x"" ]
+        then
+            tagList=( "${tagList[@]}" --"$apTag" "$tempTag" )
+        fi
+    done
     
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
     do
         tempTag="$(defaults read  "$defaultsDomain" "$tag")"
+
         if [ x"$tempTag" != x"" ]
         then
             tagList=( "${tagList[@]}" --"$tag" "$tempTag" )
         fi
     done
 
-    tag "$m4v" "${tagList[@]}"
+    plutil -convert xml1 "$defaultsDomain"
+    iTunMOVIXML="$(< "$defaultsDomain")"
+
+    tag "$m4v" "${tagList[@]}" \
+               "${iTunMOVIXML:+--rDNSatom}" \
+                    "${iTunMOVIXML:-}" \
+                    "${iTunMOVIXML:+name=iTunMOVI}" \
+                    "${iTunMOVIXML:+domain=com.apple.iTunes}" \
+               "${additionalArgumentsToTag[@]}"
 }
 
 function mkiTunMOVI ()
@@ -667,6 +699,8 @@ function mkiTunMOVI ()
 # Uses parseSemicolonDelimitedArray()
 # Uses defaultsReadAtomicMetadatas()
 {
+    { echo "mkiTunMOVI()"; exit -1; }
+
     local plist="$(mktemp "${TMPDIR:=/tmp}/net.gaelicWizard.rip.iTunMOVI.$$.XXXXX")" || return -3
     local theType studio eachEntry theParsedArray=( )
     local dvdmedia="$1" track="$2"
