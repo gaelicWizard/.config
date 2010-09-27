@@ -683,8 +683,8 @@ function autotagOnce ()
         fi
     done
 
-    plutil -convert xml1 "$defaultsDomain"
-    iTunMOVIXML="$(< "$defaultsDomain")"
+    plutil -convert xml1 "${defaultsDomain}.plist"
+    iTunMOVIXML="$(< "${defaultsDomain}.plist")"
 
     tag "$m4v" "${tagList[@]}" \
                "${iTunMOVIXML:+--rDNSatom}" \
