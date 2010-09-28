@@ -677,7 +677,7 @@ function autotagOnce ()
     
     for tag in "${theListOfAllTheTrackTags[@]}" "${theListOfAllTheDiscTags[@]}" "${theListOfAllTheAlbumTags[@]}" 
     do
-        tempTag="$(defaults read  "$defaultsDomain" "$tag")"
+        tempTag="$(defaults read  "$defaultsDomain" "$tag" 2>/dev/null )"
 
         if [ x"$tempTag" != x"" ]
         then
