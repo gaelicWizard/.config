@@ -15,6 +15,9 @@ bashd_add_to_path_front "${HOME}/Tools"
     # Add my home folder tools
     # Duplicate, but more portable. I've added '~/Tools' to /etc/paths.d/Home, which is understood as expected by shells, but not by tools which lack tilde-expansion.
 
+bashd_add_to_path_back "/opt/flashbake-0.26.2-py2.6.egg/bin"
+    # Flashbake
+
 alias locate='locate.sh'
 alias sshfs='/Applications/MacFUSE/sshfs.app/Contents/Resources/sshfs-static'
 alias sshfs_orpheus='sshfs eon: ~/.temp/sshfs_mount_point -oreconnect,ping_diskarb,volname=Orpheus'
