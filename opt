@@ -6,7 +6,7 @@ require path || return
         #bashd_add_to_path_back_if_admin
 
 local optPack
-for optPack in /opt/*/
+for optPack in /opt/*
 do
     if [ "$optPack" == "/opt/local" ] || [ "$optPack" == "/opt/local" ]
     then continue # Ignore MacPorts.
