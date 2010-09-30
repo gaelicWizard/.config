@@ -3,9 +3,9 @@
 require path || return -1
     # Import my path package...
 
-bashd_add_to_path_back "/Developer/Tools"
-bashd_add_to_path_back "/Developer/usr/bin"
-bashd_add_to_path_back "/Developer/usr/sbin"
+#bashd_add_to_path_back "/Developer/Tools"
+#bashd_add_to_path_back "/Developer/usr/bin"
+#bashd_add_to_path_back "/Developer/usr/sbin"
     # Add Xcode tools
     # Duplicate, since I've added all three to /etc/paths.d/Xcode
 
