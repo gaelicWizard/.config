@@ -111,7 +111,7 @@ function ripDisc ()
     for track in $(defaultsReadAtomicMetadata "$dvdmedia" Disc trackList)
     do
         feature="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" feature)"
-        if [ "$feature" -eq 1 ]
+        if [ "${feature:-0}" -eq 1 ]
         # If $track is "the" main feature. (There may be more than one.)
         then
             trackName="$(defaultsReadAtomicMetadatas "$dvdmedia" "$track" title)"
