@@ -34,5 +34,6 @@ do
 	fi
 done
 
-import macports
+#import macports
     # Import my macports package
+    #disabled due to my new policy on MacPorts: don't use it for anything that might be unexpected.

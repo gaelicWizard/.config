@@ -6,6 +6,8 @@
 # Once the port command is issued, then the macports will be available.
 ##
 
+return # disabled
+
 require path || return -1
 
 MacPorts="/opt/macports"
