@@ -365,7 +365,7 @@ function rip ()
         # Allow override of preset
         # Universal preset is appropriate for all DVD content, since DVDs max at 480p.
             # Uses _roughly_ the __max__ settings iPods 5G/iPods 6G (4:3 ratio) & iPhones/iPods touch (widescreen) support
-        # AppleTV preset might be more appropriate for higher-than-480p, since it supports 720p (sortof).
+        # AppleTV preset might be more appropriate for higher-than-480p, since it supports 720p (mostly).
             # AppleTV preset needs adjusting: max resolution should be expanded from 960 to 1280 when fps is 24 or less.
             # Need to do more research on AppleTV tech specs and HandBrake's AppleTV preset.
             # AppleTV does 540p for 30fps, and 720p for 25fps.
