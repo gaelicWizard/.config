@@ -11,11 +11,10 @@ export PIC_OPTIONS="removeTempPix:AddBothPix=true"
 
 ##
 # tagging globals
-theListOfAllTheTrackTags=( title stik contentRating TVEpisode TVEpisodeNum )
+theListOfAllTheTrackTags=( stik contentRating TVEpisode TVEpisodeNum )
 theMapOfAllTheTrackTags=( title "description:plotoutline" "year:releasedates[0]" "artist:director[0]" "genre:genres[0]" "comment:keywords[*]" )
     # theListOfAllTheTrackTags[] is for per-track tags which have their own atoms and are directly settable via AtomicParsley(1). The names directly correspond to AtomicParsley(1)'s long arguments.
     # theMapOfAllTheTrackTags[] indicates which key should be read in order to get the appropriate information. Arrays are subscripted.
-        # Note: Title is intentionally duplicated. 
 theListOfAllTheTrackiTunMOVITags=(  )
 theMapOfAllTheTrackiTunMOVITags=( "studio:productioncompanies[0]" )
     # theListOfAllTheTrackiTunMOVITags[] is for per-track tags which appear only within the iTunes-style XML data embedded inside the reverse-DNS'd iTunMOVI atom. The names correspond to what iTunes uses, with additional names derived based on those already used.
