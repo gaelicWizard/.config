@@ -370,6 +370,7 @@ function rip ()
             # Need to do more research on AppleTV tech specs and HandBrake's AppleTV preset.
             # AppleTV does 540p for 30fps, and 720p for 25fps.
         # Some other preset would be appropriate for higher-than-AppleTV-supported, but then why would you be encoding here?
+    local x264PresetOverride="$(defaults read net.gaelicWizard.HandBrake.x264 "${handbrakePreset:=Universal}" 2>/dev/null)"
     
     # Eventually, something should be called here to pass $dvdmedia [Mac BluerayRipper Pro](http://www.macblurayripperpro.com) to [MakeMKV](http://makemkv.com) to [HandBrake](http://handbrake.fr).
 
@@ -381,7 +382,7 @@ function rip ()
         test -e "$FILE" && del "$FILE"; \
         ${HANDBRAKE_DEBUG_LEVEL:+set -x}; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
-        --preset "${handbrakePreset:=Universal}" \
+        --preset "${handbrakePreset}" \
         --input "$dvdmedia" \
         --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
@@ -390,6 +391,7 @@ function rip ()
         --output "$FILE" \
         --markers="${dvdmedia}/chapters-${whichTrack}.txt" \
         --ipod-atom \
+        "${x264PresetOverride:+--x264opts}" "${x264PresetOverride:-}" \
         --vfr \
         --audio "$audioTracks" \
         --aencoder "$audioEncoders" \
