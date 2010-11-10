@@ -19,7 +19,7 @@ theListOfAllTheTrackiTunMOVITags=(  )
 theMapOfAllTheTrackiTunMOVITags=( "studio:productioncompanies[0]" )
     # theListOfAllTheTrackiTunMOVITags[] is for per-track tags which appear only within the iTunes-style XML data embedded inside the reverse-DNS'd iTunMOVI atom. The names correspond to what iTunes uses, with additional names derived based on those already used.
     # When lowercased and stripped of spaces, the relevant tags should already appear in the plist. 'studio' is special-cased.
-theListOfAdditionalTrackMetadata=( audioList angleList chapterList subtitleList feature usesShow videoTitleSet optimiseCompressionFor )
+theListOfAdditionalTrackMetadata=( imdbID audioList angleList chapterList subtitleList feature usesShow videoTitleSet optimiseCompressionFor )
 theMapOfAdditionalTrackMetadata=( "ratingAdvisory:mpaa" )
     # theListOfAdditionalTrackMetadata[] is for additional per-track metadata which are not embedded into the completed container. These are generally for controlling the generation of the encoded video and container or the generation of other metadata.
     # Only 'ratingAdvisory' is used as metadata… it should be moved elsewhere...
