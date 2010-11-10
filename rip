@@ -128,12 +128,13 @@ function ripDisc ()
         autotagTrack "$dvdmedia" "$track" "$FILE" || return # short-circuit if something fails
     done
 
-    test -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" && \
-        { #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
-            echo "Tarring…"
-            tar c${HANDBRAKE_DEBUG_LEVEL:+v}f "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
-            del "$dvdmedia" || return
-        } || test -n "${DEBUG_DISABLE_TAR_INVOCATION:-}" # Workaround: we don't want to "fail" (return non-zero) if we are _deliberately_ skipping tar(1) invocation.
+    if [ -z "${DEBUG_DISABLE_TAR_INVOCATION:-}" ]
+    then
+        #TODO:FIXME: Move this to ripAlbum(). Make sure to integrate tarDVDsTogether.sh.
+        echo "Tarring…"
+        tar c${HANDBRAKE_DEBUG_LEVEL:+v}f "./${filepath}/$(basename "$dvdmedia" .dvdmedia).tar" -C "$(dirname "$dvdmedia")" "$(basename "$dvdmedia")" || return
+        del "$dvdmedia" || return
+    fi
 
     ripGrowl "${ALBUM}: Disc ${DISK}" "$VOLUME"
         # Announce completion!
@@ -370,7 +371,12 @@ function rip ()
             # Need to do more research on AppleTV tech specs and HandBrake's AppleTV preset.
             # AppleTV does 540p for 30fps, and 720p for 25fps.
         # Some other preset would be appropriate for higher-than-AppleTV-supported, but then why would you be encoding here?
+        # See notes/iConstraints, notes/Presets, and notes/x264 settings
     local x264PresetOverride="$(defaults read net.gaelicWizard.HandBrake.x264 "${handbrakePreset:=Universal}" 2>/dev/null)"
+        # Override the x264 string from HandBrake's presets. This must be manually maintained.
+        # At time of writing, this updates the Universal preset to iPod 6G (no more 5.5G) and enables some much slower encode settings. The output _should_ be fully compatible with iPod 6G and later.
+        # At time of writing, this updates the AppleTV preset to use the slower encode settings and reduces the assumed vbv-buffer to something sensible. The output _should_ be fully compatible with the original AppleTV, the iPhone 3GS, and later.
+        # At time of writing, this updates the iPad preset to use the slower encode settings. The output _should_ be fully compatible with all A4-based devices.
     
     # Eventually, something should be called here to pass $dvdmedia [Mac BluerayRipper Pro](http://www.macblurayripperpro.com) to [MakeMKV](http://makemkv.com) to [HandBrake](http://handbrake.fr).
 
@@ -457,8 +463,12 @@ function tag ()
 {
     FILE="$1" ; shift;
 
-    test -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" && \
-    (${HANDBRAKE_DEBUG_LEVEL:+set -x}; exec AtomicParsley "$FILE" -W "$@" )
+    if [ -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" ]
+    then
+        ${HANDBRAKE_DEBUG_LEVEL:+set -x}; exec AtomicParsley "$FILE" -W "$@"
+    else
+        echo "$FUNCNAME $@" 1>&2
+    fi
 }
 
 function addRipOptions ()
@@ -632,7 +642,9 @@ function autotagTrack ()
           m4v="$3" \
           tag tagList tempTag iTunMOVIXML imdbTag apTag
 
-    if [ -e "$dvdmedia/JACKET_P.jpg" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
+    if [ -e "$dvdmedia/JACKET_P.jpg" ] \
+    && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" artwork)" == x"" ] \
+    && [ x"$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" feature)" == x"1" ]
     # Cheap hack to ensure that only the feature gets autotag'd with artwork.
     #TODO:FIXME: Should switch to a customArtwork/needsArtwork flag.
     then
