@@ -417,8 +417,11 @@ function rip ()
         # Import chapter titles from CSV file, if available.
         # iPod atom, so that iPods 5.5G will accept the media. 
             # Note: iPods 5.5G will likely _not_ accept the h.264, even when the container is marked.
+        # Use specially-modified x264 options for higher quality than default.
+        # Use a "better" quantisation factor.
         # Variable Frame Rate is the default, but didn't used to be.
             # This option disappeared _completely_ during 0.9.3 (or .2? somewhere it was invalid...)
+            # Note: see --pfr
         # Enable selected audio tracks.
         # Encode them all to AAC, accepting default Dolby Pro Logic 2 encoding. 
             # This is necessary to ensure that the faster and better CoreAudio encoder is used, instead of the slow and low-quality FAAC.
