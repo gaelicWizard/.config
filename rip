@@ -361,7 +361,7 @@ function rip ()
         ripOptionArg="$(defaultsReadAtomicMetadatas "$dvdmedia" "$whichTrack" "$atomicRipOption")" && addRipOptions --"$atomicRipOption" "$ripOptionArg"
     done
 
-    local handbrakePreset="$(defaults read net.gaelicWizard.rip preset 2>/dev/null)"
+    local handbrakePreset="$(defaults read net.gaelicWizard.rip preset 2>/dev/null || echo Universal)"
         # Allow override of preset
         # Universal preset is appropriate for all DVD content, since DVDs max at 480p.
             # Uses _roughly_ the __max__ settings iPods 5G/iPods 6G (4:3 ratio) & iPhones/iPods touch (widescreen) support
@@ -371,11 +371,12 @@ function rip ()
             # AppleTV does 540p for 30fps, and 720p for 25fps.
         # Some other preset would be appropriate for higher-than-AppleTV-supported, but then why would you be encoding here?
         # See notes/iConstraints, notes/Presets, and notes/x264 settings
-    local x264PresetOverride="$(defaults read net.gaelicWizard.HandBrake.x264 "${handbrakePreset:=Universal}" 2>/dev/null)"
+    local x264PresetOverride="$(defaults read net.gaelicWizard.HandBrake.x264 "${handbrakePreset:-Universal}" 2>/dev/null)"
         # Override the x264 string from HandBrake's presets. This must be manually maintained.
         # At time of writing, this updates the Universal preset to iPod 6G (no more 5.5G) and enables some much slower encode settings. The output _should_ be fully compatible with iPod 6G and later.
         # At time of writing, this updates the AppleTV preset to use the slower encode settings and reduces the assumed vbv-buffer to something sensible. The output _should_ be fully compatible with the original AppleTV, the iPhone 3GS, and later.
         # At time of writing, this updates the iPad preset to use the slower encode settings. The output _should_ be fully compatible with all A4-based devices.
+    local qPresetOverride="$(defaults read net.gaelicWizard.HandBrake.q "${handbrakePreset:-Universal}" 2>/dev/null)"
     
     # Eventually, something should be called here to pass $dvdmedia [Mac BluerayRipper Pro](http://www.macblurayripperpro.com) to [MakeMKV](http://makemkv.com) to [HandBrake](http://handbrake.fr).
 
@@ -387,7 +388,7 @@ function rip ()
         test -e "$FILE" && del "$FILE"; \
         ${HANDBRAKE_DEBUG_LEVEL:+set -x}; \
     exec HandBrakeCLI -v"${HANDBRAKE_DEBUG_LEVEL:-0}" \
-        --preset "${handbrakePreset}" \
+        --preset "${handbrakePreset:-Universal}" \
         --input "$dvdmedia" \
         --title "${videoTitleSet:-${whichTrack:-FAIL}}" \
         "${chapterTracks:+--chapters}" "${chapterTracks:-}" \
@@ -397,6 +398,7 @@ function rip ()
         --markers="${dvdmedia}/chapters-${whichTrack}.txt" \
         --ipod-atom \
         "${x264PresetOverride:+--x264opts}" "${x264PresetOverride:-}" \
+        "${qPresetOverride:+--quality}" "${qPresetOverride:-}" \
         --vfr \
         --audio "$audioTracks" \
         --aencoder "$audioEncoders" \
