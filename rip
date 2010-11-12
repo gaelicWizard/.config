@@ -673,10 +673,12 @@ function autotagOnce ()
 # $2 /path/to/m4v
 # $3 ${additionalArgumentsToTag[@]}
 {
-    local defaultsDomain="$(dirname "$(realpath "$1")")/$(basename "$1" .plist)" \
+    local defaultsDomainPath="$(dirname "$1")"
+    local realDefaultsDomainPath="$(realpath "${defaultsDomainPath}")"
+    local defaultsDomain="${realDefaultsDomainPath}/$(basename "${1}" .plist)" \
           m4v="$2" \
           tag tagList tempTag imdbTag apTag
-          # Use of realpath(1) is to get the path to the file, not to get a different "more real" path than the given path. (i.e., its not intended to resolve symlinks, but it does. 
+          # Use of realpath(1) is to get the full path to the file, not to get a different "more real" path than the given path. (i.e., its not intended to resolve symlinks, but it does). 
 
     shift; shift # Discard $1 and $2.
     local additionalArgumentsToTag=( "$@" )
@@ -685,7 +687,7 @@ function autotagOnce ()
     do
         apTag="${tag%%:*}"
         imdbTag="${tag##*:}"
-        tempTag="$(defaults read  "$defaultsDomain" "$imdbTag")"
+        tempTag="$(defaults read  "$defaultsDomain" "$imdbTag" 2>/dev/null)"
         
         if [ x"$tempTag" != x"" ]
         then
