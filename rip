@@ -705,7 +705,9 @@ function autotagOnce ()
         fi
     done
 
+    getIMDb.py "${defaultsDomain}" 2>/dev/null
     plutil -convert xml1 "${defaultsDomain}.plist"
+        # This is already done by getIMDb.py, but that should not be relied upon.
     iTunMOVIXML="$(< "${defaultsDomain}.plist")"
 
     tag "$m4v" "${tagList[@]}" \
