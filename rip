@@ -706,6 +706,8 @@ function autotagOnce ()
     done
 
     getIMDb.py "${defaultsDomain}" 2>/dev/null
+        # This should automatically detect if it has been run on this file previously, and should short-circuit.
+        # Discard the copious output.
     plutil -convert xml1 "${defaultsDomain}.plist"
         # This is already done by getIMDb.py, but that should not be relied upon.
     iTunMOVIXML="$(< "${defaultsDomain}.plist")"
