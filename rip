@@ -470,6 +470,7 @@ function tag ()
     if [ -z "${DEBUG_DISABLE_ATOMICPARSLEY_INVOCATION}" ]
     then
         ( ${HANDBRAKE_DEBUG_LEVEL:+set -x}; exec AtomicParsley "$FILE" -W "$@" )
+        SetFile -a E "$FILE" # Hide the extension.
     else
         echo "$FUNCNAME $@" 1>&2
     fi
