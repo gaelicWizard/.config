@@ -8,7 +8,7 @@ require path || return
 local optPack
 for optPack in /opt/*
 do
-    if [ "$optPack" == "/opt/local" ] || [ "$optPack" == "/opt/local" ]
+    if [ "$optPack" == "/opt/macports" ] || [ "$optPack" == "/opt/macports" ]
     then continue # Ignore MacPorts.
     fi
 
