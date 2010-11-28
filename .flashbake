@@ -15,7 +15,6 @@ opt
 path
 prompt_commands
 rcstools
-rip
 screenrc
 ssh
 you_complete_me
