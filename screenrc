@@ -42,6 +42,9 @@ verbose on
     # And show the command for the windows when they're resurrected.
 defscrollback 50000
 	# Gimme a MASSIVE scroll back history!
+defescape ^zz # multiuser
+escape ^zz # current user
+	# This sets my escape character to be C-z, instead of C-a. 
 #defbufferfile "$HOME/.temp/screenbufferfile"
 bufferfile "$HOME/.temp/screenbufferfile"
     # Specifies a file to use when copying/pasting
