@@ -11,8 +11,12 @@ require path || return -1
 
 ## GCC...
 # Many many settings and flags for gcc based compiles... 
-[ "`uname -s`" == "Darwin" ] && export MACOSX_DEPLOYMENT_TARGET="10.$((`uname -r | awk -F . '{print $1}'`-4))" 
+if [ "`uname -s`" == "Darwin" ]
+then
+    export MACOSX_DEPLOYMENT_TARGET="10.$((`uname -r | awk -F . '{print $1}'`-4))" 
 		# Use the full feature set of the linker in the version of Darwin I'm running!
+    export SDKROOT="/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
+fi
 #export CPPFLAGS="-Wno-long-double -I$QTDIR/include" 
 		# Include my locally installed headers!
 #export LIBS="-L$QTDIR/lib" 
@@ -20,17 +24,15 @@ require path || return -1
 #export LDFLAGS="${LIBS}" # Ditto...
 export OPTFLAGS="-g -Os" # -faltivec" # Optimise for size && altivec (G4/G5)
 export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64"
-export CFLAGS="-pipe -isysroot /Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk  ${OPTFLAGS}" # Flags for gcc
+export CFLAGS="-pipe -Wall ${SDKROOT:+-isysroot} ${SDKROOT:-}  ${OPTFLAGS}" # Flags for gcc
+export LDFLAGS="${SDKROOT:+-syslibroot} ${SDKROOT:-}"
 export CXXFLAGS="-pipe ${OPTFLAGS}" # Flags for g++
 ##
 export LIBTOOLIZE=glibtoolize
 ##
 
 # GNU Compiler Collection aliases
- alias gcc='gcc ${CPPFLAGS:-} ${CFLAGS:-}   -Wall ${LDFLAGS:-}' 
- 	# use all the $*FLAGS stuff, plus a few that I want *only* if
-	# i'm running gcc manually...
- alias g++='g++ ${CPPFLAGS:-} ${CXXFLAGS:-} -Wall ${LDFLAGS:-}' 
-	# Ditto...
- alias ugcc='gcc ${ARCHFLAGS:-}'
+ alias gcc='gcc ${CPPFLAGS:-} ${CFLAGS:-}   ${LDFLAGS:-}' 
+ alias g++='g++ ${CPPFLAGS:-} ${CXXFLAGS:-} ${LDFLAGS:-}' 
+ alias ugcc='gcc ${ARCHFLAGS:-}' # re-use above aliases.
  alias ug++='g++ ${ARCHFLAGS:-}'
