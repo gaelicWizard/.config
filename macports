@@ -6,8 +6,6 @@
 # Once the port command is issued, then the macports will be available.
 ##
 
-return # disabled
-
 require path || return -1
 
 MacPorts="/opt/macports"
@@ -19,5 +17,5 @@ fi
 alias port="
     bashd_add_to_path_back $MacPorts/bin
     bashd_add_to_path_back_if_admin $MacPorts/sbin
-    alias port='sudo port'
-    sudo port"
+    alias sudoport='sudo port'
+    port"
