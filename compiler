@@ -19,7 +19,8 @@ require path || return -1
 		# Link against my locally installed libraries!
 #export LDFLAGS="${LIBS}" # Ditto...
 export OPTFLAGS="-g -Os" # -faltivec" # Optimise for size && altivec (G4/G5)
-export CFLAGS="-pipe ${OPTFLAGS}" # Flags for gcc
+export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64"
+export CFLAGS="-pipe -isysroot /Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk  ${OPTFLAGS}" # Flags for gcc
 export CXXFLAGS="-pipe ${OPTFLAGS}" # Flags for g++
 ##
 export LIBTOOLIZE=glibtoolize
@@ -31,5 +32,5 @@ export LIBTOOLIZE=glibtoolize
 	# i'm running gcc manually...
  alias g++='g++ ${CPPFLAGS:-} ${CXXFLAGS:-} -Wall ${LDFLAGS:-}' 
 	# Ditto...
- alias ugcc='gcc -arch i386 -arch ppc -arch x86_64 -arch ppc64'
- alias ug++='g++ -arch i386 -arch ppc -arch x86_64 -arch ppc64'
+ alias ugcc='gcc ${ARCHFLAGS:-}'
+ alias ug++='g++ ${ARCHFLAGS:-}'
