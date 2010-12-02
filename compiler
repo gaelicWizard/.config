@@ -17,15 +17,14 @@ then
 		# Use the full feature set of the linker in the version of Darwin I'm running!
     export SDKROOT="/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
 fi
-#export CPPFLAGS="-Wno-long-double -I$QTDIR/include" 
-		# Include my locally installed headers!
-#export LIBS="-L$QTDIR/lib" 
-		# Link against my locally installed libraries!
-#export LDFLAGS="${LIBS}" # Ditto...
+
 export OPTFLAGS="-g -Os" # -faltivec" # Optimise for size && altivec (G4/G5)
 export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64"
-export CFLAGS="-pipe -Wall ${SDKROOT:+-isysroot} ${SDKROOT:-}  ${OPTFLAGS}" # Flags for gcc
-export LDFLAGS="${SDKROOT:+-syslibroot} ${SDKROOT:-}"
+
+export CPPFLAGS="${SDKROOT:+-isysroot} ${SDKROOT:-}"
+export LDFLAGS="${SDKROOT:+-isysroot} ${SDKROOT:-}" #-syslibroot breaks everything…
+
+export CFLAGS="-pipe -Wall ${OPTFLAGS}" # Flags for gcc
 export CXXFLAGS="-pipe ${OPTFLAGS}" # Flags for g++
 ##
 export LIBTOOLIZE=glibtoolize
