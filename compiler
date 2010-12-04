@@ -18,7 +18,7 @@ then
     export SDKROOT="/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
 fi
 
-export OPTFLAGS="-g -Os" # -faltivec" # Optimise for size && altivec (G4/G5)
+export OPTFLAGS="-gstabs+ -Os" # generate debugging info, but only store it _inside_ the object; optimise for speed-and-size.
 export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64"
 
 export CPPFLAGS="${SDKROOT:+-isysroot} ${SDKROOT:-}"
