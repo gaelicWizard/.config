@@ -19,13 +19,13 @@ then
 fi
 
 export OPTFLAGS="-gstabs+ -Os" # generate debugging info, but only store it _inside_ the object; optimise for speed-and-size.
-export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64"
+export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64" # "Universal" #TODO:FIXME: ppc64?
 
 export CPPFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
-export LDFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
+export  LDFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
 
-export CFLAGS="  -pipe -combine -Wall ${OPTFLAGS}" # Flags for gcc
-export CXXFLAGS="-pipe -combine -Wall ${OPTFLAGS}" # Flags for g++
+export   CFLAGS="-pipe -combine -mfix-and-continue -Wall ${OPTFLAGS}"
+export CXXFLAGS="-pipe -combine -mfix-and-continue -Wall ${OPTFLAGS}"
 ##
 export LIBTOOLIZE=glibtoolize
 ##
