@@ -18,14 +18,17 @@ then
     export SDKROOT="/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
 fi
 
-export OPTFLAGS="-gstabs+ -Os" # generate debugging info, but only store it _inside_ the object; optimise for speed-and-size.
-export ARCHFLAGS="-arch ppc -arch i386 -arch x86_64" # "Universal" #TODO:FIXME: ppc64?
+export OPTFLAGS="-gstabs+ -Os -mtune=native" 
+    # generate debugging info, but only store it _inside_ the object; 
+    # optimise for speed-and-size;
+    # tune for current arch, but 
+export ARCHFLAGS="-arch_errors_fatal -arch ppc -arch i386 -arch x86_64" # "Universal" #TODO:FIXME: ppc64?
 
 export CPPFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
 export  LDFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
 
-export   CFLAGS="-pipe -combine -mfix-and-continue -Wall ${OPTFLAGS}"
-export CXXFLAGS="-pipe -combine -mfix-and-continue -Wall ${OPTFLAGS}"
+export   CFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
+export CXXFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
 ##
 export LIBTOOLIZE=glibtoolize
 ##
