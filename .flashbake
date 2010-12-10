@@ -1,5 +1,8 @@
 notice_to:John+bashd@gaelicWizard.net
 
+*.bash_profile
+*.bashrc
+
 aqua
 bashd
 bashrc
