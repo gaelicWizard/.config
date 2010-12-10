@@ -123,7 +123,7 @@ function isinteractive ()
 ##
 if isinteractive
 then
-    PS1="[\h:\w] \[\033[1;34m\]\u\[\033[0m\]\`[ \$? -ne 0 ] && echo -n '\[\e[00;31m\]'\`\\$\`echo -n '\[\e[0m\]'\` "
+    PS1="[\h:\w] \[\e[1;34m\]\u\[\e[0m\]\`[ \$? -ne 0 ] && echo -n '\[\e[00;31m\]'\`\\$\`echo -n '\[\e[0m\]'\` "
     bind '"\e[A"':history-search-backward
     	# Bind the up arrow to history search, instead of history step...
     bind '"\e[B"':history-search-forward
