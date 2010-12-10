@@ -1,5 +1,7 @@
+#!/bin/bash --rcfile "$0" --fail
+
 declare auto_resume=exact # I'll prolly never use this.
-set -u # Error on unset parameters.
+shopt -s nounset # Error on unset parameters.
 shopt -s no_empty_cmd_completion # Don't expand all available commands.
 #shopt -s failglob # Fail if a pattern doesn't match any filenames.
 #shopt -s nullglob # Don't pass the pattern itself when expanding filenames.
