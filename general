@@ -31,10 +31,6 @@ function l ()
 function ll ()
 { CLICOLOR_FORCE='1' l "$@" | less -e -R ; } 
     # pipe into 'less', tell less to honor colors and to exit at end
-function cd ()
-{ builtin cd "$@" >/dev/null ; } 
-    # Make 'cd' NOT print the new dir! by piping stdout to /dev/null
-    # Does not effect the printing of errors, only useful if $CDPATH is set
 
 function lleaks ()
 {
@@ -46,7 +42,7 @@ alias which='type -p' # 'which' in (t)csh is same(?) as 'type -p' in bash...?
 ## Tips and Ticks... from http://www.caliban.org/bash/index.shtml
 # The $CDPATH variable is so that you can be in /path/to/something and 'cd' 
 # to 'somethingElse' and end up in /not/the/same/path/to/somethingElse! 
-CDPATH=".:~:/Volumes"
+CDPATH=":~:/Volumes"
 #
 shopt -s cdspell checkwinsize nocaseglob
     # Spell check for 'cd', reset WIDTH/ROWS on sigwinch
