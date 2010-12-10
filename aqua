@@ -47,7 +47,7 @@ function unSetFile ()
     if [ "$1" == "" ]; then 
         echo "Usage: $FUNCNAME file"
     else
-        for i in a v b s t c l i n m e d; do SetFile -a $i "$@";done
+        SetFile -a avbstclinmed "$@"
         SetFile -t '' "$@"
         SetFile -c '' "$@"
     fi

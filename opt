@@ -1,6 +1,6 @@
 #!/bin/bash --fail
 
-require path || return
+require path.bash_profile || return
     # Require my path package
         #bashd_add_to_path_back()
         #bashd_add_to_path_back_if_admin

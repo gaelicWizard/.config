@@ -11,28 +11,26 @@ import trash
     # Import my trash package
 import aqua
     # Import my aqua package
-import path
+import path.bash_profile
     # Import my path package
-import editor
+import editor.bashrc
     # Import my editor package
 import screen
     # Import my screen package
 import ssh
     # Import my ssh package
-import compiler
+import compiler.bashrc
     # Import my compiler package
-import you_complete_me
+import you_complete_me.bashrc
     # Import my completion package
 import general
     # Import my general package
-import history
+import bash.bashrc
     # Import my history package
 import opt
     # Import my opt package
 import rip
     # Import my rip package
-import rcstools
-    # Import my rcstools package
 
 #import bash_completion
     # Import the widely used, huge, can do everything, Bash Completion package
