@@ -1,10 +1,5 @@
 #!/bin/sh -c 'echo This file is meant to be sourced.'
 
-import screen
-# import my screen package, which is used for isscreen() below.
-# this might silently fail, which is OK
-# (import might fail; for a noisy failure use require)
-
 # Figure out the incoming hostname for ssh connections
 #  I do this because SSH_CONNECTION is preserved by my environment,
 #  whereas SSH_HOSTNAME is not (since it is redundant).
@@ -42,7 +37,7 @@ function slogin ()
         do
             # $# == argc
             TITLE="$i"
-            # This is a cheap trick to get the last word on the command line
+            # This is a hack to get the last word on the command line
             #TODO:FIXME: Just get the last word. 
         done
         screen -t "$TITLE" slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c '"exec screen -xRR"'
