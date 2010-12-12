@@ -6,19 +6,17 @@ source_rc_d
 
 aqua
 bashd
-bashrc
-compiler
+bash.bashrc
+compiler.bashrc
 dead
-editor
+editor.bashrc
 general
-history
 ite
 macports
 old_path
 opt
-path
-prompt_commands
-rcstools
+path.bash_profile
+prompt_commands.bashrc
 screenrc
 ssh
-you_complete_me
+you_complete_me.bashrc
