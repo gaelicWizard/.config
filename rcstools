@@ -1,8 +1,0 @@
-#!/bin/bash --fail
-
-function cil ()
-{
-    rcsdiff -u "$1"
-    rcsdiff -u "$1" | see # pop up a window to see the diff. Might be annoying.
-    ci -l "$1"
-}

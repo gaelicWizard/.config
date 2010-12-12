@@ -1,5 +1,6 @@
 notice_to:John+bashd@gaelicWizard.net
 
+source_rc_d
 *.bash_profile
 *.bashrc
 
