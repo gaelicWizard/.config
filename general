@@ -16,6 +16,7 @@ bashd_add_to_path_front "${HOME}/Tools"
     # Duplicate, but more portable. I've added '~/Tools' to /etc/paths.d/Home, which is understood as expected by shells, but not by tools which lack tilde-expansion.
 
 alias locate='locate.sh'
+alias gam="python ~/Projects/External/GoogleAppsManager.svn/gam.py"
 alias sshfs='/Applications/MacFUSE/sshfs.app/Contents/Resources/sshfs-static'
 alias sshfs_orpheus='sshfs eon: ~/.temp/sshfs_mount_point -oreconnect,ping_diskarb,volname=Orpheus'
 export FTP_PASSIVE=1
