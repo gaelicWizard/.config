@@ -10,7 +10,7 @@ then
         # 
 fi
 
-export OPTFLAGS="-gstabs+ -Os -mtune=native" 
+export OPTFLAGS="-gstabs+ -Os" 
     # generate debugging info, but only store it _inside_ the object; 
     # optimise for speed-and-size;
     # tune for current arch.
