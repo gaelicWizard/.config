@@ -18,8 +18,8 @@ export ARCHFLAGS="-arch_errors_fatal -arch ppc -arch i386 -arch x86_64"
     # Don't let "missing arch" or such get by.
     # "Universal"
 
-export CPPFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
-export  LDFLAGS="${SDKROOT:+--sysroot} ${SDKROOT:-}"
+export CPPFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
+export  LDFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
     # Make sure that any searching knows where to search.
 
 export   CFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
