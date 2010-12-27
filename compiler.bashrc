@@ -14,7 +14,7 @@ export OPTFLAGS="-gstabs+ -Os"
     # generate debugging info, but only store it _inside_ the object; 
     # optimise for speed-and-size;
     # tune for current arch.
-export ARCHFLAGS="-arch_errors_fatal -arch ppc -arch i386 -arch x86_64" 
+export ARCHFLAGS="-arch_errors_fatal -arch i386 -arch x86_64" # 10.6 can't do ppc
     # Don't let "missing arch" or such get by.
     # "Universal"
 
