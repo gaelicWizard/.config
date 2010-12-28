@@ -20,7 +20,8 @@ altscreen on
 compacthist on
     # This tells screen to save some space in the history buffer
 defutf8 on
-	# Make it all Unicode!
+	# Make screen(1) interact with it's _children_ in utf8.
+	# Must invoke with -U to get utf8 to the tty.
 #defc1 off
     # Disable interpretation of control characters (for use with 8-bit character sets)
 defnonblock on
