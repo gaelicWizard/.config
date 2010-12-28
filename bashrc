@@ -29,7 +29,7 @@ import bash.bashrc
     # Import my history package
 import opt
     # Import my opt package
-import rip
+import rip.bashrc
     # Import my rip package
 
 #import bash_completion
