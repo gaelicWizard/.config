@@ -22,8 +22,9 @@ export CPPFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
 export  LDFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
     # Make sure that any searching knows where to search.
 
-export   CFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
-export CXXFLAGS="${CFLAGS}"
+export    CFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
+export  CXXFLAGS="${CFLAGS}"
+export OBJCFLAGS="${CFLAGS}"
     
 ##
 export LIBTOOLIZE=glibtoolize
