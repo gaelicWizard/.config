@@ -1,4 +1,4 @@
-#!/bin/sh -c 'echo This file is meant to be sourced.'
+#!/bin/bash --fail
 
 ## GCC...
 # Many many settings and flags for gcc based compiles... 
@@ -8,15 +8,15 @@ then
 		# Use the full feature set of the linker in the version of Darwin I'm running!
     export SDKROOT="$(xcode-select -print-path)/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
         # 
+    export ARCHFLAGS="-arch_errors_fatal -arch i386 -arch x86_64" # 10.6 can't do ppc
+        # Don't let "missing arch" or such get by.
+        # "Universal"
 fi
 
 export OPTFLAGS="-gstabs+ -Os" 
     # generate debugging info, but only store it _inside_ the object; 
     # optimise for speed-and-size;
     # tune for current arch.
-export ARCHFLAGS="-arch_errors_fatal -arch i386 -arch x86_64" # 10.6 can't do ppc
-    # Don't let "missing arch" or such get by.
-    # "Universal"
 
 export CPPFLAGS="${SDKROOT:+-isysroot }${SDKROOT:-}"
 export  LDFLAGS="${SDKROOT:+-isysroot }${SDKROOT:-}"
