@@ -6,7 +6,7 @@ if [ "`uname -s`" == "Darwin" ]
 then
     export MACOSX_DEPLOYMENT_TARGET="10.$((`uname -r | awk -F . '{print $1}'`-4))" 
 		# Use the full feature set of the linker in the version of Darwin I'm running!
-    export SDKROOT="/Developer/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
+    export SDKROOT="$(xcode-select -print-path)/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
         # 
 fi
 
@@ -18,8 +18,8 @@ export ARCHFLAGS="-arch_errors_fatal -arch i386 -arch x86_64" # 10.6 can't do pp
     # Don't let "missing arch" or such get by.
     # "Universal"
 
-export CPPFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
-export  LDFLAGS="${SDKROOT:+-sysroot=}${SDKROOT:-}"
+export CPPFLAGS="${SDKROOT:+-isysroot }${SDKROOT:-}"
+export  LDFLAGS="${SDKROOT:+-isysroot }${SDKROOT:-}"
     # Make sure that any searching knows where to search.
 
 export    CFLAGS="-pipe -combine -mfix-and-continue -pie -Wall ${OPTFLAGS}"
