@@ -1,6 +1,18 @@
 #!/bin/bash --fail
 
-declare -a PROMPT_COMMANDS=()
+if [ "${PROMPT_COMMAND:-}" == "prompt_command_f" ]
+then return # short-circuit, nothing to do.
+fi
+
+# Initialise:
+#  Don't clobber.
+#  Avoid "unbound variable" errors.
+#  Avoid blank entries.
+#  Can't use declare(builtin) since doing so would mark the array as local.
+PROMPT_COMMANDS=( "${PROMPT_COMMANDS[@]:-}" )
+if [ "${PROMPT_COMMANDS[0]}" == "" ]
+then unset PROMPT_COMMANDS[0]
+fi
 
 function prompt_command_clear ()
 {
@@ -9,7 +21,7 @@ function prompt_command_clear ()
 
 function prompt_command_append ()
 {
-    PROMPT_COMMANDS[${#PROMPT_COMMANDS[@]:-0}]="$@"
+    PROMPT_COMMANDS["${#PROMPT_COMMANDS[@]}"]="$@"
 }
 
 function prompt_command_f ()
@@ -17,15 +29,10 @@ function prompt_command_f ()
     local pc
     for pc in "${PROMPT_COMMANDS[@]:-}"
     do 
-        $pc
-            # $pc is not quoted so that entire command lines can be specified in a single entry of PROMPT_COMMANDS
-            # Should prolly use eval.
+        eval "$pc"
     done
+    return 0
 }
 
-{
-  # This declaration must go within braces in order to be able to silence
-  # readonly variable error.
-    PROMPT_COMMAND=prompt_command_f
-} 2>/dev/null
+PROMPT_COMMAND=prompt_command_f
 readonly PROMPT_COMMAND
