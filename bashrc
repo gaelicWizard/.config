@@ -1,39 +1,20 @@
 #!/bin/bash --fail
 
-if [ -n "$BASH_ENV" ] #&& [ -r "$BASH_ENV" ]
-# slight variation on what bash(1) reports as $BASH_ENV's equivelant.
-then
-    eval source \"${BASH_ENV}\"
-    # I believe this will properly expand the _contents_ of BASH_ENV
-fi
+# if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi
 
-import trash
-    # Import my trash package
-import aqua
-    # Import my aqua package
-import path.bash_profile
-    # Import my path package
-import editor.bashrc
-    # Import my editor package
-import screen
-    # Import my screen package
-import ssh
-    # Import my ssh package
-import compiler.bashrc
-    # Import my compiler package
-import you_complete_me.bashrc
-    # Import my completion package
-import general
-    # Import my general package
-import bash.bashrc
-    # Import my history package
-import opt
-    # Import my opt package
-import rip.bashrc
-    # Import my rip package
+source ~/.bashrc.d/bashd
+    # backwards-compatability
 
-#import bash_completion
-    # Import the widely used, huge, can do everything, Bash Completion package
+function bashrcD ()
+{
+    local bashrc
+    for bashrc in ~/.bashrc.d/*.bashrc
+    do
+        echo "$bashrc"
+        source "$bashrc"
+    done
+}
 
-return 0
+bashrcD
+return
     # I deliberately return from this script early, since I occasionally fail to properly audit installers which bjork my system (i.e. MacPorts, which appends to .bashrc).

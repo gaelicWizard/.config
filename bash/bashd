@@ -6,7 +6,7 @@ then
     # Here, $MacOSX serves to indicate when my universal/Aqua environment has been loaded.
 fi
 
-BASHD=~/.rc.d
+BASHD=~/.bashrc.d
     # Where to find my init scripts
 
 declare -a BASHD_LOADED

@@ -1,6 +1,6 @@
 #!/bin/sh -c 'echo This file is meant to be sourced.'
 
-require path.bash_profile || return -1
+require path.bashrc || return -1
     # Import my path package
 
 # Path    # No need as of Snow Leopard, when /etc/paths.d finally works

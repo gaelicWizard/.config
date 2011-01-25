@@ -1,9 +1,9 @@
 #!/bin/bash --fail
 
-require path.bash_profile || return
+require path.bashrc || return
     # Require my path package
         #bashd_add_to_path_back()
-        #bashd_add_to_path_back_if_admin
+        #bashd_add_to_path_back_if_admin()
 
 local optPack
 for optPack in /opt/*
@@ -34,6 +34,6 @@ do
 	fi
 done
 
-#import macports
+#import macports.bashrc
     # Import my macports package
     #disabled due to my new policy on MacPorts: don't use it for anything that might be unexpected.

@@ -1,6 +1,6 @@
 #!/bin/bash --login
 
-require rip || return -1 || exit -1
+require rip.bashrc || return -1 || exit -1
     #defaultsReadAtomicMetadata()
 
 function dvdmedia2ite ()

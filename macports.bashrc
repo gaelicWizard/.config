@@ -6,7 +6,7 @@
 # Once the port command is issued, then the macports will be available.
 ##
 
-require path.bash_profile || return -1
+require path.bashrc || return -1
 
 MacPorts="/opt/macports"
 if [ ! -d "$MacPorts" ]
