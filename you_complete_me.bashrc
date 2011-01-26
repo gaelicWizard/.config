@@ -59,7 +59,7 @@ complete -b builtin
 {
   # These declarations must go within braces in order to be able to silence
   # readonly variable errors.
-  BASH_COMPLETION="${BASH_COMPLETION:-$BASHD/completion/bash_completion/bash_completion}"
-  BASH_COMPLETION_DIR="${BASH_COMPLETION_DIR:-$BASHD/completion/bash_completion/contrib}"
+  BASH_COMPLETION="${BASH_COMPLETION:-$BASHD/completion/bash-completion/bash_completion}"
+  BASH_COMPLETION_DIR="${BASH_COMPLETION_DIR:-$BASHD/completion/bash-completion/contrib}"
 } 2>/dev/null 
 readonly BASH_COMPLETION BASH_COMPLETION_DIR
