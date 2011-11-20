@@ -1,22 +1,10 @@
 notice_to:John+bashd@gaelicWizard.net
 
-source_rc_d
+bashrc
+bashd
+
 *.bash_profile
 *.bashrc
 
-aqua
-bashd
-bash.bashrc
-compiler.bashrc
-dead
-editor.bashrc
-general
-ite
-macports
-old_path
-opt
-path.bash_profile
-prompt_commands.bashrc
-screenrc
-ssh
-you_complete_me.bashrc
+source_rc_d
+

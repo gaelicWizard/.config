@@ -1,12 +1,6 @@
 #!/bin/bash -c 'exit 1'
 
-if false && [ ! "${MacOSX:=0}" -gt 0 ]
-then
-    eval "$(defaults read ~/.MacOSX/environment | fgrep '=' | sed -e 's/ = /=/g' -e 's/^/export /g')"
-    # Here, $MacOSX serves to indicate when my universal/Aqua environment has been loaded.
-fi
-
-BASHD=~/.bashrc.d
+BASHD=~/Library/init/bash
     # Where to find my init scripts
 
 declare -a BASHD_LOADED
@@ -14,7 +8,7 @@ declare -a BASHD_LOADED
 function import()
 {   # How to load my init scripts
     # Usage: `import package1 [package2] [package3] [...]'
-    
+    local i
     for i in "$@"
     do
         if [[ "${BASHD_LOADED[*]:-}" == *bashd_"$i"_bashd* ]]
