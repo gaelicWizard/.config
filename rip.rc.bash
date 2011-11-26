@@ -1,0 +1,1 @@
+../../../Projects/net.gaelicWizard.projects.localized/net.gaelicWizard.rip.localized/rip.bashrc
