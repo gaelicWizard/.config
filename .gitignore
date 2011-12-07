@@ -1,4 +1,4 @@
-rip.bashrc
-screen.bashrc
-trash.bashrc
+rip.rc.bash
+screen.funcs.bash
+trash.funcs.bash
 completion

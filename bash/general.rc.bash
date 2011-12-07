@@ -119,6 +119,7 @@ alias ztpm='ps axm -o pid,stat,rss,time,command | head -20'
     # Ummm....? I don't know what this does, actually...
 alias note='cat >> "`date "+%a %b %e %Y"`.txt"'
 alias screen_aevt='screen env AEDebugReceives=1 AEDebugSends=1'
+alias nyan='screen -t nyan nc miku.acm.uiuc.edu 23'
 
 #set -o noclobber
 
