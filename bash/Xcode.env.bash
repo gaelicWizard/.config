@@ -59,9 +59,8 @@ WARNFLAGS+="${WARNFLAGS:+ }${WARN64BIT:-} -Wall -Werror -Wnewline-eof -Wfour-cha
 #CPATH: Colon-separated list of -I paths. GCC and Clang.
 #LIBRARY_PATH: -L paths. GCC only.
 #CXFLAGS: Flags to use for all compiler invocations, see C.*FLAGS below.
-CXFLAGS+="${CXFLAGS:+ }-pipe -combine -Wall ${OPTFLAGS}"
+CXFLAGS+="${CXFLAGS:+ }-pipe -Wall ${OPTFLAGS}"
     # -pipe: reduce temp-files usage, and allows for partially parallelised compile-assemble.
-    # -combine: allow for inter-module optimisation, by passing all modules to the compiler in one go.
     # -Wall: be verbose by default.
     # $OPTFLAGS: Optimise build.
 #C.*FLAGS: Flags to use whenever the language-specific compiler may be invoked, per-language.
