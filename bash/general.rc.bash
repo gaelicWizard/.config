@@ -4,8 +4,6 @@ export FTP_PASSIVE=1 BLOCKSIZE=1024
 
 #alias locate='locate.sh'
 alias gam="python ~/Projects/External/GoogleAppsManager.svn/gam.py"
-alias sshfs='/Applications/MacFUSE/sshfs.app/Contents/Resources/sshfs-static'
-alias sshfs_orpheus='sshfs eon: ~/.temp/sshfs_mount_point -oreconnect,ping_diskarb,volname=Orpheus'
 
 ## Generally useful functions :-)
 function ls ()
