@@ -1,5 +1,7 @@
 #!/bin/bash --fail
 
+EDITOR="mate -w"
+
 if [ -z "${EDITOR:-}" ]
 then
     if [ -e "${HOME}/Tools/seewr.sh" ]

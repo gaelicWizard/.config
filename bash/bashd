@@ -1,6 +1,6 @@
 #!/bin/bash -c 'exit 1'
 
-BASHD=~/Library/init/bash
+BASHD=~/.config/GNU\ Bash
     # Where to find my init scripts
 
 declare -a BASHD_LOADED

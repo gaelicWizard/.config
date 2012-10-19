@@ -2,13 +2,15 @@
 
 alias LaunchCFMApp='/System/Library/Frameworks/Carbon.framework/Versions/Current/Support/LaunchCFMApp' 
     # Code Fragment Management applications can't be run ./app :-)
-alias apps="ps x -o command | grep '[ ]-psn_' | sort" 
+alias apps="ps x -o command | grep '[ ]-psn_' | sort" # <- shows full path
+#ps -xc -o command | egrep -c "^iTunes$" # <- shows name only
     # List all running Aqua applications
 alias idle="ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print \$NF/1000000000; exit}'" 
     # This returns the number of seconds since I typed anything or moved the mouse
 function DS_clean () { dot_clean -n "$1"; find "$1" -name .DS_Store -delete -print; }
     # Fails on FileVault homes, since dot_clean stops on errors and cannot read ~/.fseventsd
 function xml1 () { plutil -convert xml1 "$@"; }
+function exclude () { xattr -w com.apple.metadata:com_apple_backup_excludeItem com.apple.backupd "$@"; }
 
 ## Aqua/GUI related helpers
 function appinfo ()

@@ -69,7 +69,7 @@ readonly BASH_COMPLETION BASH_COMPLETION_DIR
 
 
 
-for bash_completion in ~/Library/init/bash/completion/*.bash
+for bash_completion in ~/.config/GNU\ Bash/completion/*.bash
 do
     source "$bash_completion"
 done
