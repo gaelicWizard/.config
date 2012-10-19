@@ -1,1 +1,1 @@
-../../../Projects/screen-osx/Screen/screen
+../../../Projects/net.gaelicWizard.projects.localized/screen-osx/Screen/screen

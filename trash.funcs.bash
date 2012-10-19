@@ -1,1 +1,1 @@
-../../../Projects/MacTrash/trash
+../../../Projects/net.gaelicWizard.projects.localized/MacTrash/trash
