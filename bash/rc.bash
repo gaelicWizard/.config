@@ -9,9 +9,9 @@
 # Alias(es) et al which should be available during interactive shells.
 ##
 
-for rc_mine in  ~/.config/GNU\ Bash/*.funcs.bash \
-                ~/.config/GNU\ Bash/*.aliases.bash \
-                ~/.config/GNU\ Bash/*.rc.bash
+for rc_mine in  ~/.config/Bash/*.funcs.bash \
+                ~/.config/Bash/*.aliases.bash \
+                ~/.config/Bash/*.rc.bash
 # Load everything for interactive shells, but don't reset inherited environment.
 do
     source "$rc_mine"
