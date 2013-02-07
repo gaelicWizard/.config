@@ -1,5 +1,5 @@
 #!/bin/bash --fail
 
-: "${EDITOR:=mate_wait}" "${ALTERNATE_EDITOR:=nano}"
+: "${EDITOR:=~/Tools/mate_wait}" "${ALTERNATE_EDITOR:=/usr/bin/nano}"
 
 alias e='${EDITOR:-nano}' # simpler, shorter, better.
