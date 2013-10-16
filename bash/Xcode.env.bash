@@ -21,8 +21,8 @@ then
         # For some unknown reason, GCC is compiled with --prefix=/usr (but seemingly with --libdir /lib, and _something_ makes it want to search /usr/lib/../../libexec/gcc or some such.), even though it is housed inside the relocatable /Developer hierarchy. 
     export SDKROOT="${DEVELOPER_DIR}/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk"
         # Use the most-recent SDK.
-    export CPPFLAGS+="${CPPFLAGS:+ }${SDKROOT:+-isysroot }${SDKROOT:-}"
-    export  LDFLAGS+="${LDFLAGS:+ }${SDKROOT:+-isysroot }${SDKROOT:-}"
+#    export CPPFLAGS+="${CPPFLAGS:+ }${SDKROOT:+-isysroot }${SDKROOT:-}"
+#    export  LDFLAGS+="${LDFLAGS:+ }${SDKROOT:+-isysroot }${SDKROOT:-}"
         # Apple's docs say to use -isysroot instead of --sysroot.
 
     export ARCHS="$(ls /usr/libexec/gcc/darwin 2>/dev/null)"
