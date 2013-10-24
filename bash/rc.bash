@@ -15,8 +15,7 @@ for rc_mine in  ~/.config/Bash/*.funcs.bash \
 # Load everything for interactive shells, but don't reset inherited environment.
 do
     source "$rc_mine"
-done
-unset rc_mine
+done; unset rc_mine
 
 return
     # deliberately return early.
