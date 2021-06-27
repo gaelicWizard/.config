@@ -8,4 +8,6 @@ This repository was created with a modified technique based on [Nicola Paolucci]
     alias config='git --git-dir="$HOME/Projects/config.git" --work-tree="${XDG_CONFIG_HOME:-$HOME/Library/Preferences}"'  
     git clone --bare https://github.com/gaelicWizard/.config.git ~/Projects/config.git  
     config config --local status.showUntrackedFiles no  
+    config update-index --skip-worktree README.md  
+
 
