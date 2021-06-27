@@ -1,0 +1,30 @@
+[ui]
+username = John D Pell
+ssh = ssh -C
+
+[defaults]
+email = --diffstat --git
+
+[extensions]
+#alias=
+convert=
+extdiff=
+graphlog=
+patchbomb=
+record=
+#mercurial_keyring = 
+#hgext.mercurial_keyring = /Library/Python/bin/mercurial_keyring.py
+
+#[alias]
+#blame=annotate -u -n
+#rec=record
+
+[diff]
+git=True
+
+[email]
+from = John D Pell <john+hg@gaelicWizard.net>
+
+[extdiff]
+cmd.sbsdiff  = diff
+opts.sbsdiff = -N -b --side-by-side --width=90
