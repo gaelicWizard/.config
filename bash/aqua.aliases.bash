@@ -1,6 +1,6 @@
 #!/bin/sh -c 'echo This file is meant to be sourced.'
 
-export BROWSER="open -a Safari"
+export BROWSER="open" # -a Safari"
 
 alias LaunchCFMApp='/System/Library/Frameworks/Carbon.framework/Versions/Current/Support/LaunchCFMApp' 
     # Code Fragment Management applications can't be run ./app :-)
