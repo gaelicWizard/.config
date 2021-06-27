@@ -13,7 +13,7 @@
 [core]
 	pager = less -FRSX
 	whitespace=fix,tabwidth=4,indent-with-non-tab,trailing-space #,cr-at-eol
-	excludesfile = ~/.gitignore
+	#excludesfile = ~/.gitignore
 	autocrlf = input
 	safecrlf = true
 
