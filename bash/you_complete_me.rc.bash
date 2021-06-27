@@ -11,7 +11,7 @@
 shopt -s extglob progcomp
 
 # Make sudo(1) complete just like everything else! :-D
-complete -c -f command sudo
+complete -c -f command sudo man
     # A function would be useful for making sudo complete only the first argument.
 
 # Make ssh(1) complete using hosts from known_hosts and ssh_config
@@ -23,7 +23,7 @@ _complete_ssh_hosts ()
                 [ -f ~/.ssh/config ] && awk '/^host/ {print $2}' ~/.ssh/config)
         COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur) )
 }
-complete -F _complete_ssh_hosts ssh
+complete -F _complete_ssh_hosts ssh slogin
 
 # Make directory commands see only directories
 complete -d pushd cd
