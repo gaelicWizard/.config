@@ -1,5 +1,7 @@
 #!/bin/bash --fail
 
+PATH="/Library/Perl/bin:$PATH"
+
 ##
 # Set some defaults for Perl.
 # moved to ~/.MacOSX/environment.plist
