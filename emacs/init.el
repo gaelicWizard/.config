@@ -1,7 +1,7 @@
 ;; UTF-8
 (set-terminal-coding-system 'utf-8)
-    (set-keyboard-coding-system 'utf-8)
-    (prefer-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
 ;;
 
 ;; EmacsServer
@@ -14,8 +14,9 @@
 (global-font-lock-mode t)
 ;;
 
-;; Always use spaces
-(setq-default indent-tabs-mode nil)
+;; Always use tabs
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
 ;;
 
 ;; Make title bar meaningful
