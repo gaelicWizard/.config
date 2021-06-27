@@ -10,4 +10,10 @@ This repository was created with a modified technique based on [Nicola Paolucci]
     config config --local status.showUntrackedFiles no  
     config update-index --skip-worktree README.md  
 
+## References
+
+durdn-bb.cfg    https://bitbucket.org/durdn/cfg.git
+durdn-gh.cfg    https://github.com/durdn/cfg.git
+sjl.dotfiles    https://hg.stevelosh.com/dotfiles
+skwp.dotfiles   https://github.com/skwp/dotfiles.git
 
