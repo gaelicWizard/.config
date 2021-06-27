@@ -1,1 +1,8 @@
+# hack to workaround 'Icon^M' file name for custom icons on Mac
 ignore -text
+
+# Convert binary plist files to xml
+*.plist diff=plist
+
+# Convert UTF-16 (with BOM) to UTF-8
+*.strings diff=localizablestrings
