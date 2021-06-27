@@ -8,7 +8,7 @@ fi
 #  Don't clobber.
 #  Avoid "unbound variable" errors.
 #  Avoid blank entries.
-#  Can't use declare(builtin) since doing so would mark the array as local.
+#  Can't use declare(builtin) since doing so might mark the array as local.
 PROMPT_COMMANDS=( "${PROMPT_COMMANDS[@]:-}" )
 if [ "${PROMPT_COMMANDS[0]}" == "" ]
 then unset PROMPT_COMMANDS[0]
