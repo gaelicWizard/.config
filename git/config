@@ -16,6 +16,7 @@
 	#excludesfile = ~/.gitignore
 	autocrlf = input
 	safecrlf = true
+	ignoreCase = true
 
 [alias]
 
