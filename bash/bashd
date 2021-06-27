@@ -1,0 +1,51 @@
+#!/bin/bash -c 'exit 1'
+
+BASHD=~/.config/GNU\ Bash
+    # Where to find my init scripts
+
+declare -a BASHD_LOADED
+    # Keep track of loaded init scripts
+function import()
+{   # How to load my init scripts
+    # Usage: `import package1 [package2] [package3] [...]'
+    local i
+    for i in "$@"
+    do
+        if [[ "${BASHD_LOADED[*]:-}" == *bashd_"$i"_bashd* ]]
+        then
+            continue
+            # If we've already loaded this one, then just return.
+        fi
+        BASHD_LOADED_NEW="${#BASHD_LOADED[@]}"
+            # Figure out where to put the next entry
+
+        if [ -f "${BASHD}/$i" ]
+        then
+            if BASHD_LOADED["$BASHD_LOADED_NEW"]=bashd_"$i"_bashd
+            then
+                . "${BASHD}/$i" || return 2
+            fi
+        elif [ -d "${BASHD}/$i" ]
+        then
+            if BASHD_LOADED["$BASHD_LOADED_NEW"]=bashd_"$i"_bashd
+            then
+                . "${BASHD}/$i/$i" || return 2
+            fi
+        else
+            echo "$FUNCNAME: Failed to find '$i'." 1>&2
+            return 1
+        fi
+            # Check it, Record it, Source it.
+    done
+}
+
+function require { import "$@"; }
+function bashd { import "$@"; }
+
+function rehash()
+{
+    unset BASHD_LOADED
+    declare -a BASHD_LOADED
+    
+    source ~/.bashrc
+}

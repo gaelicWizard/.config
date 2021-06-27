@@ -1,0 +1,110 @@
+#!/bin/sh -c 'echo This file is meant to be sourced.'
+
+bashd general
+    # Import my general package
+
+function npath ()
+{ 
+    local TMPIFS PATHn
+    TMPIFS="$IFS"; IFS=":"; PATHn=( $PATH ); IFS="$TMPIFS"; unset TMPIFS
+    
+    echo "${PATHn[@]}"
+#    m=0
+#    while [ $m -lt "${#PATHn[@]}" ]; do echo -n
+#        echo "${PATHn[$m]}"
+#        m=$(($m+1))
+#    done
+}
+
+function inpath ()
+{
+    local i
+    for i in `npath`; do 
+        [ "$1" == "$i" ] && return 0
+    done
+    return 1
+}
+
+
+
+##
+# Path, etc
+##
+
+SBIN=false
+[ "`id -Gn "$USER" | grep admin`" ] && SBIN=true
+
+# Add the X Windowing System to the path
+if [ -d '/usr/X11R6' -a -z "${X11loc:-}" ];then echo -n
+    X11loc='/usr/X11R6'
+#else if [ -d 
+        # This needs to be fixed to find the appropriate directory on non-XFree86 systems or custom installs (OpenWindows, etc)
+#        X11bin=
+fi
+if [ -n "${X11loc:-}" ] && ! inpath "$X11loc/bin" ;then echo -n 
+    export PATH="${PATH}:${X11loc}/bin"
+        # Added X Window System tools to my path
+fi
+
+# Add the Mac OS X Developer Tools to the path
+if [ -d /Developer/Tools ] && ! inpath "/Developer/Tools";then echo -n
+    export PATH="${PATH}:/Developer/Tools"
+        	# Added Apple's Developer Tools' tools to my path
+fi
+
+# Add localally installed packages to the path
+if [ -d /usr/local ];then echo -n
+    [ "$SBIN" == true ] && ! inpath /usr/local/sbin && export PATH="/usr/local/sbin:${PATH}"
+    [ -d /usr/local/bin ] && ! inpath "/usr/local/bin" && export PATH="/usr/local/bin:${PATH}"
+fi
+
+# Correct for, and include, /{?[s]}bin
+! inpath "/sbin" && \
+ [ "$SBIN" == true ] && \
+ export PATH="/sbin:${PATH}"
+
+! inpath "/bin" && \
+ export PATH="/bin:${PATH}"
+
+# Correct for, and include, /usr/{?[s]}bin
+! inpath "/usr/sbin" && \
+ [ "$SBIN" == true ] && \
+ export PATH="/usr/sbin:${PATH}"
+
+! inpath "/usr/bin" && \
+ export PATH="/usr/bin:${PATH}"
+
+# Add Darwin Ports to the path
+if [ -d /opt/dports ]; then echo -n
+    ! inpath "/opt/dports/sbin" && \
+        [ "$SBIN" == true ] && \
+        export PATH="/opt/dports/sbin:${PATH}"
+    ! inpath "/opt/dports/bin" && \
+        export PATH="/opt/dports/bin:${PATH}"
+fi
+
+# Add my Home Tools to the path
+if [ -d "${HOME}/Tools" ] && ! inpath "${HOME}/Tools";then echo -n
+    export PATH="${HOME}/Tools:${PATH}" 
+        # Added my own CLI apps to my path, equiv to ${HOME}/bin on non-NeXT systems
+
+    proc="`uname -p`"
+
+    # Check for arc specific folders, then add them to the path
+    if [ -d "${HOME}/Tools/${proc}" ] && ! inpath "${HOME}/Tools/${proc}";then echo -n
+        export PATH="${HOME}/Tools/${proc}:${PATH}"
+            # If ~/Tools/{powerpc,x86,...} exists, then add it to the path
+
+        os="`uname -s`"
+
+        # Check for os specific folders, then add them to the path
+        if [ -d "${HOME}/Tools/${proc}/${os}" ] && ! inpath "${HOME}/Tools/${proc}/${os}";then echo -n
+            export PATH="${HOME}/Tools/${proc}/${os}:${PATH}"
+                # If ~/Tools/{powerpc,x86,...}/{Darwin,Linux,...} exists, then add it to the path
+        fi
+        unset os
+    fi
+    unset proc
+fi
+
+unset SBIN

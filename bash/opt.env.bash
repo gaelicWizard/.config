@@ -1,0 +1,34 @@
+#!/bin/bash --fail
+
+declare -F bashd_add_to_path_back >/dev/null || { echo "opt: Unable to manipulate path." 1>&2; return; }
+    # Require my path package
+        #bashd_add_to_path_back()
+        #bashd_add_to_path_back_if_admin()
+
+for optPack in /opt/*
+do
+    if [ "$optPack" == "/opt/macports" ] || [ "$optPack" == "/opt/local" ]
+    then continue # Ignore MacPorts.
+    fi
+
+	if [ -d "$optPack" ]
+        then
+		if [ -d $optPack/bin ]
+        then
+			bashd_add_to_path_back "$optPack/bin"
+		fi
+		if [ -d $optPack/sbin ]
+        then
+			bashd_add_to_path_back_if_admin "$optPack/sbin"
+		fi
+		if [ -d $optPack/share/aclocal ]
+        then
+			export ACLOCAL_FLAGS="-I $optPack/share/aclocal${ACLOCAL_FLAGS:+ }${ACLOCAL_FLAGS:-}"
+			#TODO:FIXME: $ACLOCAL_FLAGS is invalid in the event of a space in $optPack.
+		fi
+		if [ -d $optPack/lib/pkgconfig ]
+        then
+			export PKG_CONFIG_PATH="$optPack/lib/pkgconfig/${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH:-}"
+		fi
+	fi
+done; unset optPack
