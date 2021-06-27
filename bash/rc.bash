@@ -3,7 +3,7 @@
 ###
 ## rc.bash: for use as ~/.bashrc, sourced for interactive, non-login shells.
 ###
-
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 ##
 # Alias(es) et al which should be available during interactive shells.
