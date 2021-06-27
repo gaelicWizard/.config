@@ -9,4 +9,4 @@ alias easy_uninstall="easy_install -mxN"
     # NOTE: This will not actually remove the egg.
 
 type -p pip >/dev/null &&
-    eval "`pip completion --bash`"
+    eval "`pip completion --bash 2>/dev/null`"
