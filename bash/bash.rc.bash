@@ -26,20 +26,23 @@ HISTFILESIZE=100000 # 100k
     # Don't truncate the history file until it is ENORMOUS.
 HISTIGNORE="&:l:ls:ls -la:ls -lA:cd:[bf]g:exit:quit:bye"
     # Drop repeats and other useless things from the command history.
-HISTCONTROL="ignoredups:ignorespace"
+HISTCONTROL="ignoredups:erasedups:ignorespace"
     # Drop repeats (redundant), and drop lines beginning with a space.
 
 CDPATH=":~:/Volumes"
     # An empty first element means current-directory, but doesn't print every single time used.
 
+function _history_merge_f ()
+{
+    history -a
+        # Append new history immediately.
+    history -c
+        # Clear in-memory history.
+    history -r
+        # Re-read history from disk.
+}
 
 declare -F prompt_command_append >/dev/null || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
     # Import my prompt_commands package, required by prompt_command_append()
 
-prompt_command_append "history -a"
-    # append the command history right away
-#prompt_command_append "history -n"
-    # read in any new entries right away
-    # this is resource intensive, requiring disk access after each command...
-    # this also has the effect of doubling all of the recent history... so disabled...
-
+prompt_command_append "_history_merge_f"
