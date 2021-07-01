@@ -1,6 +1,6 @@
 #!/bin/bash --fail
 
-shopt -u checkhash
+#shopt -u checkhash
     # Make sure these stick, for a while at least.
     #shopt -s expand_aliases
 
