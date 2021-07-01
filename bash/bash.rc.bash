@@ -27,7 +27,9 @@ HISTFILESIZE=100000 # 100k
 HISTIGNORE="&:l:ls:ls -la:ls -lA:cd:[bf]g:exit:quit:bye"
     # Drop repeats and other useless things from the command history.
 HISTCONTROL="ignoredups:erasedups:ignorespace"
-    # Drop repeats (redundant), and drop lines beginning with a space.
+    # Drop repeats (redundant) from recorded history, 
+    # exclude repeats from loaded history, and
+    # drop lines beginning with a space.
 
 CDPATH=":~:/Volumes"
     # An empty first element means current-directory, but doesn't print every single time used.
@@ -36,10 +38,8 @@ function _history_merge_f ()
 {
     history -a
         # Append new history immediately.
-    history -c
-        # Clear in-memory history.
-    history -r
-        # Re-read history from disk.
+    history -n
+        # Read new history entries from disk.
 }
 
 declare -F prompt_command_append >/dev/null || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
