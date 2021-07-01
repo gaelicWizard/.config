@@ -38,8 +38,10 @@ function _history_merge_f ()
 {
     history -a
         # Append new history immediately.
-    history -n
-        # Read new history entries from disk.
+    history -c
+        # Clear in-memory history.
+    history -r
+        # Re-read history from disk.
 }
 
 declare -F prompt_command_append >/dev/null || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
