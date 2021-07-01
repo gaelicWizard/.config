@@ -3,6 +3,7 @@
 declare auto_resume=exact           # I'll prolly never use this.
 shopt -so nounset                   # Error on unset parameters.
 shopt -s no_empty_cmd_completion    # Don't expand all available commands.
+shopt -s checkhash                  # Check that hash is usable before using it
 #shopt -s failglob                   # Don't continue if a pattern doesn't match any filenames.
 #shopt -s nullglob                   # Don't pass the pattern itself when expanding filenames.
 shopt -s nocaseglob                 # Case-insensitive filename expansion.
