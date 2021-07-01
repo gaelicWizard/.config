@@ -66,7 +66,7 @@ fi
 alias cp='cp -i' # Don't overwrite w/o my permission!
 alias mv='mv -i' # Ditto...
  
-alias swap="vm_stat && ls -l /var/vm/swapfile* | awk '{print \$6 \" \"  \$10}'"
+alias swap="vm_stat && ls -l /System/Volumes/VM/swapfile* | awk '{print \$6 \" \"  \$10}'"
     # How many swap files again?
 alias swaploop="while clear; do swap; sleep 10; done"
 
