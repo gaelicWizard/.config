@@ -6,10 +6,9 @@
 unset SSH_HOSTNAME
 if [ -n "${SSH_CONNECTION:-}" ]
 then 
-    #TODO:FIXME: Don't clobber $i
+    local i
     for i in `host $(echo $SSH_CONNECTION | awk '{print $1}')`; do SSH_HOSTNAME="$i"; done
     export SSH_HOSTNAME
-    unset i
 fi
 
 # Reset SSH_CLIENT from SSH_CONNECTION
