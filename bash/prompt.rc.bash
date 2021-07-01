@@ -20,7 +20,7 @@ function colouriseText ()
 ##
 if isinteractive
 then
-    PS1="\[\033[G\][\h:\w\$(__git_ps1 \" (%s)\")] \[\e[1;34m\]\u\[\e[0m\]\`[ \$? -ne 0 ] && echo -n '\[\e[00;31m\]'\`\\$\`echo -n '\[\e[0m\]'\` "
+    PS1="\[\e[G\][\h:\w\$(__git_ps1 \" (%s)\")] \[\e[1;34m\]\u\[\e[0m\]\`[ \$? -ne 0 ] && echo -n '\[\e[00;31m\]'\`\\$\[\e[0m\] "
     bind '"\e[A"':history-search-backward
     	# Bind the up arrow to history search, instead of history step...
     bind '"\e[B"':history-search-forward
