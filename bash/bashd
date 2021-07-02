@@ -1,9 +1,9 @@
 #!/bin/bash -c 'exit 1'
 
-BASHD=~/.config/GNU\ Bash
+BASHD=${XDG_CONFIG_HOME:-~/.config}/Bash
     # Where to find my init scripts
 
-declare -a BASHD_LOADED
+declare -ax BASHD_LOADED
     # Keep track of loaded init scripts
 function import()
 {   # How to load my init scripts
@@ -47,5 +47,5 @@ function rehash()
     unset BASHD_LOADED
     declare -a BASHD_LOADED
     
-    source ~/.bashrc
+    source ${BASH_ENV:-~/.bashrc}
 }
