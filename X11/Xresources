@@ -4,11 +4,13 @@
 ! Anything that starts with XTerm* is about xterm only, similar for other programs
 XTerm*backarrowKey: 0
 !	 Fix XTerm's clobbering of "backspace/delete" in apps (less,etc) to ^H
-!XTerm*loginShell: 1
+XTerm*loginShell: 1
 !	 Start a login shell instead of a normal shell in xterm (& friends).
+XTerm*locale: UTF-8
 XTerm*utf8: 1
 !	 Make it all UNICODE!
-XTerm*termName: xterm-color
+!	see https://undeadly.org/cgi?action=article&sid=20160308204011
+XTerm*termName: xterm-256color
 !	 I can do color, so show me color!
 XTerm*scrollBar: off
 !	 I don't need a scroll bar if I use screen!
