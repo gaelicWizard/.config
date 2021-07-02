@@ -11,12 +11,12 @@
 	<key>SULastProfileSubmissionDate</key>
 	<date>2021-06-26T05:13:05Z</date>
 	<key>app_to_run</key>
-	<string>/opt/X11/bin/xterm</string>
+	<string>xterm ~/Tools/screenAppAttach.sh</string>
 	<key>apps_menu</key>
 	<array>
 		<array>
 			<string>Terminal</string>
-			<string>xterm</string>
+			<string>xterm ~/Tools/screenAppAttach.sh</string>
 			<string>n</string>
 		</array>
 		<array>
@@ -29,6 +29,11 @@
 			<string>xlogo</string>
 			<string></string>
 		</array>
+		<array>
+			<string>ZSH</string>
+			<string>xterm zsh</string>
+			<string></string>
+		</array>
 	</array>
 	<key>cache_fonts</key>
 	<true/>
@@ -36,6 +41,8 @@
 	<true/>
 	<key>enable_iglx</key>
 	<false/>
+	<key>login_shell</key>
+	<string>/bin/sh</string>
 	<key>no_auth</key>
 	<true/>
 	<key>nolisten_tcp</key>
