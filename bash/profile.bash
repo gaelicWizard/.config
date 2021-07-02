@@ -11,9 +11,9 @@
 if [ -z "${MAC_ENV_IS_LOADED:-}" ]
 # Some environment is stored elsewhere.
 then
-    eval "$(defaults read ~/.MacOSX/environment | fgrep '=' | sed -e 's/ = /=/g' -e 's/^/export /g')"
+    #eval "$(defaults read ~/.MacOSX/environment | fgrep '=' | sed -e 's/ = /=/g' -e 's/^/export /g')"
 fi
-export MAC_ENV_IS_LOADED=yes # this should have already been set by the above.
+export MAC_ENV_IS_LOADED="${MAC_ENV_IS_LOADED:=maybe}" # this should have already been set by the above.
 
 for functions_mine in ~/.config/Bash/*.funcs.bash
 # Load helper functions.
