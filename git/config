@@ -19,6 +19,7 @@
 	ignoreCase = true
 
 [alias]
+	remotes = remote -v
 
 [diff]
 #	renamelimit = 0
