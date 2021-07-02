@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2021-07-02T04:18:08Z</date>
+	<key>SULastProfileSubmissionDate</key>
+	<date>2021-06-26T05:13:05Z</date>
+	<key>app_to_run</key>
+	<string>/opt/X11/bin/xterm</string>
+	<key>apps_menu</key>
+	<array>
+		<array>
+			<string>Terminal</string>
+			<string>xterm</string>
+			<string>n</string>
+		</array>
+		<array>
+			<string>xman</string>
+			<string>xman</string>
+			<string></string>
+		</array>
+		<array>
+			<string>xlogo</string>
+			<string>xlogo</string>
+			<string></string>
+		</array>
+	</array>
+	<key>cache_fonts</key>
+	<true/>
+	<key>done_xinit_check</key>
+	<true/>
+	<key>enable_iglx</key>
+	<false/>
+	<key>no_auth</key>
+	<true/>
+	<key>nolisten_tcp</key>
+	<true/>
+	<key>option_sends_alt</key>
+	<false/>
+	<key>startx_script</key>
+	<string>/opt/X11/bin/startx</string>
+	<key>sync_keymap</key>
+	<true/>
+</dict>
+</plist>
