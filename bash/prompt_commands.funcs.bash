@@ -24,7 +24,7 @@ function prompt_command_append ()
     PROMPT_COMMANDS["${#PROMPT_COMMANDS[@]}"]="$@"
 }
 
-function prompt_command_f ()
+function _prompt_command_f ()
 {
     local pc
     for pc in "${PROMPT_COMMANDS[@]:-}"
@@ -34,5 +34,5 @@ function prompt_command_f ()
     return 0
 }
 
-PROMPT_COMMAND=prompt_command_f
+PROMPT_COMMAND=_prompt_command_f
 readonly PROMPT_COMMAND
