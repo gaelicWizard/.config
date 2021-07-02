@@ -49,14 +49,14 @@ ignorecase on
 defescape ^zz # multiuser
 escape ^zz # current user
 	# This sets my escape character to be C-z, instead of C-a. 
-#defbufferfile "$HOME/.temp/screenbufferfile"
-bufferfile "$HOME/.temp/screenbufferfile"
+#defbufferfile "$TMPDIR/screenbufferfile"
+bufferfile "$TMPDIR/screenbufferfile"
     # Specifies a file to use when copying/pasting
-#defhardcopydir "$HOME/.temp"
-hardcopydir "$HOME/.temp"
+#defhardcopydir "$TMPDIR"
+hardcopydir "$TMPDIR"
     # This tells screen that when I save a screen-shot, not to dump it in ~
-#deflogfile "$HOME/.screen/screenlog.%n"
-logfile "$HOME/.screen/screenlog.%n"
+#deflogfile "$SCREENDIR/screenlog.%n"
+logfile "$SCREENDIR/screenlog.%n"
     # This tells screen where to save a log of all window contents, via command "log"
 idle 3600 detach
     # disconnect idle terminals... this is screen, you won't lose anything!
@@ -77,7 +77,7 @@ termcapinfo nsterm|xterm|xterm-color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 sorendition "+b kG"
     # Make screen messages stand out a little more - black on bright green.
 #
-bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+bind R eval "source $SCREENRC" "echo '.screenrc reloaded!'"
 	# Reload screenrc with C-z R
 
 # Disable dangerous C-4 & other bad bindings
@@ -100,8 +100,8 @@ bind 0 select 10
 
 
 ##
-#source "$HOME/.screenrc-$SCREEN"
-	# The actual function of this is to source a file ("$HOME/.screenrc-") if we are _not_ nested.
+#source "$SCREENRC-$SCREEN"
+	# The actual function of this is to source a file ("$SCREENRC-") if we are _not_ nested.
 setenv SCREEN $TERM
 	# Keep track of the terminal setting before I get inside screen
 ##
