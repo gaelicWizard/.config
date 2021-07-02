@@ -1,6 +1,22 @@
 #!/bin/sh -c 'echo This file is meant to be sourced.'
 
-export FTP_PASSIVE=1 BLOCKSIZE=1024 
+export BLOCKSIZE=1024 
+
+mkdir -p -m u+rwX,go-rwx "${SHELL_SESSION_DIR:=${XDG_STATE_HOME:-$HOME/.}${XDG_STATE_HOME:+/}bash_sessions}"
+readonly SHELL_SESSION_DIR
+
+if [ -r "/etc/bashrc_${TERM_PROGRAM:-}" ]
+then
+    : "${INSIDE_EMACS:=}"
+    source /etc/bashrc_${TERM_PROGRAM:-} 2> >(fgrep -v "PROMPT_COMMAND: readonly" | fgrep -v "SHELL_SESSION_DIR: readonly")
+        # Import Apple's weird session management stuff...just for some functions
+        # Agressively discard the attempt to alter $PROMPT_COMMAND
+        # Agressively discard the attempt to alter $SHELL_SESSION_DIR
+    [ -z "$INSIDE_EMACS" ] && unset INSIDE_EMACS
+        # Deal with Apple's shody code standards
+    prompt_command_append '_screen_print_dcs_f `update_terminal_cwd`'
+    #shell_session_save_user_state() { echo MY_VAR="'$MY_VAR'" >> "$SHELL_SESSION_FILE"; }
+fi
 
 #alias locate='locate.sh'
 alias gam="python ~/Projects/External/GoogleAppsManager.svn/gam.py"
