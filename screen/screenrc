@@ -66,12 +66,12 @@ blankerprg nice cmatrix -absu9
     # Try to make the title of each new shell dynamic
 defhstatus "^EH:^Ew"
     # Make my "hard status" look like "hostname: 0 bash 1* bash" for two "bash" windows, window #1 current.
-termcapinfo nsterm|xterm|xterm-r6|rxvt|xterm-color|gnome-terminal|konsole|zvt|dtterm|kterm|Eterm|zterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+termcapinfo nsterm|xterm|xterm-r6|rxvt|xterm-color|xterm-256color|gnome-terminal|konsole|zvt|dtterm|kterm|Eterm|zterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
     # Print the hardstatus line in the menu bar, nsterm is Terminal.app, others are xterm's cousins
 #
 # 256 color xterm
 attrcolor b ".I"
-termcapinfo nsterm|xterm|xterm-color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo nsterm|xterm|xterm-color|xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #defbce "on"
 #
 sorendition "+b kG"
