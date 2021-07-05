@@ -7,9 +7,9 @@ function slogin ()
     #  remote host. If we're running within screen(1), then open a
     #  new window.
     
-    local i TITLE 
+    local i TITLE SCREENPID SCREENCLI SCREEN_CLI SCREEN_COMMAND
     
-    SCREEN_COMMAND_DEFAULT="screen -A -U -xRR -p + -S gnu.screen"
+    local SCREEN_COMMAND_DEFAULT="screen -A -U -xRR -p + -S gnu.screen"
 
     if declare -F isscreen >/dev/null && isscreen
     then
@@ -25,8 +25,9 @@ function slogin ()
         done
 
         SCREENPID="${STY%%.*}"
-        SCREENCLI=$(ps -eo pid,command | fgrep "${SCREENPID:=SCREENPID}" | fgrep -v fgrep)
-        SCREEN_COMMAND="${SCREENCLI/#${SCREENPID} SCREEN/screen}"
+        SCREENCLI="$(ps -xo pid,command | fgrep "${SCREENPID:=$$}" | fgrep -v fgrep)"
+        SCREEN_CLI="${SCREENCLI## }" # remove whitespace...?
+        SCREEN_COMMAND="${SCREEN_CLI/#${SCREENPID} SCREEN/screen}"
             # Get the command line of the running screen session to use as the command line for the remote.
 
         screen -t "$TITLE" slogin -t "$@" exec '"${SHELL:-/bin/bash}"' --login -c '"exec '"${SCREEN_COMMAND:=$SCREEN_COMMAND_DEFAULT}"'"'
