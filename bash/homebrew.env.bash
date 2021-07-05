@@ -2,5 +2,6 @@
 
 # Specify defaults for Homebrew Cask.
 # (Install cask with brew tap caskroom/cask and brew tap caskroom/versions.)
-export HOMEBREW_CASK_OPTS="--appdir=/Applications" # Use global /Applications instead of ~/Applications.
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --colorpickerdir=/Library/ColorPickers --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --mdimporterdir=/Library/Spotlight --dictionarydir=/Library/Dictionaries --servicedir=/Library/Services --input-methoddir='/Library/Input Methods' --internet-plugindir='/Library/Internet Plug-Ins' --audio-unit-plugindir=/Library/Audio/Plug-Ins/Components --vst-plugindir=/Library/Audio/Plug-Ins/VST --vst3-plugindir=/Library/Audio/Plug-Ins/VST3 --screen-saverdir='/Library/Screen Savers' "
+	# Use global /Applications instead of ~/Applications.
 
