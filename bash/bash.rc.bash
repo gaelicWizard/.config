@@ -31,8 +31,10 @@ HISTCONTROL="ignoredups:erasedups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
     # exclude repeats from loaded history, and
     # drop lines beginning with a space.
+HISTFILE="${XDG_STATE_HOME:-~/.local/share}/bash/history"
+#HISTTIMEFORMAT= # man strftime
 
-CDPATH=":~:/Volumes"
+CDPATH=":~:/Volumes:~/Projects"
     # An empty first element means current-directory, but doesn't print every single time used.
 
 function _history_merge_f ()
