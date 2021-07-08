@@ -2,6 +2,14 @@
 	name = John D Pell
 	email = John+git@gaelicWizard.net
 
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpServerPort = 587
+	smtpUser = john@gaelicWizard.net
+	# credentials from git-credential
+	confirm = auto
+
 [color]
 	diff = auto
 	status = auto
