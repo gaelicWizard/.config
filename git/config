@@ -8,7 +8,7 @@
 	smtpServerPort = 587
 	smtpUser = john@gaelicWizard.net
 	# credentials from git-credential
-	confirm = auto
+	confirm = always
 
 [color]
 	diff = auto
@@ -39,6 +39,9 @@
 [apply]
 	whitespace = fix
 
+[branch]
+	autosetuprebase = always
+
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
@@ -48,7 +51,7 @@
 	merge = refs/heads/main
 
 [github]
-	user = pellican
+	user = gaelicWizard
 	token = 15e03b338d55b6e903a2789404eced50
 [credential]
 	helper = osxkeychain
@@ -69,6 +72,8 @@
 	push = HEAD
 [mergetool]
 	keepBackup = true
+[url "https://github.com"]
+	insteadOf = gh:
 
 # https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
