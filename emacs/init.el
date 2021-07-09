@@ -85,3 +85,9 @@
 ;;;
 ;;;(require 'setup-php-drupal)
 ;;;(setup-php-drupal)
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+;(require 'mac-pseudo-daemon)

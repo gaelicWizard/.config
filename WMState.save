@@ -75,8 +75,8 @@
     Name = Logo.WMClip;
     BuggyApplication = No;
     AutoLaunch = No;
-    Lock = No;
     Position = "64,0";
+    Lock = No;
     Command = "-";
   };
   Menus = {
@@ -87,8 +87,8 @@
     {
       Clip = {
         AutoRaiseLower = No;
-        Applications = ();
         AutoCollapse = No;
+        Applications = ();
         Collapsed = No;
         AutoAttractIcons = No;
         Lowered = Yes;

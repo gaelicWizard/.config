@@ -1,6 +1,10 @@
 !Turn on color in xterm and similar applications
 *customization: -color
 
+!Specify location to search for pixmaps
+*colorUiconPath: ~/Library/Pixmaps
+*UiconPath: ~/Library/Pixmaps
+
 ! Anything that starts with XTerm* is about xterm only, similar for other programs
 XTerm*backarrowKey: 0
 !	 Fix XTerm's clobbering of "backspace/delete" in apps (less,etc) to ^H
