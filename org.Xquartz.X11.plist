@@ -2,14 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSWindow Frame x11_apps</key>
+	<string>2229 1116 454 299 0 0 3440 1415 </string>
+	<key>NSWindow Frame x11_prefs</key>
+	<string>665 928 484 336 0 0 3440 1415 </string>
 	<key>SUAutomaticallyUpdate</key>
 	<true/>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2021-07-02T04:18:08Z</date>
+	<date>2021-07-08T20:18:15Z</date>
 	<key>SULastProfileSubmissionDate</key>
-	<date>2021-06-26T05:13:05Z</date>
+	<date>2021-07-04T03:20:13Z</date>
 	<key>app_to_run</key>
 	<string>xterm ~/Tools/screenAppAttach.sh</string>
 	<key>apps_menu</key>
@@ -39,10 +43,12 @@
 	<true/>
 	<key>done_xinit_check</key>
 	<true/>
+	<key>enable_fake_buttons</key>
+	<true/>
 	<key>enable_iglx</key>
 	<false/>
 	<key>login_shell</key>
-	<string>/bin/sh</string>
+	<string>/bin/bash</string>
 	<key>no_auth</key>
 	<true/>
 	<key>nolisten_tcp</key>
@@ -50,8 +56,12 @@
 	<key>option_sends_alt</key>
 	<false/>
 	<key>startx_script</key>
-	<string>/opt/X11/bin/startx</string>
+	<string>/opt/X11/bin/startx -- /opt/X11/bin/Xquartz</string>
 	<key>sync_keymap</key>
 	<true/>
+	<key>wm_click_through</key>
+	<false/>
+	<key>wm_path</key>
+	<string>/usr/local/bin/wmaker</string>
 </dict>
 </plist>
