@@ -72,11 +72,19 @@
 	push = HEAD
 [mergetool]
 	keepBackup = true
-[url "https://github.com"]
-	insteadOf = gh:
-
 # https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
 	textconv = "plutil -convert xml1 -o -"
 [diff "localizablestrings"]
 	textconv = "iconv -f utf-16 -t utf-8"
+
+# https://gist.github.com/Kovrinic/ea5e7123ab5c97d451804ea222ecd78a
+[url "https://github.com/"]
+	insteadOf = gh:
+[url "https://git.code.sf.net/"]
+	insteadOf = sf:
+[url "https://github"]
+	insteadOf = git://github
+[url "git@github.com:"]
+#	pushInsteadOf = https://github.com/
+	pushInsteadOf = git://github.com/
