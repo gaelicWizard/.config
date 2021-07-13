@@ -31,7 +31,7 @@ HISTCONTROL="ignoredups:erasedups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
     # exclude repeats from loaded history, and
     # drop lines beginning with a space.
-HISTFILE="${XDG_STATE_HOME:-~/.local/share}/bash/history"
+HISTFILE="${XDG_STATE_HOME:-~/.local/state}/bash/history"
 #HISTTIMEFORMAT= # man strftime
 
 CDPATH=":~:/Volumes:~/Projects"
