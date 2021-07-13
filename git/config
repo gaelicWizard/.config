@@ -10,6 +10,10 @@
 	# credentials from git-credential
 	confirm = always
 
+[github]
+	user = gaelicWizard
+	token = 15e03b338d55b6e903a2789404eced50
+
 [color]
 	diff = auto
 	status = auto
@@ -32,6 +36,7 @@
 [diff]
 #	renamelimit = 0
 	renames = copy
+
 [merge]
 	directoryRenames = true
 	renormalize = true
@@ -42,39 +47,36 @@
 [branch]
 	autosetuprebase = always
 
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
-
-[branch "main"]
-	remote = origin
-	merge = refs/heads/main
-
-[github]
-	user = gaelicWizard
-	token = 15e03b338d55b6e903a2789404eced50
 [credential]
 	helper = osxkeychain
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [init]
 	defaultBranch = main
+
 [pull]
 	rebase = true
+
 [push]
 	default = simple
+
 [branch]
 	autosetuprebase = always
+
 [remote "origin"]
-	push = HEAD
+#	push = HEAD
+
 [mergetool]
 	keepBackup = true
+
 # https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
-	textconv = "plutil -convert xml1 -o -"
+	textconv = plutil -convert xml1 -o -
 [diff "localizablestrings"]
 	textconv = "iconv -f utf-16 -t utf-8"
 
@@ -83,8 +85,10 @@
 	insteadOf = gh:
 [url "https://git.code.sf.net/"]
 	insteadOf = sf:
-[url "https://github"]
-	insteadOf = git://github
+[url "https://github.com/"]
+	insteadOf = git://github.com/
 [url "git@github.com:"]
 #	pushInsteadOf = https://github.com/
 	pushInsteadOf = git://github.com/
+[url "mob@repo.or.cz:"]
+	pushInsteadOf = https://repo.or.cz/
