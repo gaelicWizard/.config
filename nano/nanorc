@@ -1,1 +1,8 @@
+#set afterends
+#set atblanks
+set historylog
+set smarthome
+#set softwrap
 set tabsize 4
+unset tabstospaces
+#set unix
