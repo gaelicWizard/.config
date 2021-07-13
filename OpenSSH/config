@@ -32,6 +32,7 @@ Host sf.net shell.sf.net
 Host web.sf.net
 	HostName web.sourceforge.net
 Host sf.net *.sf.net *.sourceforge.net *.code.sf.net
+	IdentitiesOnly yes
 	user gaelicwizard
 		# must be all-lowercase...
 
@@ -247,9 +248,10 @@ Host *
     VerifyHostKeyDNS yes
     NoHostAuthenticationForLocalhost yes
 	#IdentityFile ~/.ssh/%r@%h.id_ed25519
-    IdentityFile ~/.ssh/%r@%h.id
+    #IdentityFile ~/.ssh/%r@%h.id
         # Would like to use %n, just for pretties.
     IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_rsa
 #   PasswordAuthentication no
     VisualHostKey yes
 # Socket Forwarding
