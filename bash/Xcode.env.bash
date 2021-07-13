@@ -60,17 +60,17 @@ WARNFLAGS+="${WARNFLAGS:+ }${WARN64BIT:-} -Wall -Werror -Wnewline-eof -Wfour-cha
 #CPATH: Colon-separated list of -I paths. GCC and Clang.
 #LIBRARY_PATH: -L paths. GCC only.
 #CXFLAGS: Flags to use for all compiler invocations, see C.*FLAGS below.
-CXFLAGS+="${CXFLAGS:+ }-pipe -Wall ${OPTFLAGS}"
+CXFLAGS+="${CXFLAGS:+ }-pipe -Wall ${OPTFLAGS:-}"
     # -pipe: reduce temp-files usage, and allows for partially parallelised compile-assemble.
     # -Wall: be verbose by default.
     # $OPTFLAGS: Optimise build.
 #C.*FLAGS: Flags to use whenever the language-specific compiler may be invoked, per-language.
 #CPPFLAGS: Flags to use whenever the c-preprocessor may be invoked.
 #LDFLAFGS: Flags to use whenever the linker may be invoked.
-export        CFLAGS+="${CFLAGS:+ }${CXFLAGS}"
-export      CXXFLAGS+="${CXXFLAGS:+ }${CXFLAGS} -fvisibility-inlines-hidden"
-export     OBJCFLAGS+="${OBJCFLAGS:+ }${OBJCXFLAGS} ${CFLAGS}"
-export   OBJCXXFLAGS+="${OBJCXXFLAGS:+ }${OBJCXFLAGS} ${CXXFLAGS}"
+export        CFLAGS+="${CFLAGS:+ }${CXFLAGS:-}"
+export      CXXFLAGS+="${CXXFLAGS:+ }${CXFLAGS:-} -fvisibility-inlines-hidden"
+export     OBJCFLAGS+="${OBJCFLAGS:+ }${OBJCXFLAGS:-} ${CFLAGS:-}"
+export   OBJCXXFLAGS+="${OBJCXXFLAGS:+ }${OBJCXFLAGS:-} ${CXXFLAGS:-}"
 
 # Additional arguments to gcc can be passed _in a file_ by adding @/path/to/file to CFLAGS.
     
