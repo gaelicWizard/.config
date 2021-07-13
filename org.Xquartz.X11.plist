@@ -11,11 +11,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2021-07-08T20:18:15Z</date>
+	<date>2021-07-12T23:35:43Z</date>
 	<key>SULastProfileSubmissionDate</key>
-	<date>2021-07-04T03:20:13Z</date>
+	<date>2021-07-11T21:32:50Z</date>
 	<key>app_to_run</key>
-	<string>xterm ~/Tools/screenAppAttach.sh</string>
+	<string>xlogo -render -shape</string>
 	<key>apps_menu</key>
 	<array>
 		<array>
@@ -46,11 +46,11 @@
 	<key>enable_fake_buttons</key>
 	<true/>
 	<key>enable_iglx</key>
-	<false/>
+	<string>https://gitlab.freedesktop.org/xorg/xserver/-/commit/d0da0e9c3bb8fe0cd4879ecb24d21715bfaa209b</string>
 	<key>login_shell</key>
 	<string>/bin/bash</string>
 	<key>no_auth</key>
-	<true/>
+	<false/>
 	<key>nolisten_tcp</key>
 	<true/>
 	<key>option_sends_alt</key>
@@ -60,6 +60,8 @@
 	<key>sync_keymap</key>
 	<true/>
 	<key>wm_click_through</key>
+	<false/>
+	<key>wm_ffm</key>
 	<false/>
 	<key>wm_path</key>
 	<string>/usr/local/bin/wmaker</string>
