@@ -32,6 +32,17 @@
         Lock = No;
         PasteCommand = "/Applications/WPrefs.app/WPrefs %s";
         Command = "/Applications/WPrefs.app/WPrefs";
+      },
+      {
+        Forced = No;
+        Name = wmsystemtray0.wmsystemtray;
+        DropCommand = "wmsystemtray %d";
+        BuggyApplication = No;
+        AutoLaunch = Yes;
+        Position = "0,21";
+        Lock = Yes;
+        PasteCommand = "wmsystemtray %s";
+        Command = wmsystemtray;
       }
     );
     Lowered = Yes;
@@ -67,6 +78,17 @@
         Lock = No;
         PasteCommand = "/Applications/WPrefs.app/WPrefs %s";
         Command = "/Applications/WPrefs.app/WPrefs";
+      },
+      {
+        Forced = No;
+        Name = wmsystemtray0.wmsystemtray;
+        DropCommand = "wmsystemtray %d";
+        BuggyApplication = No;
+        AutoLaunch = Yes;
+        Position = "0,21";
+        Lock = Yes;
+        PasteCommand = "wmsystemtray %s";
+        Command = wmsystemtray;
       }
     );
   };
@@ -75,8 +97,8 @@
     Name = Logo.WMClip;
     BuggyApplication = No;
     AutoLaunch = No;
-    Lock = No;
     Position = "64,0";
+    Lock = No;
     Command = "-";
   };
   Menus = {
@@ -87,8 +109,8 @@
     {
       Clip = {
         AutoRaiseLower = No;
-        Applications = ();
         AutoCollapse = No;
+        Applications = ();
         Collapsed = No;
         AutoAttractIcons = No;
         Lowered = Yes;
