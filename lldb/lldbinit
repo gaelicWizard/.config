@@ -1,0 +1,4 @@
+command script import "/Users/pellican/Library/Application Support/Kaleidoscope/lldb_ksdiff.py"
+#settings set prompt "${ansi.fg.red}[lldb]${ansi.normal}\$ "
+#https://github.com/llvm/llvm-project/tree/main/lldb/examples/customization/pwd-cd-and-system
+
