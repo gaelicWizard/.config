@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CrashReportsContactInfo</key>
+	<string>John &lt;john+MacroMates@gaelicWizard.net&gt;</string>
+	<key>CrashReportsSent</key>
+	<array/>
+	<key>DocumentControllerWindowFrame</key>
+	<string>{{1062, 500}, {911, 743}}</string>
+	<key>ExpandedURLs</key>
+	<array>
+		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
+	</array>
+	<key>Find Panel Saved Dimensions</key>
+	<dict>
+		<key>expandedSize</key>
+		<string>{461, 443}</string>
+		<key>frame</key>
+		<string>{{427, 396}, {461, 249}}</string>
+	</dict>
+	<key>HTMLOutputWindowControllerWindowFrame</key>
+	<string>{{332, 22}, {695, 641}}</string>
+	<key>LRUDocumentPaths</key>
+	<array>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/xinit.md</string>
+		<string>/Users/pellican/Projects/xorg-server/dix/main.c</string>
+		<string>/Users/pellican/Projects/screen-osx/.git/rebase-merge/git-rebase-todo</string>
+		<string>/Users/pellican/Library/WindowMaker/autostart</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Tower 2021-07-09, 10_27 (135 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Wagner 2021-07-09, 10_22 (7 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/South Bay 2021-07-09, 10_26 (17 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Serra 2021-07-09, 10_25 (16 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Pulmonary 2021-07-09, 10_24 (26 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/PMIOC 2021-07-09, 10_25 (85 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Orringer 2021-07-09, 10_22 (20 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/NAOWLA 2021-07-09, 10_24 (76 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Mak 2021-07-09, 10_21 (30 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Kay 2021-07-09, 10_21 (29 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Generic 2021-07-09, 10_28 (39 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Ent4Kids 2021-07-09, 10_23 (4 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Cardiology 2021-07-09, 10_24 (82 items).csv</string>
+		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Blesa 2021-07-09, 10_19 (3 items).csv</string>
+		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/1e3dGGQmwN/0001-autoconf-fiddle-X11-until-it-compiles.patch</string>
+		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/j6hIjvJfQB/0001-autoconf-fiddle-X11-until-it-compiles.patch</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/../Modules/NetworkingDsc.Common/NetworkingDsc.Common.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetBios/DSC_NetBios.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetConnectionProfile/DSC_NetConnectionProfile.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsServerAddress/DSC_WinsServerAddress.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_Route/DSC_Route.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetIPInterface/DSC_NetIPInterface.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetworkTeam/DSC_NetworkTeam.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterState/DSC_NetAdapterState.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRss/DSC_NetAdapterRss.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRsc/DSC_NetAdapterRsc.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRdma/DSC_NetAdapterRdma.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterName/DSC_NetAdapterName.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterLso/DSC_NetAdapterLso.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterBinding/DSC_NetAdapterBinding.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DefaultGatewayAddress/DSC_DefaultGatewayAddress.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterAdvancedProperty/DSC_NetAdapterAdvancedProperty.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_IPAddress/DSC_IPAddress.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsServerAddress/DSC_DnsServerAddress.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsConnectionSuffix/DSC_DnsConnectionSuffix.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsSetting/DSC_WinsSetting.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WaitForNetworkTeam/DSC_WaitForNetworkTeam.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_ProxySettings/DSC_ProxySettings.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetworkTeamInterface/DSC_NetworkTeamInterface.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_IPAddressOption/DSC_IPAddressOption.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_HostsFile/DSC_HostsFile.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_FirewallProfile/DSC_FirewallProfile.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_Firewall/DSC_Firewall.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsClientGlobalSetting/DSC_DnsClientGlobalSetting.psm1</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetBios/DSC_NetBios.schema.mof</string>
+		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsSetting/DSC_WinsSetting.schema.mof</string>
+	</array>
+	<key>LicenseOwnerName</key>
+	<string>John Pell</string>
+	<key>MASPreferences Bundles Frame</key>
+	<string>{{0, 0}, {1229, 272}}</string>
+	<key>MASPreferences Frame Top Left</key>
+	<string>{302, 875}</string>
+	<key>MASPreferences Selected Identifier View</key>
+	<string>Variables</string>
+	<key>NSNavLastRootDirectory</key>
+	<string>~/Projects/Tools-tap/Notes</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{735, 450}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{763, 450}</string>
+	<key>NSWindow Frame BundleItemChooser</key>
+	<string>339 379 400 522 0 0 1680 1027 </string>
+	<key>NSWindow Frame BundlesReleaseNotes</key>
+	<string>442 237 700 758 0 0 1680 1025 </string>
+	<key>NSWindow Frame Command Output (HTML)</key>
+	<string>332 22 695 641 0 0 1280 778 </string>
+	<key>NSWindow Frame FileChooser</key>
+	<string>1680 693 400 522 0 0 3440 1415 </string>
+	<key>NSWindow Frame FileTypePanel</key>
+	<string>169 581 638 446 0 0 1680 1027 </string>
+	<key>NSWindow Frame Find</key>
+	<string>1743 656 608 272 0 0 3440 1415 </string>
+	<key>NSWindow Frame HTML output for AC5F664E-86BA-4D81-B6CE-1B12F69FA490</key>
+	<string>26 496 1858 921 0 0 3440 1417 </string>
+	<key>NSWindow Frame HTML output for B52DEA16-8480-11D9-BE59-000D93B3A10E</key>
+	<string>380 65 791 962 0 0 1680 1027 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>1354 723 763 414 0 0 3440 1415 </string>
+	<key>NSWindow Frame NSSpellCheckerSubstitutionsPanel2</key>
+	<string>692 407 428 137 0 0 3440 1415 </string>
+	<key>NSWindow Frame Open Favorite</key>
+	<string>600 536 400 522 0 0 1920 1058 </string>
+	<key>NSWindow Frame Release Notes</key>
+	<string>153 185 600 522 0 0 1280 778 </string>
+	<key>NSWindow Frame SUDownload</key>
+	<string>1179 710 461 164 0 0 3440 1415 </string>
+	<key>NSWindow Frame SymbolChooser</key>
+	<string>297 264 400 528 0 0 1440 900 </string>
+	<key>NSWindow Frame Web Inspector 2</key>
+	<string>60 106 862 672 0 0 1280 778 </string>
+	<key>NSWindow Frame onDemandWebKitWindow</key>
+	<string>2502 860 321 193 0 0 3440 1417 </string>
+	<key>OakBundleItemChooserBindings</key>
+	<array/>
+	<key>OakFavoriteChooserBindings</key>
+	<array/>
+	<key>OakFileChooserBindings</key>
+	<array/>
+	<key>OakMacroManagerScratchMacro</key>
+	<array>
+		<dict>
+			<key>argument</key>
+			<string>$</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>H</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>P</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>B</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>I</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>B</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>I</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>O</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>S</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>P</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>a</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>w</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>o</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>r</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>d</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string> </string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>=</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string> </string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>g</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>e</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>t</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>-</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>G</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>e</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>t</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>-</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>H</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>P</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>B</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>I</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>O</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>S</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>P</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>deleteBackward:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>S</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>e</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>t</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>u</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>p</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>P</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>a</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>w</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>o</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>r</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>d</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>I</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>s</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>S</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>e</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+		<dict>
+			<key>argument</key>
+			<string>t</string>
+			<key>command</key>
+			<string>insertText:</string>
+		</dict>
+	</array>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
+	<key>SelectedURLs</key>
+	<array>
+		<string>file://localhost/Users/pellican/Documents/JP%20notes/whiteRose/whiteRose.tmproj</string>
+		<string>file://localhost/Users/pellican/Library/Application%20Support/Bash/completion/boinc.bash</string>
+	</array>
+	<key>SoftwareUpdateChannel</key>
+	<string>release</string>
+	<key>SoftwareUpdateLastPoll</key>
+	<date>2021-07-15T20:47:18Z</date>
+	<key>SoftwareUpdateSubmitUsageInfo</key>
+	<true/>
+	<key>SoftwareUpdateUUID</key>
+	<string>1EA21F58-5B33-4E91-9693-F2D93E479C70</string>
+	<key>WebKitCacheModelPreferenceKey</key>
+	<integer>0</integer>
+	<key>WebKitPluginsEnabled</key>
+	<false/>
+	<key>WebKitUsesPageCachePreferenceKey</key>
+	<false/>
+	<key>disableNewDocumentAtStartup</key>
+	<true/>
+	<key>encoding</key>
+	<string>UTF-8</string>
+	<key>environmentVariables</key>
+	<array>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_C_POINTER</string>
+			<key>value</key>
+			<string>* </string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_CXX_FLAGS</string>
+			<key>value</key>
+			<string>-framework Carbon -liconv -include vector -include string -include map -include cstdio -I"$HOME/build/public/include" -funsigned-char -Wall -Wwrite-strings -Wformat=2 -Winit-self -Wmissing-include-dirs -Wno-parentheses -Wno-sign-compare -Wno-switch</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_FULLNAME</string>
+			<key>value</key>
+			<string>Scrooge McDuck</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_ORGANIZATION</string>
+			<key>value</key>
+			<string>The Billionaires Club</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_SYS_HEADER_PATH</string>
+			<key>value</key>
+			<string>/usr/include/c++/4.0.0:/usr/include:/System/Library/Frameworks</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>name</key>
+			<string>TM_XHTML</string>
+			<key>value</key>
+			<string> /</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>name</key>
+			<string>TM_GIT</string>
+			<key>value</key>
+			<string>/usr/bin/git</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>name</key>
+			<string>TM_HG</string>
+			<key>value</key>
+			<string>/usr/local/bin/hg</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<false/>
+			<key>name</key>
+			<string>TM_MAKE_FLAGS</string>
+			<key>value</key>
+			<string>rj8</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>name</key>
+			<string>TM_SVN_DIFF_CMD</string>
+			<key>value</key>
+			<string>/usr/local/bin/ksdiff</string>
+		</dict>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>name</key>
+			<string>TM_HG_EXT_DIFF</string>
+			<key>value</key>
+			<string>/usr/local/bin/ksdiff</string>
+		</dict>
+	</array>
+	<key>findIgnoreCase</key>
+	<true/>
+	<key>findRecentPlaces</key>
+	<array>
+		<string>/Users/pellican</string>
+	</array>
+	<key>findResultsHeight</key>
+	<integer>200</integer>
+	<key>findWrapAround</key>
+	<true/>
+	<key>htmlOutputHeight</key>
+	<integer>342</integer>
+	<key>initialFileBrowserURL</key>
+	<string>file://localhost/Users/pellican/Projects/</string>
+	<key>lastBundleUpdateCheck</key>
+	<date>2021-07-15T20:27:23Z</date>
+	<key>mateInstallPath</key>
+	<string>/usr/local/bin/mate</string>
+	<key>mateInstallVersion</key>
+	<string>2.13.3</string>
+	<key>openProjectSourceIndex</key>
+	<integer>0</integer>
+	<key>releaseNotesDigest</key>
+	<data>
+	ZeYquc8j9yU2bJjbAEhS4MPag1g=
+	</data>
+	<key>showFileExtensions</key>
+	<true/>
+</dict>
+</plist>
