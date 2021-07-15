@@ -11,7 +11,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2021-07-12T23:35:43Z</date>
+	<date>2021-07-15T04:05:29Z</date>
 	<key>SULastProfileSubmissionDate</key>
 	<date>2021-07-11T21:32:50Z</date>
 	<key>app_to_run</key>
@@ -38,6 +38,11 @@
 			<string>xterm zsh</string>
 			<string></string>
 		</array>
+		<array>
+			<string>PStree</string>
+			<string>pstree|less</string>
+			<string></string>
+		</array>
 	</array>
 	<key>cache_fonts</key>
 	<true/>
@@ -56,7 +61,7 @@
 	<key>option_sends_alt</key>
 	<false/>
 	<key>startx_script</key>
-	<string>/opt/X11/bin/startx -- /opt/X11/bin/Xquartz</string>
+	<string>launchctl start org.xquartz.xinit</string>
 	<key>sync_keymap</key>
 	<true/>
 	<key>wm_click_through</key>
