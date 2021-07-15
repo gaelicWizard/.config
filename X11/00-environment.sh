@@ -1,6 +1,8 @@
 #!/bin/sh
 : ${X11_PREFS_DOMAIN:=com.apple.X11}
 
+cd ~ # go home
+
 . /Library/GNUstep/Makefiles/GNUstep.sh
 #export WMAKER_USER_ROOT=~
 : "${GNUSTEP_USER_DEFAULTS_DIR:=$(gnustep-config --variable=GNUSTEP_USER_DEFAULTS_DIR)}"
