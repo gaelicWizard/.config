@@ -5,3 +5,8 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --colorpickerdir=/Library/ColorPickers --prefpanedir=/Library/PreferencePanes --qlplugindir=/Library/QuickLook --mdimporterdir=/Library/Spotlight --dictionarydir=/Library/Dictionaries --servicedir=/Library/Services --input-methoddir='/Library/Input Methods' --internet-plugindir='/Library/Internet Plug-Ins' --audio-unit-plugindir=/Library/Audio/Plug-Ins/Components --vst-plugindir=/Library/Audio/Plug-Ins/VST --vst3-plugindir=/Library/Audio/Plug-Ins/VST3 --screen-saverdir='/Library/Screen Savers' "
 	# Use global /Applications instead of ~/Applications.
 
+HB_CNF_HANDLER="$(brew --repo homebrew/command-not-found)/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]
+then
+	source "$HB_CNF_HANDLER";
+fi
