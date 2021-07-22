@@ -6,7 +6,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --col
 	# Use global /Applications instead of ~/Applications.
 
 HB_CNF_HANDLER="$(brew --repo homebrew/command-not-found)/handler.sh"
-if [ -f "$HB_CNF_HANDLER" ]
+if [ "${BASH_VERSINFO[0]}" -ge "4" ] && [ -r "$HB_CNF_HANDLER" ]
 then
 	source "$HB_CNF_HANDLER";
 fi
