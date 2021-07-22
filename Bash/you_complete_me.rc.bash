@@ -59,18 +59,10 @@ complete -c command type which command
 complete -b builtin
 
 
-{
-  # These declarations must go within braces in order to be able to silence
-  # readonly variable errors.
-  BASH_COMPLETION="${BASH_COMPLETION:-$BASHD/completion/bash-completion/bash_completion}"
-  BASH_COMPLETION_DIR="${BASH_COMPLETION_DIR:-$BASHD/completion/bash-completion/contrib}"
-} 2>/dev/null 
-readonly BASH_COMPLETION BASH_COMPLETION_DIR
 
 
-
-for bash_completion in ~/.config/Bash/completion/*.bash
+for completion in "${XDG_CONFIG_HOME:=$HOME/.config}/Bash/completion"/*.bash
 do
-    source "$bash_completion"
+    source "$completion"
 done
-unset bash_completion
+unset completion
