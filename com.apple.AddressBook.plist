@@ -179,9 +179,9 @@
 	<key>ABMembersPaneFrame</key>
 	<string>{{228, 0}, {242, 234}}</string>
 	<key>ABMetaDataChangeCount</key>
-	<integer>15995</integer>
+	<integer>16082</integer>
 	<key>ABMetadataLastOilChange</key>
-	<date>2021-07-20T22:16:28Z</date>
+	<date>2021-07-21T22:33:06Z</date>
 	<key>ABMiddlenameVisible</key>
 	<true/>
 	<key>ABNameDisplay</key>
@@ -211,6 +211,111 @@
 	<true/>
 	<key>ABPhoneticFieldsVisible</key>
 	<false/>
+	<key>ABPrivateVCardFields</key>
+	<dict>
+		<key>ABRelatedNames.3A279AE2-3A8D-4440-A965-8B2A955EDE42</key>
+		<true/>
+		<key>ABRelatedNames.49A2E325-48BB-4D22-8A2D-4E438BE611F9</key>
+		<true/>
+		<key>ABRelatedNames.6139A498-03DF-4F66-9DC1-42BAF2F7EEF4</key>
+		<true/>
+		<key>ABRelatedNames.A334C40F-9566-42AB-BBEF-A9C62A6B326E</key>
+		<true/>
+		<key>ABRelatedNames.B83FCA75-E600-4DBA-A3A8-2C92F9E5DCCD</key>
+		<true/>
+		<key>ABRelatedNames.CA594B19-5D2D-4466-B422-526EED944191</key>
+		<true/>
+		<key>ABRelatedNames.E5AEF3FA-9BB7-4F2B-BCA2-BD7A205DE7A9</key>
+		<true/>
+		<key>Address.4C5B8992-CBD8-4149-94C4-D22831410B95</key>
+		<true/>
+		<key>Address.5A4B12BF-3832-4ADC-BABE-C48C71B390C9</key>
+		<true/>
+		<key>Address.6BC65AD8-56D6-4A83-9AA8-7A0FA219A8F1</key>
+		<true/>
+		<key>Address.6C42033D-AD63-4326-92CB-2E82E71851A3</key>
+		<true/>
+		<key>Address.73FC593D-A4BE-430A-B792-F3CB9451640D</key>
+		<true/>
+		<key>Address.7ED1F5A4-8ECB-4DA1-87B2-6DBF5E60517D</key>
+		<true/>
+		<key>Address.83E687F5-D9A8-4343-9B7C-7CA211EDC0FD</key>
+		<true/>
+		<key>Address.9FF1957B-D36C-4E84-9E86-3CBC1E115001</key>
+		<true/>
+		<key>Address.A1575AC7-5DAE-48D3-94D0-5FA1ED55AD28</key>
+		<true/>
+		<key>Address.A1CAF7C5-787F-4419-9E33-089DBE2EA732</key>
+		<true/>
+		<key>Address.AA574F2C-EC65-4722-85F1-ABB821E3BAB8</key>
+		<true/>
+		<key>Address.EF9656CD-AC65-4E1E-9FA3-68289FFF517A</key>
+		<true/>
+		<key>BirthdayComponents.CF1F100A-6631-4039-A8CF-2187D3E466B1:ABPerson</key>
+		<true/>
+		<key>Email.11E2BE06-B0FA-40AB-BBCE-A997DB682897</key>
+		<true/>
+		<key>Email.1C674D1E-3AE6-4A72-AF99-2D3B9874F66C</key>
+		<true/>
+		<key>Email.2D297C68-1129-4EBF-87A3-A6B301E658C1</key>
+		<true/>
+		<key>Email.2E7B53FA-BA6C-44F2-85E8-67409C13353F</key>
+		<true/>
+		<key>Email.3D256120-9D6C-44D0-B338-00842F7B5D8E</key>
+		<true/>
+		<key>Email.45D17C0B-6CC7-4AA0-B758-7638BC5DCC14</key>
+		<true/>
+		<key>Email.45F0E3B4-A0A9-48BE-9A2D-3D8B9FE3E01F</key>
+		<true/>
+		<key>Email.6692B135-3876-41BD-9997-88F71A1EB9A6</key>
+		<true/>
+		<key>Email.748560AE-0B0C-4FD9-95BC-5DFE99912C63</key>
+		<true/>
+		<key>Email.9AEE3084-960E-4137-91F3-0561B26CE041</key>
+		<true/>
+		<key>Email.A4B984C8-9030-4FE0-81BD-998C18C15FB5</key>
+		<true/>
+		<key>Email.B242B9DE-E372-4881-950F-E9AE765EF4B8</key>
+		<true/>
+		<key>Email.CE248C04-EF30-4C34-914B-DC24C1F97DE9</key>
+		<true/>
+		<key>Email.D413A2E4-A49D-4705-B0E2-452354D97259</key>
+		<true/>
+		<key>Email.E9B9E912-2643-427E-A26A-536D4965A368</key>
+		<true/>
+		<key>InstantMessage.1D843B2A-EAB9-48DB-BB10-00F47C9F8085</key>
+		<true/>
+		<key>InstantMessage.2F7A1E85-8A40-47A6-B944-D2B0A72BD928</key>
+		<true/>
+		<key>InstantMessage.38131471-D815-40CB-B19A-D693CF1A070E</key>
+		<true/>
+		<key>InstantMessage.455FAD57-99D5-4F77-8412-F6CA4BE92394</key>
+		<true/>
+		<key>InstantMessage.B71CB1B0-3BEF-491F-81CA-EC11DD36A683</key>
+		<true/>
+		<key>InstantMessage.BB9F77FC-05BB-415F-A54A-D9F15C53567F</key>
+		<true/>
+		<key>InstantMessage.FA0CF5DE-CBC0-41D1-A3EC-11ED9D84F3E8</key>
+		<true/>
+		<key>Phone.37DC29EA-E6AA-44FD-B3ED-0F8EB120F55D</key>
+		<true/>
+		<key>Phone.91524F60-B5A4-4691-AD54-09982D2A0B90</key>
+		<true/>
+		<key>Phone.B3F11719-1CC3-405A-814F-1EA727E7A6DF</key>
+		<true/>
+		<key>Phone.DD248027-8618-4EFE-9697-7018CA858540</key>
+		<true/>
+		<key>SocialProfile.4B2CC228-014C-4AFE-AE2E-C4168BF971E3</key>
+		<true/>
+		<key>SocialProfile.83CA22CD-4A7D-4503-841E-919D1CA6D0B6</key>
+		<true/>
+		<key>SocialProfile.9FDB31B2-04D1-44AD-BA7C-BE9ABA1957CA</key>
+		<true/>
+		<key>SocialProfile.CD9CF19A-4B45-4ECF-BF97-3719E0E4C471</key>
+		<true/>
+		<key>URLs.4ED2771B-0556-4A77-9E91-08677F542115</key>
+		<true/>
+	</dict>
 	<key>ABPrivateVCardFieldsEnabled</key>
 	<true/>
 	<key>ABRelatedRecordsVisible</key>
