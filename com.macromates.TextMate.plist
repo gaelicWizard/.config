@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{1062, 500}, {911, 743}}</string>
+	<string>{{827, 77}, {1232, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -23,6 +23,29 @@
 	<string>{{332, 22}, {695, 641}}</string>
 	<key>LRUDocumentPaths</key>
 	<array>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/untitled.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/setup.md</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/pIqaD.rb</string>
+		<string>/Users/pellican/.MacOSX/environment.plist</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/piqad.rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/redpill.rb</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/paths.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Casks/lolspeak.rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/lolspeak.rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks/caskslolspeak.rb</string>
+		<string>/Users/pellican/Projects/Tools-tap/Casks/untitled.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/notes.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/tabs.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/ssh-keychain.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/perl.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/config.site.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/make.md</string>
+		<string>/Users/pellican/Library/Preferences/com.apple.AddressBook.plist</string>
+		<string>/Users/pellican/Projects/Tools-tap/.git/COMMIT_EDITMSG</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Formula/windowmaker.rb</string>
+		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/fA8TZvum0A/0001-Adopt-wuserlibrarypath.patch</string>
+		<string>/Users/pellican/Projects/wmaker/.git/COMMIT_EDITMSG</string>
+		<string>/Users/pellican/Projects/config.git/COMMIT_EDITMSG</string>
 		<string>/Users/pellican/Projects/Tools-tap/Notes/xinit.md</string>
 		<string>/Users/pellican/Projects/xorg-server/dix/main.c</string>
 		<string>/Users/pellican/Projects/screen-osx/.git/rebase-merge/git-rebase-todo</string>
@@ -50,29 +73,6 @@
 		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_Route/DSC_Route.psm1</string>
 		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetIPInterface/DSC_NetIPInterface.psm1</string>
 		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetworkTeam/DSC_NetworkTeam.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterState/DSC_NetAdapterState.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRss/DSC_NetAdapterRss.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRsc/DSC_NetAdapterRsc.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterRdma/DSC_NetAdapterRdma.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterName/DSC_NetAdapterName.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterLso/DSC_NetAdapterLso.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterBinding/DSC_NetAdapterBinding.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DefaultGatewayAddress/DSC_DefaultGatewayAddress.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetAdapterAdvancedProperty/DSC_NetAdapterAdvancedProperty.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_IPAddress/DSC_IPAddress.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsServerAddress/DSC_DnsServerAddress.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsConnectionSuffix/DSC_DnsConnectionSuffix.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsSetting/DSC_WinsSetting.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WaitForNetworkTeam/DSC_WaitForNetworkTeam.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_ProxySettings/DSC_ProxySettings.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetworkTeamInterface/DSC_NetworkTeamInterface.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_IPAddressOption/DSC_IPAddressOption.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_HostsFile/DSC_HostsFile.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_FirewallProfile/DSC_FirewallProfile.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_Firewall/DSC_Firewall.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_DnsClientGlobalSetting/DSC_DnsClientGlobalSetting.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetBios/DSC_NetBios.schema.mof</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsSetting/DSC_WinsSetting.schema.mof</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -81,7 +81,7 @@
 	<key>MASPreferences Frame Top Left</key>
 	<string>{302, 875}</string>
 	<key>MASPreferences Selected Identifier View</key>
-	<string>Variables</string>
+	<string>Software Update</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/Projects/Tools-tap/Notes</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
@@ -97,11 +97,11 @@
 	<key>NSWindow Frame Command Output (HTML)</key>
 	<string>332 22 695 641 0 0 1280 778 </string>
 	<key>NSWindow Frame FileChooser</key>
-	<string>1680 693 400 522 0 0 3440 1415 </string>
+	<string>651 797 400 522 0 0 3440 1415 </string>
 	<key>NSWindow Frame FileTypePanel</key>
 	<string>169 581 638 446 0 0 1680 1027 </string>
 	<key>NSWindow Frame Find</key>
-	<string>1743 656 608 272 0 0 3440 1415 </string>
+	<string>1743 639 608 289 0 0 3440 1415 </string>
 	<key>NSWindow Frame HTML output for AC5F664E-86BA-4D81-B6CE-1B12F69FA490</key>
 	<string>26 496 1858 921 0 0 3440 1417 </string>
 	<key>NSWindow Frame HTML output for B52DEA16-8480-11D9-BE59-000D93B3A10E</key>
@@ -494,10 +494,8 @@
 		<string>file://localhost/Users/pellican/Documents/JP%20notes/whiteRose/whiteRose.tmproj</string>
 		<string>file://localhost/Users/pellican/Library/Application%20Support/Bash/completion/boinc.bash</string>
 	</array>
-	<key>SoftwareUpdateChannel</key>
-	<string>release</string>
 	<key>SoftwareUpdateLastPoll</key>
-	<date>2021-07-15T20:47:18Z</date>
+	<date>2021-07-22T03:45:42Z</date>
 	<key>SoftwareUpdateSubmitUsageInfo</key>
 	<true/>
 	<key>SoftwareUpdateUUID</key>
@@ -618,7 +616,7 @@
 	<key>initialFileBrowserURL</key>
 	<string>file://localhost/Users/pellican/Projects/</string>
 	<key>lastBundleUpdateCheck</key>
-	<date>2021-07-15T20:27:23Z</date>
+	<date>2021-07-22T03:46:31Z</date>
 	<key>mateInstallPath</key>
 	<string>/usr/local/bin/mate</string>
 	<key>mateInstallVersion</key>

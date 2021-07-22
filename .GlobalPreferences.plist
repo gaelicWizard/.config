@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-15T07:40:34Z</date>
+	<date>2021-07-22T05:15:58Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -38,6 +38,8 @@
 	<string>1.000000 0.874510 0.701961 Orange</string>
 	<key>AppleICUForce24HourTime</key>
 	<true/>
+	<key>AppleInterfaceStyle</key>
+	<string>Dark</string>
 	<key>AppleInterfaceStyleSwitchesAutomatically</key>
 	<true/>
 	<key>AppleInterfaceTheme</key>
@@ -49,7 +51,7 @@
 		<string>en-US</string>
 	</array>
 	<key>AppleLanguagesDidMigrate</key>
-	<string>11.4</string>
+	<string>11.5</string>
 	<key>AppleLanguagesSchemaVersion</key>
 	<integer>2000</integer>
 	<key>AppleLocale</key>
@@ -292,7 +294,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-07-15T20:50:23Z</date>
+	<date>2021-07-22T01:28:17Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -336,18 +338,18 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>~/Projects/RedPill</string>
 		<string>~/Projects/Tools-tap/Notes</string>
-		<string>~/Projects/xorg-server/hw/xquartz</string>
-		<string>~/Projects/config.git</string>
+		<string>~/Backups</string>
+		<string>/usr/bin</string>
 		<string>~/Projects/Tools-tap</string>
-		<string>~/Projects/External/previous</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
 	<key>NSPersonNameDefaultShortNameFormat</key>
 	<integer>0</integer>
 	<key>NSPersonNameDefaultShouldPreferNicknamesPreference</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>NSPreferredSpellServerLanguage</key>
 	<string>en_US</string>
 	<key>NSPreferredSpellServerVendors</key>
@@ -1965,15 +1967,14 @@ Notes</string>
 		<dict>
 			<key>com.microsoft.OneDrive-mac.FinderSync</key>
 			<array>
-				<string>file:///Users/pellican/OneDrive%20-%20Asi%20Networks,%20Inc/</string>
 				<string>file:///Users/pellican/OneDrive%20-%20Mayflower%20IT/</string>
 			</array>
 			<key>com.resilio.Sync.FinderExtension</key>
 			<array>
 				<string>file:///Users/pellican/Sync/INVIA_CBD/</string>
 				<string>file:///Users/pellican/Sync/Torrents/</string>
-				<string>file:///Users/pellican/Projects/MayflowerScripts/</string>
 				<string>file:///Users/pellican/Sync/Baseline/</string>
+				<string>file:///Users/pellican/Projects/MayflowerScripts/</string>
 				<string>file:///Users/pellican/Sync/Bakdump/</string>
 				<string>file:///Users/pellican/Sync/WDS%20Images/Redstone%204/</string>
 				<string>file:///Users/pellican/Sync/BRUCE2011-PC/</string>
@@ -1982,7 +1983,6 @@ Notes</string>
 				<string>file:///Users/pellican/Pictures/</string>
 				<string>file:///Users/pellican/Sync/PolicyDefinitions/</string>
 				<string>file:///Users/pellican/Sync/ir.webm/</string>
-				<string>file:///Users/pellican/Sync/bradQB/</string>
 				<string>file:///Users/pellican/Downloads/</string>
 				<string>file:///Users/pellican/Sync/WIMs/</string>
 				<string>file:///Users/pellican/Sync/WDS%20Images/Threshold%202/</string>
