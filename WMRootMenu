@@ -21,8 +21,12 @@
       (tclsh, EXEC, "xterm -e tclsh"),
       (xev, EXEC, "xterm -e xev")
     ),
-    ("Window Maker", (Magnify, EXEC, wmagnify)),
-    (Viewers, (Xpdf, EXEC, xpdf)),
+    (
+      "Window Maker",
+      ("System Tray", EXEC, wmsystemtray),
+      (Magnify, EXEC, wmagnify)
+    ),
+    (Viewers, (Xdvi, EXEC, xdvi), (Xpdf, EXEC, xpdf)),
     (Utilities, (oclock, EXEC, oclock), (xclock, EXEC, xclock)),
     (
       System,
@@ -38,17 +42,17 @@
     (
       Themes,
       OPEN_MENU,
-      "-noext /usr/local/share/WindowMaker/Themes $HOME/GNUstep/Library/WindowMaker/Themes WITH setstyle"
+      "-noext /usr/local/opt/windowmaker/share/WindowMaker/Themes ~/Library/WindowMaker/Themes WITH setstyle"
     ),
     (
       Styles,
       OPEN_MENU,
-      "-noext /usr/local/share/WindowMaker/Styles $HOME/GNUstep/Library/WindowMaker/Styles WITH setstyle"
+      "-noext /usr/local/opt/windowmaker/share/WindowMaker/Styles ~/Library/WindowMaker/Styles WITH setstyle"
     ),
     (
       "Icon Sets",
       OPEN_MENU,
-      "-noext /usr/local/share/WindowMaker/IconSets $HOME/GNUstep/Library/WindowMaker/IconSets WITH seticons"
+      "-noext /usr/local/opt/windowmaker/share/WindowMaker/IconSets ~/Library/WindowMaker/IconSets WITH seticons"
     ),
     (
       Background,
@@ -141,7 +145,7 @@
       (
         Images,
         OPEN_MENU,
-        "-noext $HOME/GNUstep/Library/WindowMaker/Backgrounds WITH wmsetbg -u -t"
+        "-noext ~/GNUstep/Library/WindowMaker/Backgrounds WITH wmsetbg -u -t"
       )
     ),
     (
@@ -151,8 +155,8 @@
     ),
     (
       "Save IconSet",
-      SHEXEC,
-      "geticonset $HOME/GNUstep/Library/WindowMaker/IconSets/\"%a(IconSet name,Name to save icon set as)\""
+      EXEC,
+      "geticonset ~/Library/WindowMaker/IconSets/\"%a(IconSet name,Name to save icon set as)\""
     )
   ),
   (Workspaces, WORKSPACE_MENU),

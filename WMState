@@ -8,30 +8,17 @@
         BuggyApplication = No;
         AutoLaunch = No;
         Position = "0,0";
-        Lock = No;
-        Command = "-";
+        Lock = Yes;
+        Command = "/usr/local/opt/windowmaker/bin/WPrefs";
       },
       {
         Forced = No;
         Name = xterm.XTerm;
-        DropCommand = "xterm /Users/pellican/Tools/screenAppAttach.sh %d";
         BuggyApplication = No;
         AutoLaunch = No;
         Position = "0,1";
-        Lock = No;
-        PasteCommand = "xterm /Users/pellican/Tools/screenAppAttach.sh %s";
-        Command = "xterm /Users/pellican/Tools/screenAppAttach.sh";
-      },
-      {
-        Forced = No;
-        Name = groupLeader.WPrefs;
-        DropCommand = "/Applications/WPrefs.app/WPrefs %d";
-        BuggyApplication = No;
-        AutoLaunch = No;
-        Position = "0,2";
-        Lock = No;
-        PasteCommand = "/Applications/WPrefs.app/WPrefs %s";
-        Command = "/Applications/WPrefs.app/WPrefs";
+        Lock = Yes;
+        Command = xterm;
       },
       {
         Forced = No;
@@ -45,7 +32,7 @@
         Command = wmsystemtray;
       }
     );
-    Lowered = Yes;
+    Lowered = No;
     Position = "0,0";
     Applications1416 = (
       {
@@ -54,30 +41,17 @@
         BuggyApplication = No;
         AutoLaunch = No;
         Position = "0,0";
-        Lock = No;
-        Command = "-";
+        Lock = Yes;
+        Command = "/usr/local/opt/windowmaker/bin/WPrefs";
       },
       {
         Forced = No;
         Name = xterm.XTerm;
-        DropCommand = "xterm /Users/pellican/Tools/screenAppAttach.sh %d";
         BuggyApplication = No;
         AutoLaunch = No;
         Position = "0,1";
-        Lock = No;
-        PasteCommand = "xterm /Users/pellican/Tools/screenAppAttach.sh %s";
-        Command = "xterm /Users/pellican/Tools/screenAppAttach.sh";
-      },
-      {
-        Forced = No;
-        Name = groupLeader.WPrefs;
-        DropCommand = "/Applications/WPrefs.app/WPrefs %d";
-        BuggyApplication = No;
-        AutoLaunch = No;
-        Position = "0,2";
-        Lock = No;
-        PasteCommand = "/Applications/WPrefs.app/WPrefs %s";
-        Command = "/Applications/WPrefs.app/WPrefs";
+        Lock = Yes;
+        Command = xterm;
       },
       {
         Forced = No;
@@ -96,26 +70,27 @@
     Forced = No;
     Name = Logo.WMClip;
     BuggyApplication = No;
+    DropCommand = "wmsetbg -u -t %d";
     AutoLaunch = No;
-    Position = "64,0";
     Lock = No;
+    Position = "559,0";
     Command = "-";
   };
   Menus = {
-    "\\Window Maker" = ("66,5");
+    "\\Window Maker" = ("73,8");
   };
   Drawers = ();
   Workspaces = (
     {
       Clip = {
         AutoRaiseLower = No;
-        AutoCollapse = No;
         Applications = ();
+        AutoCollapse = No;
         Collapsed = No;
         AutoAttractIcons = No;
         Lowered = Yes;
       };
-      Name = "Workspace 1";
+      Name = Main;
     }
   );
 }
