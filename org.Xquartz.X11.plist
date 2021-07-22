@@ -11,9 +11,9 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2021-07-15T04:05:29Z</date>
+	<date>2021-07-21T04:08:45Z</date>
 	<key>SULastProfileSubmissionDate</key>
-	<date>2021-07-11T21:32:50Z</date>
+	<date>2021-07-19T20:49:37Z</date>
 	<key>app_to_run</key>
 	<string>xlogo -render -shape</string>
 	<key>apps_menu</key>
@@ -61,7 +61,7 @@
 	<key>option_sends_alt</key>
 	<false/>
 	<key>startx_script</key>
-	<string>launchctl start org.xquartz.xinit</string>
+	<string>/opt/X11/bin/xinit</string>
 	<key>sync_keymap</key>
 	<true/>
 	<key>wm_click_through</key>
