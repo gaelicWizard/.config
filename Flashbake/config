@@ -1,0 +1,48 @@
+#plugins:flashbake.plugins.growl:Growl
+
+
+# Simple, built-in.
+plugins:flashbake.plugins.location:Location
+plugins:flashbake.plugins.timezone:TimeZone
+
+# Simple, not built-in..?
+plugins:uptime:Uptime
+#plugins:net.gaelicWizard.location:Location
+
+#plugins:flashbake.plugins.weather:Weather
+#plugins:flashbake.plugins.uptime:Uptime
+#plugins:flashbake.plugins.
+
+#plugins:flashbake.plugins.microblog:Twitter
+#twitter_user:gaelicWizard
+#plugins:flashbake.plugins.microblog:Identica
+#identica_user:gaelicWizard
+
+#plugins:flashbake.plugins.feed:Feed
+#feed_url:http://blog.gaelicwizard.net/feeds/posts/default
+#feed_author:gaelicWizard
+
+
+
+
+# Files to include in _every_ flashbake project
+
+# Flashbake's own per-project configuration
+.flashbake
+.gitignore
+
+# Markdown
+*.markdown
+*.mdown
+*.text
+
+# HTML & CSS
+*.html
+*.css
+
+# Shell scripts
+*.*sh
+*.*bash
+
+# Lua scripts
+*.lua
