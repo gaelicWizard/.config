@@ -1,5 +1,5 @@
 #!/bin/sh
-: ${X11_PREFS_DOMAIN:=com.apple.X11}
+: ${X11_PREFS_DOMAIN:=org.Xquartz.X11}
 
 cd ~ # go home
 
