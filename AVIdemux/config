@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<avidemux>
+  <filters>
+    <subtitle>
+      <fontname>/usr/share/fonts/truetype/DejaVuSans.ttf</fontname>
+      <charset>ISO-8859-1</charset>
+      <fontsize>24</fontsize>
+      <ypercent>255</ypercent>
+      <upercent>0</upercent>
+      <vpercent>0</vpercent>
+      <selfadjustable>0</selfadjustable>
+      <usebackgroundcolor>0</usebackgroundcolor>
+    </subtitle>
+    <avsfilter>
+      <avs_script></avs_script>
+      <avs_loader></avs_loader>
+      <pipe_timeout>10</pipe_timeout>
+      <debug_msg>1</debug_msg>
+    </avsfilter>
+  </filters>
+  <device>
+    <audiodevice>ALSA</audiodevice>
+    <audio>
+      <alsa_device>dmix</alsa_device>
+    </audio>
+    <videodevice>0</videodevice>
+  </device>
+  <default>
+    <postproc_type>3</postproc_type>
+    <postproc_value>3</postproc_value>
+  </default>
+  <lastfiles>
+    <file1>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file1>
+    <file2>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file2>
+    <file3>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file3>
+    <file4>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file4>
+    <file5>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file5>
+    <file6>/Users/pellican/Downloads/Deep Throat 1972 VHS Rip XVID.avi</file6>
+  </lastfiles>
+  <lastproject>
+    <file1></file1>
+    <file2></file2>
+    <file3></file3>
+    <file4></file4>
+    <file5></file5>
+    <file6></file6>
+  </lastproject>
+  <lastdir_read>/Volumes/Miscellaneous/AVI lab/Deep Throat 1972 VHS Rip XVID.avi</lastdir_read>
+  <lastdir_write>/Volumes/Miscellaneous/AVI lab/ADM-2.5.4-dmg/Deep.avi</lastdir_write>
+  <message_level>2</message_level>
+  <feature>
+    <swap_if_A_greater_than_B>1</swap_if_A_greater_than_B>
+    <svcdres>
+      <preferedsourceratio>1:1</preferedsourceratio>
+    </svcdres>
+    <saveprefsonexit>1</saveprefsonexit>
+    <ignoresavedmarkers>0</ignoresavedmarkers>
+    <disable_nuv_resync>0</disable_nuv_resync>
+    <tryautoidx>0</tryautoidx>
+    <use_odml>0</use_odml>
+    <use_systray>0</use_systray>
+    <reuse_2pass_log>0</reuse_2pass_log>
+    <audiobar_uses_master>0</audiobar_uses_master>
+    <threading>
+      <lavc>0</lavc>
+    </threading>
+    <cpu_caps>4294967295</cpu_caps>
+    <mpeg_no_limit>0</mpeg_no_limit>
+    <auto_buildmap>0</auto_buildmap>
+    <auto_rebuildindex>0</auto_rebuildindex>
+    <auto_unpack>0</auto_unpack>
+    <alternate_mp3_tag>1</alternate_mp3_tag>
+    <global_glyph>
+      <active>1</active>
+      <name></name>
+    </global_glyph>
+  </feature>
+  <downmixing>
+    <prologic>2</prologic>
+  </downmixing>
+  <priority>
+    <encoding>3</encoding>
+    <indexing>3</indexing>
+    <playback>0</playback>
+  </priority>
+  <plugin>
+    <order>&lt;?xml version="1.0"?&gt;&lt;pluginOrder&gt;&lt;videoEncoder&gt;&lt;plugin id="Copy" enabled="true" default="true"/&gt;&lt;plugin id="32BCB447-21C9-4210-AE9A-4FCE6C8588AE" enabled="true" default="false"/&gt;&lt;plugin id="92B544BE-59A3-4720-86F0-6AD5A2526FD2" enabled="true" default="false"/&gt;&lt;plugin id="0E7C20E3-FF92-4bb2-A9A9-55B7F713C45A" enabled="true" default="false"/&gt;&lt;plugin id="DBAECD8B-CF29-4846-AF57-B596427FE7D3" enabled="true" default="false"/&gt;&lt;plugin id="C16E9CCE-D9B3-4fbe-B0C5-8B1BEBF2178E" enabled="true" default="false"/&gt;&lt;plugin id="REQUANT" enabled="true" default="false"/&gt;&lt;plugin id="85FC9CAC-CE6C-4aa6-9D5F-352D6349BA3E" enabled="true" default="false"/&gt;&lt;plugin id="056FE919-C1D3-4450-A812-A767EAB07786" enabled="true" default="false"/&gt;&lt;plugin id="075E8A4E-5B3D-47c6-9F70-853D6B855106" enabled="true" default="false"/&gt;&lt;plugin id="4279DF66-ECEF-4d3d-AFEA-1BFCCB79E219" enabled="true" default="false"/&gt;&lt;plugin id="134AA23B-A1FE-4d7b-AC99-85E440BA4595" enabled="true" default="false"/&gt;&lt;plugin id="D5118154-0B9A-4e9a-BEC6-95DA343E7215" enabled="true" default="false"/&gt;&lt;plugin id="970CB80B-5713-445c-A187-5C6F4A76FA76" enabled="true" default="false"/&gt;&lt;plugin id="E5D8EAC6-71C1-4f3e-A975-B655232271FB" enabled="true" default="false"/&gt;&lt;plugin id="4828D06D-B555-4d72-94EC-34F04F97E501" enabled="true" default="false"/&gt;&lt;plugin id="YV12" enabled="true" default="false"/&gt;&lt;/videoEncoder&gt;&lt;/pluginOrder&gt;</order>
+  </plugin>
+</avidemux>
