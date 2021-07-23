@@ -3,7 +3,7 @@
 
 cd ~ # go home
 
-. /Library/GNUstep/Makefiles/GNUstep.sh
+source "${GNUSTEP_MAKEFILES:=/Library/GNUstep/Makefiles}/GNUstep.sh" || echo "Unable to source GNUstep.sh" 1>&2
 #export WMAKER_USER_ROOT=~
 : "${GNUSTEP_USER_DEFAULTS_DIR:=$(gnustep-config --variable=GNUSTEP_USER_DEFAULTS_DIR)}"
 #: "${GNUSTEP_USER_LIBRARY:=$(gnustep-config --variable=GNUSTEP_USER_LIBRARY)}"
