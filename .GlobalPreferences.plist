@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-22T05:15:58Z</date>
+	<date>2021-07-22T18:00:53Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -294,7 +294,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-07-22T01:28:17Z</date>
+	<date>2021-07-23T06:06:15Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -338,10 +338,10 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>/usr/bin</string>
 		<string>~/Projects/RedPill</string>
 		<string>~/Projects/Tools-tap/Notes</string>
 		<string>~/Backups</string>
-		<string>/usr/bin</string>
 		<string>~/Projects/Tools-tap</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
