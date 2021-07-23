@@ -59,10 +59,9 @@ complete -c command type which command
 complete -b builtin
 
 
-
-
 for completion in "${XDG_CONFIG_HOME:=$HOME/.config}/Bash/completion"/*.bash
 do
     source "$completion"
 done
 unset completion
+
