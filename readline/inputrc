@@ -1,0 +1,81 @@
+#!/bin/bash -c "INPUTRC=$0 exec bash" --fail
+
+##
+# Start with something sane.
+set editing-mode emacs
+set keymap emacs
+##
+
+##
+"\e[3~": delete-char
+	# Delete for wonky terminals.
+#"\e[3;3~": kill-word
+	# Use Alt/Meta + Delete to delete the preceding word
+#"\004": forward-backward-delete-char
+	# NSTerm maps forward-delete to "\004" by default
+##
+
+##
+# Mac-style arrow-keys
+"\e[5A": beginning-of-line
+    # option-up
+"\e[5B": end-of-line
+    # option-down
+"\e[5C": forward-word
+    # option-right
+"\e[5D": backward-word
+    # option-left
+##
+
+##
+# Use more intelligent Up/Down behaviour: use the text that has already been typed as the prefix for searching through commands
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+set history-preserve-point on
+	# Try to stay at the same cursor position when moving through the history.
+##
+
+##
+# Completion:
+set completion-ignore-case on
+	# Make Tab autocompletion case-insensitive (cd ~/dow<Tab> => cd ~/Downloads/).
+set show-all-if-ambiguous on 
+	# List all matches in case multiple possible completions are possible.
+set completion-query-items 80
+    # Only show-all-if-ambiguous iff less than 40 items, otherwise prompt.
+set show-all-if-unmodified off
+    # (Don't) Show ambiguous, even when partially unambigious completion.
+set mark-directories on
+	# Append trailing slash to directories when completing.
+set mark-symlinked-directories on 
+	# Treat symlinks-to-directories just like directories.
+set visible-stats on
+    # Imitate `ls -F`
+set expand-tilde off
+	# Do not expand "~" to the home directory when completing.
+set match-hidden-files off
+	# Do not autocomplete hidden files unless the pattern explicitly begins with a dot.
+##
+
+##
+# Display.
+set horizontal-scroll-mode off
+    # Wrap lines. Not-wrapping doesn't work properly?
+##
+
+##
+# 8-bit clean. (Allow UTF-8.)
+set input-meta on
+set output-meta on
+set convert-meta off
+set kanji-code utf-8
+##
+
+##
+set enable-keypad on
+	# Some systems need this to enable the arrow keys.
+set enable-bracketed-paste on
+	# Coordinate with terminal emulator to isolate pasted text to avoid interpretation as keystrokes.
+	# https://cirw.in/blog/bracketed-paste
+##
