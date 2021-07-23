@@ -107,25 +107,25 @@
 	<key>NSWindow Frame TTInspector</key>
 	<string>1040 925 281 490 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>2151 986 949 371 0 0 3440 1415 </string>
+	<string>2180 957 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>32 7 802 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Grass</key>
 	<string>315 0 934 371 0 0 1440 875 </string>
 	<key>NSWindow Frame TTWindow Homebrew</key>
-	<string>2491 0 949 371 0 0 3440 1415 </string>
+	<string>1404 0 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Man Page</key>
 	<string>326 605 949 707 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Novel</key>
 	<string>71 157 949 366 0 0 1280 778 </string>
 	<key>NSWindow Frame TTWindow Ocean</key>
-	<string>506 496 934 371 0 0 1440 875 </string>
+	<string>1528 63 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow PowerShell</key>
 	<string>2491 0 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Pro</key>
 	<string>239 0 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Red Sands</key>
-	<string>1821 1038 949 371 0 0 3440 1415 </string>
+	<string>1379 26 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Rose Aerogel</key>
 	<string>657 134 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Silver Aerogel</key>

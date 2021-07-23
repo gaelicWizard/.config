@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{827, 77}, {1232, 970}}</string>
+	<string>{{836, 146}, {1232, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -23,8 +23,23 @@
 	<string>{{332, 22}, {695, 641}}</string>
 	<key>LRUDocumentPaths</key>
 	<array>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/untitled.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Formula/wine.rb</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/brew.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/xinit.md</string>
 		<string>/Users/pellican/Projects/Tools-tap/Notes/setup.md</string>
+		<string>/Users/pellican/Projects/Tools-tap/Formula/macemu-rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Formula/macemu.rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/xcode-tools.rb</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/perian.rb</string>
+		<string>/Users/pellican/Library/Preferences/Bash/completion/homebrew-bash-completion.bash</string>
+		<string>/Users/pellican/Projects/screen-osx/screenAppAttach.sh</string>
+		<string>/Users/pellican/Library/Preferences/Bash/you_completE_me.rc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/you_complete_me.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/you_complete_me</string>
+		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/quicktime-fixer.rb</string>
+		<string>/Volumes/QuickTime Player X 10.2 Mod/ Delete System QuickTime.command</string>
+		<string>/Users/pellican/Library/Preferences/Bash/homebrew.env.bash</string>
+		<string>/Users/pellican/Projects/Tools-tap/Notes/untitled.md</string>
 		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/pIqaD.rb</string>
 		<string>/Users/pellican/.MacOSX/environment.plist</string>
 		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/piqad.rb</string>
@@ -46,7 +61,6 @@
 		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/fA8TZvum0A/0001-Adopt-wuserlibrarypath.patch</string>
 		<string>/Users/pellican/Projects/wmaker/.git/COMMIT_EDITMSG</string>
 		<string>/Users/pellican/Projects/config.git/COMMIT_EDITMSG</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/xinit.md</string>
 		<string>/Users/pellican/Projects/xorg-server/dix/main.c</string>
 		<string>/Users/pellican/Projects/screen-osx/.git/rebase-merge/git-rebase-todo</string>
 		<string>/Users/pellican/Library/WindowMaker/autostart</string>
@@ -59,20 +73,6 @@
 		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Orringer 2021-07-09, 10_22 (20 items).csv</string>
 		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/NAOWLA 2021-07-09, 10_24 (76 items).csv</string>
 		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Mak 2021-07-09, 10_21 (30 items).csv</string>
-		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Kay 2021-07-09, 10_21 (29 items).csv</string>
-		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Generic 2021-07-09, 10_28 (39 items).csv</string>
-		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Ent4Kids 2021-07-09, 10_23 (4 items).csv</string>
-		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Cardiology 2021-07-09, 10_24 (82 items).csv</string>
-		<string>/Users/pellican/OneDrive - Asi Networks, Inc/Documents/1Password/Blesa 2021-07-09, 10_19 (3 items).csv</string>
-		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/1e3dGGQmwN/0001-autoconf-fiddle-X11-until-it-compiles.patch</string>
-		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T/j6hIjvJfQB/0001-autoconf-fiddle-X11-until-it-compiles.patch</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/../Modules/NetworkingDsc.Common/NetworkingDsc.Common.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetBios/DSC_NetBios.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetConnectionProfile/DSC_NetConnectionProfile.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_WinsServerAddress/DSC_WinsServerAddress.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_Route/DSC_Route.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetIPInterface/DSC_NetIPInterface.psm1</string>
-		<string>/Users/pellican/Projects/NetworkingDsc/source/DSCResources/DSC_NetworkTeam/DSC_NetworkTeam.psm1</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -495,7 +495,7 @@
 		<string>file://localhost/Users/pellican/Library/Application%20Support/Bash/completion/boinc.bash</string>
 	</array>
 	<key>SoftwareUpdateLastPoll</key>
-	<date>2021-07-22T03:45:42Z</date>
+	<date>2021-07-23T05:09:00Z</date>
 	<key>SoftwareUpdateSubmitUsageInfo</key>
 	<true/>
 	<key>SoftwareUpdateUUID</key>
@@ -616,7 +616,7 @@
 	<key>initialFileBrowserURL</key>
 	<string>file://localhost/Users/pellican/Projects/</string>
 	<key>lastBundleUpdateCheck</key>
-	<date>2021-07-22T03:46:31Z</date>
+	<date>2021-07-23T05:09:15Z</date>
 	<key>mateInstallPath</key>
 	<string>/usr/local/bin/mate</string>
 	<key>mateInstallVersion</key>
