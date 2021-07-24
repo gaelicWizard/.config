@@ -101,21 +101,21 @@
 	<key>NSWindow Frame New Command Panel</key>
 	<string>222 23 499 128 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTAppPreferences</key>
-	<string>1245 861 667 554 0 0 3440 1415 </string>
+	<string>1448 861 667 554 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTFindPanel</key>
 	<string>35 0 483 144 0 0 1280 778 </string>
 	<key>NSWindow Frame TTInspector</key>
 	<string>1040 925 281 490 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>2325 812 949 371 0 0 3440 1415 </string>
+	<string>2441 696 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>32 7 802 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Grass</key>
 	<string>315 0 934 371 0 0 1440 875 </string>
 	<key>NSWindow Frame TTWindow Homebrew</key>
-	<string>1404 0 949 371 0 0 3440 1415 </string>
+	<string>1862 363 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Man Page</key>
-	<string>270 676 949 739 0 0 3440 1415 </string>
+	<string>270 708 949 707 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Novel</key>
 	<string>71 157 949 366 0 0 1280 778 </string>
 	<key>NSWindow Frame TTWindow Ocean</key>
@@ -125,7 +125,7 @@
 	<key>NSWindow Frame TTWindow Pro</key>
 	<string>239 0 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Red Sands</key>
-	<string>1027 111 949 371 0 0 3440 1415 </string>
+	<string>1932 18 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Rose Aerogel</key>
 	<string>657 134 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Silver Aerogel</key>
@@ -211,7 +211,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>columnCount</key>
 			<integer>132</integer>
 			<key>name</key>
@@ -309,7 +309,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -429,7 +429,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -452,6 +452,125 @@
 			</data>
 			<key>columnCount</key>
 			<integer>132</integer>
+			<key>keyMapBoundKeys</key>
+			<dict>
+				<key>#F739</key>
+				<string>toggleNumLock:</string>
+				<key>$F700</key>
+				<string>[1;2A</string>
+				<key>$F701</key>
+				<string>[1;2B</string>
+				<key>$F702</key>
+				<string>[1;2D</string>
+				<key>$F703</key>
+				<string>[1;2C</string>
+				<key>$F708</key>
+				<string>[25~</string>
+				<key>$F709</key>
+				<string>[26~</string>
+				<key>$F70A</key>
+				<string>[28~</string>
+				<key>$F70B</key>
+				<string>[29~</string>
+				<key>$F70C</key>
+				<string>[31~</string>
+				<key>$F70D</key>
+				<string>[32~</string>
+				<key>$F70E</key>
+				<string>[33~</string>
+				<key>$F70F</key>
+				<string>[34~</string>
+				<key>$F728</key>
+				<string>[3;2~</string>
+				<key>F704</key>
+				<string>OP</string>
+				<key>F705</key>
+				<string>OQ</string>
+				<key>F706</key>
+				<string>OR</string>
+				<key>F707</key>
+				<string>OS</string>
+				<key>F708</key>
+				<string>[15~</string>
+				<key>F709</key>
+				<string>[17~</string>
+				<key>F70A</key>
+				<string>[18~</string>
+				<key>F70B</key>
+				<string>[19~</string>
+				<key>F70C</key>
+				<string>[20~</string>
+				<key>F70D</key>
+				<string>[21~</string>
+				<key>F70E</key>
+				<string>[23~</string>
+				<key>F70F</key>
+				<string>[24~</string>
+				<key>F710</key>
+				<string>[25~</string>
+				<key>F711</key>
+				<string>[26~</string>
+				<key>F712</key>
+				<string>[28~</string>
+				<key>F713</key>
+				<string>[29~</string>
+				<key>F714</key>
+				<string>[31~</string>
+				<key>F715</key>
+				<string>[32~</string>
+				<key>F716</key>
+				<string>[33~</string>
+				<key>F717</key>
+				<string>[34~</string>
+				<key>F728</key>
+				<string>[3~</string>
+				<key>^F700</key>
+				<string>[1;5A</string>
+				<key>^F701</key>
+				<string>[1;5B</string>
+				<key>^F702</key>
+				<string>[1;5D</string>
+				<key>^F703</key>
+				<string>[1;5C</string>
+				<key>^F728</key>
+				<string>[3;5~</string>
+				<key>~F702</key>
+				<string>b</string>
+				<key>~F703</key>
+				<string>f</string>
+				<key>~F704</key>
+				<string>[17~</string>
+				<key>~F705</key>
+				<string>[18~</string>
+				<key>~F706</key>
+				<string>[19~</string>
+				<key>~F707</key>
+				<string>[20~</string>
+				<key>~F708</key>
+				<string>[21~</string>
+				<key>~F709</key>
+				<string>[23~</string>
+				<key>~F70A</key>
+				<string>[24~</string>
+				<key>~F70B</key>
+				<string>[25~</string>
+				<key>~F70C</key>
+				<string>[26~</string>
+				<key>~F70D</key>
+				<string>[28~</string>
+				<key>~F70E</key>
+				<string>[29~</string>
+				<key>~F70F</key>
+				<string>[31~</string>
+				<key>~F710</key>
+				<string>[32~</string>
+				<key>~F711</key>
+				<string>[33~</string>
+				<key>~F712</key>
+				<string>[34~</string>
+				<key>~^F728</key>
+				<string>[3;5~</string>
+			</dict>
 			<key>name</key>
 			<string>Homebrew</string>
 			<key>noWarnProcesses</key>
@@ -539,7 +658,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -665,7 +784,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -775,7 +894,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -889,7 +1008,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -1015,7 +1134,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -1136,7 +1255,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -1267,7 +1386,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
@@ -1407,7 +1526,7 @@
 			<key>StrictVTKeypad</key>
 			<false/>
 			<key>TerminalType</key>
-			<string>nsterm</string>
+			<string>nsterm-16color</string>
 			<key>TextBoldColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
