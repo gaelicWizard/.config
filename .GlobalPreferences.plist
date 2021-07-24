@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-23T21:33:27Z</date>
+	<date>2021-07-24T07:38:26Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -38,6 +38,8 @@
 	<string>1.000000 0.874510 0.701961 Orange</string>
 	<key>AppleICUForce24HourTime</key>
 	<true/>
+	<key>AppleInterfaceStyle</key>
+	<string>Dark</string>
 	<key>AppleInterfaceStyleSwitchesAutomatically</key>
 	<true/>
 	<key>AppleInterfaceTheme</key>
@@ -336,11 +338,11 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>~/Library/Preferences</string>
 		<string>~/Projects/config.git</string>
 		<string>~/.temp/config</string>
 		<string>/usr/local/Homebrew/Library/Taps/kde-mac/homebrew-kde</string>
 		<string>~/Projects/KDE-tap</string>
-		<string>/usr/bin</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>

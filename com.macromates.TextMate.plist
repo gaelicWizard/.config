@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{1714, 326}, {1233, 970}}</string>
+	<string>{{892, 90}, {1233, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -23,6 +23,10 @@
 	<string>{{332, 22}, {695, 641}}</string>
 	<key>LRUDocumentPaths</key>
 	<array>
+		<string>/Users/pellican/.config/com.apple.Terminal.plist</string>
+		<string>/Users/pellican/Library/Preferences/screen/screenrc</string>
+		<string>/Users/pellican/Library/Preferences/com.apple.Terminal.plist</string>
+		<string>/Users/pellican/Library/Preferences/com.apple.Terminal.testing.plist</string>
 		<string>/Users/pellican/Library/Preferences/readline/inputrc</string>
 		<string>/Users/pellican/Library/Preferences/Bash/prompt.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/inputrc</string>
@@ -69,10 +73,6 @@
 		<string>/Users/pellican/Projects/Tools-tap/Notes/ssh-keychain.md</string>
 		<string>/Users/pellican/Projects/Tools-tap/Notes/perl.md</string>
 		<string>/Users/pellican/Projects/Tools-tap/Notes/config.site.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/make.md</string>
-		<string>/Users/pellican/Library/Preferences/com.apple.AddressBook.plist</string>
-		<string>/Users/pellican/Projects/Tools-tap/.git/COMMIT_EDITMSG</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Formula/windowmaker.rb</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -83,7 +83,7 @@
 	<key>MASPreferences Selected Identifier View</key>
 	<string>Software Update</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Projects/Tools-tap/Notes</string>
+	<string>~/Library/Preferences</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -101,7 +101,7 @@
 	<key>NSWindow Frame FileTypePanel</key>
 	<string>169 581 638 446 0 0 1680 1027 </string>
 	<key>NSWindow Frame Find</key>
-	<string>1743 639 608 289 0 0 3440 1415 </string>
+	<string>1743 656 608 272 0 0 3440 1415 </string>
 	<key>NSWindow Frame HTML output for AC5F664E-86BA-4D81-B6CE-1B12F69FA490</key>
 	<string>26 496 1858 921 0 0 3440 1417 </string>
 	<key>NSWindow Frame HTML output for B52DEA16-8480-11D9-BE59-000D93B3A10E</key>
