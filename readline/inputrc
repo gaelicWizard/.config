@@ -16,6 +16,15 @@ set keymap emacs
 ##
 
 ##
+# Arrow keys
+#set enable-keypad on
+	# Some systems need this to enable the arrow keys.
+$if enable-keypad == on
+# see also: https://tiswww.case.edu/php/chet/readline/readline.html
+$endif
+##
+
+##
 # Mac-style arrow-keys
 "\e[5A": beginning-of-line
     # option-up
@@ -74,9 +83,9 @@ set kanji-code utf-8
 ##
 
 ##
-set enable-keypad on
-	# Some systems need this to enable the arrow keys.
-#set enable-bracketed-paste on
+#$if version >= 7
+set enable-bracketed-paste on
 	# Coordinate with terminal emulator to isolate pasted text to avoid interpretation as keystrokes.
 	# https://cirw.in/blog/bracketed-paste
+#$endif
 ##
