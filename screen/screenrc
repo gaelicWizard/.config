@@ -1,5 +1,9 @@
 #!/usr/bin/screen -A -U -xRR -p + -S gnu.screen 
 
+# see also: http://aperiodic.net/screen/faq
+# see also: http://xent.com/~bsittler/nsterm.ti
+# see also: https://bbs.archlinux.org/viewtopic.php?id=55618
+
 # General Settings
 startup_message off
 	# Turn off the ANNOYING startup banner
@@ -13,25 +17,51 @@ autodetach on
 	#  or if i get disconnected.
 	# NEVER TURN autodetach OFF! I'm not even sure why it's an option...
 altscreen on
-	# Enable the alternative screen within screen windows.
+	# Enable the alternate screen within screen windows. (Screen supports alt.)
+termcapinfo nsterm* 'ti=\E[?1049h:te=\E[?1049l'
+	# Enable the alternate screen *for* screen. (Screen *uses* alt.)
+	# see also: https://stackoverflow.com/a/11024208/555333
+	# reference: https://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html#SEC39
+#bindkey -a -k kP stuff ^U
+#bindkey -k kP copy
+#bindkey -a -k kN stuff ^D
+#bindkey -k kN copy
+	# When page-up or page-down keys are pressed outside of copy-mode or alt-screen, then enter copy mode.
+	# see also: https://unix.stackexchange.com/a/165810/65223
+bindkey ^P copy
+	# Enter copy mode when windows-contextual-menu key is pressed.
+bindkey -k kF copy
+bindkey -k kR copy
+	# scroll forward and scroll reverse; don't exist...
+	# see also: https://stackoverflow.com/a/3474732/555333
+bindkey -k kI copy
+	# Insert key; doesn't exist...
+	# see also: https://www.gnu.org/software/termutils/manual/termcap-1.3/html_mono/termcap.html#SEC37
+bindkey "^[f" next
+bindkey "^[b" prev
+	# use option-right and option-left to switch screen windows/tabs.
+printcmd pbcopy
+	# When the terminal is asked to "print", pipe it to the Mac clipboard.
 #defcompacthist on
 compacthist on
-    # This tells screen to save some space in the history buffer
+	# This tells screen to save some space in the history buffer
 defutf8 on
 	# Make screen(1) interact with it's _children_ in utf8.
+defencoding UTF-8
 	# Must invoke with -U to get utf8 to the tty.
-#defc1 off
-    # Disable interpretation of control characters (for use with 8-bit character sets)
+defc1 off
+	# Disable interpretation of control characters (for use with 8-bit character sets)
 defnonblock on
 	# Make screen act more usefully if window stops accepting input.
-defflow auto
-    # Turn back on flow control (rather, let it be automatic)
-    # This is necessary since I force flow control off on the command line since screen guesses the wrong setting.
+defflow off
+	# Turn off flow control rather than let it be automatic. 
+	# When is flow control useful?
 defshell "$SHELL"
-    # make sure that screen doesn't get confused when _it_ is the login shell
-    # Specifically, Terminal.app can be told to run /usr/bin/screen as the login shell, which does not alter the user's official login shell. When screen is run as -screen, it will _not_ start each window with $SHELL as it would otherwise, since it presumes that $SHELL would point to /usr/bin/screen, and instead just runs /bin/sh. Clearly this is sub-optimal.
-shelltitle "\$ |$SHELL:"
+	# make sure that screen doesn't get confused when _it_ is the login shell
+	# Specifically, Terminal.app can be told to run /usr/bin/screen as the login shell, which does not alter the user's official login shell. When screen is run as -screen, it will _not_ start each window with $SHELL as it would otherwise, since it presumes that $SHELL would point to /usr/bin/screen, and instead just runs /bin/sh. Clearly this is sub-optimal.
+shelltitle "\$ |$SHELL"
 	# Set the window title to "$SHELL:" (just shell running) or "$SHELL:cmatrix" (when cmatrix running)
+	# Without trailing colon, the shell name is left out on title change.
 	# This requires '\[\ek\e\\\]' as part of $PS1 or $PROMPT_COMMAND
 #
 #defzombie kr
@@ -41,7 +71,7 @@ zombie ^Dr
 	#TODO: maybe change this so that ^D kills? So that ^D ends shell, ^D again closes
 #defverbose on
 verbose on
-    # And show the command for the windows when they're resurrected.
+	# And show the command for the windows when they're resurrected.
 defscrollback 50000
 	# Gimme a MASSIVE scroll back history!
 ignorecase on
@@ -51,31 +81,32 @@ escape ^zz # current user
 	# This sets my escape character to be C-z, instead of C-a. 
 #defbufferfile "$TMPDIR/screenbufferfile"
 bufferfile "$TMPDIR/screenbufferfile"
-    # Specifies a file to use when copying/pasting
+	# Specifies a file to use when copying/pasting
 #defhardcopydir "$TMPDIR"
 hardcopydir "$TMPDIR"
-    # This tells screen that when I save a screen-shot, not to dump it in ~
+	# This tells screen that when I save a screen-shot, not to dump it in ~
 #deflogfile "$SCREENDIR/screenlog.%n"
 logfile "$SCREENDIR/screenlog.%n"
-    # This tells screen where to save a log of all window contents, via command "log"
+	# This tells screen where to save a log of all window contents, via command "log"
 idle 3600 detach
-    # disconnect idle terminals... this is screen, you won't lose anything!
+	# disconnect idle terminals... this is screen, you won't lose anything!
 blankerprg nice cmatrix -absu9
-    # Define a blanker program to be used by the blanker command
+	# Define a blanker program to be used by the blanker command
 #shelltitle "$ |%1`"
-    # Try to make the title of each new shell dynamic
+	# Try to make the title of each new shell dynamic
 defhstatus "^EH:^Ew"
-    # Make my "hard status" look like "hostname: 0 bash 1* bash" for two "bash" windows, window #1 current.
-termcapinfo nsterm|xterm|xterm-r6|rxvt|xterm-color|xterm-256color|gnome-terminal|konsole|zvt|dtterm|kterm|Eterm|zterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
-    # Print the hardstatus line in the menu bar, nsterm is Terminal.app, others are xterm's cousins
+	# Make my "hard status" look like "hostname: 0 bash 1* bash" for two "bash" windows, window #1 current.
+#termcapinfo xterm*|rxvt*|gnome-terminal|konsole|zvt|dtterm|kterm|Eterm|zterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+	# Add hardstatus line in the menu bar support, nsterm is Terminal.app, others are xterm's cousins
 #
-# 256 color xterm
-attrcolor b ".I"
-termcapinfo nsterm|xterm|xterm-color|xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-#defbce "on"
+# Use colors!
+#attrcolor b ".I"
+#termcapinfo nsterm*|xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+term screen-256color
+defbce "on"
 #
 sorendition "+b kG"
-    # Make screen messages stand out a little more - black on bright green.
+	# Make screen messages stand out a little more - black on bright green.
 #
 bind R eval "source $SCREENRC" "echo '.screenrc reloaded!'"
 	# Reload screenrc with C-z R
@@ -107,15 +138,15 @@ setenv SCREEN $TERM
 ##
 
 chdir
-    # Pop into my home directory, in case screen is invoked from somewhere else, potentially / due to launchd.
+	# Pop into my home directory, in case screen is invoked from somewhere else, potentially / due to launchd.
 
 screen 0
-    # This starts a window (this is the default)
+	# This starts a window (this is the default)
 
 ## Everything after this line happens *after* a usable window is created.
 version
 	# Display the version number of the screen program
 dinfo
-    # Shows some info about the attaching terminal
+	# Shows some info about the attaching terminal
 time
-    # Displays the current time
+	# Displays the current time
