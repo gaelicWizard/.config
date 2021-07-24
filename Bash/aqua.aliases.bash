@@ -2,6 +2,8 @@
 
 export BROWSER="open" # -a Safari"
 
+alias beer='echo -e "\xF0\x9f\x8d\xba"'
+
 alias LaunchCFMApp='/System/Library/Frameworks/Carbon.framework/Versions/Current/Support/LaunchCFMApp' 
     # Code Fragment Management applications can't be run ./app :-)
 alias apps="ps x -o command | grep '[ ]-psn_' | sort" # <- shows full path
