@@ -1,9 +1,5 @@
 #!/bin/bash
 
-function isinteractive () 
-{ [[ "$-" = *i* ]]; }
-    # Check if the current shell was invoked interactively
-
 function localisePath ()
 {
     return -1
@@ -18,7 +14,7 @@ function colouriseText ()
 }
 
 ##
-if isinteractive
+if shell_is_interactive
 then
     PS1="\[\e[G\][\h:\w\$(__git_ps1 \" (%s)\")] \[\e[1;34m\]\u\[\e[0m\]\`[ \$? -ne 0 ] && echo -n '\[\e[00;31m\]'\`\\$\[\e[0m\] "
 fi
