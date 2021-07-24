@@ -6,10 +6,10 @@
 	<false/>
 	<key>CommandHistory</key>
 	<array>
+		<string>bash</string>
 		<string>zsh</string>
 		<string>/bin/sh</string>
 		<string>pwsh</string>
-		<string>bash</string>
 		<string>env</string>
 		<string>/bin/bash --login</string>
 		<string>/bin/bash</string>
@@ -93,7 +93,7 @@
 		<string>@p</string>
 	</dict>
 	<key>NSWindow Frame ConnectToServerWindow</key>
-	<string>76 535 422 422 0 0 1680 1028 </string>
+	<string>182 870 422 428 0 0 3440 1415 </string>
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>367 258 255 214 0 0 1680 1027 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
@@ -107,7 +107,7 @@
 	<key>NSWindow Frame TTInspector</key>
 	<string>1040 925 281 490 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>2296 841 949 371 0 0 3440 1415 </string>
+	<string>2325 812 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>32 7 802 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Grass</key>
@@ -125,7 +125,7 @@
 	<key>NSWindow Frame TTWindow Pro</key>
 	<string>239 0 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Red Sands</key>
-	<string>1589 0 949 371 0 0 3440 1415 </string>
+	<string>1027 111 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Rose Aerogel</key>
 	<string>657 134 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Silver Aerogel</key>
@@ -746,6 +746,8 @@
 			<real>0.99596774193548387</real>
 			<key>ProfileCurrentVersion</key>
 			<real>2.0699999999999998</real>
+			<key>ScrollAlternateScreen</key>
+			<true/>
 			<key>SelectionColor</key>
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
