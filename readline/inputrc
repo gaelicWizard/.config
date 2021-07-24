@@ -31,7 +31,8 @@ set keymap emacs
 # Use more intelligent Up/Down behaviour: use the text that has already been typed as the prefix for searching through commands
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-
+"\e[C": forward-char
+"\e[D": backward-char
 set history-preserve-point on
 	# Try to stay at the same cursor position when moving through the history.
 ##
@@ -75,7 +76,7 @@ set kanji-code utf-8
 ##
 set enable-keypad on
 	# Some systems need this to enable the arrow keys.
-set enable-bracketed-paste on
+#set enable-bracketed-paste on
 	# Coordinate with terminal emulator to isolate pasted text to avoid interpretation as keystrokes.
 	# https://cirw.in/blog/bracketed-paste
 ##
