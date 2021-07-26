@@ -1,4 +1,4 @@
-#!/bin/bash --fail
+#!/bin/bash -c 'brew'
 
 # Specify defaults for Homebrew Cask.
 # (Install cask with brew tap caskroom/cask and brew tap caskroom/versions.)
@@ -21,8 +21,7 @@ export HOMEBREW_CASK_OPTS="
 "
 	# Use global /Applications instead of ~/Applications.
 
-HB_CNF_HANDLER="$(brew --repo homebrew/command-not-found)/handler.sh"
-if [ "${BASH_VERSINFO[0]}" -ge "4" ] && [ -r "$HB_CNF_HANDLER" ]
+if [[ "${BASH_VERSINFO[0]}" -ge "4" && -r "${HB_CNF_HANDLER:=$(brew --repo homebrew/command-not-found)/handler.sh}" ]]
 then
 	source "$HB_CNF_HANDLER";
 fi
