@@ -2,6 +2,8 @@
 
 ## Controls for compiling from source, e.g. Xcode, GCC, LLVM, autoconf, automake, &c.
 
+return # temporarily disabled...
+
 # Specific to Mac OS X
 if [ "`uname -s`" == "Darwin" ]
     # If we're on Mac OS X:

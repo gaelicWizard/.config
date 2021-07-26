@@ -8,5 +8,5 @@ alias easy_uninstall="easy_install -mxN"
     # -N: don't install dependencies
     # NOTE: This will not actually remove the egg.
 
-type -p pip >/dev/null &&
+type -p pip >/dev/null && false &&
     eval "`pip completion --bash 2>/dev/null`"
