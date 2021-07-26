@@ -95,8 +95,15 @@ blankerprg nice cmatrix -absu9
 	# Define a blanker program to be used by the blanker command
 #shelltitle "$ |%1`"
 	# Try to make the title of each new shell dynamic
-hardstatus message "%H:%w"
-	# Make my "hard status" look like "hostname: 0 bash 1* bash" for two "bash" windows, window #1 current.
+caption splitonly '%?%F%{.R.}%?%3n $?$h$:%t$?'
+	# Caption split displays with window, active highlighted in red, showing number and hardstatus or title.
+hardstatus message '%H [%l]: %?%h%:%w%?'
+	# possible alternative from manual: '%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<'
+	# Make my "hard status" look like "hostname [1.23 2.31 3.21]: 0 bash 1* bash" for two "bash" windows, window #1 current.
+	# If the window has it's own status line set, use it instead of window list.
+	# Begin %? begins a conditional (if-not-empty), %: is else clause (if first part was empty), %? ends conditional (endif/fi).
+	# load average... https://www.helpsystems.com/resources/guides/unix-load-average-part-1-how-it-works
+	# see also: https://www.kilobitspersecond.com/2014/02/10/understanding-gnu-screens-hardstatus-strings/
 #termcapinfo xterm*|rxvt*|gnome-terminal|konsole|zvt|dtterm|kterm|Eterm|zterm 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
 	# Add hardstatus line in the menu bar support, nsterm is Terminal.app, others are xterm's cousins
 termcapinfo nsterm* 'ws#120'
