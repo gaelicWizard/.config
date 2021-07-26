@@ -14,7 +14,7 @@ then
         # Agressively discard the attempt to alter $SHELL_SESSION_DIR
     [ -z "$INSIDE_EMACS" ] && unset INSIDE_EMACS
         # Deal with Apple's shody code standards
-    safe_append_prompt_command '_screen_print_dcs_f `update_terminal_cwd`'
+    safe_append_prompt_command '_screen_print_dcs_f `update_terminal_cwd`' || { echo "general.rc.bash: Unable to manipulate prompt." 1>&2; return; }
     #shell_session_save_user_state() { echo MY_VAR="'$MY_VAR'" >> "$SHELL_SESSION_FILE"; }
 fi
 
