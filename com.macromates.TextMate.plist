@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{892, 90}, {1233, 970}}</string>
+	<string>{{1168, 136}, {1235, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -23,56 +23,56 @@
 	<string>{{332, 22}, {695, 641}}</string>
 	<key>LRUDocumentPaths</key>
 	<array>
-		<string>/Users/pellican/.config/com.apple.Terminal.plist</string>
-		<string>/Users/pellican/Library/Preferences/screen/screenrc</string>
-		<string>/Users/pellican/Library/Preferences/com.apple.Terminal.plist</string>
-		<string>/Users/pellican/Library/Preferences/com.apple.Terminal.testing.plist</string>
-		<string>/Users/pellican/Library/Preferences/readline/inputrc</string>
-		<string>/Users/pellican/Library/Preferences/Bash/prompt.rc.bash</string>
-		<string>/Users/pellican/Library/Preferences/inputrc</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/do-caveats.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tap_migrations.json</string>
-		<string>/Users/pellican/Projects/KDE-tap/README.md</string>
-		<string>/Users/pellican/Projects/KDE-tap/CONTRIBUTING.md</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/update-formulas-plasma.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/update-formulas-gear.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/update-formulas-frameworks.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/update-formulas-common.pl</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/uninstall.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/install.sh</string>
-		<string>/Users/pellican/Projects/KDE-tap/tools/ci.sh</string>
-		<string>/Users/pellican/Projects/Tools-tap/Formula/darwine.rb</string>
-		<string>/Users/pellican/Projects/Tools-tap/Formula/wine.rb</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/brew.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/xinit.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/setup.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Formula/macemu-rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Formula/macemu.rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/xcode-tools.rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/perian.rb</string>
-		<string>/Users/pellican/Library/Preferences/Bash/completion/homebrew-bash-completion.bash</string>
 		<string>/Users/pellican/Projects/screen-osx/screenAppAttach.sh</string>
-		<string>/Users/pellican/Library/Preferences/Bash/you_completE_me.rc.bash</string>
-		<string>/Users/pellican/Library/Preferences/Bash/you_complete_me.bash</string>
-		<string>/Users/pellican/Library/Preferences/Bash/you_complete_me</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/quicktime-fixer.rb</string>
-		<string>/Volumes/QuickTime Player X 10.2 Mod/ Delete System QuickTime.command</string>
-		<string>/Users/pellican/Library/Preferences/Bash/homebrew.env.bash</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/untitled.md</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/pIqaD.rb</string>
-		<string>/Users/pellican/.MacOSX/environment.plist</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/piqad.rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/redpill.rb</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/paths.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Casks/lolspeak.rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/gaelicwizard/homebrew-tools/Casks/lolspeak.rb</string>
-		<string>/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks/caskslolspeak.rb</string>
-		<string>/Users/pellican/Projects/Tools-tap/Casks/untitled.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/notes.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/tabs.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/ssh-keychain.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/perl.md</string>
-		<string>/Users/pellican/Projects/Tools-tap/Notes/config.site.md</string>
+		<string>/Users/pellican/Library/Preferences/Bash/ssh.funcs.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/bash.rc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/bashrc_interactive</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/history.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/history-substring-search.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/history-search.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/hg.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/gitstatus.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/git.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/gif.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/extract.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/explain.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/edit-mode-vi.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/edit-mode-emacs.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/dirs.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/direnv.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/cmd-returned-notify.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/browser.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/battery.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/basher.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/base.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/autojump.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/alias-completion.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/hooks/dot-bash.sh</string>
+		<string>/Users/pellican/Projects/Bash It/enabled/350---system.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/enabled/350---defaults.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/todo.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/tmux.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/ssh.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/notify-send.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/makefile.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/git.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/export.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/dirs.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/defaults.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/brew.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/completion/available/bash-it.completion.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/textmate.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/osx.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/systemd.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/homebrew.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/homebrew-cask.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/git.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/general.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/fuck.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/aliases/available/bash-it.aliases.bash</string>
+		<string>/Users/pellican/Projects/Bash It/bash_it.sh</string>
+		<string>/Users/pellican/Projects/Bash It/lib/log.bash</string>
+		<string>/Users/pellican/Projects/Bash It/scripts/reloader.bash</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -81,9 +81,9 @@
 	<key>MASPreferences Frame Top Left</key>
 	<string>{302, 875}</string>
 	<key>MASPreferences Selected Identifier View</key>
-	<string>Software Update</string>
+	<string>Files</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Library/Preferences</string>
+	<string>~/Projects/Tools-tap/Notes</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -101,7 +101,7 @@
 	<key>NSWindow Frame FileTypePanel</key>
 	<string>169 581 638 446 0 0 1680 1027 </string>
 	<key>NSWindow Frame Find</key>
-	<string>1743 656 608 272 0 0 3440 1415 </string>
+	<string>1364 1143 608 272 0 0 3440 1415 </string>
 	<key>NSWindow Frame HTML output for AC5F664E-86BA-4D81-B6CE-1B12F69FA490</key>
 	<string>26 496 1858 921 0 0 3440 1417 </string>
 	<key>NSWindow Frame HTML output for B52DEA16-8480-11D9-BE59-000D93B3A10E</key>
@@ -495,7 +495,7 @@
 		<string>file://localhost/Users/pellican/Library/Application%20Support/Bash/completion/boinc.bash</string>
 	</array>
 	<key>SoftwareUpdateLastPoll</key>
-	<date>2021-07-23T21:29:49Z</date>
+	<date>2021-07-26T08:24:44Z</date>
 	<key>SoftwareUpdateSubmitUsageInfo</key>
 	<true/>
 	<key>SoftwareUpdateUUID</key>
@@ -506,6 +506,8 @@
 	<false/>
 	<key>WebKitUsesPageCachePreferenceKey</key>
 	<false/>
+	<key>autoRevealFile</key>
+	<true/>
 	<key>disableNewDocumentAtStartup</key>
 	<true/>
 	<key>encoding</key>
@@ -601,6 +603,8 @@
 			<string>/usr/local/bin/ksdiff</string>
 		</dict>
 	</array>
+	<key>fileBrowserSingleClickToOpen</key>
+	<false/>
 	<key>findIgnoreCase</key>
 	<true/>
 	<key>findRecentPlaces</key>
@@ -616,7 +620,7 @@
 	<key>initialFileBrowserURL</key>
 	<string>file://localhost/Users/pellican/Projects/</string>
 	<key>lastBundleUpdateCheck</key>
-	<date>2021-07-23T21:29:49Z</date>
+	<date>2021-07-26T08:24:58Z</date>
 	<key>mateInstallPath</key>
 	<string>/usr/local/bin/mate</string>
 	<key>mateInstallVersion</key>
