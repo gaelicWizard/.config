@@ -4,8 +4,8 @@ gp_install_prompt ()
 	[[ -z "${OLD_GITPROMPT+x}" ]] && OLD_GITPROMPT=${PS1}
 	[[ -z "${GIT_PROMPT_OLD_DIR_WAS_GIT+x}" ]] && GIT_PROMPT_OLD_DIR_WAS_GIT=$(we_are_on_repo)
 
-	prompt_command_append setLastCommandState
-	prompt_command_append setGitPrompt
+	safe_append_prompt_command setLastCommandState
+	safe_append_prompt_command setGitPrompt
 
 	git_prompt_dir;
 	source "${__GIT_PROMPT_DIR}/git-prompt-help.sh"

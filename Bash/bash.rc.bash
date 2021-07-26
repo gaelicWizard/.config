@@ -47,7 +47,4 @@ function _history_merge_f ()
         # Re-read history from disk.
 }
 
-declare -F prompt_command_append >/dev/null || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
-    # Import my prompt_commands package, required by prompt_command_append()
-
-prompt_command_append "_history_merge_f"
+safe_append_prompt_command "_history_merge_f" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }

@@ -26,14 +26,6 @@ typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
 typeset -r BASH_COMPLETION BASH_COMPLETION_DIR BASH_COMPLETION_COMPAT_DIR
 #
 
-##
-# Helper function for $PROMPT_COMMAND; depends on _bash-preexec.sh_, from _Bash It_.
-function prompt_command_append ()
-{
-    precmd_functions+=("$@")
-}
-#
-
 
 
 
