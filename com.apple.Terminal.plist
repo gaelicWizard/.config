@@ -15,7 +15,7 @@
 		<string>/bin/bash</string>
 	</array>
 	<key>Default Window Settings</key>
-	<string>Red Sands</string>
+	<string>Ocean</string>
 	<key>DefaultProfilesVersion</key>
 	<integer>1</integer>
 	<key>HasMigratedDefaults</key>
@@ -101,13 +101,13 @@
 	<key>NSWindow Frame New Command Panel</key>
 	<string>222 23 499 128 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTAppPreferences</key>
-	<string>1448 861 667 554 0 0 3440 1415 </string>
+	<string>1446 861 667 554 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTFindPanel</key>
 	<string>35 0 483 144 0 0 1280 778 </string>
 	<key>NSWindow Frame TTInspector</key>
 	<string>1040 925 281 490 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>2441 696 949 371 0 0 3440 1415 </string>
+	<string>46 638 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>32 7 802 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Grass</key>
@@ -115,17 +115,17 @@
 	<key>NSWindow Frame TTWindow Homebrew</key>
 	<string>1862 363 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Man Page</key>
-	<string>270 708 949 707 0 0 3440 1415 </string>
+	<string>294 546 934 739 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Novel</key>
 	<string>71 157 949 366 0 0 1280 778 </string>
 	<key>NSWindow Frame TTWindow Ocean</key>
-	<string>1405 0 949 371 0 0 3440 1415 </string>
+	<string>1405 0 934 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow PowerShell</key>
 	<string>2491 0 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Pro</key>
 	<string>239 0 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Red Sands</key>
-	<string>1932 18 949 371 0 0 3440 1415 </string>
+	<string>177 213 934 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Rose Aerogel</key>
 	<string>657 134 934 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Silver Aerogel</key>
