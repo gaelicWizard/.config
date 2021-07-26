@@ -1,19 +1,64 @@
 #!/bin/bash --interactive -c 'bashrc_dispatch'
-
 ###
 ## bashrc_interactive: all interactive bash shells load this code
 ###
 
-for rc_mine in  \
-                ~/.config/Bash/*.funcs.bash \
-                ~/.config/Bash/*.env.bash \
-                ~/.config/Bash/*.aliases.bash \
-                ~/.config/Bash/*.rc.bash
-do
-    source "$rc_mine"
-done; unset rc_mine
 
-trap _prompt_command_f EXIT
+##
+# Configuration for _Bash It_ modular modernization project
+: ${BASH_IT:=${XDG_DATA_HOME:-~/.local/share}/Bash It}
+: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/Themes}
+: ${SCM_GIT_GITSTATUS_DIR:=${XDG_STATE_HOME:-~/.local/state}/gitstatus}
+: #${BASH_IT_REMOTE:=upstream} #${BASH_IT_DEVELOPMENT_BRANCH:=dev}
+: #${BASH_IT_THEME:=bobby} #IRC_CLIENT='irssi' TODO="t" SCM_CHECK=true
+: ${BASH_IT_COMMAND_DURATION:=true} ${COMMAND_DURATION_MIN_SECONDS:=1}
+#
+typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
+## 
 
-return
-    # deliberately return early.
+##
+# Configuration for _Bash Completion_ presets package, from _Homebrew_.
+: ${BASH_COMPLETION:=/usr/local/etc/bash_completion}
+: ${BASH_COMPLETION_DIR:=/usr/local/etc/bash_completion.d}
+: ${BASH_COMPLETION_COMPAT_DIR:=${XDG_CONFIG_HOME:-~/.config}/Bash/bash_completion.d}
+: ${BASH_COMPLETION_DEBUG:=}
+#
+typeset -r BASH_COMPLETION BASH_COMPLETION_DIR BASH_COMPLETION_COMPAT_DIR
+#
+
+##
+# Helper function for $PROMPT_COMMAND; depends on _bash-preexec.sh_, from _Bash It_.
+function prompt_command_append ()
+{
+    precmd_functions+=("$@")
+}
+#
+
+
+
+
+########################################
+# Invoke the main _Bash It_ script.
+: ${BASH_IT_LOG_LEVEL:=2} ${PROMPT:=}
+#
+source "$BASH_IT"/bash_it.sh
+########################################
+
+
+
+
+##
+# Final cleanup after Bash It has loaded.
+if [[ "${__bp_imported:-}" == "defined" ]]
+then # overwrite $PROMPT_COMMAND to ensure it is pristine.
+	__bp_install
+	PROMPT_COMMAND=$'__bp_precmd_invoke_cmd\n'
+	PROMPT_COMMAND+='__bp_interactive_mode'
+	readonly PROMPT_COMMAND
+	return
+else
+	echo "${BASH_SOURCE}: bash-preexec.sh didn't get loaded...?" 1>&2
+	echo "Didn't load bash-it.sh..." 1>&2
+	return -1
+fi
+#

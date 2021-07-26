@@ -1,6 +1,6 @@
-#!/bin/bash --fail
+#!/bin/bash
 
-declare -F bashd_add_to_path_back >/dev/null || { echo "opt: Unable to manipulate path." 1>&2; return; }
+declare -F pathmunge >/dev/null || { echo "opt: Unable to manipulate path." 1>&2; return; }
     # Require my path package
         #bashd_add_to_path_back()
         #bashd_add_to_path_back_if_admin()
@@ -15,11 +15,11 @@ do
         then
 		if [ -d $optPack/bin ]
         then
-			bashd_add_to_path_back "$optPack/bin"
+			pathmunge "$optPack/bin" after
 		fi
 		if [ -d $optPack/sbin ]
         then
-			bashd_add_to_path_back_if_admin "$optPack/sbin"
+			pathmunge "$optPack/sbin" after
 		fi
 		if [ -d $optPack/share/aclocal ]
         then
