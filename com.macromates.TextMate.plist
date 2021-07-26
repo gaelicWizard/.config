@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{1168, 136}, {1235, 970}}</string>
+	<string>{{1210, 126}, {1235, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -24,11 +24,46 @@
 	<key>LRUDocumentPaths</key>
 	<array>
 		<string>/Users/pellican/Projects/screen-osx/screenAppAttach.sh</string>
-		<string>/Users/pellican/Library/Preferences/Bash/ssh.funcs.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/general.rc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/git_prompt.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/bash.rc.bash</string>
+		<string>/Users/pellican/Projects/Bash It/bash_it.sh</string>
+		<string>/Users/pellican/Projects/Bash It/themes/base.theme.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/bashrc_interactive</string>
+		<string>/Users/pellican/Projects/Bash It/themes/standard/standard.theme.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/battery.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/lib/preview.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/python.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/z_autoenv.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/xterm.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/todo.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/tmux.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/thefuck.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/textmate.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/sudo.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/sshagent.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/ssh.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/proxy.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/powerline.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/pack.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/osx.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/osx-timemachine.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/jekyll.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/latex.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/jump.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/less-pretty-cat.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/man.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/nginx.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/node.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/nodenv.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/jenv.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/history.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/javascript.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/java.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/hub.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/history-substring-search.plugin.bash</string>
+		<string>/Users/pellican/Projects/Bash It/plugins/available/cmd-returned-notify.plugin.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/ssh.funcs.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/history-search.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/hg.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/gitstatus.plugin.bash</string>
@@ -38,41 +73,6 @@
 		<string>/Users/pellican/Projects/Bash It/plugins/available/explain.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/edit-mode-vi.plugin.bash</string>
 		<string>/Users/pellican/Projects/Bash It/plugins/available/edit-mode-emacs.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/dirs.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/direnv.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/cmd-returned-notify.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/browser.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/battery.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/basher.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/base.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/autojump.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/alias-completion.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/hooks/dot-bash.sh</string>
-		<string>/Users/pellican/Projects/Bash It/enabled/350---system.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/enabled/350---defaults.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/todo.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/tmux.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/ssh.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/notify-send.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/makefile.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/git.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/export.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/dirs.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/defaults.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/brew.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/completion/available/bash-it.completion.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/textmate.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/osx.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/systemd.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/homebrew.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/homebrew-cask.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/git.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/general.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/fuck.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/bash-it.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/bash_it.sh</string>
-		<string>/Users/pellican/Projects/Bash It/lib/log.bash</string>
-		<string>/Users/pellican/Projects/Bash It/scripts/reloader.bash</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -101,7 +101,7 @@
 	<key>NSWindow Frame FileTypePanel</key>
 	<string>169 581 638 446 0 0 1680 1027 </string>
 	<key>NSWindow Frame Find</key>
-	<string>1364 1143 608 272 0 0 3440 1415 </string>
+	<string>1364 1075 608 340 0 0 3440 1415 </string>
 	<key>NSWindow Frame HTML output for AC5F664E-86BA-4D81-B6CE-1B12F69FA490</key>
 	<string>26 496 1858 921 0 0 3440 1417 </string>
 	<key>NSWindow Frame HTML output for B52DEA16-8480-11D9-BE59-000D93B3A10E</key>
