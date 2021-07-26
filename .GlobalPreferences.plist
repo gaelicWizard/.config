@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-24T07:38:26Z</date>
+	<date>2021-07-26T07:38:44Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -69,7 +69,7 @@
 	<key>AppleShowAllExtensions</key>
 	<true/>
 	<key>AppleShowScrollBars</key>
-	<string>Automatic</string>
+	<string>WhenScrolling</string>
 	<key>AppleSpacesSwitchOnActivate</key>
 	<false/>
 	<key>AppleTemperatureUnit</key>
@@ -294,7 +294,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-07-23T06:06:15Z</date>
+	<date>2021-07-25T15:19:16Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -338,11 +338,11 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>/opt/X11/bin</string>
+		<string>/Volumes/p0rn/toSort/onionib</string>
+		<string>~/Projects/Tools-tap/Notes</string>
 		<string>~/Library/Preferences</string>
 		<string>~/Projects/config.git</string>
-		<string>~/.temp/config</string>
-		<string>/usr/local/Homebrew/Library/Taps/kde-mac/homebrew-kde</string>
-		<string>~/Projects/KDE-tap</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
