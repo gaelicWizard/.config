@@ -1,13 +1,14 @@
 #!/bin/bash --interactive -c 'bashrc_dispatch'
 ###
-## bashrc_interactive: all interactive bash shells load this code
+## bashrc_interactive: all interactive bash shells load this code.
 ###
 
+shopt -so nounset #== set -u # Undefined parameters are errors.
 
 ##
-# Configuration for _Bash It_ modular modernization project
+# Configuration for _Bash It_ modular modernization project.
 : ${BASH_IT:=${XDG_DATA_HOME:-~/.local/share}/Bash It}
-: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/Themes}
+: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/prompt}
 : ${SCM_GIT_GITSTATUS_DIR:=${XDG_STATE_HOME:-~/.local/state}/gitstatus}
 : #${BASH_IT_REMOTE:=upstream} #${BASH_IT_DEVELOPMENT_BRANCH:=dev}
 : #${BASH_IT_THEME:=bobby} #IRC_CLIENT='irssi' TODO="t" SCM_CHECK=true
@@ -18,12 +19,17 @@ typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
 
 ##
 # Configuration for _Bash Completion_ presets package, from _Homebrew_.
-: ${BASH_COMPLETION:=/usr/local/etc/bash_completion}
-: ${BASH_COMPLETION_DIR:=/usr/local/etc/bash_completion.d}
-: ${BASH_COMPLETION_COMPAT_DIR:=${XDG_CONFIG_HOME:-~/.config}/Bash/bash_completion.d}
+: ${BASH_COMPLETION:=/usr/local/opt/bash-completion@1/etc/bash_completion}
+: ${BASH_COMPLETION_COMPAT_DIR:=/usr/local/etc/bash_completion.d}
+: ${BASH_COMPLETION_USER_DIR:=${XDG_CONFIG_HOME:-~/.config}/Bash/completion.d}
 : ${BASH_COMPLETION_DEBUG:=}
 #
-typeset -r BASH_COMPLETION BASH_COMPLETION_DIR BASH_COMPLETION_COMPAT_DIR
+typeset -r BASH_COMPLETION BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR
+#
+
+##
+# Supress bash-preexec from installing itself and bjorking HISTCONTROL.
+: ${__bp_delay_install:=jfc}
 #
 
 
@@ -43,10 +49,15 @@ source "$BASH_IT"/bash_it.sh
 # Final cleanup after Bash It has loaded.
 if [[ "${__bp_imported:-}" == "defined" ]]
 then # overwrite $PROMPT_COMMAND to ensure it is pristine.
+	# Supress bash-preexec from bjorking HISTCONTROL while installing itself.
+	__preexec__bp_install_f="$(declare -f __bp_install)"
+	eval "${__preexec__bp_install_f/__bp_adjust_histcontrol/: __bp_adjust_histcontrol}"
+	unset __preexec__bp_install_f
 	__bp_install
 	PROMPT_COMMAND=$'__bp_precmd_invoke_cmd\n'
 	PROMPT_COMMAND+='__bp_interactive_mode'
 	readonly PROMPT_COMMAND
+	trap __bp_precmd_invoke_cmd EXIT
 	return
 else
 	echo "${BASH_SOURCE}: bash-preexec.sh didn't get loaded...?" 1>&2
