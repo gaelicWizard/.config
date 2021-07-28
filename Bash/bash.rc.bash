@@ -21,17 +21,16 @@ shopt -s checkwinsize               # Update $LINES/$COLUMNS when sigwinch
 shopt -s cmdhist                    # save multi-line commands as one long entry (bug: comments)
 shopt -s histappend                 # append to history file instead of overwriting
 shopt -s histverify                 #  allow editing of commands retreived from history,
-HISTSIZE=32768 # 8^5
+readonly HISTSIZE=32768 # 8^5
     # Keep a _much_ longer history. (default == 500)
-HISTFILESIZE=262144 # 8^6
-    # Don't truncate the history file until it is ENORMOUS.
+readonly HISTFILESIZE=262144 # 8^6
+    # Don't truncate the history file until it is ENORMOUS. (default == 500)
 HISTIGNORE="&:l:ls:ls -la:ls -lA:cd:[bf]g:exit:quit:bye"
     # Drop repeats and other useless things from the command history.
-HISTCONTROL="ignoredups:erasedups:ignorespace"
+HISTCONTROL="ignoredups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
-    # exclude repeats from loaded history, and
     # drop lines beginning with a space.
-HISTFILE="${XDG_STATE_HOME:-~/.local/state}/Bash/history"
+readonly HISTFILE="${XDG_STATE_HOME:-~/.local/state}/Bash/history"
 #HISTTIMEFORMAT= # man strftime
 
 CDPATH=":~" #":/Volumes:~/Projects"
