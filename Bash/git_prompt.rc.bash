@@ -8,6 +8,7 @@ gp_install_prompt ()
 	safe_append_prompt_command setGitPrompt
 
 	git_prompt_dir;
+	_bash_it_log_section="git-prompt"
 	source "${__GIT_PROMPT_DIR}/git-prompt-help.sh"
 }
 declare -Fr gp_install_prompt
@@ -15,5 +16,9 @@ declare -Fr gp_install_prompt
 if [ -x "${__GIT_PROMPT_DIR:=$(brew --prefix)/opt/bash-git-prompt/share}/gitprompt.sh" ]
 then
 	GIT_PROMPT_ONLY_IN_REPO=1
+	_bash_it_log_section="git-prompt"
 	source "${__GIT_PROMPT_DIR}/gitprompt.sh" 2> >(fgrep -v 'gp_install_prompt: readonly')
+	_log_trace "${BASH_IT_LOG_PREFIX[0]} + ${BASH_IT_LOG_PREFIX[1]}"
+	[[ "${BASH_IT_LOG_PREFIX[0]}" == "git-prompt" && "${BASH_IT_LOG_PREFIX[1]}" == "git_prompt.rc" ]] \
+		&& _bash_it_log_prefix_pop "Sourcing gitprompt.sh fails part-way through and doesn't trigger RETURN trap..."
 fi
