@@ -18,7 +18,7 @@ then
 	GIT_PROMPT_ONLY_IN_REPO=1
 	_bash_it_log_section="git-prompt"
 	source "${__GIT_PROMPT_DIR}/gitprompt.sh" 2> >(fgrep -v 'gp_install_prompt: readonly')
-	_log_trace "${BASH_IT_LOG_PREFIX[0]} + ${BASH_IT_LOG_PREFIX[1]}"
-	[[ "${BASH_IT_LOG_PREFIX[0]}" == "git-prompt" && "${BASH_IT_LOG_PREFIX[1]}" == "git_prompt.rc" ]] \
+	_log_trace "${__bash_it_log_prefix[0]} + ${__bash_it_log_prefix[1]}"
+	[[ "${__bash_it_log_prefix[0]}" == "git-prompt" && "${__bash_it_log_prefix[1]}" == "git_prompt.rc" ]] \
 		&& _bash_it_log_prefix_pop "Sourcing gitprompt.sh fails part-way through and doesn't trigger RETURN trap..."
 fi
