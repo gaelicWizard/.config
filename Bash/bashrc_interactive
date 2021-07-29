@@ -37,7 +37,7 @@ typeset -r BASH_COMPLETION BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR
 
 ########################################
 # Invoke the main _Bash It_ script.
-: ${BASH_IT_LOG_LEVEL:=2} ${PROMPT:=}
+: ${BASH_IT_LOG_LEVEL:=3} ${PROMPT:=}
 #
 source "$BASH_IT"/bash_it.sh
 ########################################
