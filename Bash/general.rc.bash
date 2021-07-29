@@ -8,7 +8,7 @@ readonly SHELL_SESSION_DIR
 if [ -r "/etc/bashrc_${TERM_PROGRAM:-}" ]
 then
     : "${INSIDE_EMACS:=}"
-	_bash_it_log_section=${TERM_PROGRAM:-}
+	_bash_it_log_section=${TERM_PROGRAM:-TERM_PROGRAM}
     source /etc/bashrc_${TERM_PROGRAM:-} 2> >(fgrep -v "PROMPT_COMMAND: readonly" | fgrep -v "SHELL_SESSION_DIR: readonly")
         # Import Apple's weird session management stuff...just for some functions
         # Agressively discard the attempt to alter $PROMPT_COMMAND
