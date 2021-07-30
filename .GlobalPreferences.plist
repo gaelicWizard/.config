@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-28T07:45:34Z</date>
+	<date>2021-07-30T07:38:54Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -38,6 +38,8 @@
 	<string>1.000000 0.874510 0.701961 Orange</string>
 	<key>AppleICUForce24HourTime</key>
 	<true/>
+	<key>AppleInterfaceStyle</key>
+	<string>Dark</string>
 	<key>AppleInterfaceStyleSwitchesAutomatically</key>
 	<true/>
 	<key>AppleInterfaceTheme</key>
@@ -292,7 +294,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-07-27T15:20:09Z</date>
+	<date>2021-07-28T22:02:01Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>

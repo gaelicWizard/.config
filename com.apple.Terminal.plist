@@ -101,13 +101,13 @@
 	<key>NSWindow Frame New Command Panel</key>
 	<string>222 23 499 128 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTAppPreferences</key>
-	<string>1446 861 667 554 0 0 3440 1415 </string>
+	<string>949 861 667 554 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTFindPanel</key>
 	<string>35 0 483 144 0 0 1280 778 </string>
 	<key>NSWindow Frame TTInspector</key>
 	<string>1040 925 281 490 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>162 580 949 371 0 0 3440 1415 </string>
+	<string>220 522 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>32 7 802 365 0 0 1680 1027 </string>
 	<key>NSWindow Frame TTWindow Grass</key>
@@ -115,11 +115,11 @@
 	<key>NSWindow Frame TTWindow Homebrew</key>
 	<string>2218 66 934 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Man Page</key>
-	<string>60 662 934 739 0 0 3440 1415 </string>
+	<string>202 448 934 739 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Novel</key>
 	<string>71 157 949 366 0 0 1280 778 </string>
 	<key>NSWindow Frame TTWindow Ocean</key>
-	<string>2506 1044 934 371 0 0 3440 1415 </string>
+	<string>2383 1043 934 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow PowerShell</key>
 	<string>2491 0 949 371 0 0 3440 1415 </string>
 	<key>NSWindow Frame TTWindow Pro</key>
@@ -169,7 +169,7 @@
 		<integer>4</integer>
 	</array>
 	<key>TTAppPreferences Selected Tab</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>TTInspector Selected Pane</key>
 	<string>Info</string>
 	<key>Window Groups</key>
