@@ -24,14 +24,13 @@ alias gam="python ~/Projects/External/GoogleAppsManager.svn/gam.py"
 
 ## Generally useful functions :-)
 function ls ()
-{ command ls -AGFOh "$@" ; } 
-    # 'command ls' to prevent loop; -A for .file, -G for color, -F for dir/ link@, 
-    # -h for 5k 3m 1g, -O for uchg...
+{ command ls -AFOh "$@" ; } 
+    # 'command ls' to prevent loop; -A for .file, -G for color (see $CLICOLOR), -F for dir/ link@, -h for 5k 3m 1g, -O for uchg...
 function l ()
 { ls -l "$@"; } 
     # -l to list in long format...
 function ll ()
-{ CLICOLOR_FORCE='1' l "$@" | less -e -R ; } 
+{ CLICOLOR_FORCE="$CLICOLOR" l "$@" | less -e -R ; } 
     # pipe into 'less', tell less to honor colors and to exit at end
 
 alias locate="locate -i" # case insensitive
