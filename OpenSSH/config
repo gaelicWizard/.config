@@ -22,11 +22,11 @@ AddKeysToAgent yes
 #^Overrides
 
 # BEGIN HOST SPECIFIC SECTION
-    # __all__ _arguments_ are case-sensitive
+	# __all__ _arguments_ are case-sensitive
 
 Host sf.net shell.sf.net
 	HostName shell.sourceforge.net
-	#RemoteCommand create
+	RemoteCommand create
 		# There is no shell if not created; it times out after ~4 hours(?)
 		# RemoteCommand is incompatible with a command specified on the command line
 Host web.sf.net
@@ -37,106 +37,9 @@ Host sf.net *.sf.net *.sourceforge.net *.code.sf.net
 		# must be all-lowercase...
 
 
-Host PBC-SVR-033732
-    User binovia
-    HostName 160.87.223.123
-#   Password BIN2Protect
-Host PBC-SVR-033771
-    User binovia
-    HostName 160.87.223.98
-#   Password nzyBzvh8HJ
-
-Host BIN-Atkinson
-    HostKeyAlias atkinson.binovia.com
-    HostName 173.240.95.130
-    User binovia
-    #Password BIN2B0xx
-    #Enable Sky1b0xx
-
-Host BIN-Behemoth
-	HostKeyAlias behemoth.binovia.com
-	HostName backup2.binovia.com
-	Port 2285
-	User root
-#	Password BIN9B0xx
-
-Host xrad.binovia.com
-    User ubuntu
-    #HostKeyAlias ubnutu.atkinson.binovia.com
-    #HostName 173.240.95.143
-    #Password BIN9B0xx
-
-Host PMIOC-switch
-	HostKeyAlias PMIOC-switch
-	HostName 192.168.110.1
-	User Binovia
-
-Host SGVDC-ESXi
-	HostKeyAlias SGVDC-ESXi
-	HostName 24.176.217.114
-	HostName 10.32.15.180
-	User root
-
-Host TSJI-switch
-	HostKeyAlias TSJI-switch
-	HostName 10.200.1.1
-	User Binovia
-
-Host TSJI.Binovia.IT
-	HostKeyAlias TSJI-asa
-
-Host TSJI-router
-	HostKeyAlias TSJI-asa
-	HostName 10.200.1.10
-	User Binovia
-
-Host TSJI-HP
-	HostName 10.200.1.3
-	User management
-	# k51ErVHKM7
-
-Host TSJI-RIS2
-	ProxyCommand ssh -q TSJI-RIS1 exec nc 192.168.100.235 22
-	HostKeyAlias TSJI-RIS-backup
-	HostName 10.200.1.250
-	User root
-
-Host TSJI-RIS1
-	HostKeyAlias TSJI-RIS
-	HostName 10.200.1.8
-#	HostName 170.220.221.28
-#	HostName 172.27.9.28
-	User root
-#	Password Tower1!
-
-Host TSJI-CentarisOne
-	HostKeyAlias TSJI-CentarisOne
-	Hostname 10.200.1.88
-	User admin
-#	Password tsji2202
-
-
 Host github.com gist.github.com
 	User git
-	IdentityFile ~/.ssh/github.id
 	IdentitiesOnly yes
-
-Host sufa jewishriverside.no-ip.org jewishriverside jewishriverside.from-ca.com
-	HostName cjccr.gaelicWizard.net
-	HostKeyAlias sufa.jewishriverside.com
-	IdentityFile ~/.ssh/%r@sufa.id
-#	HostName JewishRiverside.from-ca.com
-		# or JewishRiverside.no-ip.org
-	User rabbi
-	IdentitiesOnly yes
-
-Host dabahc jewishriverside-bu.no-ip.org jewishriverside-bu
-	HostName JewishRiverside-bu.no-ip.org
-	User dabahc
-	IdentitiesOnly yes
-	IdentityFile ~/.ssh/%r@P455MG-GL.id
-	IdentityFile ~/.ssh/%r@bu.id
-	HostKeyAlias dabahc.jewishriverside.com
 
 
 Host Anahid anahid colordots anahid.colordotsinc.com colordots.kicks-ass.net
@@ -146,80 +49,40 @@ Host Anahid anahid colordots anahid.colordotsinc.com colordots.kicks-ass.net
 	IdentitiesOnly yes
 	IdentityFile ~/.ssh/anahid.id
 
+
 # gaelicWizard.net hosts
-Host armitage sarah alexander strawberry dmitry mary ivan persephone lotus agony
-    HostName %h.gaelicWizard.net
+Host armitage sarah alexander strawberry dmitry mary ivan persephone lotus agony Droboholm Motoko Arnold Aaron Kiki
+	HostName %h.gaelicWizard.net
 
 Host Droboholm Droboholm.local
-    HostKeyAlias %h.gaelicWizard.net
-    HostName %h.local
-    User gaelicWizard
-	IdentityFile ~/.ssh/Droboholm.id
+	User gaelicWizard
+	#HostName Droboholm.gaelicWizard.net
 
 #host bluebox283
-#    hostname box283.bluehost.com
-#    user gaelicwi
-#    IdentityFile ~/.ssh/bluehost.id
-#    ForwardAgent no
-#    ForwardX11 no
+#	hostname box283.bluehost.com
+#	user gaelicwi
+#	IdentityFile ~/.ssh/bluehost.id
+#	ForwardAgent no
+#	ForwardX11 no
 
-# Sandra's
-host andrew
-    hostname andrew.gaelicWizard.net
-    user admin
-host arnold
-    hostname sraderphd.kicks-ass.net
-#    hostname Arnold.johnpell.members.mac.com
-    HostKeyAlias arnold.gaelicWizard.net
-    user admin
-#^Sandra's
 #^gaelicWizard.net hosts
 
 # gaelicWizard.net overrides
 #^gaelicWizard.net overrides
 
 # gaelicWizard.net defaults
-host *.gaelicWizard.net
-#    ProxyCommand sshProxyConnect.sh Agatha %h %p $r
+Host *.gaelicWizard.net
+#	ProxyCommand sshProxyConnect.sh Agatha %h %p $r
 #^gaelicWizard.net defaults
 
 # kicks-ass.net defaults
-host *.kicks-ass.net
+Host *.kicks-ass.net
 #^kicks-ass.net defaults
 
-# Apple Retail hosts
-host eve rachel
-#    HostName
-#    ProxyCommand sshProxyConnect.sh Agatha %h 22%p #%r
-#    HostKeyAlias %n.r0%p.apple.com
-host eve
-    user visuals
-    port 34
-        # store number
-host rachel
-    port 94
-        # store number
-#^Apple remote access hosts
-
-
-# UCR hosts
-host erebus
-    hostname erebus.ucr.edu
-# UCR/CS hosts
-host orpheus eon smp
-#    HostName %n.cs.ucr.edu
-host orpheus
-    hostname orpheus.cs.ucr.edu
-host eon
-    hostname eon.cs.ucr.edu
-host smp
-    hostname smp.cs.ucr.edu
-#^UCR/CS hosts
-#^UCR hosts
 
 # UCR defaults
-host *.ucr.edu
-    user jpell003
+Host *.ucr.edu
+	user jpell003
 #^UCR defaults
 
 
@@ -230,53 +93,57 @@ host *.ucr.edu
 
 # Defaults
 Host *
-    HostKeyAlgorithms +ssh-dss
-    EscapeChar none
-        # 8-bit clean.
-    ExitOnForwardFailure no
-        # Start a connection even if not all forwarding succeeds.
-    Compression yes
-    PermitLocalCommand yes
-    #LocalCommand ~/Tools/screen_ssh_title_setter.sh $PPID %n %h
+	HostKeyAlgorithms +ssh-dss
+	EscapeChar none
+		# 8-bit clean.
+	ExitOnForwardFailure no
+		# Start a connection even if not all forwarding succeeds.
+	Compression yes
+	PermitLocalCommand yes
+	#LocalCommand ~/Tools/screen_ssh_title_setter.sh $PPID %n %h
 	RequestTTY yes
 		# Note that "yes" really means "auto" (allocate if stdin is a tty).
 		#  and that "auto" really means "sometimes" (allocate if login).
 # Retries
-    ConnectionAttempts 3
-    NumberOfPasswordPrompts 2
+	ConnectionAttempts 9
+		 # Let the server stop us!
+	NumberOfPasswordPrompts 2
+		 # Don't keep trying bad passwords.
 # Keys
-    VerifyHostKeyDNS yes
-    NoHostAuthenticationForLocalhost yes
+	VerifyHostKeyDNS yes
+	NoHostAuthenticationForLocalhost yes
 	#IdentityFile ~/.ssh/%r@%h.id_ed25519
-    #IdentityFile ~/.ssh/%r@%h.id
-        # Would like to use %n, just for pretties.
-    IdentityFile ~/.ssh/id_ed25519
-    IdentityFile ~/.ssh/id_rsa
+	#IdentityFile ~/.ssh/%r@%h.id
+		# Would like to use %n, just for pretties.
+	IdentityFile ~/.ssh/id_ed25519
+	IdentityFile ~/.ssh/id_rsa
 #   PasswordAuthentication no
-    VisualHostKey yes
+	VisualHostKey yes
 # Socket Forwarding
-    ForwardX11 yes
-    #ForwardX11Trusted yes
+	ForwardX11 yes
+	#ForwardX11Trusted yes
 		# Trust disables timeout, but also does other stuff...
 	ForwardX11Timeout 0
-        # Don't expire X11 forwarding
-    ForwardAgent no
+		# Don't expire X11 forwarding
+	ForwardAgent no
 	RemoteForward 52698 localhost:52698
 		# TextMate
-	XAuthLocation /opt/X11/bin/xauth
+	XAuthLocation /usr/X11/bin/xauth
 		#https://github.com/XQuartz/XQuartz/issues/174#
 # Try to prevent firewalls from dropping connection
-    TCPKeepAlive yes
-        # default
-    ServerAliveInterval 60
-    ServerAliveCountMax 1440
-        # 24 hours, to avoid *us* dropping the connection
+	TCPKeepAlive yes
+		# default
+	ServerAliveInterval 60
+	ServerAliveCountMax 1440
+		# 24 hours, to avoid *us* dropping the connection
 # Caching (3.8.1+)
-    ControlMaster auto
-    ControlPath "~/.ssh/master %r@%h:%p"
+	ControlMaster auto
+	ControlPath "~/.ssh/master %r@%h:%p"
 	ControlPersist 90
 		# Survive for 90 seconds.
 # Environment
-    SendEnv LANG LC_* RMATE_* SUDO_PROMPT FIGNORE EDITOR ALTERNATE_EDITOR 
+	SendEnv LANG LC_* RMATE_* SUDO_PROMPT FIGNORE EDITOR ALTERNATE_EDITOR 
 # Known Hosts
 	HashKnownHosts yes
+# Ask Keychain for Certificates!
+	PKCS11Provider /usr/lib/ssh-keychain.dylib
