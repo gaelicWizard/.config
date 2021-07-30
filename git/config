@@ -23,7 +23,7 @@
 	pager = true
 
 [core]
-	pager = less -FRSX
+	pager = less -RSX
 	whitespace=fix,tabwidth=4,indent-with-non-tab,trailing-space #,cr-at-eol
 	#excludesfile = ~/.gitignore
 	autocrlf = input
