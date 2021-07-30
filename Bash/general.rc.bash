@@ -36,8 +36,9 @@ function ll ()
 alias locate="locate -i" # case insensitive
 function locate ()
 {
-    local MAXAGE=$(( 24 * 60*60 )) # twenty-four hours, in seconds.
-    local NOW="$(date +%s)"
+	local -i HOURS=$(( 60*60 )) # sixty minutes of sixty seconds.
+    local -i MAXAGE=$(( 24 * $HOURS )) # twenty-four hours.
+    local -i NOW="$(date +%s)" # seconds since EPOCH.
     local DB="/var/db/locate.database"
 
     if [ ! -e "$DB" ]
@@ -53,7 +54,7 @@ function locate ()
 
     if [ $DBAGE -gt $NOW ]
     then
-        echo "$FUNCNAME: $DB is more than $(( $MAXAGE / (60*60) )) hours old. Updating..." > /dev/stderr
+        echo "$FUNCNAME: $DB is more than $(( $MAXAGE / $HOURS )) hours old. Updating..." > /dev/stderr
         sudo launchctl start com.apple.locate > /dev/stderr
         echo "$FUNCNAME: stale results: " > /dev/stderr
     fi
