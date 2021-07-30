@@ -30,7 +30,7 @@ HISTIGNORE="&:l:ls:ls -la:ls -lA:cd:[bf]g:exit:quit:bye"
 HISTCONTROL="ignoredups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
     # drop lines beginning with a space.
-readonly HISTFILE="${XDG_STATE_HOME:-~/.local/state}/Bash/history"
+readonly HISTFILE=${XDG_STATE_HOME:-~/.local/state}/Bash/history
 #HISTTIMEFORMAT= # man strftime
 
 CDPATH=":~" #":/Volumes:~/Projects"
