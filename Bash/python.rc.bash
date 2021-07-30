@@ -1,6 +1,6 @@
 #!/bin/bash --fail
 
-PATH="/Library/Python/bin:$PATH"
+pathmunge "/Library/Python/bin"
 
 alias easy_uninstall="easy_install -mxN"
     # -m: multi-version, i.e. remove from easy-install.pth
