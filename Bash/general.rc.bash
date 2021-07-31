@@ -1,6 +1,6 @@
 #!/bin/sh -c 'echo This file is meant to be sourced.'
 
-export BLOCKSIZE=1024 
+export BLOCKSIZE=1024 # make tools report in 1m increments, not 512k... $POSIX_ME_HARDER
 
 mkdir -p -m u+rwX,go-rwx "${SHELL_SESSION_DIR:=${XDG_STATE_HOME:-$HOME/.}${XDG_STATE_HOME:+/}bash_sessions}"
 readonly SHELL_SESSION_DIR
@@ -68,9 +68,6 @@ function lleaks ()
 }
 
 alias which='type -p' # 'which' in (t)csh is same(?) as 'type -p' in bash...?
-
-mkdir -p -m u+rwX,go-rwx ~/.temp
-    # Make sure that my own temp folder exists.
 
 # Set $COLORTERM, all this does is trick *some* apps into 
 # using color in the terminal, which should happen anyway.
