@@ -36,14 +36,5 @@ readonly HISTFILE=${XDG_STATE_HOME:-~/.local/state}/Bash/history
 CDPATH=":~" #":/Volumes:~/Projects"
     # An empty first element means current-directory, but doesn't print every single time used.
 
-function _history_merge_f ()
-{
-    history -a
-        # Append new history immediately.
-    history -c
-        # Clear in-memory history.
-    history -r
-        # Re-read history from disk.
-}
-
-safe_append_prompt_command "_history_merge_f" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
+autosave=1
+safe_append_prompt_command "_save-and-reload-history" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
