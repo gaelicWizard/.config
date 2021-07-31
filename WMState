@@ -69,11 +69,11 @@
   Clip = {
     Forced = No;
     Name = Logo.WMClip;
-    DropCommand = "wmsetbg -u -t %d";
     BuggyApplication = No;
+    DropCommand = "wmsetbg -u -t %d";
     AutoLaunch = No;
-    Position = "559,0";
     Lock = No;
+    Position = "559,0";
     Command = "-";
   };
   Menus = {
@@ -84,8 +84,8 @@
     {
       Clip = {
         AutoRaiseLower = No;
-        AutoCollapse = No;
         Applications = ();
+        AutoCollapse = No;
         Collapsed = No;
         AutoAttractIcons = No;
         Lowered = Yes;
