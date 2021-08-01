@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SULastCheckTime</key>
+	<date>2013-11-07T14:04:21Z</date>
+	<key>__deviceUUID</key>
+	<string>1dcd7ac359df622f7032b673a08c5ab0</string>
+	<key>__lastEmail</key>
+	<string>john+everpix@gaelicwizard.net</string>
+	<key>__lastUID</key>
+	<string>eb3cec37c5844cd14707919db6dd3071</string>
+	<key>cpuUsage</key>
+	<integer>1</integer>
+	<key>newInstall</key>
+	<false/>
+	<key>runAtLogin</key>
+	<false/>
+</dict>
+</plist>
