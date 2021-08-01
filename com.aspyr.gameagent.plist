@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Content Check Fire Date</key>
+	<date>2009-01-17T18:30:23Z</date>
+	<key>Content Check Interval</key>
+	<integer>604800</integer>
+	<key>Content Check Last Date</key>
+	<date>2009-01-17T18:30:24Z</date>
+	<key>Content Check Last Result</key>
+	<false/>
+	<key>Content Check Last Version</key>
+	<integer>38</integer>
+	<key>PrefsReset</key>
+	<integer>2</integer>
+	<key>WelcomeShown</key>
+	<integer>1</integer>
+</dict>
+</plist>
