@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Active Hotkey Profile</key>
+	<string>$default</string>
+	<key>AppVersion</key>
+	<string>1.23.8.9411</string>
+	<key>FirewallCheckDone</key>
+	<integer>1</integer>
+	<key>OsCompatibilityModeCheckDone</key>
+	<integer>0</integer>
+	<key>PreferPort6112</key>
+	<integer>0</integer>
+	<key>fullscreenWindowMode</key>
+	<integer>1</integer>
+	<key>intro</key>
+	<integer>512</integer>
+	<key>introX</key>
+	<integer>0</integer>
+	<key>tip</key>
+	<integer>256</integer>
+	<key>tipnum</key>
+	<integer>0</integer>
+	<key>usechatcolors</key>
+	<integer>4096</integer>
+</dict>
+</plist>

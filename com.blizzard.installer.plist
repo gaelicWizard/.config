@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSNavBrowserPreferedColumnContentWidth</key>
+	<real>186</real>
+	<key>NSNavLastRootDirectory</key>
+	<string>/Applications</string>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{519, 403}</string>
+	<key>NSNavSidebarWidth</key>
+	<real>120</real>
+	<key>NSTableView Columns NSNavOutlineColumnSettings.v1</key>
+	<array>
+		<data>
+		BAt0eXBlZHN0cmVhbYED6IQBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErHE5TTmF2RGlzcGxheU5hbWVGaWxlUHJvcGVydHmG
+		</data>
+		<string>225</string>
+		<data>
+		BAt0eXBlZHN0cmVhbYED6IQBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErGE5TTmF2TW9kRGF0ZUZpbGVQcm9wZXJ0eYY=
+		</data>
+		<string>118</string>
+	</array>
+	<key>NSTableView Sort Ordering NSNavOutlineColumnSettings.v1</key>
+	<array>
+		<data>
+		BAt0eXBlZHN0cmVhbYED6IQBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErHE5TTmF2RGlzcGxheU5hbWVGaWxlUHJvcGVydHmG
+		</data>
+		<true/>
+	</array>
+</dict>
+</plist>
