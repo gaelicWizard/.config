@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptFirstMouse</key>
+	<string>YES</string>
+	<key>AggressiveTrashAUX</key>
+	<string>NO</string>
+	<key>AlwaysHighlightEnabled</key>
+	<false/>
+	<key>AutoCompleteEnabled</key>
+	<string>NO</string>
+	<key>AutoSaveEnabled</key>
+	<true/>
+	<key>AutomaticSpellingCorrectionEnabled</key>
+	<false/>
+	<key>AutomaticUTF8MACtoUTF8Conversion</key>
+	<true/>
+	<key>BeepEnabled</key>
+	<true/>
+	<key>BibDeskCompletion</key>
+	<string>NO</string>
+	<key>BibtexCommand</key>
+	<string>0</string>
+	<key>BringPdfFrontOnAutomaticUpdate</key>
+	<string>YES</string>
+	<key>BringPdfFrontOnTypeset</key>
+	<string>YES</string>
+	<key>CheckBraceEnabled</key>
+	<true/>
+	<key>CheckBracketEnabled</key>
+	<false/>
+	<key>CheckParenEnabled</key>
+	<true/>
+	<key>CheckSquareBracketEnabled</key>
+	<true/>
+	<key>CommandCompletionChar</key>
+	<string>ESCAPE</string>
+	<key>ConTeXtTags</key>
+	<string>NO</string>
+	<key>ConsoleBehavior</key>
+	<integer>0</integer>
+	<key>ConsoleWidthResize</key>
+	<true/>
+	<key>ConsoleWindowAlpha</key>
+	<string>1.00</string>
+	<key>ConsoleWindowFixedPos</key>
+	<string>462 0 898 526 0 0 1680 1025 </string>
+	<key>ConsoleWindowPosMode</key>
+	<integer>0</integer>
+	<key>ConvertLF</key>
+	<string>YES</string>
+	<key>ConvertToBackslash</key>
+	<false/>
+	<key>ConvertToYen</key>
+	<false/>
+	<key>DefaultCommand</key>
+	<integer>2</integer>
+	<key>DefaultDarkTheme</key>
+	<string>DarkTheme</string>
+	<key>DefaultEngine</key>
+	<string>XeLaTeX</string>
+	<key>DefaultLiteTheme</key>
+	<string>LiteTheme</string>
+	<key>DefaultScript</key>
+	<integer>100</integer>
+	<key>DistillerCommand</key>
+	<integer>1</integer>
+	<key>DocumentFont</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAZOU0ZvbnQehIQITlNPYmplY3QAhYQBaSCEBVsz
+	MmNdBgAAABYAAAD//kEAbgBkAGEAbABlAE0AbwBuAG8AAACEAWYMhAFjAJgBmACYAIY=
+	</data>
+	<key>DocumentWindowFixedPosition</key>
+	<string>156 587 525 512 0 0 1920 1178</string>
+	<key>DocumentWindowPositionMode</key>
+	<string>1</string>
+	<key>EditorCanAddBrackets</key>
+	<true/>
+	<key>Encoding</key>
+	<string>UTF-8 Unicode</string>
+	<key>ExternalEditorTypesetAtStart</key>
+	<string>YES</string>
+	<key>FastColor</key>
+	<string>NO</string>
+	<key>FlashBackgroundEnabled</key>
+	<false/>
+	<key>FullwidthSpaceCharacterKind</key>
+	<integer>0</integer>
+	<key>GSBinPath</key>
+	<string>/usr/local/bin</string>
+	<key>HighlightContentEnabled</key>
+	<true/>
+	<key>KeepBackup</key>
+	<string>NO</string>
+	<key>LPanelOutlines</key>
+	<string>YES</string>
+	<key>LastStyName</key>
+	<string>doc</string>
+	<key>LatexCommand</key>
+	<string>pdflatex --shell-escape --synctex=1</string>
+	<key>LatexGSCommand</key>
+	<string>simpdftex latex --maxpfb</string>
+	<key>LatexScriptCommand</key>
+	<string> </string>
+	<key>LeftRightArrowsAlwaysPage</key>
+	<string>NO</string>
+	<key>LineBreakMode</key>
+	<string>1</string>
+	<key>MakeEmptyDocument</key>
+	<false/>
+	<key>MakeatletterEnabled</key>
+	<true/>
+	<key>MetaPostCommand</key>
+	<string>0</string>
+	<key>MiniaturizeRootFile</key>
+	<false/>
+	<key>NSDocumentSaveAsShouldRevert</key>
+	<false/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 6</string>
+	<key>NSNavBrowserPreferedColumnContentWidth</key>
+	<real>186</real>
+	<key>NSNavLastRootDirectory</key>
+	<string>~/Library/texmf/tex/latex/gWmaths</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{743, 450}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{771, 450}</string>
+	<key>NSSplitView Subview Frames NSColorPanelSplitView</key>
+	<array>
+		<string>0.000000, 0.000000, 224.000000, 258.000000, NO, NO</string>
+		<string>0.000000, 259.000000, 224.000000, 48.000000, NO, NO</string>
+	</array>
+	<key>NSToolbar Configuration Full Window Toolbar Identifier</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>2</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSToolbar Configuration PDF Toolbar Identifier</key>
+	<dict>
+		<key>TB Default Item Identifiers</key>
+		<array>
+			<string>PreviousPage</string>
+			<string>NextPage</string>
+			<string>TypesetEE</string>
+			<string>NSToolbarPrintItem</string>
+			<string>Magnification</string>
+			<string>GotoPage</string>
+			<string>MouseMode</string>
+			<string>NSToolbarFlexibleSpaceItem</string>
+			<string>NSToolbarSpaceItem</string>
+		</array>
+		<key>TB Display Mode</key>
+		<integer>2</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+		<key>TB Item Identifiers</key>
+		<array>
+			<string>PreviousPage</string>
+			<string>NextPage</string>
+			<string>NSToolbarPrintItem</string>
+			<string>Magnification</string>
+			<string>GotoPage</string>
+			<string>MouseMode</string>
+			<string>NSToolbarFlexibleSpaceItem</string>
+			<string>NSToolbarSpaceItem</string>
+		</array>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSToolbar Configuration PDFKit Toolbar Identifier</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>2</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSToolbar Configuration Source Toolbar Identifier</key>
+	<dict>
+		<key>TB Default Item Identifiers</key>
+		<array>
+			<string>Typeset</string>
+			<string>Program</string>
+			<string>NSToolbarPrintItem</string>
+			<string>Macros</string>
+			<string>Tags</string>
+			<string>Labels</string>
+			<string>Templates</string>
+			<string>NSToolbarFlexibleSpaceItem</string>
+			<string>Sharing</string>
+			<string>Split</string>
+		</array>
+		<key>TB Display Mode</key>
+		<integer>2</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+		<key>TB Item Identifiers</key>
+		<array>
+			<string>Typeset</string>
+			<string>Program</string>
+			<string>NSToolbarPrintItem</string>
+			<string>Macros</string>
+			<string>Tags</string>
+			<string>Labels</string>
+			<string>Templates</string>
+			<string>NSToolbarFlexibleSpaceItem</string>
+			<string>Sharing</string>
+		</array>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWindow Frame Console</key>
+	<string>165 152 504 452 0 0 1680 1027 </string>
+	<key>NSWindow Frame ConsoleWindow</key>
+	<string>320 0 898 526 0 0 1440 875 </string>
+	<key>NSWindow Frame DocumentWindow</key>
+	<string>661 307 919 898 0 0 1440 875 </string>
+	<key>NSWindow Frame FullSplitWindow</key>
+	<string>208 170 1024 705 0 0 1440 875 </string>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>1208 89 445 232 0 0 1680 1025 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>1364 723 743 412 0 0 3440 1415 </string>
+	<key>NSWindow Frame NSSpellCheckerSubstitutionsPanel2</key>
+	<string>692 407 428 137 0 0 3440 1415 </string>
+	<key>NSWindow Frame PdfKitWindow</key>
+	<string>3400 38 911 687 0 0 1440 875 </string>
+	<key>NSWindow Frame PdfWindow</key>
+	<string>220 120 637 731 0 0 1440 875 </string>
+	<key>NSWindow Frame PrefPane</key>
+	<string>1610 762 662 678 0 0 3440 1440 </string>
+	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
+	<string>1428 926 616 180 0 0 3440 1415 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>1426 762 620 398 0 0 3440 1415 </string>
+	<key>NSWindow Frame SUUpdateAlertFrame</key>
+	<string>565 476 575 392 0 0 1680 1027 </string>
+	<key>NewLineCharacterKind</key>
+	<integer>0</integer>
+	<key>NoScrollEnabled</key>
+	<string>YES</string>
+	<key>OgreTextFinder</key>
+	<dict>
+		<key>Escape Character</key>
+		<string>\</string>
+		<key>Find Controller History</key>
+		<dict>
+			<key>AFPC Attributed Find History</key>
+			<array/>
+			<key>AFPC Attributed Replace History</key>
+			<array/>
+			<key>AFPC Close Process Sheet When Done</key>
+			<integer>1</integer>
+			<key>AFPC Enable Style Options</key>
+			<integer>0</integer>
+			<key>AFPC Escape Character Tag</key>
+			<integer>2</integer>
+			<key>AFPC Highlight Color</key>
+			<data>
+			BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2Jq
+			ZWN0AIWEAWMBhARmZmZmgzHr/T4Bg5W7Pz8Bhg==
+			</data>
+			<key>AFPC Maximum Number of Find History</key>
+			<integer>50</integer>
+			<key>AFPC Maximum Number of Replace History</key>
+			<integer>50</integer>
+			<key>AFPC Open Progress Sheet</key>
+			<true/>
+			<key>AFPC Options</key>
+			<integer>257</integer>
+			<key>AFPC Origin</key>
+			<integer>1</integer>
+			<key>AFPC Scope</key>
+			<integer>0</integer>
+			<key>AFPC Syntax</key>
+			<integer>0</integer>
+			<key>AFPC Wrap</key>
+			<integer>1</integer>
+		</dict>
+		<key>Syntax</key>
+		<integer>0</integer>
+	</dict>
+	<key>OpenWithSourceInFront</key>
+	<true/>
+	<key>OtherTeXExtensions</key>
+	<array/>
+	<key>OtherTrashExtensions</key>
+	<array/>
+	<key>ParensMatchingEnabled</key>
+	<string>1</string>
+	<key>PdfBack_A</key>
+	<string>0</string>
+	<key>PdfBack_B</key>
+	<string>1</string>
+	<key>PdfBack_G</key>
+	<string>1</string>
+	<key>PdfBack_R</key>
+	<string>1</string>
+	<key>PdfColorMap</key>
+	<string>0</string>
+	<key>PdfColorParam1</key>
+	<string>0</string>
+	<key>PdfCopyType</key>
+	<string>31</string>
+	<key>PdfExportType</key>
+	<string>2</string>
+	<key>PdfFileRefresh</key>
+	<string>YES</string>
+	<key>PdfFirstPageStyle</key>
+	<string>2</string>
+	<key>PdfFitSize</key>
+	<string>-101</string>
+	<key>PdfFore_A</key>
+	<string>1</string>
+	<key>PdfFore_B</key>
+	<string>0</string>
+	<key>PdfFore_G</key>
+	<string>0</string>
+	<key>PdfFore_R</key>
+	<string>0</string>
+	<key>PdfKitFitSize</key>
+	<string>3</string>
+	<key>PdfKitMouseMode</key>
+	<string>2</string>
+	<key>PdfMagnification</key>
+	<string>1</string>
+	<key>PdfMouseMode</key>
+	<string>2</string>
+	<key>PdfPageStyle</key>
+	<integer>3</integer>
+	<key>PdfRefresh</key>
+	<true/>
+	<key>PdfWindowFixedPosition</key>
+	<string>18  678 507 479 0 0 1920 1178</string>
+	<key>PdfWindowPositionMode</key>
+	<string>1</string>
+	<key>Pdfbackground_B</key>
+	<string>1.00</string>
+	<key>Pdfbackground_G</key>
+	<string>1.00</string>
+	<key>Pdfbackground_R</key>
+	<string>1.00</string>
+	<key>PreviewDrawerOpen</key>
+	<string>NO</string>
+	<key>PreviewWindowAlpha</key>
+	<string>1.00</string>
+	<key>RedConsoleAfterError</key>
+	<string>NO</string>
+	<key>RefreshTime</key>
+	<string>1.00</string>
+	<key>ReleaseDocumentClasses</key>
+	<string>1</string>
+	<key>ReleaseDocumentOnLeopard</key>
+	<string>YES</string>
+	<key>RevisePath</key>
+	<string>YES</string>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2021-04-08T15:51:37Z</date>
+	<key>SUScheduledCheckInterval</key>
+	<real>86400</real>
+	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>1324607110</integer>
+	<key>SUUpdateRelaunchingMarker</key>
+	<true/>
+	<key>SaveDocumentFont</key>
+	<true/>
+	<key>SavePSCommand</key>
+	<string>NO</string>
+	<key>SaveRelated</key>
+	<string>NO</string>
+	<key>ShowFullwidthSpaceCharacter</key>
+	<true/>
+	<key>ShowIndicatorForMoveEnabled</key>
+	<false/>
+	<key>ShowInvisibleChractersEnabled</key>
+	<false/>
+	<key>ShowNewLineCharacter</key>
+	<true/>
+	<key>ShowSpaceCharacter</key>
+	<true/>
+	<key>ShowSyncMarks</key>
+	<string>NO</string>
+	<key>ShowTabCharacter</key>
+	<true/>
+	<key>SourceAndPreviewInSameWindow</key>
+	<false/>
+	<key>SourceFirstLineHeadIndent</key>
+	<real>0.0</real>
+	<key>SourceHeadIndent</key>
+	<real>4</real>
+	<key>SourceWindowAlpha</key>
+	<string>1.00</string>
+	<key>SpaceCharacterKind</key>
+	<integer>0</integer>
+	<key>SparkleAutomaticUpdate</key>
+	<true/>
+	<key>SparkleInterval</key>
+	<integer>1</integer>
+	<key>SpellCheckEnabled</key>
+	<string>YES</string>
+	<key>SpellingAutomaticLanguage</key>
+	<true/>
+	<key>SpellingLanguage</key>
+	<string>en_GB</string>
+	<key>SyncMethod</key>
+	<string>3</string>
+	<key>SyncTeXOnly</key>
+	<string>NO</string>
+	<key>SyntaxColoringEnabled</key>
+	<string>1</string>
+	<key>TSHasBeenUsed</key>
+	<string>YES</string>
+	<key>TabCharacterKind</key>
+	<integer>0</integer>
+	<key>TabIndent</key>
+	<false/>
+	<key>TabsAlsoForInputFiles</key>
+	<true/>
+	<key>TagSections</key>
+	<string>YES</string>
+	<key>TetexBinPath</key>
+	<string>/Library/TeX/texbin</string>
+	<key>TexCommand</key>
+	<string>pdftex --shell-escape --synctex=1</string>
+	<key>TexGSCommand</key>
+	<string>simpdftex tex --maxpfb</string>
+	<key>TexScriptCommand</key>
+	<string> </string>
+	<key>TurnOffCommandSpellCheck</key>
+	<true/>
+	<key>TurnOffParameterSpellCheck</key>
+	<true/>
+	<key>UseExternalEditor</key>
+	<string>NO</string>
+	<key>UseOgreKit</key>
+	<string>YES</string>
+	<key>UseOldHeadingCommands</key>
+	<string>NO</string>
+	<key>UseOutline</key>
+	<string>YES</string>
+	<key>WarnForShellEscape</key>
+	<string>NO</string>
+	<key>background_B</key>
+	<string> 1.0 </string>
+	<key>background_G</key>
+	<string> 1.0 </string>
+	<key>background_R</key>
+	<string> 1.0 </string>
+	<key>commandblue</key>
+	<string> 1.0 </string>
+	<key>commandgreen</key>
+	<string> 0.0 </string>
+	<key>commandred</key>
+	<string> 0.0 </string>
+	<key>commentblue</key>
+	<string> 0.0 </string>
+	<key>commentgreen</key>
+	<string> 0.0 </string>
+	<key>commentred</key>
+	<string> 1.0 </string>
+	<key>expl3SyntaxColoring</key>
+	<true/>
+	<key>foreground_B</key>
+	<string>0.00</string>
+	<key>foreground_G</key>
+	<string>0.00</string>
+	<key>foreground_R</key>
+	<string>0.00</string>
+	<key>fullscreenResizeOption</key>
+	<integer>2</integer>
+	<key>indexblue</key>
+	<string> 0.00 </string>
+	<key>indexgreen</key>
+	<string> 1.00 </string>
+	<key>indexred</key>
+	<string> 1.00 </string>
+	<key>insertionpoint_B</key>
+	<string>0.00</string>
+	<key>insertionpoint_G</key>
+	<string>0.00</string>
+	<key>insertionpoint_R</key>
+	<string>0.00</string>
+	<key>markerblue</key>
+	<string> 0.13 </string>
+	<key>markergreen</key>
+	<string> 0.51 </string>
+	<key>markerred</key>
+	<string> 0.02 </string>
+	<key>matrixsize</key>
+	<integer>12</integer>
+	<key>ptexUtfOutput</key>
+	<true/>
+	<key>tabs</key>
+	<integer>8</integer>
+</dict>
+</plist>
