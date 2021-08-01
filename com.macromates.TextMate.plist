@@ -7,7 +7,7 @@
 	<key>CrashReportsSent</key>
 	<array/>
 	<key>DocumentControllerWindowFrame</key>
-	<string>{{1365, 266}, {1236, 970}}</string>
+	<string>{{470, 423}, {1234, 970}}</string>
 	<key>ExpandedURLs</key>
 	<array>
 		<string>file://localhost/Users/pellican/Library/Caches/Java/6.0/bundles/ASDM%20on%20192.168.1.1.app/Contents/</string>
@@ -23,28 +23,35 @@
 	<string>{{332, 22}, {695, 641}}</string>
 	<key>LRUDocumentPaths</key>
 	<array>
-		<string>/Users/pellican/Projects/screen-osx/screenAppAttach.sh</string>
 		<string>/Users/pellican/Library/Preferences/Bash/python.rc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/completion/you_complete_me.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/completion/boinc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/perl.env.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/less.rc.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/fixup.env.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/custom.theme.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/editor.bash</string>
+		<string>/Users/pellican/Projects/Bash It/lib/helpers.bash</string>
+		<string>/Users/pellican/Library/Preferences/Bash/editor.aliases.bash</string>
+		<string>/var/folders/72/4z2l1m2j5312gpvjmbw__5km0002xr/T//bash-fc-7646764107588829707</string>
+		<string>/Users/pellican/Library/Preferences/readline/inputrc</string>
+		<string>/Users/pellican/Projects/screen-osx/screenAppAttach.sh</string>
 		<string>/Users/pellican/Library/Preferences/Bash/general.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/bash.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/roulette.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/git_prompt.rc.bash</string>
 		<string>/Users/pellican/Library/Preferences/Bash/ssh.env.bash</string>
-		<string>/Users/pellican/Projects/Bash It/lib/helpers.bash</string>
 		<string>/Users/pellican/Projects/Bash It/lib/theme.p4helpers.bash</string>
 		<string>/Users/pellican/Projects/Bash It/bash_it.sh</string>
 		<string>/Users/pellican/Projects/Bash It/lib/log.bash</string>
 		<string>/Users/pellican/Tools/bashrc_dispatch</string>
-		<string>/Users/pellican/Library/Preferences/Bash/custom.theme.bash</string>
 		<string>/Users/pellican/Projects/xdg-rlz/please-use-xdg.sh</string>
-		<string>/Users/pellican/Library/Preferences/readline/inputrc</string>
 		<string>/Users/pellican/.ssh/config</string>
 		<string>/Users/pellican/Projects/bash-preexec/bash-preexec.sh</string>
 		<string>/Users/pellican/Library/Preferences/Bash/bashrc_interactive</string>
 		<string>/Users/pellican/Projects/Bash It/lib/theme.bash</string>
 		<string>/Users/pellican/Projects/Bash It/scripts/reloader.bash</string>
 		<string>/Users/pellican/Projects/Bash It/vendor/github.com/rcaloras/bash-preexec/LICENSE.md</string>
-		<string>/Users/pellican/Library/Preferences/Bash/completion/you_complete_me.bash</string>
 		<string>/Users/pellican/Library/Preferences/OpenSSH/config</string>
 		<string>/Library/LaunchAgents/org.xquartz.startx.plist</string>
 		<string>/Volumes/Motoko/Motoko.sparsebundle/com.apple.TimeMachine.MachineID.plist</string>
@@ -60,19 +67,12 @@
 		<string>/Users/pellican/Projects/Bash It/lib/appearance.githelpers.bash</string>
 		<string>/Users/pellican/Projects/Bash It/lib/appearance.colors.bash</string>
 		<string>/Users/pellican/Projects/Bash It/themes/command_duration.theme.bash</string>
-		<string>/Users/pellican/Library/Preferences/Bash/editor.aliases.bash</string>
 		<string>/Users/pellican/Projects/Bash It/lib/appearance.bash</string>
 		<string>/Users/pellican/Projects/Bash It/themes/colors.theme.bash</string>
 		<string>/Users/pellican/Projects/Bash It/themes/p4helpers.theme.bash</string>
 		<string>/Users/pellican/Projects/Bash It/themes/githelpers.theme.bash</string>
 		<string>/Users/pellican/Projects/Bash It/themes/base.theme.bash</string>
 		<string>/Users/pellican/Projects/Bash It/aliases/available/bash-it.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/plugins/available/cmd-returned-notify.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/aliases/available/general.aliases.bash</string>
-		<string>/Users/pellican/Projects/Bash It/vendor/github.com/rcaloras/bash-preexec/bash-preexec.sh</string>
-		<string>/Users/pellican/Projects/bash_preexec</string>
-		<string>/Users/pellican/Projects/Bash It/enabled/250---cmd-returned-notify.plugin.bash</string>
-		<string>/Users/pellican/Projects/Bash It/lib/utilities.bash</string>
 	</array>
 	<key>LicenseOwnerName</key>
 	<string>John Pell</string>
@@ -495,7 +495,7 @@
 		<string>file://localhost/Users/pellican/Library/Application%20Support/Bash/completion/boinc.bash</string>
 	</array>
 	<key>SoftwareUpdateLastPoll</key>
-	<date>2021-07-31T05:25:23Z</date>
+	<date>2021-08-01T05:52:51Z</date>
 	<key>SoftwareUpdateSubmitUsageInfo</key>
 	<true/>
 	<key>SoftwareUpdateUUID</key>
@@ -620,7 +620,7 @@
 	<key>initialFileBrowserURL</key>
 	<string>file://localhost/Users/pellican/Projects/</string>
 	<key>lastBundleUpdateCheck</key>
-	<date>2021-07-31T05:25:39Z</date>
+	<date>2021-08-01T05:52:50Z</date>
 	<key>mateInstallPath</key>
 	<string>/usr/local/bin/mate</string>
 	<key>mateInstallVersion</key>
