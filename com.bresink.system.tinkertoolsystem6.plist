@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LastHelpPanelWidth</key>
+	<real>324</real>
+	<key>LastOpenPane</key>
+	<string>*ControlWindowOpen*</string>
+	<key>MainWindowTopLeftPosition</key>
+	<string>{300, 728}</string>
+	<key>NSApplicationShowExceptions</key>
+	<false/>
+</dict>
+</plist>

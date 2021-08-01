@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AutoUpdateNotification</key>
+	<true/>
+	<key>DisablePrivilegedAccess</key>
+	<true/>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
+	<key>NSTableView Columns PreferencesTable</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErCFByb3BlcnR5hg==
+		</data>
+		<string>229</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErBFR5cGWG
+		</data>
+		<string>84</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErBVZhbHVlhg==
+		</data>
+		<string>95</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErA01DWIY=
+		</data>
+		<string>27</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErCE1hbmlmZXN0hg==
+		</data>
+		<string>10</string>
+	</array>
+	<key>NSTableView Columns v3 DomainTable</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABrxAUCwwVICEiIyQlJiw2NzhC
+	Q0ROT1BVJG51bGzSDQ4PFFpOUy5vYmplY3RzViRjbGFzc6QQERITgAKACoANgBCAE9MW
+	DQ4XGx9XTlMua2V5c6MYGRqAA4AEgAWjHB0egAaAB4AIgAlaSWRlbnRpZmllclVXaWR0
+	aFZIaWRkZW5USWNvbiNARAAAAAAAAAjSJygpKlokY2xhc3NuYW1lWCRjbGFzc2VzXE5T
+	RGljdGlvbmFyeaIpK1hOU09iamVjdNMWDQ4tMR+jGBkagAOABIAFozIzHoALgAyACIAJ
+	VkRvbWFpbiNAfbAAAAAAANMWDQ45PR+jGBkagAOABIAFoz4/HoAOgA+ACIAJW0Rpc3Bs
+	YXlOYW1lI0Bx4mAAAAAA0xYNDkVJH6MYGRqAA4AEgAWjSksegBGAEoAIgAlXU2FuZGJv
+	eCNATIAAAAAAANInKFFSXk5TTXV0YWJsZUFycmF5o1FTK1dOU0FycmF5AAgAEQAaACQA
+	KQAyADcASQBMAFIAVABrAHEAdgCBAIgAjQCPAJEAkwCVAJcAngCmAKoArACuALAAtAC2
+	ALgAugC8AMcAzQDUANkA4gDjAOgA8wD8AQkBDAEVARwBIAEiASQBJgEqASwBLgEwATIB
+	OQFCAUkBTQFPAVEBUwFXAVkBWwFdAV8BawF0AXsBfwGBAYMBhQGJAYsBjQGPAZEBmQGi
+	AacBtgG6AAAAAAAAAgEAAAAAAAAAVAAAAAAAAAAAAAAAAAAAAcI=
+	</data>
+	<key>NSTableView Columns v3 PropertyListOutline</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABrxAUCwwVICEiIyQlJiw2NzhC
+	Q0ROT1BVJG51bGzSDQ4PFFpOUy5vYmplY3RzViRjbGFzc6QQERITgAKACoANgBCAE9MW
+	DQ4XGx9XTlMua2V5c6MYGRqAA4AEgAWjHB0egAaAB4AIgAlaSWRlbnRpZmllclVXaWR0
+	aFZIaWRkZW5TS2V5I0B08AAAAAAACNInKCkqWiRjbGFzc25hbWVYJGNsYXNzZXNcTlNE
+	aWN0aW9uYXJ5oikrWE5TT2JqZWN00xYNDi0xH6MYGRqAA4AEgAWjMjMegAuADIAIgAlU
+	VHlwZSNAYMoAAAAAANMWDQ45PR+jGBkagAOABIAFoz4/HoAOgA+ACIAJVVZhbHVlI0B4
+	AAAAAAAA0xYNDkVJH6MYGRqAA4AEgAWjSksegBGAEoAIgAlXTWFuYWdlZCNAWAAAAAAA
+	ANInKFFSXk5TTXV0YWJsZUFycmF5o1FTK1dOU0FycmF5AAgAEQAaACQAKQAyADcASQBM
+	AFIAVABrAHEAdgCBAIgAjQCPAJEAkwCVAJcAngCmAKoArACuALAAtAC2ALgAugC8AMcA
+	zQDUANgA4QDiAOcA8gD7AQgBCwEUARsBHwEhASMBJQEpASsBLQEvATEBNgE/AUYBSgFM
+	AU4BUAFUAVYBWAFaAVwBYgFrAXIBdgF4AXoBfAGAAYIBhAGGAYgBkAGZAZ4BrQGxAAAA
+	AAAAAgEAAAAAAAAAVAAAAAAAAAAAAAAAAAAAAbk=
+	</data>
+	<key>NSTableView Hidden Columns PreferencesTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering PreferencesTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering v2 DomainTable</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABowsMEVUkbnVsbNINDg8QWk5T
+	Lm9iamVjdHNWJGNsYXNzoIAC0hITFBVaJGNsYXNzbmFtZVgkY2xhc3Nlc15OU011dGFi
+	bGVBcnJheaMUFhdXTlNBcnJheVhOU09iamVjdAgRGiQpMjdJTFJUWF5jbnV2eH2IkaCk
+	rAAAAAAAAAEBAAAAAAAAABgAAAAAAAAAAAAAAAAAAAC1
+	</data>
+	<key>NSTableView Sort Ordering v2 PropertyListOutline</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABqQsMEhscHR4fJVUkbnVsbNIN
+	Dg8RWk5TLm9iamVjdHNWJGNsYXNzoRCAAoAI0xMNDhQXGldOUy5rZXlzohUWgAOABKIY
+	GYAFgAaAB1pJZGVudGlmaWVyWUFzY2VuZGluZ1NLZXkJ0iAhIiNaJGNsYXNzbmFtZVgk
+	Y2xhc3Nlc1xOU0RpY3Rpb25hcnmiIiRYTlNPYmplY3TSICEmJ15OU011dGFibGVBcnJh
+	eaMmKCRXTlNBcnJheQAIABEAGgAkACkAMgA3AEkATABSAFQAXgBkAGkAdAB7AH0AfwCB
+	AIgAkACTAJUAlwCaAJwAngCgAKsAtQC5ALoAvwDKANMA4ADjAOwA8QEAAQQAAAAAAAAC
+	AQAAAAAAAAApAAAAAAAAAAAAAAAAAAABDA==
+	</data>
+	<key>NSTableView Supports v2 DomainTable</key>
+	<true/>
+	<key>NSTableView Supports v2 PropertyListOutline</key>
+	<true/>
+	<key>NSWindow Frame DomainWindowController</key>
+	<string>1155 731 903 642 0 0 3440 1415 </string>
+	<key>NSWindow Frame PreferenceDomainOverview</key>
+	<string>196 298 640 480 0 0 1280 778 </string>
+	<key>NSWindow Frame PreferencesWindow</key>
+	<string>403 285 412 434 0 0 1280 778 </string>
+	<key>NSWindow Frame PropertyListDocument</key>
+	<string>1640 567 972 458 0 0 3440 1415 </string>
+	<key>NSWindow Frame RegistrationPanel</key>
+	<string>408 172 571 448 0 0 3440 1415 </string>
+</dict>
+</plist>

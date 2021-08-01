@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LastOpenPane</key>
+	<string>Maintenance</string>
+	<key>MainWindowTopLeftPosition</key>
+	<string>{70, 481}</string>
+	<key>NSWindow Frame ControlWindow</key>
+	<string>70 212 800 269 0 0 1280 778 </string>
+	<key>PreferenceVersion</key>
+	<integer>1</integer>
+	<key>UseDeletionConfirmation</key>
+	<true/>
+</dict>
+</plist>
