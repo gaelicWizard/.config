@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AutoLaunchedApplicationDictionary</key>
+	<array>
+		<dict>
+			<key>Hide</key>
+			<true/>
+			<key>Path</key>
+			<string>/Library/PreferencePanes/PastebotSync.prefPane/Contents/Resources/PastebotSync.app</string>
+		</dict>
+		<dict>
+			<key>Hide</key>
+			<false/>
+			<key>Path</key>
+			<string>/Library/PreferencePanes/Choosy.prefPane/Contents/Resources/Choosy.app</string>
+		</dict>
+	</array>
+	<key>BuildVersionStampAsNumber</key>
+	<integer>42338528</integer>
+	<key>BuildVersionStampAsString</key>
+	<string>20G71</string>
+	<key>SystemVersionStampAsNumber</key>
+	<integer>184877056</integer>
+	<key>SystemVersionStampAsString</key>
+	<string>11.5</string>
+</dict>
+</plist>
