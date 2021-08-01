@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AudioEffectSelectedProfile</key>
+	<integer>0</integer>
+	<key>DisplayTimeAsTimeRemaining</key>
+	<string>YES</string>
+	<key>NSNavBrowserPreferedColumnContentWidth</key>
+	<real>186</real>
+	<key>NSNavLastRootDirectory</key>
+	<string>~/Downloads</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<true/>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{799, 400}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{585, 400}</string>
+	<key>NSNavSidebarWidth</key>
+	<real>117</real>
+	<key>NSOutlineView Items mainwindow-sidebar</key>
+	<array>
+		<string>library</string>
+		<string>localnetwork</string>
+		<string>mycomputer</string>
+		<string>internet</string>
+	</array>
+	<key>NSSplitView Subview Frames 10thanniversary-splitview</key>
+	<array>
+		<string>0.000000, 0.000000, 195.000000, 310.000000, NO</string>
+		<string>196.000000, 0.000000, 408.000000, 310.000000, NO</string>
+	</array>
+	<key>NSSplitView Subview Frames mainWindowSplitView</key>
+	<array>
+		<string>0.000000, 0.000000, 238.000000, 514.000000, NO, NO</string>
+		<string>239.000000, 0.000000, 674.000000, 514.000000, NO, NO</string>
+	</array>
+	<key>NSStatusItem Visible statusBarItem</key>
+	<false/>
+	<key>NSTableView Columns 10thaniversary-mainPlaylistView</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErBnN0YXR1c4Y=
+		</data>
+		<string>18</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErBG5hbWWG
+		</data>
+		<string>161</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErBmFydGlzdIY=
+		</data>
+		<string>170</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErCGR1cmF0aW9uhg==
+		</data>
+		<string>60</string>
+	</array>
+	<key>NSTableView Columns v3 sprefs_hotkeys_view</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABrgsMEx4fICEiIyQqNDU2VSRu
+	dWxs0g0ODxJaTlMub2JqZWN0c1YkY2xhc3OiEBGAAoAKgA3TFA0OFRkdV05TLmtleXOj
+	FhcYgAOABIAFoxobHIAGgAeACIAJWklkZW50aWZpZXJVV2lkdGhWSGlkZGVuVmFjdGlv
+	biNAdggAAAAAAAjSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXE5TRGljdGlvbmFyeaIn
+	KVhOU09iamVjdNMUDQ4rLx2jFhcYgAOABIAFozAxHIALgAyACIAJWHNob3J0Y3V0I0Bw
+	+yvTw2EU0iUmNzheTlNNdXRhYmxlQXJyYXmjNzkpV05TQXJyYXkACAARABoAJAApADIA
+	NwBJAEwAUgBUAGMAaQBuAHkAgACDAIUAhwCJAJAAmACcAJ4AoACiAKYAqACqAKwArgC5
+	AL8AxgDNANYA1wDcAOcA8AD9AQABCQEQARQBFgEYARoBHgEgASIBJAEmAS8BOAE9AUwB
+	UAAAAAAAAAIBAAAAAAAAADoAAAAAAAAAAAAAAAAAAAFY
+	</data>
+	<key>NSTableView Hidden Columns 10thaniversary-mainPlaylistView</key>
+	<array/>
+	<key>NSTableView Sort Ordering 10thaniversary-mainPlaylistView</key>
+	<array/>
+	<key>NSTableView Sort Ordering v2 sprefs_hotkeys_view</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
+	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVVBcnJheYABowsMEVUkbnVsbNINDg8QWk5T
+	Lm9iamVjdHNWJGNsYXNzoIAC0hITFBVaJGNsYXNzbmFtZVgkY2xhc3Nlc15OU011dGFi
+	bGVBcnJheaMUFhdXTlNBcnJheVhOU09iamVjdAgRGiQpMjdJTFJUWF5jbnV2eH2IkaCk
+	rAAAAAAAAAEBAAAAAAAAABgAAAAAAAAAAAAAAAAAAAC1
+	</data>
+	<key>NSTableView Supports v2 sprefs_hotkeys_view</key>
+	<true/>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>1333 762 799 400 0 0 3440 1417 </string>
+	<key>NSWindow Frame VLCFullscreenControls</key>
+	<string>1301 204 837 84 0 0 3440 1415 </string>
+	<key>NSWindow Frame about</key>
+	<string>273 803 721 384 0 0 3440 1415 </string>
+	<key>NSWindow Frame embeddedvoutwindow</key>
+	<string>49 137 704 626 0 0 1280 778 </string>
+	<key>NSWindow Frame extended</key>
+	<string>665 533 370 245 0 0 1280 778 </string>
+	<key>NSWindow Frame mainwindow</key>
+	<string>2507 406 913 578 0 0 3440 1415 </string>
+	<key>NSWindow Frame mediainfo</key>
+	<string>197 890 506 483 0 0 3440 1415 </string>
+	<key>NSWindow Frame messages</key>
+	<string>464 371 599 384 0 0 1280 778 </string>
+	<key>NSWindow Frame open</key>
+	<string>435 344 602 416 0 0 1440 875 </string>
+	<key>NSWindow Frame sout</key>
+	<string>395 122 524 562 0 0 1280 778 </string>
+	<key>NSWindow Frame sprefs</key>
+	<string>627 441 690 705 0 0 3440 1415 </string>
+	<key>NSWindow Frame vlc</key>
+	<string>50 65 1227 52 0 0 1280 778 </string>
+	<key>NSWindow Frame wizard</key>
+	<string>447 192 420 521 0 0 1280 778 </string>
+	<key>PlaylistColumnSelection</key>
+	<array>
+		<array>
+			<string>status</string>
+			<real>18</real>
+		</array>
+		<array>
+			<string>name</string>
+			<real>466</real>
+		</array>
+		<array>
+			<string>artist</string>
+			<real>95</real>
+		</array>
+		<array>
+			<string>duration</string>
+			<real>95</real>
+		</array>
+	</array>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2021-08-21T03:43:55Z</date>
+	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>UpdateLastTimeChecked</key>
+	<date>2011-01-27T22:41:32Z</date>
+	<key>UpdateOnStartup</key>
+	<true/>
+	<key>VLCFirstRun</key>
+	<date>2019-09-05T02:37:09Z</date>
+	<key>VLCFullscreenAssociatedWindowRect</key>
+	<string>{{0, 0}, {3440, 1440}}</string>
+	<key>VLCPreferencesVersion</key>
+	<integer>4</integer>
+	<key>VideoEffectSelectedProfile</key>
+	<integer>0</integer>
+	<key>WebKitDefaultFontSize</key>
+	<integer>11</integer>
+	<key>WebKitStandardFont</key>
+	<string>Lucida Grande</string>
+	<key>language</key>
+	<string>auto</string>
+</dict>
+</plist>
