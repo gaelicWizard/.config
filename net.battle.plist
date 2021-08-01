@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Classic Launcher/s1/Locale</key>
+	<string>enUS</string>
+	<key>Classic Launcher/s1/Region</key>
+	<string>US</string>
+	<key>EncryptionKey/CacheDatabase</key>
+	<data>
+	gCTPqV8ij+8bLhzwzkPJerl9Un3F0RpNhGKkDnGl50MqwGxDqfey9/qqMCiqHnSz
+	</data>
+	<key>Launch Options/BNA/CONNECTION_STRING_CN</key>
+	<string>cn.actual.battle.net</string>
+	<key>Launch Options/BNA/CONNECTION_STRING_CXX</key>
+	<string>cn-ptr.actual.battle.net</string>
+	<key>Launch Options/BNA/CONNECTION_STRING_EU</key>
+	<string>eu.actual.battle.net</string>
+	<key>Launch Options/BNA/CONNECTION_STRING_KR</key>
+	<string>kr.actual.battle.net</string>
+	<key>Launch Options/BNA/CONNECTION_STRING_US</key>
+	<string>us.actual.battle.net</string>
+	<key>Launch Options/BNA/CONNECTION_STRING_XX</key>
+	<string>test.actual.battle.net</string>
+	<key>Launch Options/S1/ACCOUNT</key>
+	<data>
+	50K6sdVGwmwk+tJ2z3VNEh4YTwc3zlu+7zKcDZ+MxEZeqrzJMQWoI2on24r7XDE+
+	</data>
+	<key>Launch Options/S1/ACCOUNT_STATE</key>
+	<data>
+	w24ehArSsVt0OAOs3t+7gai28MCd6082QYAFAINjKNpNXqv++CZlVivzx/50Ptg6jcEW
+	4PTsY9F9zvjvnwAPven/dTsdLalJBsRGjvlOtLqvEbc5rEAENOYMbxqGUsqfhfY1YGSx
+	W6PDLLRcL6l/kpKNfytnDUscUVcWPooAclKNqycCX846phsPeU4D20FxCHv59YorluFx
+	yCpgBU5RfGK3tUx24nNXIFheHM54OsbjV0lF3/QuEUZnqfzB3bX3zZHwzsFm6rYAHCl4
+	AWbQbw==
+	</data>
+	<key>Launch Options/S1/ACCOUNT_TS</key>
+	<string>1626978996</string>
+	<key>Launch Options/S1/CONNECTION_STRING</key>
+	<string></string>
+	<key>Launch Options/S1/GAME_ACCOUNT</key>
+	<string></string>
+	<key>Launch Options/S1/LAUNCH_64BIT</key>
+	<string>true</string>
+	<key>Launch Options/S1/LOCALE</key>
+	<string>enUS</string>
+	<key>Launch Options/S1/LOCALE_AUDIO</key>
+	<string>enUS</string>
+	<key>Launch Options/S1/REGION</key>
+	<string>US</string>
+	<key>Launch Options/S1/WEB_TOKEN</key>
+	<data>
+	jbgYfXtL+egvBeCTU31WMXBF9pAk7XJlKx4fWf1MdIJL1MrUOIyEva7Rlph6ewDV
+	</data>
+	<key>Launch Options/URI_TOKEN</key>
+	<string>39b84d7f</string>
+	<key>Launcher/Locale</key>
+	<string>enUS</string>
+	<key>UnifiedAuth/C871B816</key>
+	<data>
+	hG+StauMzeZmmSCYLz/XPu55ql2xo2wFJtizhssA0yhUrhs0gYiqs2hvadbSB+P/
+	</data>
+</dict>
+</plist>
