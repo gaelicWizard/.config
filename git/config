@@ -23,9 +23,9 @@
 	pager = true
 
 [core]
-	pager = less -RSX
+	pager = less -RS
 	whitespace=fix,tabwidth=4,indent-with-non-tab,trailing-space #,cr-at-eol
-	#excludesfile = ~/.gitignore
+	#excludesfile = ~/Library/Preferences/git/ignore
 	autocrlf = input
 	safecrlf = true
 	ignoreCase = true
