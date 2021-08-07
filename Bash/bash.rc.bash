@@ -19,6 +19,7 @@ shopt -s checkwinsize               # Update $LINES/$COLUMNS when sigwinch
 #shopt -s extdebug                   # Allows DEBUG RETURN ERROR trap inheritance. (See bash(1).)
 
 shopt -s cmdhist                    # save multi-line commands as one long entry (bug: comments)
+shopt -s lithist					# save multi-line commands with embedded carriage returns
 shopt -s histappend                 # append to history file instead of overwriting
 shopt -s histverify                 #  allow editing of commands retreived from history,
 readonly HISTSIZE=32768 # 8^5
@@ -31,7 +32,19 @@ HISTCONTROL="ignoredups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
     # drop lines beginning with a space.
 readonly HISTFILE=${XDG_STATE_HOME:-~/.local/state}/Bash/history
-#HISTTIMEFORMAT= # man strftime
+
+HISTTIMEFORMATFORMAT=(	# eight args: Year, Month, Day, 'T', Hour, Minute, Second, 'Z'.
+	"${echo_red}"
+	"${echo_purple}"
+	"${echo_yellow}"
+	"${echo_bold_white}"
+	"${echo_blue}"
+	"${echo_green}"
+	"${echo_cyan}"
+	"${echo_bold_black}"
+	"${echo_normal}"
+)	# "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_normal}"
+printf -v HISTTIMEFORMAT "%b%%Y%b%%m%b%%d%bT%b%%H%b%%M%b%%S%bZ%b: " "${HISTTIMEFORMATFORMAT[@]:0:8}" "${echo_normal}"
 
 CDPATH=":~" #":/Volumes:~/Projects"
     # An empty first element means current-directory, but doesn't print every single time used.
