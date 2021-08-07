@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-07-31T07:39:01Z</date>
+	<date>2021-08-07T09:11:51Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -294,7 +294,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-07-31T02:22:18Z</date>
+	<date>2021-08-06T02:43:49Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -338,11 +338,11 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>~/Projects/logr</string>
+		<string>~/Library/Mobile Documents/com~apple~CloudDocs/Dash</string>
 		<string>~/Projects/bash-preexec</string>
 		<string>/opt/X11/bin</string>
 		<string>/Volumes/p0rn/toSort/onionib</string>
-		<string>~/Projects/Tools-tap/Notes</string>
-		<string>~/Library/Preferences</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
@@ -501,6 +501,22 @@
 	<real>0.0</real>
 	<key>NSUserDictionaryReplacementItems</key>
 	<array>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>phở</string>
+			<key>with</key>
+			<string>phở</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>hawaii</string>
+			<key>with</key>
+			<string>Hawaiʻi</string>
+		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
@@ -697,14 +713,6 @@
 			<string>!=</string>
 			<key>with</key>
 			<string>≠</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>ppii</string>
-			<key>with</key>
-			<string>plaintiff</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1311,30 +1319,6 @@ Notes</string>
 			<string>Nordstrom</string>
 			<key>with</key>
 			<string>Nordstrom</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>randy</string>
-			<key>with</key>
-			<string>Randy</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>`jpb</string>
-			<key>with</key>
-			<string>jpell@binovia.com</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Randy</string>
-			<key>with</key>
-			<string>Randy</string>
 		</dict>
 		<dict>
 			<key>on</key>
