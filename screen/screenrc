@@ -28,6 +28,8 @@ termcapinfo nsterm* 'ti=\E[?1049h:te=\E[?1049l'
 #bindkey -k kN copy
 	# When page-up or page-down keys are pressed outside of copy-mode or alt-screen, then enter copy mode.
 	# see also: https://unix.stackexchange.com/a/165810/65223
+bindkey "^[[5~" copy
+	# fn-up seems to be keypad-page-up?
 bindkey ^P copy
 	# Enter copy mode when windows-contextual-menu key is pressed.
 bindkey -k kF copy
