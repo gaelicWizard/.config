@@ -97,3 +97,6 @@
 	pushInsteadOf = git://github.com/
 [url "mob@repo.or.cz:"]
 	pushInsteadOf = https://repo.or.cz/
+
+[svn]
+	stdlayout = true
