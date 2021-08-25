@@ -23,10 +23,10 @@ shopt -s lithist					# save multi-line commands with embedded carriage returns
 shopt -s histappend                 # append to history file instead of overwriting
 shopt -s histverify                 #  allow editing of commands retreived from history,
 readonly HISTSIZE=32768 # 8^5
-    # Keep a _much_ longer history. (default == 500)
+    # Keep a _much_ longer history in memory. (default == 500)
 readonly HISTFILESIZE=262144 # 8^6
     # Don't truncate the history file until it is ENORMOUS. (default == 500)
-HISTIGNORE="&:l:ls:ls -la:ls -lA:cd:[bf]g:exit:quit:bye"
+HISTIGNORE="&:l:ll:ls:ls -la:ls -lA:cd:history:[bf]g:exit:quit:bye"
     # Drop repeats and other useless things from the command history.
 HISTCONTROL="ignoredups:ignorespace"
     # Drop repeats (redundant) from recorded history, 
