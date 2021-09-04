@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>NSWindow Frame x11_apps</key>
-	<string>2229 1116 454 299 0 0 3440 1415 </string>
+	<string>2986 1116 454 299 0 0 3440 1415 </string>
 	<key>NSWindow Frame x11_prefs</key>
-	<string>665 928 484 336 0 0 3440 1415 </string>
+	<string>2956 1079 484 336 0 0 3440 1415 </string>
 	<key>SUAutomaticallyUpdate</key>
 	<true/>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2021-08-01T05:24:36Z</date>
+	<date>2021-09-04T20:55:46Z</date>
 	<key>SULastProfileSubmissionDate</key>
-	<date>2021-07-27T06:00:26Z</date>
+	<date>2021-08-30T02:06:22Z</date>
 	<key>app_to_run</key>
 	<string>xlogo -render -shape</string>
 	<key>apps_menu</key>
@@ -55,9 +55,9 @@
 	<key>login_shell</key>
 	<string>/bin/bash</string>
 	<key>no_auth</key>
-	<false/>
-	<key>nolisten_tcp</key>
 	<true/>
+	<key>nolisten_tcp</key>
+	<false/>
 	<key>option_sends_alt</key>
 	<false/>
 	<key>startx_script</key>
