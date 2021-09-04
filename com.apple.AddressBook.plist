@@ -61,7 +61,7 @@
 	<dict>
 		<key>selectedUIDs</key>
 		<array>
-			<string>CF1F100A-6631-4039-A8CF-2187D3E466B1:ABPerson</string>
+			<string>64749A7C-140A-41C6-A468-880E1EEA3695:ABPerson</string>
 		</array>
 	</dict>
 	<key>ABCleanWindowController-MainCleanWindow-splitViewController</key>
@@ -179,9 +179,9 @@
 	<key>ABMembersPaneFrame</key>
 	<string>{{228, 0}, {242, 234}}</string>
 	<key>ABMetaDataChangeCount</key>
-	<integer>2341</integer>
+	<integer>30197</integer>
 	<key>ABMetadataLastOilChange</key>
-	<date>2021-08-01T03:04:55Z</date>
+	<date>2021-09-04T20:38:05Z</date>
 	<key>ABMiddlenameVisible</key>
 	<true/>
 	<key>ABNameDisplay</key>
@@ -466,7 +466,7 @@
 	<key>NSWindow Frame ABCardViewer</key>
 	<string>345 571 360 477 0 0 1680 1028 </string>
 	<key>NSWindow Frame ABCleanWindowController-MainCleanWindow</key>
-	<string>2480 869 960 524 0 0 3440 1415 </string>
+	<string>480 342 960 524 0 0 1440 875 </string>
 	<key>NSWindow Frame ABDistributionList</key>
 	<string>254 31 683 446 0 0 1280 778 </string>
 	<key>NSWindow Frame ABPersonCardWindow</key>

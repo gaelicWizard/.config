@@ -18,12 +18,12 @@
 		</dict>
 	</array>
 	<key>BuildVersionStampAsNumber</key>
-	<integer>42338528</integer>
+	<integer>42339296</integer>
 	<key>BuildVersionStampAsString</key>
-	<string>20G71</string>
+	<string>20G95</string>
 	<key>SystemVersionStampAsNumber</key>
-	<integer>184877056</integer>
+	<integer>184877568</integer>
 	<key>SystemVersionStampAsString</key>
-	<string>11.5</string>
+	<string>11.5.2</string>
 </dict>
 </plist>

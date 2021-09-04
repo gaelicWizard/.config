@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AutoUpdateCheckTimeStamp</key>
+	<date>2021-08-19T03:29:03Z</date>
 	<key>AutoUpdateNotification</key>
 	<true/>
 	<key>DisablePrivilegedAccess</key>

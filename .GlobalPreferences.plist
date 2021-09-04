@@ -292,7 +292,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-09-03T21:25:58Z</date>
+	<date>2021-09-04T21:30:23Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -336,11 +336,11 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>~/.temp/config-temp</string>
+		<string>~/Library/Preferences</string>
 		<string>~/Projects/External/subversion</string>
 		<string>~/Projects/logr</string>
 		<string>~/Library/Saved Application State/bash</string>
-		<string>~/Backups</string>
-		<string>~/Projects/Bash It</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
