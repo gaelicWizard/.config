@@ -151,3 +151,8 @@ function google ()
 {
     open 'http://www.google.com/search?client=safari&q='"$*"
 }
+
+function nproc()
+{
+	sysctl -n hw.ncpu
+}
