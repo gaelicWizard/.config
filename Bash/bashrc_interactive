@@ -8,7 +8,7 @@ shopt -so nounset #== set -u # Undefined parameters are errors.
 ##
 # Configuration for _Bash It_ modular modernization project.
 : ${BASH_IT:=${XDG_DATA_HOME:-~/.local/share}/Bash It}
-: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/prompt}
+: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/themes}
 : ${SCM_GIT_GITSTATUS_DIR:=${XDG_STATE_HOME:-~/.local/state}/gitstatus}
 : #${BASH_IT_REMOTE:=upstream} #${BASH_IT_DEVELOPMENT_BRANCH:=dev}
 : #${BASH_IT_THEME:=bobby} #IRC_CLIENT='irssi' TODO="t" SCM_CHECK=true
@@ -37,7 +37,7 @@ typeset -r BASH_COMPLETION BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR
 
 ########################################
 # Invoke the main _Bash It_ script.
-: ${BASH_IT_LOG_LEVEL:=3} ${PROMPT:=}
+: ${BASH_IT_LOG_LEVEL:=4} ${PROMPT:=}
 #
 source "$BASH_IT"/bash_it.sh
 ########################################
@@ -54,14 +54,13 @@ then # overwrite $PROMPT_COMMAND to ensure it is pristine.
 	eval "${__preexec__bp_install_f/__bp_adjust_histcontrol/: __bp_adjust_histcontrol}"
 	unset __preexec__bp_install_f
 	__bp_install
-	PROMPT_COMMAND=$'__bp_precmd_invoke_cmd\n'
-	PROMPT_COMMAND+='__bp_interactive_mode'
+	PROMPT_COMMAND=$'__bp_precmd_invoke_cmd; __bp_interactive_mode'
 	readonly PROMPT_COMMAND
 	trap __bp_precmd_invoke_cmd EXIT
 	return
 else
 	echo "${BASH_SOURCE}: bash-preexec.sh didn't get loaded...?" 1>&2
-	echo "Didn't load bash-it.sh..." 1>&2
+	echo "Didn't load bash-it.sh..?" 1>&2
 	return -1
 fi
 #
