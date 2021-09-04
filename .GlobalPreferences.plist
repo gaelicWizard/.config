@@ -13,7 +13,7 @@
 	<key>AKLastCheckInSuccessDate</key>
 	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
-	<date>2021-08-07T09:11:51Z</date>
+	<date>2021-09-04T19:38:30Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
 	<key>ASIX Elec. Corp. AX88179</key>
@@ -38,8 +38,6 @@
 	<string>1.000000 0.874510 0.701961 Orange</string>
 	<key>AppleICUForce24HourTime</key>
 	<true/>
-	<key>AppleInterfaceStyle</key>
-	<string>Dark</string>
 	<key>AppleInterfaceStyleSwitchesAutomatically</key>
 	<true/>
 	<key>AppleInterfaceTheme</key>
@@ -51,7 +49,7 @@
 		<string>en-US</string>
 	</array>
 	<key>AppleLanguagesDidMigrate</key>
-	<string>11.5</string>
+	<string>11.5.2</string>
 	<key>AppleLanguagesSchemaVersion</key>
 	<integer>2000</integer>
 	<key>AppleLocale</key>
@@ -294,7 +292,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-08-06T02:43:49Z</date>
+	<date>2021-09-03T21:25:58Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -338,11 +336,11 @@
 	<true/>
 	<key>NSNavRecentPlaces</key>
 	<array>
+		<string>~/Projects/External/subversion</string>
 		<string>~/Projects/logr</string>
-		<string>~/Library/Mobile Documents/com~apple~CloudDocs/Dash</string>
-		<string>~/Projects/bash-preexec</string>
-		<string>/opt/X11/bin</string>
-		<string>/Volumes/p0rn/toSort/onionib</string>
+		<string>~/Library/Saved Application State/bash</string>
+		<string>~/Backups</string>
+		<string>~/Projects/Bash It</string>
 	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
@@ -505,6 +503,22 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
+			<string>.com</string>
+			<key>with</key>
+			<string>.com</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>covid</string>
+			<key>with</key>
+			<string>COVID-19</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
 			<string>phở</string>
 			<key>with</key>
 			<string>phở</string>
@@ -516,14 +530,6 @@
 			<string>hawaii</string>
 			<key>with</key>
 			<string>Hawaiʻi</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>omw</string>
-			<key>with</key>
-			<string>On my way!</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -774,20 +780,6 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>bbrieff</string>
-			<key>with</key>
-			<string>Facts
-Proc Hist
-Issue
-Rule
-Reasoning
-Holding
-Notes</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
 			<string>c/o</string>
 			<key>with</key>
 			<string>℅</string>
@@ -831,14 +823,6 @@ Notes</string>
 			<string>:-(</string>
 			<key>with</key>
 			<string>😞</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>teh</string>
-			<key>with</key>
-			<string>the</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -919,14 +903,6 @@ Notes</string>
 			<string>1/6</string>
 			<key>with</key>
 			<string>⅙</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>ddelta</string>
-			<key>with</key>
-			<string>defendant</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1023,14 +999,6 @@ Notes</string>
 			<string>o_o</string>
 			<key>with</key>
 			<string>ಠ_ಠ</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>gunna</string>
-			<key>with</key>
-			<string>going to</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1276,7 +1244,7 @@ Notes</string>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>gaelicWizard</string>
+			<string>garlicwizard</string>
 			<key>with</key>
 			<string>gaelicWizard</string>
 		</dict>
@@ -1375,14 +1343,6 @@ Notes</string>
 			<string>Riverside</string>
 			<key>with</key>
 			<string>Riverside</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>k`</string>
-			<key>with</key>
-			<string>contract</string>
 		</dict>
 		<dict>
 			<key>on</key>
