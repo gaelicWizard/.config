@@ -6,6 +6,8 @@ shopt -s no_empty_cmd_completion	# Don't expand all available commands.
 shopt -s checkhash					# Check that hash is usable before using it
 #shopt -s failglob					# Don't continue if a pattern doesn't match any filenames.
 #shopt -s nullglob					# Don't pass the pattern itself when expanding filenames.
+#shopt -s dotglob					# Include hidden files in expansion (not completion).
+#shopt -s extglob					# enable extended pattern-matching features
 shopt -s nocaseglob					# Case-insensitive filename expansion.
 shopt -s shift_verbose				# Minor debugging info.
 shopt -s sourcepath					# Don't search $PATH for the source builtin.
@@ -13,11 +15,13 @@ shopt -s xpg_echo					# Interpret escape sequences in echo builtin.
 #suspend							# SIGSTOP stops the shell itself.
 #huponexit
 shopt -so pipefail					# Return the error on a failed pipe.
+trap '' PIPE						# Some pipes failures are not handled and end up crashing the shell...
 shopt -s cdspell					# Spell check cd(builtin)
+#shopt -s autocd					# change to named directory
+#shopt -s cdable_vars				# if cd arg is not valid, assumes its a var defining a dir
 shopt -s checkwinsize				# Update $LINES/$COLUMNS when sigwinch
-#shopt -s dotglob					# Include hidden files in expansion (not completion).
 #shopt -s extdebug					# Allows DEBUG RETURN ERROR trap inheritance. (See bash(1).)
-
+shopt -s hostcomplete				# attempt hostname expansion when @ is at the beginning of a word
 shopt -s cmdhist					# save multi-line commands as one long entry (bug: comments)
 shopt -s lithist					# save multi-line commands with embedded carriage returns
 shopt -s histappend					# append to history file instead of overwriting
@@ -46,5 +50,5 @@ printf -v HISTTIMEFORMAT "%b%%Y%b%%m%b%%d%bT%b%%H%b%%M%b%%S%bZ%b: " "${HISTTIMEF
 CDPATH=":~" #":/Volumes:~/Projects"
 	# An empty first element means current-directory, but doesn't print every single time used.
 
-autosave=1
+declare autosave=1
 safe_append_prompt_command "_save-and-reload-history" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
