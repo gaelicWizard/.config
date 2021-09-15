@@ -83,6 +83,6 @@ export LIBTOOLIZE=glibtoolize
 
 # Easy Access
 alias   cc='cc  ${CPPFLAGS:-} ${CFLAGS:-}   ${LDFLAGS:-}' 
-alias  c++='c++ ${CPPFLAGS:-} ${CXXFLAGS:-} ${LDFLAGS:-}' 
+#alias  c++='c++ ${CPPFLAGS:-} ${CXXFLAGS:-} ${LDFLAGS:-}' 
 alias  ucc='cc  ${ARCHFLAGS:-}'
-alias uc++='c++ ${ARCHFLAGS:-}'
+#alias uc++='c++ ${ARCHFLAGS:-}'
