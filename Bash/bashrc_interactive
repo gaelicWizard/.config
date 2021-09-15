@@ -54,13 +54,13 @@ then # overwrite $PROMPT_COMMAND to ensure it is pristine.
 	eval "${__preexec__bp_install_f/__bp_adjust_histcontrol/: __bp_adjust_histcontrol}"
 	unset __preexec__bp_install_f
 	__bp_install
-	PROMPT_COMMAND=$'__bp_precmd_invoke_cmd; __bp_interactive_mode'
+	PROMPT_COMMAND='__bp_precmd_invoke_cmd; __bp_interactive_mode'
 	readonly PROMPT_COMMAND
-	trap __bp_precmd_invoke_cmd EXIT
+	trap __bp_preexec_invoke_exec EXIT
 	return
 else
-	echo "${BASH_SOURCE}: bash-preexec.sh didn't get loaded...?" 1>&2
-	echo "Didn't load bash-it.sh..?" 1>&2
+	echo "${BASH_SOURCE}: bash-preexec.sh didn't get loaded...?" >&2
+	echo "Didn't load bash-it.sh..?" >&2
 	return -1
 fi
 #
