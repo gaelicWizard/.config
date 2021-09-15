@@ -25,5 +25,10 @@ eval "${__you_complete_me_filedir_f/$__you_complete_me_filedir_bad1/$__you_compl
 __you_complete_me_filedir_f="$(declare -f _filedir)"
 eval "${__you_complete_me_filedir_f/$__you_complete_me_filedir_bad2/$__you_complete_me_filedir_fix2}"
 
+__you_complete_me_get_comp_words_by_ref_bad1='local upargs=() upvars=() vcur vcword vprev vwords;'
+__you_complete_me_get_comp_words_by_ref_fix1='local upargs=() upvars=() vcur= vcword= vprev= vwords=;'
+__you_complete_me_get_comp_words_by_ref_f="$(declare -f _get_comp_words_by_ref)"
+eval "${__you_complete_me_get_comp_words_by_ref_f/$__you_complete_me_get_comp_words_by_ref_bad1/$__you_complete_me_get_comp_words_by_ref_fix1}"
+
 unset ${!__you_complete_me_@}
 return
