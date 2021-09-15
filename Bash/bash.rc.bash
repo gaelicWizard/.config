@@ -29,7 +29,7 @@ shopt -s histverify					#  allow editing of commands retreived from history,
 readonly HISTSIZE=32768				# 8^5	# Keep a _much_ longer history in memory. (default == 500)
 readonly HISTFILESIZE=262144		# 8^6	# Don't truncate the history file until it is ENORMOUS. (default == 500)
 HISTIGNORE="&:l:ll:ls:ls -la:ls -lA:cd:history:[bf]g:exit:quit:bye"	# Drop repeats and other useless things from the command history.
-HISTCONTROL="ignoredups:ignorespace"
+HISTCONTROL="ignoredups:ignorespace:autoshare"
 	# Drop repeats (redundant) from recorded history, 
 	# drop lines beginning with a space.
 readonly HISTFILE=${XDG_STATE_HOME:-~/.local/state}/Bash/history
@@ -50,5 +50,5 @@ printf -v HISTTIMEFORMAT "%b%%Y%b%%m%b%%d%bT%b%%H%b%%M%b%%S%bZ%b: " "${HISTTIMEF
 CDPATH=":~" #":/Volumes:~/Projects"
 	# An empty first element means current-directory, but doesn't print every single time used.
 
-declare autosave=1
-safe_append_prompt_command "_save-and-reload-history" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
+#declare autosave=1
+#safe_append_prompt_command "_save-and-reload-history" || { echo "bash.rc.bash: Unable to manipulate prompt." 1>&2; return; }
