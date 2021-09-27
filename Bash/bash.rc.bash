@@ -23,6 +23,7 @@ shopt -s checkwinsize				# Update $LINES/$COLUMNS when sigwinch
 #shopt -s extdebug					# Allows DEBUG RETURN ERROR trap inheritance. (See bash(1).)
 shopt -s hostcomplete				# attempt hostname expansion when @ is at the beginning of a word
 shopt -s cmdhist					# save multi-line commands as one long entry (bug: comments)
+[[ ${BASH_VERSINFO[0]} -ge 5 || ${BASH_VERSINFO[1]} -ge 4 ]] &&
 shopt -s lithist					# save multi-line commands with embedded carriage returns
 shopt -s histappend					# append to history file instead of overwriting
 shopt -s histverify					#  allow editing of commands retreived from history,
@@ -32,20 +33,20 @@ HISTIGNORE="&:l:ll:ls:ls -la:ls -lA:cd:history:[bf]g:exit:quit:bye"	# Drop repea
 HISTCONTROL="ignoredups:ignorespace:autoshare"
 	# Drop repeats (redundant) from recorded history, 
 	# drop lines beginning with a space.
-readonly HISTFILE=${XDG_STATE_HOME:-~/.local/state}/Bash/history
+readonly HISTFILE="${XDG_STATE_HOME:-~/.local/state}/Bash/history"
 
 HISTTIMEFORMATFORMAT=(	# eight args: Year, Month, Day, 'T', Hour, Minute, Second, 'Z'.
-	"${echo_red}"
-	"${echo_purple}"
-	"${echo_yellow}"
-	"${echo_bold_white}"
-	"${echo_blue}"
-	"${echo_green}"
-	"${echo_cyan}"
-	"${echo_bold_black}"
-	"${echo_normal}"
+	"${echo_red?}"
+	"${echo_purple?}"
+	"${echo_yellow?}"
+	"${echo_bold_white?}"
+	"${echo_blue?}"
+	"${echo_green?}"
+	"${echo_cyan?}"
+	"${echo_bold_black?}"
+	"${echo_normal?}"
 )	# "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_}" "${echo_normal}"
-printf -v HISTTIMEFORMAT "%b%%Y%b%%m%b%%d%bT%b%%H%b%%M%b%%S%bZ%b: " "${HISTTIMEFORMATFORMAT[@]:0:8}" "${echo_normal}"
+printf -v HISTTIMEFORMAT "%b%%Y%b%%m%b%%d%bT%b%%H%b%%M%b%%S%bZ%b: " "${HISTTIMEFORMATFORMAT[@]:0:8}" "${echo_normal?}"
 
 CDPATH=":~" #":/Volumes:~/Projects"
 	# An empty first element means current-directory, but doesn't print every single time used.
