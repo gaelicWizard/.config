@@ -30,7 +30,7 @@ function l ()
 { ls -l "$@"; } 
     # -l to list in long format...
 function ll ()
-{ CLICOLOR_FORCE="$CLICOLOR" l "$@" | less -e -R ; } 
+{ CLICOLOR_FORCE="${CLICOLOR:-}" l "$@" | less -e -R ; } 
     # pipe into 'less', tell less to honor colors and to exit at end
 
 alias locate="locate -i" # case insensitive
