@@ -23,18 +23,18 @@ fi
 alias gam="python ~/Projects/External/GoogleAppsManager.svn/gam.py"
 
 ## Generally useful functions :-)
-function ls ()
+function ls()
 { command ls -AFOh "$@" ; } 
     # 'command ls' to prevent loop; -A for .file, -G for color (see $CLICOLOR), -F for dir/ link@, -h for 5k 3m 1g, -O for uchg...
-function l ()
+function l()
 { ls -l "$@"; } 
     # -l to list in long format...
-function ll ()
+function ll()
 { CLICOLOR_FORCE="${CLICOLOR:-}" l "$@" | less -e -R ; } 
     # pipe into 'less', tell less to honor colors and to exit at end
 
 alias locate="locate -i" # case insensitive
-function locate ()
+function locate()
 {
 	local -i HOURS=$(( 60*60 )) # sixty minutes of sixty seconds.
     local -i MAXAGE=$(( 24 * $HOURS )) # twenty-four hours.
@@ -62,7 +62,7 @@ function locate ()
     command locate "$@"
 }
 
-function lleaks ()
+function lleaks()
 {
     leaks "$@" | less
 }
@@ -86,19 +86,19 @@ alias swaploop="while clear; do swap; sleep 10; done"
 
 alias flushcache="dscacheutil -flushcache"
 
-function seq () { jot - "$@" ; }
+function seq() { jot - "$@" ; }
 
-function randomint ()
+function randomint()
 {
     dd if=/dev/random count=1 2>/dev/null | od -t u1 | awk 'NR==1 {print $2$4}'
 }
 
-function randomword ()
+function randomword()
 {
     sed "$(randomint)""q;d" /usr/share/dict/words
 }
 
-function chext ()
+function chext()
 { 
     local FILE
     if [ "$#" -lt 3 ]
@@ -135,9 +135,9 @@ alias nyan='screen -t nyan nc miku.acm.uiuc.edu 23'
 
 #set -o noclobber
 
-function pidof () { ps -Ac | awk '/'"$*"'/ {print $1}'; }
+function pidof() { ps -Ac | awk '/'"$*"'/ {print $1}'; }
 
-function ass ()
+function ass()
 {
     if [ "$1" ] && declare -F isscreen >/dev/null && isscreen
     then
@@ -147,7 +147,7 @@ function ass ()
     fi
 }
 
-function google ()
+function google()
 {
     open 'http://www.google.com/search?client=safari&q='"$*"
 }
