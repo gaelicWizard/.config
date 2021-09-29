@@ -3972,7 +3972,7 @@ loop=1
 #preparse-timeout=5000
 
 # Allow metadata network access (boolean)
-metadata-network-access=1
+#metadata-network-access=0
 
 # Subdirectory behavior (string)
 #recursive=collapse
