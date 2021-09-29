@@ -50,11 +50,11 @@ set history-preserve-point on
 # Completion:
 set completion-ignore-case on
 	# Make Tab autocompletion case-insensitive (cd ~/dow<Tab> => cd ~/Downloads/).
-set show-all-if-ambiguous on 
+set show-all-if-ambiguous off
 	# List all matches in case multiple possible completions are possible.
 set completion-query-items 80
     # Only show-all-if-ambiguous iff less than 40 items, otherwise prompt.
-set show-all-if-unmodified off
+set show-all-if-unmodified on
     # (Don't) Show ambiguous, even when partially unambigious completion.
 set mark-directories on
 	# Append trailing slash to directories when completing.
@@ -79,7 +79,7 @@ set horizontal-scroll-mode off
 set input-meta on
 set output-meta on
 set convert-meta off
-set kanji-code utf-8
+#set kanji-code utf-8
 ##
 
 ##
