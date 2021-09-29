@@ -62,7 +62,8 @@ defflow off
 defshell "$SHELL"
 	# make sure that screen doesn't get confused when _it_ is the login shell
 	# Specifically, Terminal.app can be told to run /usr/bin/screen as the login shell, which does not alter the user's official login shell. When screen is run as -screen, it will _not_ start each window with $SHELL as it would otherwise, since it presumes that $SHELL would point to /usr/bin/screen, and instead just runs /bin/sh. Clearly this is sub-optimal.
-shelltitle "\$ |$SHELL"
+shelltitle "\$ |~"
+#shelltitle "\$ |$SHELL"
 	# Set the window title to "$SHELL:" (just shell running) or "$SHELL:cmatrix" (when cmatrix running)
 	# Without trailing colon, the shell name is left out on title change.
 	# This requires '\[\ek\e\\\]' as part of $PS1 or $PROMPT_COMMAND
