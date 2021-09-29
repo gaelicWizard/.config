@@ -77,7 +77,7 @@
 #	push = HEAD
 
 [mergetool]
-	keepBackup = true
+	keepBackup = false
 
 # https://confusatory.org/post/133141617492/git-diff-for-binary-apple-property-list-files
 [diff "plist"]
