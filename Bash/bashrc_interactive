@@ -1,4 +1,4 @@
-#!/bin/bash --interactive -c 'bashrc_dispatch'
+#!/bin/bash --interactive --init-file 'bashrc_dispatch'
 ###
 ## bashrc_interactive: all interactive bash shells load this code.
 ###
@@ -19,12 +19,12 @@ typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
 
 ##
 # Configuration for _Bash Completion_ presets package, from _Homebrew_.
-: ${BASH_COMPLETION:=/usr/local/opt/bash-completion@1/etc/bash_completion}
+#: ${BASH_COMPLETION:=/usr/local/opt/bash-completion@1/etc/bash_completion}
 : ${BASH_COMPLETION_COMPAT_DIR:=/usr/local/etc/bash_completion.d}
 : ${BASH_COMPLETION_USER_DIR:=${XDG_CONFIG_HOME:-~/.config}/Bash/completion.d}
 : ${BASH_COMPLETION_DEBUG:=}
 #
-typeset -r BASH_COMPLETION BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR
+typeset -r BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR #BASH_COMPLETION
 #
 
 ##
@@ -47,7 +47,7 @@ source "$BASH_IT"/bash_it.sh
 
 ##
 # Final cleanup after Bash It has loaded.
-if [[ "${__bp_imported:-}" == "defined" ]]
+if [[ -n "${__bp_imported:-}" ]]
 then # overwrite $PROMPT_COMMAND to ensure it is pristine.
 	# Supress bash-preexec from bjorking HISTCONTROL while installing itself.
 	__preexec__bp_install_f="$(declare -f __bp_install)"
