@@ -23,5 +23,5 @@ export HOMEBREW_CASK_OPTS="
 
 if _bash_it_homebrew_check && [[ "${BASH_VERSINFO[0]}" -ge "4" && -r "${HB_CNF_HANDLER:=${BASH_IT_HOMEBREW_PREFIX}/handler.sh}" ]]
 then
-	source "$HB_CNF_HANDLER";
+	source "$HB_CNF_HANDLER"
 fi
