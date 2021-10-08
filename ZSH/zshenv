@@ -1,7 +1,7 @@
 readonly HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/ZSH/history"
 mkdir -p "${HISTFILE%/*}"
 
-readonly ZSH="${XDG_DATA_HOME:-$HOME/.local/share}/ZSH"
+readonly ZSH="${XDG_DATA_HOME:-$HOME/.local/share}/Oh My ZSH"
 export ZSH
 
 readonly ZSH_CUSTOM="${XDG_CONFIG_HOME:-$HOME/.config}/ZSH"
