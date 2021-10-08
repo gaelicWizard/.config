@@ -9,3 +9,9 @@ readonly ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/ZSH"
 readonly ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/ZSH/zcompdump-${HOST/.*/}-${ZSH_VERSION}"
 
 ZSH_THEME=random
+
+plugins=(
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+)
