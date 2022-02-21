@@ -1,4 +1,4 @@
-#!/bin/bash --interactive --init-file 'bashrc_dispatch'
+# shellcheck shell=bash
 ###
 ## bashrc_interactive: all interactive bash shells load this code.
 ###
@@ -7,12 +7,13 @@ shopt -so nounset #== set -u # Undefined parameters are errors.
 
 ##
 # Configuration for _Bash It_ modular modernization project.
-: ${BASH_IT:=${XDG_DATA_HOME:-~/.local/share}/Bash It}
-: ${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-~/.config}/Bash} ${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/themes}
-: ${SCM_GIT_GITSTATUS_DIR:=${XDG_STATE_HOME:-~/.local/state}/gitstatus}
+: "${BASH_IT:=${XDG_DATA_HOME:-${HOME?}/.local/share}/Bash It}"
+: "${BASH_IT_CUSTOM:=${XDG_CONFIG_HOME:-${HOME?}/.config}/Bash}"
+: "${CUSTOM_THEME_DIR:=${BASH_IT_CUSTOM}/themes}"
+: "${SCM_GIT_GITSTATUS_DIR:=${XDG_STATE_HOME:-${HOME?}/.local/share}/gitstatus}"
 : #${BASH_IT_REMOTE:=upstream} #${BASH_IT_DEVELOPMENT_BRANCH:=dev}
 : #${BASH_IT_THEME:=bobby} #IRC_CLIENT='irssi' TODO="t" SCM_CHECK=true
-: ${BASH_IT_COMMAND_DURATION:=true} ${COMMAND_DURATION_MIN_SECONDS:=1}
+: "${BASH_IT_COMMAND_DURATION:=true}" "${NOTIFY_IF_COMMAND_RETURNS_AFTER:=1}"
 #
 typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
 ## 
@@ -20,16 +21,16 @@ typeset -xr BASH_IT BASH_IT_CUSTOM SCM_GIT_GITSTATUS_DIR
 ##
 # Configuration for _Bash Completion_ presets package, from _Homebrew_.
 #: ${BASH_COMPLETION:=/usr/local/opt/bash-completion@1/etc/bash_completion}
-: ${BASH_COMPLETION_COMPAT_DIR:=/usr/local/etc/bash_completion.d}
-: ${BASH_COMPLETION_USER_DIR:=${XDG_CONFIG_HOME:-~/.config}/Bash/completion.d}
-: ${BASH_COMPLETION_DEBUG:=}
+: "${BASH_COMPLETION_COMPAT_DIR:=/usr/local/etc/bash_completion.d}"
+: "${BASH_COMPLETION_USER_DIR:=${XDG_CONFIG_HOME:-${HOME?}/.config}/bash/completion.d}"
+: "${BASH_COMPLETION_DEBUG:=}"
 #
 typeset -r BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR #BASH_COMPLETION
 #
 
 ##
 # Supress bash-preexec from installing itself and bjorking HISTCONTROL.
-: ${__bp_delay_install:=jfc}
+: "${__bp_delay_install:=jfc}"
 #
 
 
@@ -37,9 +38,9 @@ typeset -r BASH_COMPLETION_COMPAT_DIR BASH_COMPLETION_USER_DIR #BASH_COMPLETION
 
 ########################################
 # Invoke the main _Bash It_ script.
-: ${BASH_IT_LOG_LEVEL:=4} ${PROMPT:=}
+: "${BASH_IT_LOG_LEVEL:=9}"
 #
-source "$BASH_IT"/bash_it.sh
+source "${BASH_IT?}/bash_it.sh"
 ########################################
 
 
