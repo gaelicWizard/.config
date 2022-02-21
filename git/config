@@ -32,6 +32,8 @@
 
 [alias]
 	remotes = remote -v
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -84,6 +86,11 @@
 	textconv = plutil -convert xml1 -o -
 [diff "localizablestrings"]
 	textconv = "iconv -f utf-16 -t utf-8"
+[diff "zip"]
+	textconv = unzip -v
+[diff "scpt"]
+	textconv = osadecompile
+	binary = true
 
 # https://gist.github.com/Kovrinic/ea5e7123ab5c97d451804ea222ecd78a
 [url "https://github.com/"]
