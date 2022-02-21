@@ -60,6 +60,7 @@ set mark-directories on
 	# Append trailing slash to directories when completing.
 set mark-symlinked-directories on 
 	# Treat symlinks-to-directories just like directories.
+set colored-stats on
 set visible-stats on
     # Imitate `ls -F`
 set expand-tilde off
@@ -83,9 +84,9 @@ set convert-meta off
 ##
 
 ##
-#$if version >= 7
+$if version >= 7
 set enable-bracketed-paste on
 	# Coordinate with terminal emulator to isolate pasted text to avoid interpretation as keystrokes.
 	# https://cirw.in/blog/bracketed-paste
-#$endif
+$endif
 ##
