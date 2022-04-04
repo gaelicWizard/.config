@@ -40,6 +40,7 @@ Host sf.net *.sf.net *.sourceforge.net *.code.sf.net
 Host github.com gist.github.com
 	User git
 	IdentitiesOnly yes
+	ForwardX11 no
 
 
 Host Anahid anahid colordots anahid.colordotsinc.com colordots.kicks-ass.net
