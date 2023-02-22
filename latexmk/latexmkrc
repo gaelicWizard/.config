@@ -1,0 +1,21 @@
+## LatexMk
+
+$recorder = 1;
+$rc_report = 1;
+$aux_out_dir_report = 1;
+$analyze_input_log_always = 0;
+$show_time = 1;
+$dependents_list = 1;
+
+$emulate_aux = 1;
+$always_view_file_via_temporary = 1;
+$allow_switch = 0;
+$bibtex_use = 1; # 1.5 doesn't work with biber
+
+$current_primary = 'xelatex';
+$pdf_method = 'xelatex';
+$pdf_mode = 5;
+$dvi_mode = $postscript_mode = 0;
+
+#$invoked_name = 'xelatexmk'
+#$diagnostics = 1;
