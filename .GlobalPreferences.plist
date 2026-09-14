@@ -8,14 +8,12 @@
 	<true/>
 	<key>AKDeviceUnlockState</key>
 	<true/>
-	<key>AKLastCheckInAttemptDate</key>
-	<date>2019-12-07T01:33:18Z</date>
-	<key>AKLastCheckInSuccessDate</key>
-	<date>2019-12-07T01:33:19Z</date>
 	<key>AKLastEmailListRequestDateKey</key>
 	<date>2021-09-04T19:38:30Z</date>
 	<key>AKLastIDMSEnvironment</key>
 	<integer>0</integer>
+	<key>AKLastLocale</key>
+	<string>en_US</string>
 	<key>ASIX Elec. Corp. AX88179</key>
 	<string>1</string>
 	<key>Apple Inc. iPhone</key>
@@ -287,32 +285,26 @@
 	<string>2 8 72</string>
 	<key>NSFontSize</key>
 	<string>12</string>
+	<key>NSGlassDiffusionSetting</key>
+	<true/>
 	<key>NSHTTPAcceptCookies</key>
 	<string>current page</string>
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2021-09-04T21:30:23Z</date>
+	<date>2026-09-13T23:43:01Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
 		<string>en_US</string>
-		<string>en_GB</string>
-		<string>es</string>
-		<string>de</string>
-		<string>en_US-POSIX</string>
-		<string>pt</string>
+		<string>mul</string>
+		<string>mul_Latn</string>
 		<string>fr</string>
-		<string>it</string>
-		<string>nl</string>
 	</array>
 	<key>NSLinguisticDataAssetsRequestedByChecker</key>
 	<array>
 		<string>en</string>
-		<string>it</string>
-		<string>de</string>
 		<string>fr</string>
-		<string>nl</string>
 	</array>
 	<key>NSNavPanelExpandedStateForSaveMode</key>
 	<true/>
@@ -334,14 +326,6 @@
 	</array>
 	<key>NSNavPreviewExpanded</key>
 	<true/>
-	<key>NSNavRecentPlaces</key>
-	<array>
-		<string>~/.temp/config-temp</string>
-		<string>~/Library/Preferences</string>
-		<string>~/Projects/External/subversion</string>
-		<string>~/Projects/logr</string>
-		<string>~/Library/Saved Application State/bash</string>
-	</array>
 	<key>NSPersonNameDefaultDisplayNameOrder</key>
 	<integer>1</integer>
 	<key>NSPersonNameDefaultShortNameFormat</key>
@@ -499,6 +483,86 @@
 	<real>0.0</real>
 	<key>NSUserDictionaryReplacementItems</key>
 	<array>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>superbowl</string>
+			<key>with</key>
+			<string>Superb Owl</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>SpinalTap</string>
+			<key>with</key>
+			<string>Spın̈al Tap</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>moron</string>
+			<key>with</key>
+			<string>chucklehead</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>bitch</string>
+			<key>with</key>
+			<string>asshole</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>omw</string>
+			<key>with</key>
+			<string>On my way!</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>chanukkah</string>
+			<key>with</key>
+			<string>Chanukah</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>iSCSI</string>
+			<key>with</key>
+			<string>iSCSI</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>PowerBook</string>
+			<key>with</key>
+			<string>PowerBook</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>PowerMac</string>
+			<key>with</key>
+			<string>PowerMac</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>church</string>
+			<key>with</key>
+			<string>chvrch</string>
+		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
@@ -676,14 +740,6 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>3/5</string>
-			<key>with</key>
-			<string>⅗</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
 			<string>3/8</string>
 			<key>with</key>
 			<string>⅜</string>
@@ -692,17 +748,9 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>1/8</string>
+			<string>:-D</string>
 			<key>with</key>
-			<string>⅛</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>&lt;3</string>
-			<key>with</key>
-			<string>♥</string>
+			<string>😆</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -724,65 +772,33 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>caselaw</string>
+			<string>(N)</string>
 			<key>with</key>
-			<string>caselaw</string>
+			<string>👎</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>7/8</string>
+			<string>3/5</string>
 			<key>with</key>
-			<string>⅞</string>
+			<string>⅗</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>1/4</string>
+			<string>3/4</string>
 			<key>with</key>
-			<string>¼</string>
+			<string>¾</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>:-D</string>
+			<string>1/8</string>
 			<key>with</key>
-			<string>😆</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>:-*</string>
-			<key>with</key>
-			<string>😘</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>4/5</string>
-			<key>with</key>
-			<string>⅘</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>5/8</string>
-			<key>with</key>
-			<string>⅝</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>c/o</string>
-			<key>with</key>
-			<string>℅</string>
+			<string>⅛</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -796,17 +812,17 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>1/2</string>
+			<string>;-)</string>
 			<key>with</key>
-			<string>½</string>
+			<string>😉</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>&gt;:-o</string>
+			<string>1/4</string>
 			<key>with</key>
-			<string>😠</string>
+			<string>¼</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -820,17 +836,73 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>:-(</string>
+			<string>-_-</string>
 			<key>with</key>
-			<string>😞</string>
+			<string>😑</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>;-)</string>
+			<string>:-*</string>
 			<key>with</key>
-			<string>😉</string>
+			<string>😘</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>2/5</string>
+			<key>with</key>
+			<string>⅖</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>caselaw</string>
+			<key>with</key>
+			<string>caselaw</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>&gt;:-o</string>
+			<key>with</key>
+			<string>😠</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>c/o</string>
+			<key>with</key>
+			<string>℅</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>1/3</string>
+			<key>with</key>
+			<string>⅓</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>7/8</string>
+			<key>with</key>
+			<string>⅞</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>1/6</string>
+			<key>with</key>
+			<string>⅙</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -844,33 +916,33 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>-_-</string>
+			<string>5/8</string>
 			<key>with</key>
-			<string>😑</string>
+			<string>⅝</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>(N)</string>
+			<string>:-/</string>
 			<key>with</key>
-			<string>👎</string>
+			<string>😕</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>forebearance</string>
+			<string>&lt;3</string>
 			<key>with</key>
-			<string>forbearance</string>
+			<string>♥</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>(Y)</string>
+			<string>1/2</string>
 			<key>with</key>
-			<string>👍</string>
+			<string>½</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -892,33 +964,17 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>3/4</string>
+			<string>:-(</string>
 			<key>with</key>
-			<string>¾</string>
+			<string>😞</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>1/6</string>
+			<string>(Y)</string>
 			<key>with</key>
-			<string>⅙</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>2/5</string>
-			<key>with</key>
-			<string>⅖</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>1/3</string>
-			<key>with</key>
-			<string>⅓</string>
+			<string>👍</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -932,9 +988,17 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>:-/</string>
+			<string>forebearance</string>
 			<key>with</key>
-			<string>😕</string>
+			<string>forbearance</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>4/5</string>
+			<key>with</key>
+			<string>⅘</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -956,17 +1020,25 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>bitch</string>
+			<string>Apple</string>
 			<key>with</key>
-			<string>bitch</string>
+			<string>Apple</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>fuck</string>
+			<string>omnom</string>
 			<key>with</key>
-			<string>fuck</string>
+			<string>om nom nom nom</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>Also</string>
+			<key>with</key>
+			<string>alsö</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -980,17 +1052,97 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>:'(</string>
+			<string>bitch</string>
 			<key>with</key>
-			<string>😢</string>
+			<string>bitch</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>innout</string>
+			<string>.zZ</string>
 			<key>with</key>
-			<string>In-N-Out</string>
+			<string>💤</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>mms</string>
+			<key>with</key>
+			<string>MMS</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>shit</string>
+			<key>with</key>
+			<string>shit</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>frd</string>
+			<key>with</key>
+			<string>for:RussianDina</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>garlicwizard</string>
+			<key>with</key>
+			<string>gaelicWizard</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>Rick</string>
+			<key>with</key>
+			<string>Rick</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>Hyrule</string>
+			<key>with</key>
+			<string>Hyrule</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>gaelicwizard</string>
+			<key>with</key>
+			<string>gaelicWizard</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>ong</string>
+			<key>with</key>
+			<string>OMG</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>fucking</string>
+			<key>with</key>
+			<string>fucking</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>google</string>
+			<key>with</key>
+			<string>Google</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1012,201 +1164,9 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>Apple</string>
-			<key>with</key>
-			<string>Apple</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Also</string>
-			<key>with</key>
-			<string>alsö</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>montypythonholygrail</string>
-			<key>with</key>
-			<string>Mønti Pythøn ik den Høli Gräilen</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Hyrule</string>
-			<key>with</key>
-			<string>Hyrule</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>.zZ</string>
-			<key>with</key>
-			<string>💤</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
 			<string>:-p</string>
 			<key>with</key>
 			<string>😝</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>omnom</string>
-			<key>with</key>
-			<string>om nom nom nom</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Pell</string>
-			<key>with</key>
-			<string>Pell</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>idevice</string>
-			<key>with</key>
-			<string>iDevice</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>mms</string>
-			<key>with</key>
-			<string>MMS</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>SMS</string>
-			<key>with</key>
-			<string>SMS</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Rick</string>
-			<key>with</key>
-			<string>Rick</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>;-p</string>
-			<key>with</key>
-			<string>😜</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>ong</string>
-			<key>with</key>
-			<string>OMG</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>riverside</string>
-			<key>with</key>
-			<string>Riverside</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>sms</string>
-			<key>with</key>
-			<string>SMS</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>ios</string>
-			<key>with</key>
-			<string>iOS</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>!?</string>
-			<key>with</key>
-			<string>‽</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>google</string>
-			<key>with</key>
-			<string>Google</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>frd</string>
-			<key>with</key>
-			<string>for:RussianDina</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>fucking</string>
-			<key>with</key>
-			<string>fucking</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>att</string>
-			<key>with</key>
-			<string>AT&amp;T</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>shit</string>
-			<key>with</key>
-			<string>shit</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>Mordor</string>
-			<key>with</key>
-			<string>Mordor</string>
-		</dict>
-		<dict>
-			<key>on</key>
-			<integer>1</integer>
-			<key>replace</key>
-			<string>crystal</string>
-			<key>with</key>
-			<string>Crystal</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1220,9 +1180,65 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>gaelicwizard</string>
+			<string>Gondor</string>
 			<key>with</key>
-			<string>gaelicWizard</string>
+			<string>Gondor</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>!?</string>
+			<key>with</key>
+			<string>‽</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>Pell</string>
+			<key>with</key>
+			<string>Pell</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>SMS</string>
+			<key>with</key>
+			<string>SMS</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>crystal</string>
+			<key>with</key>
+			<string>Crystal</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>idevice</string>
+			<key>with</key>
+			<string>iDevice</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>ios</string>
+			<key>with</key>
+			<string>iOS</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>fuck</string>
+			<key>with</key>
+			<string>fuck</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1236,17 +1252,65 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>Gondor</string>
+			<string>:'(</string>
 			<key>with</key>
-			<string>Gondor</string>
+			<string>😢</string>
 		</dict>
 		<dict>
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>garlicwizard</string>
+			<string>sms</string>
 			<key>with</key>
-			<string>gaelicWizard</string>
+			<string>SMS</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>innout</string>
+			<key>with</key>
+			<string>In-N-Out</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>riverside</string>
+			<key>with</key>
+			<string>Riverside</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>Mordor</string>
+			<key>with</key>
+			<string>Mordor</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>montypythonholygrail</string>
+			<key>with</key>
+			<string>Mønti Pythøn ik den Høli Gräilen</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>;-p</string>
+			<key>with</key>
+			<string>😜</string>
+		</dict>
+		<dict>
+			<key>on</key>
+			<integer>1</integer>
+			<key>replace</key>
+			<string>att</string>
+			<key>with</key>
+			<string>AT&amp;T</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1260,7 +1324,7 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>hyppa</string>
+			<string>HIPPA</string>
 			<key>with</key>
 			<string>HIPAA</string>
 		</dict>
@@ -1268,7 +1332,7 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>HIPPA</string>
+			<string>hyppa</string>
 			<key>with</key>
 			<string>HIPAA</string>
 		</dict>
@@ -1372,9 +1436,9 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>Easter</string>
+			<string>easter</string>
 			<key>with</key>
-			<string>Pagan Fertility Celebration</string>
+			<string>Spring Fertility Festival</string>
 		</dict>
 		<dict>
 			<key>on</key>
@@ -1388,9 +1452,9 @@
 			<key>on</key>
 			<integer>1</integer>
 			<key>replace</key>
-			<string>easter</string>
+			<string>Easter</string>
 			<key>with</key>
-			<string>Spring Fertility Festival</string>
+			<string>Pagan Fertility Celebration</string>
 		</dict>
 	</array>
 	<key>NSUserKeyEquivalents</key>
@@ -1901,53 +1965,9 @@ Notes</string>
 	<key>com.apple.finder.SyncExtensions</key>
 	<dict>
 		<key>collaborationMap</key>
-		<dict>
-			<key>com.microsoft.OneDrive-mac.FinderSync</key>
-			<false/>
-			<key>com.resilio.Sync.FinderExtension</key>
-			<false/>
-		</dict>
+		<dict/>
 		<key>dirMap</key>
-		<dict>
-			<key>com.microsoft.OneDrive-mac.FinderSync</key>
-			<array>
-				<string>file:///Users/pellican/OneDrive%20-%20Mayflower%20IT/</string>
-			</array>
-			<key>com.resilio.Sync.FinderExtension</key>
-			<array>
-				<string>file:///Users/pellican/Sync/INVIA_CBD/</string>
-				<string>file:///Users/pellican/Sync/Torrents/</string>
-				<string>file:///Users/pellican/Sync/Baseline/</string>
-				<string>file:///Users/pellican/Projects/MayflowerScripts/</string>
-				<string>file:///Users/pellican/Sync/Bakdump/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Redstone%204/</string>
-				<string>file:///Users/pellican/Sync/BRUCE2011-PC/</string>
-				<string>file:///Users/pellican/Tools/</string>
-				<string>file:///Users/pellican/Sites/</string>
-				<string>file:///Users/pellican/Pictures/</string>
-				<string>file:///Users/pellican/Sync/PolicyDefinitions/</string>
-				<string>file:///Users/pellican/Sync/ir.webm/</string>
-				<string>file:///Users/pellican/Downloads/</string>
-				<string>file:///Users/pellican/Sync/WIMs/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Threshold%202/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Redstone%203/</string>
-				<string>file:///Users/pellican/Sync/Software/</string>
-				<string>file:///Users/pellican/Music/</string>
-				<string>file:///Users/pellican/Movies/</string>
-				<string>file:///Users/pellican/Sync/SWsetup/</string>
-				<string>file:///Users/pellican/Sync/Controller/</string>
-				<string>file:///Users/pellican/Sync/Ajr5,4/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Redstone%205/</string>
-				<string>file:///Users/pellican/Sync/Pellz/</string>
-				<string>file:///Users/pellican/Backups/</string>
-				<string>file:///Users/pellican/Library/Containers/com.apple.iChat/Data/Library/Messages/Archive/</string>
-				<string>file:///Users/pellican/Sync/WDSUnattend/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Redstone%202/</string>
-				<string>file:///Users/pellican/Sync/Hyper-ISOs/</string>
-				<string>file:///Users/pellican/Sync/WDS%20Images/Threshold%201/</string>
-				<string>file:///Users/pellican/Sync/j5s/</string>
-			</array>
-		</dict>
+		<dict/>
 	</dict>
 	<key>com.apple.keyboard.fnState</key>
 	<false/>

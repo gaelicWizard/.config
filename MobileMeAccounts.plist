@@ -5,20 +5,10 @@
 	<key>Accounts</key>
 	<array>
 		<dict>
-			<key>AccountAlternateDSID</key>
-			<string>000370-05-4b9953d8-b6c8-4bd4-8987-afd0fb091577</string>
-			<key>AccountDSID</key>
-			<string>38390288</string>
-			<key>AccountDescription</key>
-			<string>MobileMac.me</string>
 			<key>AccountID</key>
-			<string>johnpell@mac.com</string>
+			<string>john@pell.cc</string>
 			<key>AccountUUID</key>
-			<string>548012DC-3278-4C01-815C-B066B217641F</string>
-			<key>DisplayName</key>
-			<string>John Pell</string>
-			<key>LoggedIn</key>
-			<true/>
+			<string>8A6D0712-9F49-4E4F-821B-F61A16E7D38D</string>
 			<key>Services</key>
 			<array>
 				<dict>
@@ -30,11 +20,80 @@
 					<string>active</string>
 				</dict>
 				<dict>
+					<key>ALL_SUBSCRIPTIONS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=18</string>
+					<key>APPLE_MUSIC</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=2</string>
+					<key>APPLE_SUBSCRIPTIONS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=12</string>
+					<key>APPLE_TV_PLUS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=9</string>
+					<key>APP_STORE_SUBSCRIPTIONS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=13</string>
+					<key>ARCADE</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=8</string>
+					<key>ASK_TO_BUY</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=11</string>
+					<key>ICLOUD_STORAGE</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=3</string>
+					<key>MARLIN</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=19</string>
+					<key>NEWS_PLUS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=6</string>
 					<key>Name</key>
 					<string>FAMILY</string>
+					<key>PODCASTS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=17</string>
+					<key>PURCHASE_SHARING</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=1</string>
+					<key>SCREEN_TIME</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=5</string>
+					<key>SHARE_MY_LOCATION</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=4</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.Family</string>
+					<key>TV_CHANNELS</key>
+					<string>https://setup.icloud.com/setup/family/v2/macos/viewSubscriptionDetails?subId=7</string>
+					<key>askToBuyOverMessageKillSwitch</key>
+					<true/>
+					<key>askToBuyUpsellPage</key>
+					<string>https://support.apple.com/HT201089</string>
+					<key>inviteFollowUpNotificationsEnabled</key>
+					<true/>
+					<key>megadomeKillSwitch</key>
+					<false/>
+					<key>openPendingMemberFlowInFamilyProcess</key>
+					<false/>
+					<key>preventAskToBuyMessageDeviceValidation</key>
+					<false/>
+					<key>preventScreenTimeMessageDeviceValidation</key>
+					<false/>
+					<key>ruiEnabledPages</key>
+					<dict>
+						<key>ADD_MEMBER</key>
+						<true/>
+						<key>APPLE_SUBSCRIPTIONS</key>
+						<true/>
+						<key>ATB_MEMBER_DETAILS</key>
+						<true/>
+						<key>ICLOUD_STORAGE</key>
+						<true/>
+						<key>PURCHASE_SHARING_MEMBER_DETAILS</key>
+						<true/>
+						<key>PURCHASE_SHARING_SPLASH</key>
+						<true/>
+						<key>SETUP_FAMILY</key>
+						<true/>
+						<key>SUBSCRIPTION_MEMBER_DETAILS</key>
+						<true/>
+					</dict>
+					<key>screenTimeOverMessageKillSwitch</key>
+					<false/>
+					<key>screenTimeUpsellPage</key>
+					<string>https://support.apple.com/HT208982</string>
 					<key>showManageFamily</key>
+					<true/>
+					<key>usePDS</key>
 					<true/>
 				</dict>
 				<dict>
@@ -60,20 +119,60 @@
 					<string>com.apple.Dataclass.Photos</string>
 				</dict>
 				<dict>
+					<key>Enabled</key>
+					<true/>
+					<key>Name</key>
+					<string>MESSAGES</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.Messages</string>
+				</dict>
+				<dict>
+					<key>CategorySyncEnabled</key>
+					<false/>
+					<key>ClearAllOverridesURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/recategorization/clearalloverrides</string>
 					<key>EmailAddress</key>
-					<string>johnpell@me.com</string>
+					<string>johnpell@icloud.com</string>
+					<key>Enabled</key>
+					<false/>
+					<key>FetchOverridesUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443/iungo/sender/v1/senders/category</string>
+					<key>FullCategoryOverrideSyncEnabled</key>
+					<true/>
 					<key>FullUserName</key>
 					<string>John Pell</string>
 					<key>Name</key>
 					<string>MAIL_AND_NOTES</string>
+					<key>RecategorizationSyncFrequencyMinutes</key>
+					<integer>10080</integer>
+					<key>RecategorizationSyncUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/recategorization/sync</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.Mail</string>
+					<key>StartSyncURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/iungo/sender/v1/categories/sync/status</string>
+					<key>SyncAllFrequencyDays</key>
+					<integer>14</integer>
+					<key>SyncNewOldURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/newold/sync</string>
 					<key>Username</key>
 					<string>johnpell</string>
 					<key>dotMacMailSupported</key>
 					<true/>
+					<key>iCloudMailSettings.MCCGatewayUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443</string>
+					<key>iCloudMailSettings.MailAssistant.InlineTipCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailAssistant.IsMailCleanupFeatureAvailable</key>
+					<true/>
+					<key>iCloudMailSettings.MailAssistant.PreferencesCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailAssistant.UnifiedRulesCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailCommandCenterUrl</key>
+					<string>https://p163-mcc.icloud.com:443</string>
 					<key>imapHostname</key>
-					<string>p62-imap.mail.me.com</string>
+					<string>imap.mail.me.com</string>
 					<key>imapPort</key>
 					<integer>993</integer>
 					<key>imapRequiresSSL</key>
@@ -81,21 +180,29 @@
 					<key>mailAliasEditingURL</key>
 					<string>https://www.icloud.com/#mail/prefs-addresses</string>
 					<key>mailAliasLookupJSONURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/alias.json</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/alias.json</string>
 					<key>mailAliasLookupXMLURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/alias.xml</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/alias.xml</string>
 					<key>mailSupportURL</key>
 					<string>http://www.apple.com/support/icloud</string>
 					<key>sendFromAddressJSONURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/ext/sendfrom</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/ext/sendfrom</string>
 					<key>smtpHostname</key>
-					<string>p62-smtp.mail.me.com</string>
+					<string>smtp.mail.me.com</string>
 					<key>smtpPort</key>
 					<integer>587</integer>
 					<key>smtpRequiresSSL</key>
 					<true/>
 				</dict>
 				<dict>
+					<key>Name</key>
+					<string>SETTINGS_SYNC</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.SettingsSync</string>
+				</dict>
+				<dict>
+					<key>Enabled</key>
+					<false/>
 					<key>Name</key>
 					<string>CONTACTS</string>
 					<key>ServiceID</key>
@@ -107,7 +214,7 @@
 					<key>protocol</key>
 					<string>dav</string>
 					<key>url</key>
-					<string>https://p23-contacts.icloud.com:443</string>
+					<string>https://p163-contacts.icloud.com:443</string>
 				</dict>
 				<dict>
 					<key>Enabled</key>
@@ -120,10 +227,22 @@
 					<string>token</string>
 					<key>beta</key>
 					<false/>
+					<key>getSettingsUrl</key>
+					<string>https://p163-caldav.icloud.com:443/api/settings</string>
+					<key>isMakoAccount</key>
+					<false/>
 					<key>protocol</key>
 					<string>dav</string>
+					<key>sendReceiveURL</key>
+					<string>https://p163-caldav.icloud.com:443/api/settings/sendreceive</string>
+					<key>setEmailUrl</key>
+					<string>https://p163-caldav.icloud.com:443/api/settings/email</string>
+					<key>setInvitationUrl</key>
+					<string>https://p163-caldav.icloud.com:443/api/settings/invitation</string>
+					<key>sharedCalendar</key>
+					<string>https://p163-caldav.icloud.com:443/api/settings/sharedcalendar</string>
 					<key>url</key>
-					<string>https://p23-caldav.icloud.com:443</string>
+					<string>https://p163-caldav.icloud.com:443</string>
 				</dict>
 				<dict>
 					<key>Enabled</key>
@@ -139,7 +258,7 @@
 					<key>protocol</key>
 					<string>dav</string>
 					<key>url</key>
-					<string>https://p23-caldav.icloud.com:443</string>
+					<string>https://p163-caldav.icloud.com:443</string>
 				</dict>
 				<dict>
 					<key>Enabled</key>
@@ -157,25 +276,55 @@
 					<key>protocol</key>
 					<string>dav</string>
 					<key>url</key>
-					<string>https://p23-bookmarks.icloud.com:443</string>
+					<string>https://p68-bookmarks.icloud.com:443</string>
 				</dict>
 				<dict>
+					<key>CategorySyncEnabled</key>
+					<false/>
+					<key>ClearAllOverridesURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/recategorization/clearalloverrides</string>
 					<key>EmailAddress</key>
-					<string>johnpell@me.com</string>
+					<string>johnpell@icloud.com</string>
 					<key>Enabled</key>
+					<true/>
+					<key>FetchOverridesUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443/iungo/sender/v1/senders/category</string>
+					<key>FullCategoryOverrideSyncEnabled</key>
 					<true/>
 					<key>FullUserName</key>
 					<string>John Pell</string>
 					<key>Name</key>
 					<string>NOTES</string>
+					<key>RecategorizationSyncFrequencyMinutes</key>
+					<integer>10080</integer>
+					<key>RecategorizationSyncUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/recategorization/sync</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.Notes</string>
+					<key>StartSyncURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/iungo/sender/v1/categories/sync/status</string>
+					<key>SyncAllFrequencyDays</key>
+					<integer>14</integer>
+					<key>SyncNewOldURL</key>
+					<string>https://p163-mccgateway.icloud.com:443/ecs/v1/mcc/events/iungo/newold/sync</string>
 					<key>Username</key>
 					<string>johnpell</string>
 					<key>dotMacMailSupported</key>
 					<true/>
+					<key>iCloudMailSettings.MCCGatewayUrl</key>
+					<string>https://p163-mccgateway.icloud.com:443</string>
+					<key>iCloudMailSettings.MailAssistant.InlineTipCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailAssistant.IsMailCleanupFeatureAvailable</key>
+					<true/>
+					<key>iCloudMailSettings.MailAssistant.PreferencesCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailAssistant.UnifiedRulesCacheTTLInSeconds</key>
+					<string>600</string>
+					<key>iCloudMailSettings.MailCommandCenterUrl</key>
+					<string>https://p163-mcc.icloud.com:443</string>
 					<key>imapHostname</key>
-					<string>p62-imap.mail.me.com</string>
+					<string>imap.mail.me.com</string>
 					<key>imapPort</key>
 					<integer>993</integer>
 					<key>imapRequiresSSL</key>
@@ -183,21 +332,23 @@
 					<key>mailAliasEditingURL</key>
 					<string>https://www.icloud.com/#mail/prefs-addresses</string>
 					<key>mailAliasLookupJSONURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/alias.json</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/alias.json</string>
 					<key>mailAliasLookupXMLURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/alias.xml</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/alias.xml</string>
 					<key>mailSupportURL</key>
 					<string>http://www.apple.com/support/icloud</string>
 					<key>sendFromAddressJSONURL</key>
-					<string>https://p62-mailws.icloud.com:443/wm/ext/sendfrom</string>
+					<string>https://p163-mcc.icloud.com:443/cc/wm/ext/sendfrom</string>
 					<key>smtpHostname</key>
-					<string>p62-smtp.mail.me.com</string>
+					<string>smtp.mail.me.com</string>
 					<key>smtpPort</key>
 					<integer>587</integer>
 					<key>smtpRequiresSSL</key>
 					<true/>
 				</dict>
 				<dict>
+					<key>Enabled</key>
+					<true/>
 					<key>Name</key>
 					<string>SIRI</string>
 					<key>ServiceID</key>
@@ -205,7 +356,39 @@
 				</dict>
 				<dict>
 					<key>Enabled</key>
-					<false/>
+					<true/>
+					<key>Name</key>
+					<string>FREEFORM</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.Boards</string>
+				</dict>
+				<dict>
+					<key>Enabled</key>
+					<true/>
+					<key>Name</key>
+					<string>MOMENTS</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.Moments</string>
+				</dict>
+				<dict>
+					<key>Enabled</key>
+					<true/>
+					<key>Name</key>
+					<string>PHONEFACETIME</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.PhoneFaceTime</string>
+				</dict>
+				<dict>
+					<key>Enabled</key>
+					<true/>
+					<key>Name</key>
+					<string>IMAGEPLAYGROUND</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.ImagePlayground</string>
+				</dict>
+				<dict>
+					<key>Enabled</key>
+					<true/>
 					<key>Name</key>
 					<string>KEYCHAIN_SYNC</string>
 					<key>ServiceID</key>
@@ -213,7 +396,7 @@
 					<key>authMechanism</key>
 					<string>token</string>
 					<key>escrowProxyUrl</key>
-					<string>https://p23-escrowproxy.icloud.com:443</string>
+					<string>https://p163-escrowproxy.icloud.com:443</string>
 				</dict>
 				<dict>
 					<key>Enabled</key>
@@ -223,43 +406,61 @@
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.DeviceLocator</string>
 					<key>appHostname</key>
-					<string>p23-fmipmobile.icloud.com</string>
+					<string>p163-fmipmobile.icloud.com</string>
 					<key>apsEnv</key>
 					<string>production</string>
 					<key>authMechanism</key>
 					<string>token</string>
+					<key>fmRegion</key>
+					<string>aodc</string>
+					<key>fmadminws_gateway_url</key>
+					<string>https://gateway.icloud.com/fmadminws/</string>
 					<key>hostname</key>
-					<string>p23-fmip.icloud.com</string>
+					<string>p163-fmip.icloud.com</string>
+					<key>icloud_fmip_al_service</key>
+					<string>https://fmipalservice.icloud.com/alservice/</string>
+					<key>pairingURL</key>
+					<string>https://gateway.icloud.com/fmadminws</string>
 					<key>url</key>
-					<string>https://p23-fmip.icloud.com:443</string>
+					<string>https://p163-fmip.icloud.com:443</string>
 				</dict>
 				<dict>
+					<key>Enabled</key>
+					<true/>
 					<key>Name</key>
 					<string>NEWS</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.News</string>
 				</dict>
 				<dict>
+					<key>Enabled</key>
+					<true/>
 					<key>Name</key>
 					<string>STOCKS</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.Stocks</string>
 				</dict>
 				<dict>
+					<key>Enabled</key>
+					<true/>
 					<key>Name</key>
 					<string>HOME</string>
 					<key>ServiceID</key>
 					<string>com.apple.Dataclass.Home</string>
 				</dict>
+				<dict>
+					<key>Enabled</key>
+					<true/>
+					<key>Name</key>
+					<string>WALLET</string>
+					<key>ServiceID</key>
+					<string>com.apple.Dataclass.Shoebox</string>
+				</dict>
 			</array>
 			<key>beta</key>
 			<false/>
-			<key>firstName</key>
-			<string>John</string>
 			<key>isManagedAppleID</key>
 			<false/>
-			<key>lastName</key>
-			<string>Pell</string>
 			<key>primaryEmailVerified</key>
 			<true/>
 		</dict>
