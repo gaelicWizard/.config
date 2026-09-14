@@ -292,7 +292,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2026-09-13T23:43:01Z</date>
+	<date>2026-09-15T05:04:04Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -300,6 +300,7 @@
 		<string>mul</string>
 		<string>mul_Latn</string>
 		<string>fr</string>
+		<string>mul_Hani</string>
 	</array>
 	<key>NSLinguisticDataAssetsRequestedByChecker</key>
 	<array>
@@ -2003,6 +2004,8 @@ Notes</string>
 	<true/>
 	<key>performUpdatesCheck</key>
 	<true/>
+	<key>shouldShowRSVPDataDetectors</key>
+	<false/>
 	<key>useGrowl</key>
 	<true/>
 	<key>useNickNameIfPresent</key>
