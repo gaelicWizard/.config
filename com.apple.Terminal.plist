@@ -172,6 +172,8 @@
 	<integer>1</integer>
 	<key>TTInspector Selected Pane</key>
 	<string>Info</string>
+	<key>UserAcknowledgedPasteWarning</key>
+	<true/>
 	<key>Window Groups</key>
 	<array/>
 	<key>Window Settings</key>
