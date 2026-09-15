@@ -1,1 +1,2 @@
-*.plist filter=plist
+*.plist filter=plist diff=plist
+*.scpt diff=scpt
